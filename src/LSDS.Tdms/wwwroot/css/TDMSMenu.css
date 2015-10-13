@@ -1,0 +1,537 @@
+﻿body {
+}
+
+DIV.clsMenuDIV
+{
+	padding:0px; 
+	background-color: Navy; 
+	border:0px outset #cccccc; 
+	width:500px;
+	font-style:normal;
+	font-family:Trebuchet MS;
+	color:White;
+	font-weight:bold;	
+}
+BODY.clsMenu
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:70%;
+	background-color: White;
+}
+
+TABLE.clsMenuTable
+{
+	color:White;
+}
+
+BODY.menu
+{
+	margin: 0px;
+	padding: 0px;
+	background-color: White;
+}
+TABLE.mainmenu
+{
+	font-size: 8pt;
+	font-weight: bold;
+	width: 100%;
+	background-color: DarkBlue;
+	border-bottom: silver 1px solid;
+	color: White;
+}
+
+.clsMenuRowSelect1
+{
+    CURSOR: hand;
+    color: Black;
+	background-color: White;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	z-index:99999;
+}
+.clsMenuRowRollover
+{
+    CURSOR: hand;
+	background-color: DarkBlue;
+	font-family:Trebuchet MS;
+	font-size:8pt;	
+	z-index:99999;
+}
+.clsMenuRowDisplay
+{
+    CURSOR: hand;
+    color: Black;
+	background-color: white;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	z-index:99999;
+}
+.menuitemsave
+{
+	font-weight: bold;
+	font-size: 9pt;
+	border-right: black thin double;
+	cursor: hand;
+	background-color: #ccff99;
+	text-align: center;
+
+	
+}
+.menuitemSel
+{
+	border-left: silver thin outset;
+	border-right: gray thin outset;
+	border-top: silver thin outset;
+	font-weight: bold;
+	border-left-width: thin;
+	font-size: 9pt;
+	cursor: hand;
+	background-color: midnightblue;
+	color: White;
+	text-align: center;
+	
+}
+.menuitemHi
+{ 
+	
+	border-left: silver thin outset;
+	border-right: gray thin outset;
+	border-top: silver thin outset;
+	font-weight: bold;
+	border-left-width: thin;
+	font-size: 9pt;
+	cursor: hand;
+	background-color: DarkBlue;
+	color: white;
+	text-align: center;
+ }
+
+
+.clsToolbarTitle
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	color:White;
+	font-size:13pt;
+	font-weight:bold
+}
+
+.clsToolbarLabel
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:Transparent;
+	color:White;
+	font-size:13pt;
+	font-weight:bold
+}	
+
+.clsToolbarLocations
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:#004488;
+	color:White;
+	font-size:13pt;
+	font-weight:bold
+}
+
+.clsToolbarList
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:Transparent;
+	color:Silver;
+	font-size:10pt;
+	font-weight:bold
+}	
+.clsToolbarListOver
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:Transparent;
+	color:White;
+	font-size:10pt;
+	font-weight:bold
+}	
+.clsWelcomeLabel
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	color:#004488;
+	font-size:11pt;
+	font-weight:bold
+}	
+
+.clsHomeButton
+{
+	font-family:Trebuchet MS;
+	border-style:none;
+	background-color:transparent;
+	color:White;
+	cursor:pointer;
+	font-size:9pt;
+	font-style:italic;
+	font-weight:bold;
+	text-decoration:underline;
+	
+}	
+
+
+
+/* Menu Items */
+.clsMenuContainer
+{
+ background-color:#004488;
+	z-index:99999;
+}
+.clsMenuGroup
+{
+	background-color:#4682B4;
+	border:0px;
+	padding:0px;
+	padding-left:0px;
+	padding-right:0px;
+	z-index:99999;
+
+}
+
+.clsASPMenu
+{
+	color:Red;
+	background-color:transparent;
+	z-index:99999;
+}
+.clsMenuTop
+{
+	background-color:transparent;
+	color:white;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:5px;
+	padding-right:8px;
+	cursor:pointer;
+	white-space:nowrap;
+	z-index:99999;
+}
+.clsMenuItem
+{
+	border:0px;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	
+	cursor:default;
+	color:azure; 
+	cursor:pointer;
+	background-color:#004488;	
+	z-index:9999;
+	z-index:99999;
+
+}
+
+.clsMenuItemDown 
+{
+	border:0px;
+	background-color:#4682B4;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	cursor:default;
+	color:white; 
+	cursor:pointer;
+	z-index:9999;
+	z-index:99999;
+}
+
+.clsMenuItemOver 
+{
+	background-color:#004488;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:1px;
+	padding-left:2px;
+	padding-right:5px;
+	cursor:default;
+	color:white; 
+	cursor:pointer;
+	z-index:9999;
+	z-index:99999;
+}
+
+.clsTopMenuItemDown 
+{
+	background-color:#4682B4;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:5px;
+	padding-right:8px;
+	cursor:default;
+	color:Black; 
+	cursor:pointer;
+	white-space:nowrap;
+	z-index:99999;
+}
+
+.clsDisabledMenuItem
+{
+}
+
+.clsDisabledMenuItemOver 
+{
+}
+
+.clsMenuBreak
+{
+}
+
+.MenuGroup
+{
+  background-color:black;
+  border:1px;
+  border-style:solid;
+  border-top-color:gray; 
+  border-left-color:gray; 
+  border-right-color:black; 
+  border-bottom-color:black; 
+	z-index:99999;
+}
+
+.MenuItem
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  cursor:default;
+  color:white; 
+  cursor:pointer;
+	z-index:99999;
+}
+
+.MenuItemOver 
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  text-decoration:underline; 
+  cursor:default;
+  color:white; 
+  cursor:pointer;
+	z-index:99999;
+}
+
+.MenuItemDown 
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  text-decoration:underline; 
+  cursor:default;
+  color:red; 
+  cursor:pointer;
+	z-index:99999;
+}
+
+.DisabledMenuItem
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  padding:1px;
+  cursor:default;
+  color:gray; 
+}
+
+.DisabledMenuItemOver 
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  padding:1px;
+  cursor:default;
+  color:gray; 
+}
+
+.MenuBreak
+{
+  margin-left:27px; 
+  margin-right:2px; 
+}
+.clsASPMenuTop
+.clsASPMenuTop a,
+.clsASPMenuTop a:link,
+.clsASPMenuTop a:hover,
+.clsASPMenuTop a:visited,
+.clsASPMenuTop a:active
+{
+	background:#004488;
+	color:#FFFFFF;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:0px;
+	padding-left:5px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+}
+
+.clsMenuTop a
+{
+	color:#FFFFFF;
+	cursor:pointer;
+}
+.clsMenuTop a:hover 
+{ 
+	color:lightskyblue; 
+	text-decoration: none; 
+	cursor:pointer;
+}
+
+.clsASPMenuTopHighlight
+.clsASPMenuTopHighlight a,
+.clsASPMenuTopHighlight a:link,
+.clsASPMenuTopHighlight a:hover,
+.clsASPMenuTopHighlight a:visited,
+.clsASPMenuTopHighlight a:active
+{
+	background:#004488;
+	color:lightskyblue;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:0px;
+	padding-left:5px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+}
+
+
+.clsASPMenuItemLevel1
+.clsASPMenuItemLevel1 a,
+.clsASPMenuItemLevel1 a:link,
+.clsASPMenuItemLevel1 a:hover,
+.clsASPMenuItemLevel1 a:visited,
+.clsASPMenuItemLevel1 a:active
+{
+	background-color:#004488;
+	border-bottom:solid 1px lightskyblue;
+	color:white;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+}
+
+.clsASPMenuItemLevel2
+.clsASPMenuItemLevel2 a,
+.clsASPMenuItemLevel2 a:link,
+.clsASPMenuItemLevel2 a:hover,
+.clsASPMenuItemLevel2 a:visited,
+.clsASPMenuItemLevel2 a:active
+{
+	background-color:#004488;
+	border-bottom:solid 1px lightskyblue;
+	color:white;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+	margin-left:1px;
+}
+
+.clsASPMenuItemLevel3
+.clsASPMenuItemLevel3 a,
+.clsASPMenuItemLevel3 a:link,
+.clsASPMenuItemLevel3 a:hover,
+.clsASPMenuItemLevel3 a:visited,
+.clsASPMenuItemLevel3 a:active
+{
+	background-color:#004488;
+	border-bottom:solid 1px lightskyblue;
+	color:white;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+}
+
+.clsASPMenuItemHighlight
+.clsASPMenuItemHighlight a,
+.clsASPMenuItemHighlight a:link,
+.clsASPMenuItemHighlight a:hover,
+.clsASPMenuItemHighlight a:visited,
+.clsASPMenuItemHighlight a:active
+{
+	background-color:#4682B4;
+	border-bottom:solid 1px lightskyblue;
+	color:white;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+}
+
+
+.clsNonDisplay
+{
+	display:none;
+}
+.clsReadOnly
+{
+	
+	background-color:LightGrey;
+	color:white;
+	
+}
+.clsWeeklyStatusHeader
+{
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	text-align:left;
+	background-color:#004488;
+	color:white;
+}
+
+/*.clsWeeklyHeaderCell
+{
+	color:white;
+	cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	color:White;
+	background-color:#004488;
+	padding-left:3px;
+	padding-right:2px;
+    white-space:nowrap;
+}*/
+
+.SystemStatusBodyCell,
+.NotificationStatusBodyCell
+{
+	white-space:nowrap;
+	padding-left:3px;
+	padding-right:2px;
+	
+}
+.clsNotificationWidget tr td
+{
+	/*padding:5px;*/
+}

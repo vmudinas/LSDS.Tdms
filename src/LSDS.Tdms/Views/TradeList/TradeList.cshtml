@@ -1,0 +1,54 @@
+﻿@using Kendo.Mvc.UI
+@{
+
+    ViewBag.Title = "Trade View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section LayoutHead
+{
+    @Styles.Render("~/bundles/style/TradeList")
+    @Scripts.Render("~/bundles/TradeList")
+}
+
+
+<div id="gridTradeView"></div>
+@Html.Kendo().Window().Modal(true).Name("fileUpload").Title("File Upload").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(150).Actions(actions => actions.Maximize().Close()).Animation(true).Width(650)
+@Html.Kendo().Window().Modal(true).Name("BulkEdit").Title("Bulk Edit").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(150).Actions(actions => actions.Maximize().Close()).Animation(true).Width(650)
+@Html.Kendo().Window().Modal(true).Name("ExportProfile").Title("Export").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(150).Actions(actions => actions.Maximize().Close()).Animation(true).Width(650)
+@Html.Kendo().Window().Modal(true).Name("printTradeList").Title("Trade Print Options").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(250).Actions(actions => actions.Maximize().Close()).Animation(true).Width(650)
+@Html.Kendo().Window().Modal(true).Name("poopTDMSTradeResolution").Title("Tdms Trade Resolution").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(800).Actions(actions => actions.Maximize().Close()).Animation(true).Width(800)
+@Html.Kendo().Window().Modal(true).Name("poopTDMSManualMatch").Title("Tdms Manual Match").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(800).Actions(actions => actions.Maximize().Close()).Animation(true).Width(800)
+@Html.Kendo().Window().Modal(true).Name("poopTDMSFailedTrades").Title("Failed Trades").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(400).Actions(actions => actions.Maximize().Close()).Animation(true).Width(800)
+@Html.Kendo().Window().Modal(true).Name("quickFindPopup").Title("Quick Find").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(550).Actions(actions => actions.Refresh().Maximize().Close()).Events(events => events.Refresh("quickFindRefresh").Close("quickFindClose")).Animation(true).Width(650)
+@Html.Kendo().Window().Modal(true).Name("quickSortPopup").Title("Quick Sort").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(550).Actions(actions => actions.Refresh().Maximize().Close()).Events(events => events.Refresh("quickSortRefresh").Close("quickSortClose")).Animation(true).Width(650)
+
+@using (Html.BeginForm("TradeDetail", "TradeDetail", FormMethod.Post, new {name = "idPostTradeList", id = "idPostTradeList"}))
+{
+    <input type="hidden" id="tradeSelectedId" name="tradeSelectedId"/>
+    <input type="hidden" id="tradeListId" name="tradeListId"/>
+    <input type="hidden" id="tempTradeIdList" name="tempTradeIdList"/>
+    <div id="tradeSearchSort">
+        <div>
+            <select id="searchSelect" class="myDDL" onchange="onQuickFindChange(this)"></select>
+        </div>
+        <div>
+            <select id="sortSelect" class="myDDL" onchange="onQuickSortChange(this)"></select>
+        </div>
+    </div>
+}
+<script type="text/x-kendo-template" id="tradeViewToolBar">
+    <div class="toolbar">       
+        <input type="image" id="tdTooliconUpload" src="@Url.Content("~/Content/Images/iconupladover.png")" onclick="loadFileUploadPopup();" />
+        <img id="tdToolhammer" src="@Url.Content("~/Content/Images/hammer-icon.png")" onclick="TDMSManualMatch(this);"    />
+        <img id="tdToolwrench" src="@Url.Content("~/Content/Images/wrench.gif")" onclick="TDMSTradeResolution(this);" />
+        <input type="image" id="tdToolprinter" src="@Url.Content("~/Content/Images/printer-icon.png")" onclick="TradeListPrint();" />
+        <input type="image" id="tdToolBroken" src="@Url.Content("~/Content/Images/Broken.GIF")" onclick="TradeListToolBroken(this);"  />
+        <input type="image" id="tdToolno" src="@Url.Content("~/Content/Images/no.png")" onclick="TradeListToolNo(this);"  />
+        <input type="image" id="tdToolTick" src="@Url.Content("~/Content/Images/Tick.png")" onclick="TradeListToolTick(this);"  />
+        <input type="image" id="tdToolpencil" src="@Url.Content("~/Content/Images/pencil.png")" onclick="loadBulkEditPopup();"  />
+        <input type="image" id="tdTradeViewExport" src="@Url.Content("~/Content/Images/export.png")" onclick="tradeListExport();"  />
+        <input type="image" id="tdToolSearch" src="@Url.Content("~/Content/Images/searchNew.png")" onclick="TradeListSearch();"  />
+       
+</div>
+    
+</script>

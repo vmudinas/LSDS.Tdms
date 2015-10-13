@@ -1,0 +1,75 @@
+﻿.k-link {
+    font-family: Trebuchet MS,Verdana, Helvetica, Arial, sans-serif !important;
+    font-size: 10pt !important;
+    font-weight: bold !important;
+}
+  #headerLocationSelect
+    {
+        width: 100px;
+        height: 34px;
+        overflow: hidden;
+        background: url(Images/ArrowDownWhite.GIF) no-repeat right !important;
+        border: 1px solid white;
+        color: white !important;
+        position: absolute !important;
+        right: 10px !important;
+        top: 5px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+    }
+
+    .layoutheaderTitle {
+        font-family: Trebuchet MS, Verdana, Helvetica, Arial, sans-serif;
+        background-image: url(Images/Gradient.jpg) !important;
+        color: #FFF;
+        font-size: 13pt;
+        font-weight: bold;
+        -ms-background-size: 10px 90px;
+        background-size: 10px 90px;
+        position: absolute;
+        width: 100%;
+        top: 0px;
+    }
+
+    .clsToolbar {
+        font-family: Trebuchet MS, Verdana, Helvetica, Arial, sans-serif;
+        /*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#004488,endColorStr=#83accf);	*/
+        background-image: url(~/Content/Images/Gradient.jpg);
+        color: #FFFFFF;
+        font-size: 13pt;
+        font-weight: bold
+    }
+    #iduserNameDetails {
+         position: absolute;
+    top: 71px;
+    right: 5px;
+    }
+    #idLogOutB {
+     position: absolute;
+    top: 30px;
+    right: 76px;
+    display: inline-flex;
+    font-family: Trebuchet MS,Verdana, Helvetica, Arial, sans-serif !important;
+    font-size: 12pt !important;
+
+}
+.logOutLink {
+    float: right;
+    font-style: italic;
+    color: white;
+    padding: 2px;
+    font-family: Trebuchet MS,Verdana, Helvetica, Arial, sans-serif !important;
+    font-size: 12pt !important;
+}
+   #userLastLogin {
+     position: relative;
+    top: -5px;
+    left: 0px;
+    white-space: nowrap;
+   
+}
+   .logOutLink a:focus,  .logOutLink a:hover {
+       color: grey;
+   }

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/dist/css/bootstrap-touch-carousel.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/LoginStyle.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
+        <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
+              asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
+              asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
+        <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
+        <link rel="stylesheet" href="~/css/LoginStyle.css" asp-file-version="true" />
+    </environment>
+</head>
+<body>
+
+    @using Tdms.Controllers
+    @model LSDS.Tdms.Models.TdmsDataModel.UserLogin
+    @{
+        ViewBag.Title = "Login Page";
+        Layout = null;
+    }
+
+
+    <div class="container">
+        <div class="loginWindow" autocomplete="off">
+
+            <img id="loginLDSLogo" src="~/images/LDS Logo 76x335.jpg" alt=""  asp-file-version="true"/>
+
+
+            @using (@Html.BeginForm())
+            {
+                <input type="text" style="display: none">
+                <input type="password" style="display: none">
+                <div id="idErrorMsg">@Html.ValidationMessage("LoginError")</div>
+                <div id="loginMainW">
+                    <fieldset>
+                        <legend>
+                            <img id="idTdmsLoginT" src="~/images/TDMSEnterprise40.gif" alt="" />
+                        </legend>
+                       
+                        <label id="version">@ViewBag.Version</label>
+                    <div id="idLog">
+                        <div class="editor-label">
+                            @Html.LabelFor(u => u.UserName)
+                            @Html.TextBoxFor(u => u.UserName, new { id = "UserName", @required = "required", @value = "", autocomplete = "off" })
+                            @Html.ValidationMessageFor(u => u.UserName)
+                        </div>
+                        <div class="editor-label">
+                            @Html.LabelFor(u => u.Password)
+                            @Html.PasswordFor(u => u.Password, new { id = "Password", @required = "required", @value = "", autocomplete = "off" })
+                            @Html.ValidationMessageFor(u => u.Password)
+                        </div>
+                    </div>
+                    <div id="idLogBut">
+
+                        <input type="submit" value="Log In" class="loginButton" name="Login" id="idLoginB" />
+                        <input type="submit" value="Password" class="loginButton" name="Password" id="idPasswordChange" />
+
+                    </div>
+                </fieldset>
+            </div>
+            @Html.HiddenFor(u => u.PasswordChange, new { id = "PasswordChange" })
+            }
+
+
+            <div id="idFooter">
+                <div id="loginFooter">
+                    This is a private computer system with access restricted to those with proper authorization. If you are not specifically authorized to access data on this system, disconnect now. All information and communications on this system are subject to review, monitoring, and recording at any time without notice or permission. Unauthorized use or access may be subject to prosecution or disciplinary action.
+                </div>
+                <div id="loginFooterLink">
+                    @Html.ActionLink("Privacy Policy", "Privacy", "Privacy")
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/hammer.js/hammer.js"></script>
+        <script src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"></script>
+        <script src="~/js/views/Login.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="//ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js"
+                asp-fallback-src="~/lib/hammer.js/hammer.js"
+                asp-fallback-test="window.Hammer">
+        </script>
+        <script src="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/js/bootstrap-touch-carousel.js"
+                asp-fallback-src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"
+                asp-fallback-test="window.Hammer && window.Hammer.Instance">
+        </script>
+        <script src="~/js/site.js" asp-file-version="true"></script>
+        <script src="~/js/views/Login.js"  asp-file-version="true"></script>
+    </environment>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    // ViewBag.Title = "Home Page";
+}
+<div class="pickerBrokerPreformance">
+    <div id="gridBrokerPerformance"></div>
+</div>
+
+<script type="text/x-kendo-template" id="brokerToolBar">
+        
+        <div class="widgetTitleText">TDMS Broker Performance <img class="title" src="@Url.Content("~/Content/Images/drag_and_drop-128.png" )" /></div>
+       
+        <div class="widgetEdithideBrokerPerformance">
+            <span class="widgetSpanText">Time Period:  </span>
+            <select id="brokerPerformanceTimePeriodSelect" onchange="brokerChangeTime()">
+                <option value="1">Month</option>
+                <option value="4">Quarter</option>
+                <option value="6">6 Months</option>
+                <option value="12" selected>Year</option>
+            </select>
+            <span class="widgetSpanText">
+                Preferable Days to Match:
+                <select id="brokerPerformancePreferableDaySelect" onchange="brokerChangeDays()">
+                    <option value="0.5">0.5</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">3</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4" selected>4</option>
+                </select>
+            </span>
+        </div>
+     
+</script>

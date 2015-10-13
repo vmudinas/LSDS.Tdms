@@ -1,0 +1,66 @@
+﻿@using System.Diagnostics
+@using System.Diagnostics.Eventing.Reader
+@model IEnumerable<Tdms.DataAccess.usp_returnTableDetail_Result>
+@section LayoutHead
+{
+    @Styles.Render("~/bundles/style/QuickSort")
+    @Scripts.Render("~/bundles/QuickSort")
+}
+<form action="@Url.Action("Save", "QuickSort")" method="POST">
+    <table id="quickSortTableTitle">
+        <tr>
+
+            <td style="text-align: right;"><label id="sortNameLb">Sort Name:</label></td>
+            <td colspan="2">
+                <select id="ddlSelectView" class="selectSortName">
+                    <option selected="selected">Select Sort</option>
+                </select>
+            </td>
+            <td style="white-space: nowrap;"> <button id="quickSortCancel" class="k-button k-primary" type="button" formnovalidate>Delete</button> <button id="idSaveQuickSortBtn" class="k-button k-primary" type="submit">Save</button> </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                <label id="sortLable">Save As:</label>
+            </td>
+            <td colspan="2">
+                <input type="text" id="idSaveQuickSort" name="quickSortText" class="k-textbox" placeholder="Quick Sort Name" required style="width: 350px;"/>
+                <input type="hidden" name="idSaveQuickSortID" class="quickSortIdclass"/>
+            </td>
+
+            <td>
+                <label id="sortDefaultLb">Default:</label>
+                <input type="checkbox" name="defaultSortCheckbox" class="defaultSortCheckbox" value="Default:"/>
+            </td>
+        </tr>
+        <tr>
+            <td height="35px"></td>
+            <td></td>
+            <td></td>
+            <td colspan="10"></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="row1">
+                <td class="c1" style="white-space: nowrap;">
+
+                <td class="c2">
+                    @Html.DisplayFor(modelItem => item.Column_Header):
+                </td>
+                <td class="c3">
+                    <input type="radio" name='@item.Column_Header' class='@item.Column_Name' value="ASC" onchange="RadioQuickSort('@item.Column_Header', 'ASC', 'DESC', '@item.Column_Name')"/> ASC
+                    <input type="radio" name='@item.Column_Header' class='@item.Column_Name' value="DESC" onchange="RadioQuickSort('@item.Column_Header', 'DESC', 'ASC', '@item.Column_Name')"/> DESC
+                    <input type="checkbox" id='@item.Column_Name' class="quickSortCheckBox" onclick="CheckBoxQuickSort('@item.Column_Header', this, '@item.Column_Name')"/>
+                </td>
+
+            </tr>
+        }
+        <tr>
+            <td height="35px"></td>
+
+        </tr>
+    </table>
+    <ul id="sortable"></ul>
+    <input type="hidden" id="idsortValues" name="idSortValues" value=""/>
+
+</form>
+

@@ -1,0 +1,772 @@
+﻿
+<div>Trade Candidates</div>
+<div id="gridTC"></div>
+<div>Matching Candidates</div>
+<div id="gridMMC"></div>
+<div>Confirm Candidates</div>
+<div id="gridCC"></div>
+@*<form action="/TdmsManualMatch/UploadPostedFile" method="POST" enctype="multipart/form-data">*@
+<table>
+    <tr>
+        <td><label class="lbManualMatchClass">Comment:</label></td>
+        <td colspan="7"><input id="manulMatchComment" type="text" placeholder="Enter Comment" /></td>
+        <td></td>
+        <td>Do Not Affirm<input type="checkbox" id="chkdoNotAffirm" /></td>
+    </tr>
+    <tr>
+        <td><label class="lbManualMatchClass">Candidates:</label></td>
+        <td><input type="checkbox" id="chkPortNo" checked="checked" />Port No</td>
+        <td><input type="checkbox" id="chkTraded" />Traded</td>
+        <td><input type="checkbox" id="chkSecId" checked="checked" />SEC ID</td>
+        <td><input type="checkbox" id="chkBs" checked="checked" />B/S</td>
+        <td><input type="checkbox" id="chkBrokerFIN" checked="checked" />Broker FIN</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><input type="button" id="btnFindConfirm" class="printOptionsButton" value="Find Confirm:" onclick="ManualMatchFindConfirmButton()" /></td>
+        <td><input id="confirmRef" type="text" placeholder="Enter Confirm" /></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input type="button" id="btnManualMatch" class="printOptionsButton" value="Match" onclick="MMFCButton()" /></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="4"><input type="file" name="btnFindHardCopy" id="btnFindHardCopy" class="printOptionsButton" value="Find Hard Copy:" onclick="ManualMatchHCoryButton()" /></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+</table>
+<input type="hidden" id="tdTradeSelected" value="" />
+
+<script>
+
+
+    var gridMMCopy;
+    var gridTCMCopy;
+
+    $(document).ready(function () {
+        //
+        getTblTC();
+        getTblCCParam();
+        //
+        var modifiedData = [
+            { PortNo: "-9999", BrkFin: "-9999", ClrFIN: "-9999", Traded: "-9999", Settlement: "-9999", UnitPrice: "-9999", Shares: "-9999", Principal: "-9999", Commission: "-9999", SecFee: "-9999", OtherFee: "-9999", Income: "-9999", NetAmount: "-9999", AgtBankNo: "-9999", CustIntAcc: "-9999", IntPty1: "-9999", IntPty1Acc: "-9999", IntPty2: "-9999", IntPty2Acc: "-9999", Broker: "-9999", BrokerAcc: "-9999" },
+            { PortNo: "-9999", BrkFin: "-9999", ClrFIN: "-9999", Traded: "-9999", Settlement: "-9999", UnitPrice: "-9999", Shares: "-9999", Principal: "-9999", Commission: "-9999", SecFee: "-9999", OtherFee: "-9999", Income: "-9999", NetAmount: "-9999", AgtBankNo: "-9999", CustIntAcc: "-9999", IntPty1: "-9999", IntPty1Acc: "-9999", IntPty2: "-9999", IntPty2Acc: "-9999", Broker: "-9999", BrokerAcc: "-9999" }
+        ];
+        getTblMMC(modifiedData);
+
+        $("#chkPortNo").on("click", function () {
+            getTblCCParam();
+        });
+        $("#chkTraded").on("click", function () {
+            getTblCCParam();
+        });
+        $("#chkSecId").on("click", function () {
+            getTblCCParam();
+        });
+        $("#chkBs").on("click", function () {
+            getTblCCParam();
+        });
+        $("#chkBrokerFIN").on("click", function () {
+            getTblCCParam();
+        });
+
+
+        $("#btnFindHardCopy").change(function (event) {
+            $(".ckCC").each(function (index) {
+                if (this.checked) {
+                    this.checked = false;
+                }
+            });
+        });
+
+
+    });
+
+    function LinkClick() {
+
+        alert($('#btnFindHardCopy').val());
+
+        return false;
+    }
+
+    function CheckFirst() {
+
+        var checkedO = true;
+        $(".ckTC").each(function (index) {
+            if (this.checked) {
+                checkedO = false;
+            }
+        });
+
+        if (checkedO) {
+            $(".ckTC").each(function (index) {
+
+                if (index === 0) {
+                    checkedO = true;
+                    $(this).prop("checked", true);
+                    handleCheck(this, this.id);
+                }
+            });
+        }
+    }
+
+    function UpdateTable() {
+        getTblMMC($("#gridTC").data("kendoGrid"));
+    }
+
+    function ManualMatchHCoryButton() {
+        //   return false;
+    }
+
+    function MMFCButton() {
+
+        var formData = new FormData();
+        var file = document.getElementById("btnFindHardCopy").files[0];
+
+        formData.append("chkdoNotAffirm", $("#chkdoNotAffirm").is(':checked'));
+        formData.append("manulMatchComment", $("#manulMatchComment").val());
+        formData.append("btnFindHardCopy", file);
+        formData.append("tradeList", ReturnList("ckTC"));
+        formData.append("confirmList", ReturnList("ckCC"));
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ManualMatch", "TDMSManualMatch")',
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success != null || response.success !== 'undefined') {
+                    alert(response.result);
+                    if (response.result.toLowerCase().indexOf("fail") >= 0) {
+                        console.log("fail");
+                        getTblTC();
+                        getTblCCParam();
+                        //
+                        var modifiedData = [
+                        { PortNo: "-9999", BrkFin: "-9999", ClrFIN: "-9999", Traded: "-9999", Settlement: "-9999", UnitPrice: "-9999", Shares: "-9999", Principal: "-9999", Commission: "-9999", SecFee: "-9999", OtherFee: "-9999", Income: "-9999", NetAmount: "-9999", AgtBankNo: "-9999", CustIntAcc: "-9999", IntPty1: "-9999", IntPty1Acc: "-9999", IntPty2: "-9999", IntPty2Acc: "-9999", Broker: "-9999", BrokerAcc: "-9999" },
+                        { PortNo: "-9999", BrkFin: "-9999", ClrFIN: "-9999", Traded: "-9999", Settlement: "-9999", UnitPrice: "-9999", Shares: "-9999", Principal: "-9999", Commission: "-9999", SecFee: "-9999", OtherFee: "-9999", Income: "-9999", NetAmount: "-9999", AgtBankNo: "-9999", CustIntAcc: "-9999", IntPty1: "-9999", IntPty1Acc: "-9999", IntPty2: "-9999", IntPty2Acc: "-9999", Broker: "-9999", BrokerAcc: "-9999" }
+                        ];
+                        getTblMMC(modifiedData);
+
+                    }
+                    else {
+                        console.log("not Fail" + response.tdList);
+                        inManualMatch(response.tdList);
+                    }
+
+                }
+            },
+            error: function (error) {
+                alert(error);
+                inManualMatch();
+            }
+        });
+
+
+    }
+    function inManualMatch(updatedList) {
+        var list = updatedList.split(',');
+
+        $.each(list, function (index, value) {
+
+            if ($("#tradeListId").val() === value) {
+                $("#tradeListId").val("");
+                $("#gridTC").data('kendoGrid').dataSource.data([]);
+            }
+            if ($("#tradeListId").val().indexOf("," + value) >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace("," + value, ""));
+            }
+            else if ($("#tradeListId").val().indexOf(value + ",") >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace("," + value, ""));
+            }
+            if ($("#tradeListId").val().indexOf(", " + value) >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace(", " + value, ""));
+            }
+            else if ($("#tradeListId").val().indexOf(value + " ,") >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace(", " + value, ""));
+            }
+            ///
+            if ($("#tradeListId").val().indexOf(value + ",") >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace(value + ",", ""));
+            }
+            else if ($("#tradeListId").val().indexOf(value + ",") >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace(value + ",", ""));
+            }
+            if ($("#tradeListId").val().indexOf(", " + value) >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace(value + ", ", ""));
+            }
+            else if ($("#tradeListId").val().indexOf(value + " ,") >= 0) {
+                $("#tradeListId").val($("#tradeListId").val().replace(value + ", ", ""));
+            }
+
+        });
+
+        getTblTC();
+        getTblCCParam();
+
+
+        var modifiedData = [
+            { PortNo: "-9999", BrkFin: "-9999", ClrFIN: "-9999", Traded: "-9999", Settlement: "-9999", UnitPrice: "-9999", Shares: "-9999", Principal: "-9999", Commission: "-9999", SecFee: "-9999", OtherFee: "-9999", Income: "-9999", NetAmount: "-9999", AgtBankNo: "-9999", CustIntAcc: "-9999", IntPty1: "-9999", IntPty1Acc: "-9999", IntPty2: "-9999", IntPty2Acc: "-9999", Broker: "-9999", BrokerAcc: "-9999" },
+            { PortNo: "-9999", BrkFin: "-9999", ClrFIN: "-9999", Traded: "-9999", Settlement: "-9999", UnitPrice: "-9999", Shares: "-9999", Principal: "-9999", Commission: "-9999", SecFee: "-9999", OtherFee: "-9999", Income: "-9999", NetAmount: "-9999", AgtBankNo: "-9999", CustIntAcc: "-9999", IntPty1: "-9999", IntPty1Acc: "-9999", IntPty2: "-9999", IntPty2Acc: "-9999", Broker: "-9999", BrokerAcc: "-9999" }
+        ];
+        getTblMMC(modifiedData);
+    }
+    function ReturnList(className) {
+        var idList = "";
+        $("." + className).each(function (index) {
+            //alert(this.id);
+            if (this.checked) {
+                if (idList.length > 0) {
+                    idList = idList + "," + this.id;
+                }
+                else {
+                    idList = this.id;
+                }
+            }
+        });
+
+        return idList;
+    }
+
+    function moveTo(from, to) {
+        var selected = from.select();
+        alert(selected);
+        if (selected.length > 0) {
+            var items = [];
+            $.each(selected, function (idx, elem) {
+                items.push(from.dataItem(elem));
+            });
+            var fromDS = from.dataSource;
+            var toDS = to.dataSource;
+            $.each(items, function (idx, elem) {
+                toDS.add({ name: elem.name, lastName: elem.lastName });
+                fromDS.remove(elem);
+            });
+            toDS.sync();
+            fromDS.sync();
+        }
+    }
+
+    function ManualMatchFindConfirmButton() {
+        getTblCCParam();
+        $("#btnFindHardCopy").css("disabled", "disabled");
+
+    }
+
+    function getTblMMC(data) {
+
+        $.getJSON(
+             '@Url.Action("ReturnUserTableDetail", "TableDetail")', { source: "ManualModifiedTrades" },
+            function (myData) {
+
+                var aggregateList = myData[0].aggregateList;
+                intMatchMMC(myData, aggregateList, data);
+            });
+    }
+
+    function getTblTC() {
+
+        $.getJSON(
+             '@Url.Action("ReturnUserTableDetail", "TableDetail")', { source: "ManualMatchTrades" },
+            function (myData) {
+                myData.unshift(
+                    { template: "<input type='checkbox' class='ckTC'  id=#=tdTrade#  onclick='handleCheck(this,#=tdTrade#);' />", width: 30 }
+                );
+                var aggregateList = myData[0].aggregateList;
+                intManualMatch(myData, aggregateList, "gridTC", "usp_returnManualMatchTradeList_Query", "ManualMatchTrades", false);
+            });
+    }
+
+    function getTblCC() {
+
+        $.getJSON(
+             '@Url.Action("ReturnUserTableDetail", "TableDetail")', { source: "ManualMatchConfirms" },
+            function (myData) {
+                myData.unshift(
+                    { template: "<input type='checkbox' class='ckCC' id=#=tdConfirm#  onclick='handleCheck(this,#=tdTrade#);' /><input type='hidden' id=tdTradeC value=#=tdTrade#  />", width: 30 }
+                );
+
+                var aggregateList = myData[0].aggregateList;
+                intManualMatch(myData, aggregateList, "gridCC", "usp_returnTradeConfirmList_Query", "ManualMatchConfirms", false);
+            });
+    }
+    function getTblCCParam() {
+
+        $.getJSON(
+             '@Url.Action("ReturnUserTableDetail", "TableDetail")', { source: "ManualMatchConfirms" },
+            function (myData) {
+                myData.unshift(
+                    { template: "<input type='checkbox' class='ckCC' id=#=tdConfirm#  onclick='handleCheck(this,#=tdTrade#);' />", width: 30 }
+                );
+
+                var aggregateList = myData[0].aggregateList;
+                intManualMatch(myData, aggregateList, "gridCC", "usp_returnManualMatchConfirms", "ManualMatchConfirms", true);
+            });
+    }
+    function intMatchMMC(columnDetailArray, aggregateList, modifiedData) {
+
+        var columns =
+            [
+                { field: "PortNo", title: "Port No", width: "100px", template: "<div class='PortNo' id=#=PortNo# >#= ManualMatch(PortNo)#<div>" },
+                { field: "BFin", title: "Brk Fin", width: "100px", template: "<div class='BFin'  id=#=PortNo# >#= ManualMatch(BrkFin)#<div>" }, // template: "#= ManualMatchColor(BrkFin,'" + modifiedData[0].BrkFin + "','" + modifiedData[1].BrokerFINNo + "')#" },
+                { field: "ClrFIN", title: "Clr FIN", template: "<div class='ClrFIN'   id=#=ClrFIN# >#= ManualMatch(ClrFIN)#<div>" }, //template: "#= ManualMatchColor(ClrFIN,'" + modifiedData[0].ClrFIN + "','" + modifiedData[1].ClrFIN + "')#" },
+                { field: "Traded", title: "Traded", width: "100px", template: "<div class='Traded'  id=#=kendo.toString(kendo.parseDate(Traded, 'yyyy-MM-dd'), 'MMddyyyy')# >#= ManualMatch(kendo.toString(kendo.parseDate(Traded, 'yyyy-MM-dd'), 'MM/dd/yyyy'))#<div>" }, //template: "#= ManualMatchColor(kendo.toString(kendo.parseDate(Traded, 'yyyy-MM-dd'), 'MM/dd/yyyy'),'" + modifiedData[0].Traded + "','" + modifiedData[1].mTradeDate + "')#" },
+                { field: "Settlement", title: "Settlement", width: "100px", template: "<div class='Settlement'  id=#=kendo.toString(kendo.parseDate(Settlement, 'yyyy-MM-dd'), 'MMddyyyy')# >#= ManualMatch(kendo.toString(kendo.parseDate(Settlement, 'yyyy-MM-dd'), 'MM/dd/yyyy'))#<div>" }, //template: "#= ManualMatchColor(kendo.toString(kendo.parseDate(Settlement, 'yyyy-MM-dd'), 'MM/dd/yyyy'),'" + modifiedData[0].Settlement + "','" + modifiedData[1].mSettlementDate + "')#" },
+                { field: "UnitPrice", title: "Unit Price", width: "100px", template: "<div class='UnitPrice'  id=#=UnitPrice# >#= ManualMatch(UnitPrice)#<div>" }, // template: "#= ManualMatchColor(UnitPrice,'" + modifiedData[0].UnitPrice + "','" + modifiedData[1].mUnitPrice + "')#" },
+                { field: "Shares", title: "Shares/OFV", width: "100px", template: "<div class='Shares'  id=#=Shares# >#= ManualMatch(Shares)#<div>" }, // template: "#= ManualMatchColor(Shares,'" + modifiedData[0].Shares + "','" + modifiedData[1].mNUmberofShares + "')#" },
+                { field: "Principal", title: "Principal", width: "100px", template: "<div class='Principal'  id=#=Principal# >#= ManualMatch(Principal)#<div>" }, //template: "#= ManualMatchColor(Principal,'" + modifiedData[0].Principal + "','" + modifiedData[1].mPrincipalAmount + "')#" },
+                { field: "Commission", title: "Commission", width: "100px", template: "<div class='Commission'  id=#=Commission# >#= ManualMatch(Commission)#<div>" }, //template: "#= ManualMatchColor(Commission,'" + modifiedData[0].Commission + "','" + modifiedData[1].mCommission + "')#" },
+                { field: "SecFee", title: "Sec Fee", width: "100px", template: "<div class='SecFee'  id=#=SecFee# >#= ManualMatch(SecFee)#<div>" }, // template: "#= ManualMatchColor(SecFee,'" + modifiedData[0].SecFee + "','" + modifiedData[1].mSECFees + "')#" },
+                { field: "OtherFee", title: "Other Fee", width: "100px", template: "<div class='OtherFee'  id=#=OtherFee# >#= ManualMatch(OtherFee)#<div>" }, //template: "#= ManualMatchColor(OtherFee,'" + modifiedData[0].OtherFee + "','" + modifiedData[1].mOtherFee + "')#" },
+                { field: "Income", title: "Income", width: "100px", template: "<div class='Income'  id=#=Income# >#= ManualMatch(Income)#<div>" }, //template: "#= ManualMatchColor(Income,'" + modifiedData[0].Income + "','" + modifiedData[1].mIncome + "')#" },
+                { field: "NetAmount", title: "Net Amount", width: "100px", template: "<div class='NetAmount'  id=#=NetAmount# >#= ManualMatch(NetAmount)#<div>" }, //template: "#= ManualMatchColor(NetAmount,'" + modifiedData[0].NetAmount + "','" + modifiedData[1].mNetAmount + "')#" },
+                { field: "AgtBankNo", title: "Agt Bank No", width: "100px", template: "<div class='AgtBankNo'  id=#=AgtBankNo# >#= ManualMatch(AgtBankNo)#<div>" }, //template: "#= ManualMatchColor(AgtBankNo,'" + modifiedData[0].AgtBankNo + "','" + modifiedData[1].AgtBankNo + "')#" },
+                { field: "CustIntAcc", title: "Cust Int Acc", width: "100px", template: "<div class='CustIntAcc'  id=#=CustIntAcc# >#= ManualMatch(CustIntAcc)#<div>" },
+                { field: "IntPty1", title: "Int Pty 1", width: "100px", template: "<div class='IntPty1'  id=#=IntPty1# >#= ManualMatch(IntPty1)#<div>" },
+                { field: "IntPty1Acc", title: "Int Pty 1 Acc", width: "100px", template: "<div class='IntPty1Acc'  id=#=IntPty1Acc# >#= ManualMatch(IntPty1Acc)#<div>" },
+                { field: "IntPty2", title: "Int Pty 2", width: "100px", template: "<div class='IntPty2'  id=#=IntPty2# >#= ManualMatch(IntPty2)#<div>" },
+                { field: "IntPty2Acc", title: "Int Pty 2 Acc", width: "100px", template: "<div class='IntPty2Acc'  id=#=IntPty2Acc# >#= ManualMatch(IntPty2Acc)#<div>" },
+                { field: "Broker", title: "Broker", width: "100px", template: "<div class='Broker'  id=#=Broker# >#= ManualMatch(Broker)#<div>" },
+                { field: "BrokerAcc", title: "Broker Acc", width: "100px", template: "<div class='BrokerAcc'  id=#=BrokerAcc# >#= ManualMatch(BrokerAcc)#<div>" }
+            ];
+        $("#gridMMC").kendoGrid({
+            dataSource: {
+                data: modifiedData,
+                schema: {
+                    model: {
+                        fields: {
+                            PortNo: { type: "string" },
+                            Traded: { type: "string" },
+                            Settlement: { type: "string" }
+                        }
+                    }
+                }
+            },
+            batch: true,
+            pageable: false,
+            filterable: false,
+            selectable: "multiple",
+            resizable: true,
+            reorderable: true,
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            majorGridLines: {
+                step: 250,
+                visible: true
+            },
+            columns: columns,
+            height: 150,
+            dataBound: function () {
+                // Any function to run after databound
+                //headerFormating();
+                PassIdToColor();
+            },
+            change: function () {
+                getGridIndex();
+            }
+        });
+    }
+
+    function ManualMatchColor(value, val1, val2) {
+        if (value === "XxX" || value === "-9999" || value === "null" || value === null) {
+            return "<div> </div>";
+        }
+        //  console.log(val1 + val2);
+        if (val1 === val2 || val1 === "" || val2 === "") {
+            return "<div>" + value + "</div>";
+        }
+        return "<div style='color:red;'>" + value + val1 + val2 + "</div>";
+    }
+
+    function intManualMatch(columnDetailArray, aggregateList, gridId, storedProcedure, source, confirmCheck) {
+
+        var manualMatchData = new kendo.data.DataSource({
+            type: "json",
+            transport: {
+                read: {
+                    url: '@Url.Action("TDMSManualMatchData", "TDMSManualMatch")',
+                    dataType: "json",
+                    type: "POST"
+
+                },
+                parameterMap: function (options) {
+                    options.Source = source;
+                    options.IdList = $("#tradeListId").val();
+                    options.StoreProcedureName = storedProcedure;
+                    options.ConfirmCheck = confirmCheck;
+                    options.ChkPortNo = $("#chkPortNo").prop('checked');
+                    options.ChkTraded = $("#chkTraded").prop('checked');
+                    options.ChkSecId = $("#chkSecId").prop('checked');
+                    options.ChkBs = $("#chkBs").prop('checked');
+                    options.ChkBrokerFIN = $("#chkBrokerFIN").prop('checked');
+                    options.tdTrade = $("#tdTradeSelected").val();
+                    options.ConfirmRefNo = $("#confirmRef").val();
+                    return options;
+                }
+            },
+            serverPaging: false,
+            serverSorting: false,
+            serverFiltering: false,
+            aggregate: aggregateList,
+            schema: {
+                model: {
+                    id: "id"
+                },
+                data: "TradeList",
+                type: "json",
+                total: "Total"
+            }
+        });
+        // alert(JSON.stringify(columnDetailArray));
+
+        $("#" + gridId).kendoGrid({
+            dataSource: manualMatchData,
+            batch: true,
+            pageable: false,
+            filterable: false,
+            selectable: "multiple",
+            resizable: true,
+            reorderable: true,
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            majorGridLines: {
+                step: 250,
+                visible: true
+            },
+            height: 150,
+            columns: columnDetailArray,
+            dataBound: function () {
+                // Any function to run after databound
+                //headerFormating();
+                CheckFirst();
+            },
+            change: function () {
+                getGridIndex();
+            }
+        });
+    }
+
+    function handleCheck(e, tdTrade) {
+        $("#tdTradeSelected").val(tdTrade);
+        var modifiedData = [
+            calculateMData(e),
+            calculateCData(e)
+        ];
+        getTblMMC(modifiedData);
+
+    }
+
+    function calculateMData(item) {
+        var mPortNo = "-9999";
+        var mBrkFin = "-9999";
+        var mClrFIN = "-9999";
+        var mTraded = "-9999";
+        var mSettlement = "-9999";
+        var mUnitPrice = "-9999";
+        var mShares = "-9999";
+        var mPrincipal = "-9999";
+        var mCommission = "-9999";
+        var mSecFee = "-9999";
+        var mOtherFee = "-9999";
+        var mIncome = "-9999";
+        var mNetAmount = "-9999";
+        var mAgtBankNo = "-9999";
+        var mCustIntAcc = "-9999";
+        var mIntPty1 = "-9999";
+        var mIntPty1Acc = "-9999";
+        var mIntPty2 = "-9999";
+        var mIntPty2Acc = "-9999";
+        var mBroker = "-9999";
+        var mBrokerAcc = "-9999";
+
+        $(".ckTC").each(function (index) {
+            //alert(this.id);
+            if (this.checked && item.id !== "" && item.id !== null) {
+                // mPortNo = item.id;
+
+                var entityGrid = $("#gridTC").data("kendoGrid");
+                var data = entityGrid.dataSource.data();
+                var totalNumber = data.length;
+
+                for (var i = 0; i < totalNumber; i++) {
+                    var currentDataItem = data[i];
+                    //   console.log(item.id + "x" + currentDataItem.tdTrade);
+                    if (this.id == currentDataItem.tdTrade) {
+
+                        if (currentDataItem.PortNo !== "" || currentDataItem.PortNo !== null) {
+                            mPortNo = currentDataItem.PortNo;
+                        }
+                        if (currentDataItem.BFin !== "" || currentDataItem.BFin !== null) {
+                            mBrkFin = currentDataItem.BFin;
+                        }
+                        if (currentDataItem.ClearingBrokerFINNo !== "" || currentDataItem.ClearingBrokerFINNo !== null) {
+                            mClrFIN = currentDataItem.ClearingBrokerFINNo;
+                        }
+                        if (currentDataItem.Traded !== "" || currentDataItem.Traded !== null) {
+                            mTraded = currentDataItem.Traded;
+                        }
+                        if (currentDataItem.Settlement !== "" || currentDataItem.Settlement !== null) {
+                            mSettlement = currentDataItem.Settlement;
+                        }
+                        if (currentDataItem.UnitPrice !== "" || currentDataItem.UnitPrice !== null) {
+                            mUnitPrice = currentDataItem.UnitPrice;
+                        }
+                        if (currentDataItem.DTCAgentId !== "" || currentDataItem.DTCAgentId !== null) {
+                            mAgtBankNo = currentDataItem.DTCAgentId;
+                        }
+                        if (currentDataItem.DTCAgentInternalAccountNo !== "" || currentDataItem.DTCAgentInternalAccountNo !== null) {
+                            mCustIntAcc = currentDataItem.DTCAgentInternalAccountNo;
+                        }
+                        if (currentDataItem.InterestedParty1AgentID !== "" || currentDataItem.InterestedParty1AgentID !== null) {
+                            mIntPty1 = currentDataItem.InterestedParty1AgentID;
+                        }
+                        if (currentDataItem.InterestedParty1AgentAcct !== "" || currentDataItem.InterestedParty1AgentAcct !== null) {
+                            mIntPty1Acc = currentDataItem.InterestedParty1AgentAcct;
+                        }
+                        if (currentDataItem.InterestedParty2AgentID !== "" || currentDataItem.InterestedParty2AgentID !== null) {
+                            mIntPty2 = currentDataItem.InterestedParty2AgentID;
+                        }
+                        if (currentDataItem.InterestedParty2AgentAcct !== "" || currentDataItem.InterestedParty2AgentAcct !== null) {
+                            mIntPty2Acc = currentDataItem.InterestedParty2AgentAcct;
+                        }
+                        if (currentDataItem.BrokerAgentID !== "" || currentDataItem.BrokerAgentID !== null) {
+                            mBroker = currentDataItem.BrokerAgentID;
+                        }
+                        if (currentDataItem.BrokerAgentInternalAccount !== "" || currentDataItem.BrokerAgentInternalAccount !== null) {
+                            mBrokerAcc = currentDataItem.BrokerAgentInternalAccount;
+                        }
+                    }
+
+                    if (currentDataItem.Shares !== "" || currentDataItem.Shares !== null) {
+                        mShares = AddValues(mShares, currentDataItem.Shares);
+                    }
+                    if (currentDataItem.Principal !== "" || currentDataItem.Principal !== null) {
+                        mPrincipal = AddValues(mPrincipal, currentDataItem.Principal);
+                    }
+                    if (currentDataItem.Commission !== "" || currentDataItem.Commission !== null) {
+                        mCommission = AddValues(mCommission, currentDataItem.Commission);
+
+                    }
+                    if (currentDataItem.SECFees !== "" || currentDataItem.SECFees !== null) {
+                        mSecFee = AddValues(mSecFee, currentDataItem.SECFees);
+                    }
+
+                    if (currentDataItem.OtherFee !== "" || currentDataItem.OtherFee !== null) {
+                        mOtherFee = AddValues(mOtherFee, currentDataItem.OtherFee);
+                    }
+                    if (currentDataItem.Income !== "" || currentDataItem.Income !== null) {
+                        mIncome = AddValues(mIncome, currentDataItem.Income);
+                    }
+                    if (currentDataItem.NetAmount !== "" || currentDataItem.NetAmount !== null) {
+                        mNetAmount = AddValues(mIncome, currentDataItem.NetAmount);
+                    }
+
+                }
+            }
+        });
+
+
+        return { PortNo: mPortNo, BrkFin: mBrkFin, ClrFIN: mClrFIN, Traded: mTraded, Settlement: mSettlement, UnitPrice: mUnitPrice, Shares: mShares, Principal: mPrincipal, Commission: mCommission, SecFee: mSecFee, OtherFee: mOtherFee, Income: mIncome, NetAmount: mNetAmount, AgtBankNo: mAgtBankNo, CustIntAcc: mCustIntAcc, IntPty1: mIntPty1, IntPty1Acc: mIntPty1Acc, IntPty2: mIntPty2, IntPty2Acc: mIntPty2Acc, Broker: mBroker, BrokerAcc: mBrokerAcc };
+    }
+
+    function calculateCData(item) {
+        var ccPortNo = "-9999";
+        var cBrkFin = "-9999";
+        var cClrFin = "-9999";
+        var cTraded = "-9999";
+        var cSettlement = "-9999";
+        var cUnitPrice = "-9999";
+        var cShares = "-9999";
+        var cPrincipal = "-9999";
+        var cCommission = "-9999";
+        var cSecFee = "-9999";
+        var cOtherFee = "-9999";
+        var cIncome = "-9999";
+        var cNetAmount = "-9999";
+        var cAgtBankNo = "-9999";
+        var cCustIntAcc = "-9999";
+        var cIntPty1 = "-9999";
+        var cIntPty1Acc = "-9999";
+        var cIntPty2 = "-9999";
+        var cIntPty2Acc = "-9999";
+        var cBroker = "-9999";
+        var cBrokerAcc = "-9999";
+        $(".ckCC").each(function (index) {
+
+            var entityGrid = $("#gridCC").data("kendoGrid");
+            var data = entityGrid.dataSource.data();
+            var totalNumber = data.length;
+
+            if (this.checked && item.id !== "" && item.id !== null) {
+                //   ccPortNo = item.id;
+
+                for (var i = 0; i < totalNumber; i++) {
+                    var currentDataItem = data[i];
+                    if (this.id == currentDataItem.tdConfirm) {
+
+                        if (currentDataItem.ShawPortNo !== "" || currentDataItem.ShawPortNo !== null) {
+                            ccPortNo = currentDataItem.ShawPortNo;
+                        }
+
+                        if (currentDataItem.BrokerFINNo !== "" || currentDataItem.BrokerFINNo !== null) {
+                            cBrkFin = currentDataItem.BrokerFINNo;
+                        }
+                        if (currentDataItem.ClearingBrokerId !== "" || currentDataItem.ClearingBrokerId !== null) {
+                            cClrFin = currentDataItem.ClearingBrokerId;
+                        }
+                        if (currentDataItem.mTradeDate !== "" || currentDataItem.mTradeDate !== null) {
+                            cTraded = currentDataItem.mTradeDate;
+                        }
+                        if (currentDataItem.mSettlementDate !== "" || currentDataItem.mSettlementDate !== null) {
+                            cSettlement = currentDataItem.mSettlementDate;
+                        }
+                        if (currentDataItem.mUnitPrice !== "" || currentDataItem.mUnitPrice !== null) {
+                            cUnitPrice = currentDataItem.mUnitPrice;
+                        }
+
+                        if (currentDataItem.CustAgentId !== "" || currentDataItem.CustAgentId !== null) {
+                            cAgtBankNo = currentDataItem.CustAgentId;
+                        }
+                        if (currentDataItem.CustAgentInternalAccount !== "" || currentDataItem.CustAgentInternalAccount !== null) {
+                            cCustIntAcc = currentDataItem.CustAgentInternalAccount;
+                        }
+                        if (currentDataItem.InterestedParty1AgentID !== "" || currentDataItem.InterestedParty1AgentID !== null) {
+                            cIntPty1 = currentDataItem.InterestedParty1AgentID;
+                        }
+                        if (currentDataItem.InterestedParty1AgentAcct !== "" || currentDataItem.InterestedParty1AgentAcct !== null) {
+                            cIntPty1Acc = currentDataItem.InterestedParty1AgentAcct;
+                        }
+                        if (currentDataItem.InterestedParty2AgentID !== "" || currentDataItem.InterestedParty2AgentID !== null) {
+                            cIntPty2 = currentDataItem.InterestedParty2AgentID;
+                        }
+                        if (currentDataItem.InterestedParty2AgentAcct !== "" || currentDataItem.InterestedParty2AgentAcct !== null) {
+                            cIntPty2Acc = currentDataItem.InterestedParty2AgentAcct;
+                        }
+                        if (currentDataItem.BrokerAgentID !== "" || currentDataItem.BrokerAgentID !== null) {
+                            cBroker = currentDataItem.BrokerAgentID;
+                        }
+                        if (currentDataItem.BrokerAgentInternalAccount !== "" || currentDataItem.BrokerAgentInternalAccount !== null) {
+                            cBrokerAcc = currentDataItem.BrokerAgentInternalAccount;
+                        }
+
+                    }
+
+                    if (currentDataItem.mNUmberofShares !== "" || currentDataItem.mNUmberofShares !== null) {
+                        cShares = AddValues(cShares, currentDataItem.mNUmberofShares);
+                    }
+                    if (currentDataItem.mPrincipalAmount !== "" || currentDataItem.mPrincipalAmount !== null) {
+                        cPrincipal = AddValues(cPrincipal, currentDataItem.mPrincipalAmount);
+                    }
+                    if (currentDataItem.mCommission !== "" || currentDataItem.mCommission !== null) {
+                        cCommission = AddValues(cCommission, currentDataItem.mCommission);
+                    }
+                    if (currentDataItem.mSECFees !== "" || currentDataItem.mSECFees !== null) {
+                        cSecFee = AddValues(cSecFee, currentDataItem.mSECFees);
+                    }
+
+                    if (currentDataItem.mOtherFee !== "" || currentDataItem.mOtherFee !== null) {
+                        cOtherFee = AddValues(cOtherFee, currentDataItem.mOtherFee);
+                    }
+                    if (currentDataItem.mIncome !== "" || currentDataItem.mIncome !== null) {
+                        cIncome = AddValues(cIncome, currentDataItem.mIncome);
+                    }
+                    if (currentDataItem.mNetAmount !== "" || currentDataItem.mNetAmount !== null) {
+                        cNetAmount = AddValues(cNetAmount, currentDataItem.mNetAmount);
+                    }
+                }
+            }
+        });
+
+
+        return { PortNo: ccPortNo, BrkFin: cBrkFin, ClrFIN: cClrFin, Traded: cTraded, Settlement: cSettlement, UnitPrice: cUnitPrice, Shares: cShares, Principal: cPrincipal, Commission: cCommission, SecFee: cSecFee, OtherFee: cOtherFee, Income: cIncome, NetAmount: cNetAmount, AgtBankNo: cAgtBankNo, CustIntAcc: cCustIntAcc, IntPty1: cIntPty1, IntPty1Acc: cIntPty1Acc, IntPty2: cIntPty2, IntPty2Acc: cIntPty2Acc, Broker: cBroker, BrokerAcc: cBrokerAcc };
+    }
+
+    function AddValues(value1, value2) {
+        if (isNumeric(value1)) {
+            if (isNumeric(value2)) {
+                return parseFloat(value1) + parseFloat(value2);
+            }
+            return value1;
+        }
+
+        return value2;
+    }
+
+    function isNumeric(val) {
+        if (val === "-9999") {
+            return false;
+        }
+        return parseFloat(val) == val && !isNaN(val);
+    }
+
+    function ManualMatch(value) {
+        if (value === "XxX" || value === "-9999" || value === "null" || value === null) {
+            return "<div> </div>";
+        }
+        return value;
+    }
+
+    function MatchColor(id) {
+        var value1 = "";
+        var value2 = "";
+
+        $("." + id).each(function (index) {
+            if (index === 0) {
+                value1 = $(this).attr('id');
+            }
+            else {
+                value2 = $(this).attr('id');
+            }
+        });
+
+        if (value1 != value2) {
+            if (value1 == "" || value2 == "") { }
+            else
+            {
+                $("." + id).css("color", "red");
+            }
+        }
+    }
+
+    function PassIdToColor() {
+        MatchColor("PortNo");
+        MatchColor("BFin");
+        MatchColor("ClrFIN");
+        MatchColor("Traded");
+        MatchColor("Settlement");
+        MatchColor("UnitPrice");
+        MatchColor("Shares");
+        MatchColor("Principal");
+        MatchColor("Commission");
+        MatchColor("SecFee");
+        MatchColor("OtherFee");
+        MatchColor("Income");
+        MatchColor("NetAmount");
+        MatchColor("AgtBankNo");
+        MatchColor("CustIntAcc");
+        MatchColor("IntPty1");
+        MatchColor("IntPty1Acc");
+        MatchColor("IntPty2");
+        MatchColor("IntPty2Acc");
+        MatchColor("Broker");
+        MatchColor("BrokerAcc");
+    }
+</script>

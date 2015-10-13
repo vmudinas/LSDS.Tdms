@@ -1,0 +1,118 @@
+﻿<table class="failedTrades">
+    <tr>
+        <td class="failedtradesright" style="text-align:right"><label>Comment</label></td>
+        <td class="failedTradesLeft"><input  id="failedTradeComment" type="text" placeholder="Please type your comment."/></td>
+        <td class="failedtradesright" style="text-align:right"><label>Resolved</label></td>
+        <td class="failedTradesLeft"><input id="idResolvedDate" value="" style="width: 160px" onkeydown="return false" /></td>
+    </tr>
+    <tr>
+        <td class="failedtradesright" style="text-align:right"><label>Reason</label></td>
+        <td colspan="3" class="failedTradesLeft"><select id="dllFailedReason"></select></td>
+    </tr>
+    <tr>
+        <td colspan="4" class="failedtradesright">
+            <div id="gridFailedTrades" style="width: 400px"></div></td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input onmouseover="javascript:this.className ='clsFloatButton'; " onmouseout="javascript:this.className ='clsFloatButtonOver'; "  class="clsFloatButtonOver"  id="failedTradeSave" type="button" value="Save" onclick="ClickFailed();" /></td>
+    </tr>
+</table>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#idResolvedDate").kendoDateTimePicker({
+        });
+
+        //use Json.parse to convert string to Json
+        var dllData =  @(Html.Raw(Json.Encode(ViewBag.reasonCodes)));
+        var gridData =  @(Html.Raw(Json.Encode(ViewBag.gridData)));
+
+        $.each(dllData, function() {
+            $('#dllFailedReason').append($('<option/>', {
+                value: this.tdxFailureReason,
+                text: this.Description
+            }));
+        });
+
+        getTableDetailFailedView(gridData);
+    });
+
+    function getTableDetailFailedView(gridData) {
+        var userId = $("#userNameLable").val();
+        $.getJSON(
+            '@Url.Action("ReturnUserTableDetail", "TableDetail")', { source: "FailEdit" },
+            function(myData) {
+                intFailedTradeView(myData, gridData.Data);
+            });
+    }
+
+    function intFailedTradeView(columnDetailArray, gridData) {
+
+        var failedTradeViewDataSource = new kendo.data.DataSource({
+            type: "json",
+            data: gridData,
+            schema: {
+                model: {
+                    id: "ShawPortNo"
+                },
+                data: "TradeList",
+                type: "json",
+                total: "Total"
+            }
+        });
+
+        $("#gridFailedTrades").kendoGrid({
+            dataSource: failedTradeViewDataSource,
+            batch: true,
+            pageable: false,
+            filterable: false,
+            selectable: "single",
+            resizable: true,
+            reorderable: true,
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            height: 'auto',
+            scrollable: true,
+            majorGridLines: {
+                step: 250,
+                visible: true
+            },
+            columns: columnDetailArray
+        });
+    }
+
+
+    function ClickFailed() {
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("TDMSFailedTradesSave", "TDMSFailedTrades")',
+            data: {
+                "idList": @Html.Raw("'"+ViewBag.idList+"'"),
+                "tdxfailurereason": $('#dllFailedReason').val(),
+                "resolveddate": $('#idResolvedDate').val(),
+                "comment": $('#failedTradeComment').val()
+
+            },
+            success: function (data) {
+                alert(data.success + " trades updated.");
+                $("#poopTDMSFailedTrades").data("kendoWindow").close();
+                getTableDetailTradeView();
+            },
+            error: function (error) {
+                alert(JSON.stringify(error));
+                $("#poopTDMSFailedTrades").data("kendoWindow").close();
+                getTableDetailTradeView();
+            }
+        });
+        return false;
+    }
+</script>

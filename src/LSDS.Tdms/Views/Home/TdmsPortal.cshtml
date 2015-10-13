@@ -1,0 +1,95 @@
+﻿@using DataAccessLibrary
+
+@{
+
+    ViewBag.Title = "TdmsPortal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LayoutHead
+{
+   
+   @Scripts.Render("~/bundles/tdmsPortal") 
+}
+
+<div id="tdmsPortalControls">
+    <div id="idShowWidgets" onclick="ShowHideWidgetConfig();"><a  id="idshowwidgetsL" href="#">Add Modules</a></div>
+
+    <div class="Container" id="WidgetsConfiguration" >
+        <input name="idSaveWidgetsN" tabindex="1" class="clsFloatButton" id="idSaveWidgets" style="width: 64px;" onmouseover="javascript:this.className = 'clsFloatButtonOver';" onmouseout="javascript:this.className = 'clsFloatButton';" onclick="SaveWidgets();" type="button" value="Save">
+        <label id="lbAddModule" style="white-space: nowrap; margin: 5px;">Click on the name of a module to add it to your page...</label>
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="right">
+                <input type="checkbox" onclick="ShowHideWidget('idSystemStatus', this)" title="TDMS Notification Status" id="chkSystemStatus" class="idSystemStatus" selected />
+                TDMS System Status
+            </div>
+            <div class="middle">
+                <input type="checkbox" onclick="ShowHideWidget('idTradeRepair', this)" title="TDMS Notification Status" id="chkTradeRepair" class="idTradeRepair" selected />
+                TDMS Trade Repair
+            </div>
+            <div class="left">
+                <input type="checkbox" onclick="ShowHideWidget('idTradeSettlementStatus', this)" title="TDMS Notification Status" id="chkTradeSettlementStatus" class="idTradeSettlementStatus" selected />
+                TDMS Trade Settlement Status
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="right">
+                <input type="checkbox" onclick="ShowHideWidget('idBrokerPreformance', this)" title="TDMS Notification Status" id="chkBrokerPreformance" class="idBrokerPreformance" selected />
+                TDMS Broker Performance
+            </div>
+            <div class="middle">
+                <input type="checkbox" onclick="ShowHideWidget('idImportSummary', this)" title="TDMS Notification Status" id="chkImportSummary" class="idImportSummary" selected />
+                TDMS Import Summary
+            </div>
+            <div class="left">
+                <input type="checkbox" onclick="ShowHideWidget('idNotificationJobStatus', this)" title="TDMS Notification Status" id="chkNotificationStatus" class="idNotificationJobStatus" selected />
+                TDMS Notification Status
+            </div>
+        </div>
+        <div class="row">
+            <div class="right">
+                <input type="checkbox" onclick="ShowHideWidget('idTradeMatchStatus', this)" title="TDMS Notification Status" id="chkTradeMatchStatus" class="idTradeMatchStatus" selected />
+                TDMS Trade Match Status
+            </div>
+            <div class="left">
+                <input type="checkbox" onclick="ShowHideWidget('idSavedReports', this)" title="TDMS Notification Status" id="chkSavedReports" class="idSavedReports" selected />
+                TDMS Saved Reports
+            </div>
+        </div>
+    </div>
+    <section class="demo">
+        <div class="gridster">
+            <ul class="gridsterUl">
+                <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" data-max-sizex="3" data-max-sizey="1" class="widgetStyle" style="visibility: visible;" id="idSystemStatus" data-id="1">
+                    @Html.Partial("~/views/Widgets/SystemStatus/SystemStatus.cshtml")
+                </li>
+                <li data-row="2" data-col="1" data-sizex="1" data-sizey="1" data-max-sizex="3" data-max-sizey="1" class="widgetStyle" style="visibility: visible;" id="idTradeRepair" data-id="2">
+                    @Html.Partial("~/views/Widgets/TradeRepairStatus/TradeRepairStatus.cshtml")
+                </li>
+                <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" data-max-sizex="3" data-max-sizey="1" class="widgetStyle" style="visibility: visible;" id="idTradeSettlementStatus" data-id="3">
+                    @Html.Partial("~/views/Widgets/TradeSettlementStatus/TradeSettlementStatus.cshtml")
+                </li>
+                <li data-row="4" data-col="1" data-sizex="2" data-sizey="1" class="widgetStyle" data-max-sizex="3" data-max-sizey="1" style="visibility: visible;" id="idBrokerPreformance" data-id="4">
+                    @Html.Partial("~/views/Widgets/BrokerPerformance/BrokerPerformance.cshtml")
+                </li>
+                <li data-row="5" data-col="1" data-sizex="2" data-sizey="1" data-max-sizex="3" data-max-sizey="1" class="widgetStyle" style="visibility: visible;" id="idImportSummary" data-id="5">
+                    @Html.Partial("~/views/Widgets/ImportSummary/ImportSummary.cshtml")
+                </li>
+                <li data-row="6" data-col="1" data-sizex="3" data-sizey="1" data-max-sizex="3" data-max-sizey="1" class="widgetStyle" style="visibility: visible;" id="idNotificationJobStatus" data-id="6">
+                    @Html.Partial("~/views/Widgets/NotificationJobStatus/NotificationJobStatus.cshtml")
+                </li>
+                <li data-row="7" data-col="1" data-sizex="1" data-sizey="1" data-max-sizex="3" data-max-sizey="1" class="widgetStyle" style="visibility: visible;" id="idTradeMatchStatus" data-id="7">
+                    @Html.Partial("~/views/Widgets/TradeMatchStatus/TradeMatchStatus.cshtml")
+                </li>
+                <li data-row="8" data-col="1" data-sizex="1" data-sizey="1" data-max-sizex="3" data-max-sizey="1" class="widgetStyle" style="visibility: visible;" id="idSavedReports" data-id="8">
+                    @Html.Partial("~/views/Widgets/SavedReports/SavedReports.cshtml")
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+

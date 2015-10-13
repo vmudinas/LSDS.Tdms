@@ -1,0 +1,117 @@
+﻿<script>
+    function GetTradeViewBag() {
+        return '@Html.ViewBag.SomeBag';
+    }
+
+    function GetTradeFindUrl() {
+        return '@Url.Action("TradeFindUpdate", "TradeList")';
+    }
+    function GetTradeSortUrl() {
+        return '@Url.Action("TradeSortUpdate", "TradeList")';
+    }
+    function GetTradeSort() {
+        return '@Url.Action("TradeSort", "TradeList")';
+    }
+    function GetTradeFind() {
+        return '@Url.Action("TradeFind", "TradeList")';
+    }
+    function GetAttachmentUrl() {
+        return '@Url.Action("AttachmentUpload", "AttachFile")';
+    }
+
+    function QuickFindUrl() {
+        return '@Url.Action("QuickFindPage", "QuickFind", new {source = "TradeBrowser"})';
+    }
+
+    function QuickSortPageUrl() {
+        return '@Url.Action("QuickSortPage", "QuickSort")';
+    }
+
+    function TradePrintOptionsUrl() {
+        return '@Url.Action("TradePrintOptions", "TradePrintOptions")';
+    }
+
+    function PrintTradeViewSelectUrl() {
+        return '@Url.Action("PrintTradeViewSelect", "TradeList")';
+    }
+
+    function TradeListDownloadUrl() {
+        return '@Url.Action("Download", "TradeList")';
+    }
+
+
+    function GetTradeResolutionUrl() {
+        return '@Url.Action("TDMSTradeResolution", "TDMSTradeResolution")';
+    }
+    function GetManualMatchUrl() {
+      return   '@Url.Action("TDMSManualMatch", "TDMSManualMatch")';
+    }
+
+    function GetFailedTradesUrl() {
+        return '@Url.Action("TDMSFailedTrades", "TDMSFailedTrades")';
+    }
+
+    function GetTableDetailUrl() {
+        return '@Url.Action("ReturnUserTableDetail", "TableDetail")';
+    }
+
+ 
+      function UnArchiveTrade() {
+          return '@Url.Action("UnArchiveTrade", "TradeList")';
+      }
+
+     function ArchiveTradeUrl() {
+         return '@Url.Action("ArchiveTrade", "TradeList")';
+     }
+    function GetTradeViewUrl()
+    {
+       return '@Url.Action("TradewViewData", "TradeList")';
+    }
+
+    function GetTradeListSearchUrl() {
+        return '@Url.Action("TDMSTradeSearch", "TDMSTradeSearch")';
+    }
+
+
+    function GetImagePath() {
+        return "@Url.Content("~/Content/Images/")";
+    }
+
+    function TradeRepairLogUrl() {
+        return '@(Url.Action("GetTradeRepairLog", "TradeDetail"))';
+    }
+
+    function GetDownloadBlog() {
+        return '@(Url.Action("DownloadFile", "DisplayBlog"))';
+    }
+    function TradeNotifyListUrl()
+    {
+        return '@(Url.Action("GetNotifyList", "TradeDetail"))';
+    }
+
+    function GetMenuUrl() {
+        return '@(Url.Action("GetMenu", "Menu"))';
+    }
+
+    function BulkEditTypeUrl() {
+        return '@(Url.Action("BulkEditType", "BulkEdit"))';
+    }
+    function BulkEditCommentExecuteUrl() {
+        return '@(Url.Action("BulkEditCommentExecute", "BulkEdit"))';
+    }
+    function UpdateGridsterUrl() {
+        return '@(Url.Action("UpdateGridster", "Home"))';
+    }
+    function GetWigetsUrl() {
+        return '@(Url.Action("GetGridster", "Home"))';
+    }
+    function GetLocationListUrl() {
+        return '@(Url.Action("GetLocationList", "Location"))';
+    }
+    function GetCheckSecurityUrl() {
+        return '@(Url.Action("CheckSecurity", "Privacy"))';
+    }
+    function GetTdmsPortalUrl() {
+        return '@(Url.Action("TdmsPortal", "Home"))';
+    }
+</script>

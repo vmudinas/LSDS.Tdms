@@ -1,0 +1,1115 @@
+﻿@using Microsoft.Ajax.Utilities
+@model LSDS.Tdms.Models.TdmsDataModel.TradeDetailViewModel
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    var checkboxTradeFlat = Convert.ToBoolean(Model?.TradeDetail?.FirstOrDefault()?.TradeFlat) ?
+       (object)new { @checked = "checked" , disabled = "disabled" } :
+       (object)new { disabled = "disabled" };
+
+    var checkboxFlagDeleted = Convert.ToBoolean(Model?.TradeDetail?.FirstOrDefault()?.FlagDeleted) ?
+       (object)new {  @checked = "checked" } :
+       (object)new { };
+
+
+    var checkboxFailed = Convert.ToBoolean(Model?.TradeDetail?.FirstOrDefault()?.Failed) ?
+       (object)new {  @checked = "checked", disabled = "disabled" } :
+       (object)new { disabled = "disabled" };
+
+
+    var checkboxDoNotAffirm = Convert.ToBoolean(Model?.TradeDetail?.FirstOrDefault()?.DoNotAffirm) ?
+       (object)new { @checked = "checked" } :
+       (object)new {  };
+
+}
+
+@section LayoutHead
+{
+    @Styles.Render("~/bundles/style/TradeDetail")
+    @Scripts.Render("~/bundles/TradeDetail")
+}
+
+
+@using (Html.BeginForm("UpdateDetail", "TradeDetail", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(d => d.TradeDetail.FirstOrDefault().tdTradeString);
+    @Html.HiddenFor(d => d.TradeDetail.FirstOrDefault().tdTradesListString);
+    @Html.HiddenFor(d => d.TradeDetail.FirstOrDefault().tdTrade);
+    @Html.HiddenFor(d => d.TradeDetail.FirstOrDefault().timestamp)
+    <div class="form-horizontal">
+
+        <div id="pagerTradeDetail">
+            @Html.ActionLink("Previous", "TradeDetailPager", "TradeDetail", new { tdTrade = Model?.intTradeId, nextPrev = "Previous" }, new { id = "idPrevious" })
+            <div> @ViewBag.CurrentPage of @ViewBag.TotalPages</div>
+            @Html.ActionLink("Next", "TradeDetailPager", "TradeDetail", new { tdTrade = Model?.intTradeId,nextPrev = "Next" }, new { id = "idNext" })
+        </div>
+
+        <hr style="height: 80px;" />
+        <h2 id="idStatus">
+
+            @(Model?.TradeDetail?.FirstOrDefault()?.MatchStatus == "Matched" ? Html.Label(Model?.TradeDetail?.FirstOrDefault()?.MatchStatus, new { style = "color:green", id = "idMatchStatus", name = "idMatchStatus" }) :
+                  Html.Label(Model?.TradeDetail?.FirstOrDefault()?.MatchStatus, new { style = "color:orange", id = "idMatchStatus", name = "idMatchStatus" })) >
+            @(Model?.TradeDetail?.FirstOrDefault()?.AffirmStatus == "Affirmed" ? Html.Label(Model?.TradeDetail?.FirstOrDefault()?.AffirmStatus, new { style = "color:green", id = "idAffirmed", name = "idAffirmed" }) :
+                  Html.Label(Model?.TradeDetail?.FirstOrDefault()?.AffirmStatus, new { style = "color:orange", id = "idAffirmed", name = "idAffirmed" })) >
+            @(Model?.TradeDetail?.FirstOrDefault()?.NotifyStatus == "Notified" ? Html.Label(Model?.TradeDetail?.FirstOrDefault()?.NotifyStatus, new { style = "color:green", id = "idNotified", name = "idNotified" }) :
+                  Html.Label(Model?.TradeDetail?.FirstOrDefault()?.NotifyStatus, new { style = "color:orange", id = "idNotified", name = "idNotified" }))
+
+
+        </h2>
+
+        <hr />
+
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TransactionLoadDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TransactionLoadDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mTradeDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mTradeDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AffirmDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AffirmDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NotifyDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NotifyDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+
+
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TranDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TranDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradeMatchDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradeMatchDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mSettlementDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mSettlementDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ActualSettle, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ActualSettle, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradesAs, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradesAs, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementType, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementType, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ContractualSettlementDate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ContractualSettlementDate, "{0:dd MMM yyyy}", new { @class = "form-control classReadOnly text-left   " })
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+        <hr />
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ShawPortNo, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ShawPortNo, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().PortNo2, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().PortNo2, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().PortName, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-2">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().PortName, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradeRefNo, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradeRefNo, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CUSIPNo, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CUSIPNo, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ISIN, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ISIN, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().StockSymbol, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-2">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().StockSymbol, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().trade_block, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().trade_block, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().FundMEI, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().FundMEI, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AgentMEI, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AgentMEI, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().BrokerMEI, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-2">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().BrokerMEI, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearParSubtradeTicketNo, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearParSubtradeTicketNo, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mTransactionCode, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                <div class="twoElementsTradeDetail">
+                    @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mTransactionCode, new { @class = "form-control classReadOnly  text-left " })&nbsp;
+                    @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Side2, new { @class = "form-control classReadOnly  text-left " })
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ShawBrokerCode, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ShawBrokerCode, new { @class = "form-control  text-left  ", data_bind = "TradedetailClassEnabled" })
+            </div>
+            <div class="col-md-1"></div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <div class="twoElementsTradeDetail">
+                    @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().BrokerFINNo, new { @class = "form-control  text-left  ", data_bind = "TradedetailClassEnabled" })&nbsp;
+                    @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearingBrokerFINNo, new { @class = "form-control  text-left  ", data_bind = "TradedetailClassEnabled" })
+                </div>
+
+            </div>
+
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().UserCode, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().UserCode, new { @class = "form-control  text-left  ", data_bind = "TradedetailClassEnabled" })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().LongShort, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().LongShort, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().MarkitEntityID, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().MarkitEntityID, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <div class="twoElementsTradeDetail">
+                    @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().UserTransactionID1, new { @class = "form-control classReadOnly text-left  " })&nbsp;
+                    @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().UserTransactionID2, new { @class = "form-control classReadOnly text-left  " })
+                </div>
+            </div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().DelayedComp, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().DelayedComp, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().StockName, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-4">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().StockName, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().tdxSecurityType, new { @class = "control-label col-md-1 text-right " })
+
+            <div class="col-md-2">
+                @Html.DropDownListFor(tdVm => tdVm.TradeDetail.FirstOrDefault().tdxSecurityType, new SelectList(Model.SecurityTypeList, "tdxSecurityType", "Description", Model?.TradeDetail?.FirstOrDefault()?.tdxSecurityType))
+            </div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ISITCIssueType, new { @class = "control-label col-md-1 text-right " })
+
+            <div class="col-md-1">
+                @Html.DropDownListFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ISITCIssueType, new SelectList(Model.IsitcIssueType, "Description", "Description", Model?.TradeDetail?.FirstOrDefault()?.ISITCIssueType))
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="form-group row">
+
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().issue_desc, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NotifyStatus, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-2">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NotifyStatus, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AssetType, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AssetType, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <hr />
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mNumberofShares, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mNumberofShares, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mUnitPrice, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CurrencyCode, new { @class = "form-control classReadOnly text-left  " })
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mUnitPrice, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mIncome, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mIncome, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mPrincipalAmount, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mPrincipalAmount, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mSECFees, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mSECFees, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mFederalTax, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mFederalTax, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mCommission, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mCommission, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mOtherFee, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mOtherFee, new { @class = "form-control  text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mOriginalFace, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mOriginalFace, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mNetAmount, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mNetAmount, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().StampDuty, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().StampDuty, new { @class = "form-control  text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ValueAddedTax, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ValueAddedTax, new { @class = "form-control  text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CurrentQuantity, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CurrentQuantity, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CostofCarry, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CostofCarry, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AdditionalFee1, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AdditionalFee1, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AdditionalFee2, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AdditionalFee2, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AssignmentFee, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AssignmentFee, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CostofCarryRate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().CostofCarryRate, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearParFee, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearParFee, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mCurrenFactor, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().mCurrenFactor, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TotalNetProceeds, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TotalNetProceeds, new { @class = "form-control classReadOnly  text-left " })
+            </div>
+            <div class="col-md-1"></div>
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().OriginalCostBase, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().OriginalCostBase, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().OriginalCostLocal, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().OriginalCostLocal, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().EconomicBenefit, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().EconomicBenefit, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradeComments, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-4">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradeComments, new { @class = "form-control   text-left " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NetBack, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NetBack, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().FxRate, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().FxRate, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    <div class="form-group row">
+
+        @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NotifyComment, new {@class = "control-label col-md-1 text-right "})
+        <div class="col-md-6">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().NotifyComment, new {@class = "form-control   text-left "})
+        </div>
+
+        <div class="col-md-5">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().TradeFlat)
+            @Html.CheckBox("TradeFlat", checkboxTradeFlat)
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().FlagDeleted)
+            @Html.CheckBox("FlagDeleted", checkboxFlagDeleted)
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Failed)
+            @Html.CheckBox("Failed", checkboxFailed)
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().DoNotAffirm)
+            @Html.CheckBox("DoNotAffirm", checkboxDoNotAffirm)
+        </div>
+
+    </div>
+        <hr />
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-5">
+            <h4 id="tdConfirmsTrades">Related Confirms And Trades</h4>
+        </div>
+        <div class="col-md-5">
+            <h4 id="tdDiscrepances">Related Confirms And Trades</h4>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+            Confirms:
+        </div>
+        <div class="col-md-2">
+            Trades:
+        </div>
+        <div class="col-md-2">
+            Trade Value:
+        </div>
+
+        <div class="col-md-2">
+            Confirm Value:
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
+              
+            </div>
+            <div class="col-md-2">
+               
+            </div>
+          
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade1, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1">
+               
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm1, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+           
+            <div class="col-md-2">
+
+            </div>
+        </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade2, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm2, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade3, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm3, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade4, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm4, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade5, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm5, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade6, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm6, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade7, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm7, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade8, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm8, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade9, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm9, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade10, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm10, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade11, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm11, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade12, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm12, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade13, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm13, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade14, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm14, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+        </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Trade15, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Discrepancy_Confirm15, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+        <hr />
+    <div class="form-group row">
+        <div class="col-md-1">
+            <h4 id="tdSettlement">Settlement</h4>
+        </div>
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-md-1">
+             
+            </div>
+            <div class="col-md-10">
+
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ExecutingBrokerName, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-4">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ExecutingBrokerName, new { @class = "form-control classReadOnly   text-left " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ExecutingFIN, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ExecutingFIN, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ExecutingBrokerBIC, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ExecutingBrokerBIC, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearingBrokerName, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-4">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearingBrokerName, new { @class = "form-control classReadOnly   text-left " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearingBrokerFIN, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearingBrokerFIN, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearingBrokerBIC, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ClearingBrokerBIC, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().BankName, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-4">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().BankName, new { @class = "form-control classReadOnly   text-left " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ABANo, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().ABANo, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AccountNumber, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-1">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().AccountNumber, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    <div class="form-group row">
+
+        @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementType, new {@class = "control-label col-md-1 text-right "})
+        <div class="col-md-4">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementType, new {@class = "form-control classReadOnly   text-left "})
+        </div>
+        <div class="col-md-1"></div>
+        @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementNumber, new {@class = "control-label col-md-1 text-right "})
+        <div class="col-md-1">
+            @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementNumber, new {@class = "form-control classReadOnly text-left  "})
+        </div>
+        <div class="col-md-2"></div>
+
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Reference, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-4">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().Reference, new { @class = "form-control classReadOnly   text-left " })
+            </div>
+            <div class="col-md-1"></div>
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementLoc, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-3">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementLoc, new { @class = "form-control classReadOnly text-left  " })
+            </div>
+           
+
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="form-group row">
+
+            @Html.LabelFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementInstructions, new { @class = "control-label col-md-1 text-right " })
+            <div class="col-md-7">
+                @Html.TextBoxFor(tdVm => tdVm.TradeDetail.FirstOrDefault().SettlementInstructions, new { @class = "form-control classReadOnly   text-left " })
+            </div>
+           <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+    <hr/>
+    <div class="form-group row">
+        <div class="col-md-1">
+            <h4 id="tdTradeHistory">Trade History</h4>
+        </div>
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+                <div id="tradeHistoryGrid"></div>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+    <hr/>
+
+    <div class="form-group row">
+        <div class="col-md-1">
+            <h4 id="tdNotifications">Notifications</h4>
+        </div>
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+    <br/>
+        <div class="form-group row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+          
+        </div>
+        <div class="col-md-10">
+            <div id="notifyListView"></div>
+        </div>
+        <div class="col-md-1">
+           
+        </div>
+    </div>
+            <div class="form-group row">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+
+                </div>
+            </div>
+        </div>
+
+}
+

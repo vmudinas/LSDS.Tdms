@@ -1,0 +1,103 @@
+﻿@using System.Diagnostics
+@using System.Diagnostics.Eventing.Reader
+@using System.Web.UI.WebControls
+@using Kendo.Mvc.UI
+@model IEnumerable<Tdms.DataAccess.usp_returnTableDetail_Result>
+@section LayoutHead
+{
+    @Styles.Render("~/bundles/style/QuickSort")
+    @Scripts.Render("~/bundles/QuickSort")
+}
+
+@using (@Html.BeginForm("QuickTradeSearchSave", "TDMSTradeSearch",Model))
+{
+    <table id="quickFindTableTitle">
+        <tr>
+
+            <td style="text-align: right; white-space: nowrap;">@Html.Label("Select View:")</td>
+            <td colspan="2">@Html.Kendo().DropDownList().Name("ddlSelectFindSelect").DataTextField("Description").DataValueField("QuickfindID").BindTo(ViewBag.NameList as IEnumerable<QuickFind>).OptionLabel("New Search").HtmlAttributes(new{style="width:350px;"})
+            </td>
+            <td style="white-space: nowrap;"> <button id="quickFindCancel" class="k-button k-primary" type="button" formnovalidate>Delete</button> <button id="idSaveQuickFindBtn" class="k-button k-primary" type="submit">Save</button> </td>
+
+        </tr>
+        <tr>
+
+            <td style="text-align: right;">
+                <label id="findLable">Save As:</label>
+            </td>
+            <td colspan="2">
+
+                <input type="text" id="idSaveQuickFind" name="quickFindText" class="k-textbox" placeholder="Quick Find Name" required style="width: 350px;"/>
+                <input type="hidden" name="idSaveQuickFindID" class="quickSortIdclass"/>
+            </td>
+
+            <td>
+                <label id="findDefaultLb">Default:</label>
+                <input type="checkbox" name="defaultFindCheckbox" class="defaultFindCheckbox" value="Default:"/>
+            </td>
+        </tr>
+        <tr>
+            <td height="35px"></td>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="row1">
+                <td class="c1">
+                    @Html.DisplayFor(modelItem => item.Column_Header):
+                </td>
+
+                @if (item.Datatype.ToLower().Equals("date"))
+                {
+                    <td class="c2">
+                        @Html.Kendo().DropDownListFor(modelItem => item.SearchModel.Filter).Name("ddl" + item.Column_Name).BindTo(new string[] { "<", ">", "Range", })
+                    </td>
+                    <td class="c3">
+                        @Html.Kendo().NumericTextBoxFor(modelItem => item.SearchModel.DateRange1).Name("txt" + item.Column_Name)
+                        @Html.Kendo().DropDownListFor(modelItem => item.SearchModel.DateRangeFilter).Name(item.Column_Name).BindTo(new string[] { "Days", "Months", "Years", }).HtmlAttributes(new { @class = "rangeSelector dropListStyleQuickFind"})
+                        @Html.Kendo().NumericTextBoxFor(modelItem => item.SearchModel.DateRange2).Name("txt" + item.Column_Name + "Range").HtmlAttributes(new { @class = "rangeDate", id = "txt" + item.Column_Name + "Range" })
+
+                    </td>
+                    <td class="c4"></td>
+                }
+                else if (item.Column_Name.ToLower().Equals("status"))
+                {
+                    <td class="c2">
+                        @Html.Kendo().DropDownListFor(modelItem => item.SearchModel.Filter).Name(item.Column_Name).BindTo(new string[] { "=", "<>" }).HtmlAttributes(new { @class = "dropListStyleQuickFind" })
+                    </td>
+                    <td class="c3">
+                        @Html.Kendo().AutoCompleteFor(modelItem => item.SearchModel.Value).Filter("contains").Name("n" + item.Column_Name).DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = item.Column_Name, source = item.SourceName })).DataTextField(item.Column_Name)
+                    </td>
+                    <td class="c4"></td>
+                }
+                else if (item.IsCheckboxNotNull)
+                {
+                    <td class="c2">
+                        @Html.Kendo().CheckBoxFor(modelItem => item.SearchModel.IsCheckBox).Name("chk" + item.Column_Name).Checked(false)
+                    </td>
+                    <td class="c3"></td>
+                    <td class="c4"></td>
+                }
+               else
+                {
+                    <td class="c2">
+                        @Html.Kendo().DropDownListFor(modelItem => item.SearchModel.Filter).Name(item.Column_Name).BindTo(new string[] { "=", "<>", "Like", "IN" }).HtmlAttributes(new { @class = "dropListStyleQuickFind" })
+                    </td>
+                    <td class="c3">
+                        @Html.Kendo().AutoCompleteFor(modelItem => item.SearchModel.Value).Filter("contains").Name("n" + item.Column_Name).DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = item.Column_Name, source = item.SourceName })).DataTextField(item.Column_Name)
+                    </td>
+                    <td class="c4"></td>
+                }
+
+
+            </tr>
+        }
+        <tr>
+            <td height="35px"></td>
+
+        </tr>
+    </table>
+ 
+    
+  
+}

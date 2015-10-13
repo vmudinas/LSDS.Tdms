@@ -1,0 +1,262 @@
+﻿@using DataAccessLibrary.Models
+
+@model LSDS.Tdms.Models.TdmsDataModel.TradeListModel
+@{
+    ViewBag.Title = "TDMSTradeSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Content/LoginStyle.css")" rel="stylesheet" type="text/css" />
+@using (@Html.BeginForm("TradeSearchSave", "TDMSTradeSearch"))
+{
+    <table class="tdmSearchTable">
+    <tr>
+        <td class="searchtd1"></td>
+        <td class="searchtd2"></td>
+        <td class="searchtd3"><input type="submit" value="Search" class="loginButton" name="Save" id="idLoginB" />  @Html.ActionLink("Cancel", "TradeList", "TradeList", null, new {@class = "loginButton", style="padding:1px; text-underline: none;"})</td>
+    </tr>
+
+    <tr>
+        <td class="searchtd1">Portfolio:</td>
+        <td class="searchtd2">
+            <select id="drpPortfolioOp" name="drpPortfolioOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtPortfolio").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "PortNo", source = "TradeBrowser" })).DataTextField("PortNo")
+            @*<input type="text" id="txtPortfolio" name="txtPortfolio"/>*@
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Sec ID:</td>
+        <td class="searchtd2">
+            <select id="drpCUSIPOp" name="drpCUSIPOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtCUSIP").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "CUSIP", source = "TradeBrowser" })).DataTextField("CUSIP")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Broker FIN:</td>
+        <td class="searchtd2">
+            <select id="drpBrokerFINOp" name="drpBrokerFINOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtBrokerFIN").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "BFin", source = "TradeBrowser" })).DataTextField("BFin")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">User Code:</td>
+        <td class="searchtd2">
+            <select id="drpUserCodeOp" name="drpUserCodeOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtUserCode").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "UserCode", source = "TradeBrowser" })).DataTextField("UserCode")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Trade Date:</td>
+        <td class="searchtd2">From: @Html.Kendo().DatePicker().Name("txtTradeDate").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+        <td class="searchtd3">To: @Html.Kendo().DatePicker().Name("txtUserCode1").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Settlement Date:</td>
+        <td class="searchtd2">From: @Html.Kendo().DatePicker().Name("txtSettleDate").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+        <td class="searchtd3">To: @Html.Kendo().DatePicker().Name("txtSettleDate1").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Posting Date:</td>
+        <td class="searchtd2">From: @Html.Kendo().DatePicker().Name("txtTranDate").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+        <td class="searchtd3">To: @Html.Kendo().DatePicker().Name("txtTranDate1").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Imported Date:</td>
+        <td class="searchtd2">From: @Html.Kendo().DatePicker().Name("txtLoadDate").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+        <td class="searchtd3">To: @Html.Kendo().DatePicker().Name("txtLoadDate1").Format("yyyy/MM/dd").HtmlAttributes(new { value = "" })</td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Transaction Code:</td>
+        <td class="searchtd2">=</td>
+        <td class="searchtd3">
+            <select id="drpTransactionCode" name="drpTransactionCode">
+                <option value="Select" selected="selected">Select</option>
+                <option value="Buy">Buy</option>
+                <option value="Sell">Sell</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Match Status:</td>
+        <td class="searchtd2">
+            <select name="drpMatchStatusOp" id="drpMatchStatusOp">
+                <option value="=" selected="selected">=</option>
+                <option value="<>"><></option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            <select id="drpMatchStatus" name="drpMatchStatus">
+                <option value="Select" selected="selected">Select</option>
+                <option value="Not Matched">Not Matched</option>
+                <option value="Near Matched">Near Matched</option>
+                <option value="Matched">Matched</option>
+
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Currency Code:</td>
+        <td class="searchtd2">
+            <select id="drpCurrCodeOp" name="drpCurrCodeOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtCurrencyCode").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "CurrencyCode", source = "TradeBrowser" })).DataTextField("CurrencyCode")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Trade Ref No:</td>
+        <td class="searchtd2">
+            <select id="drpTradeRefOp" name="drpTradeRefOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtTradeRef").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "TdRef", source = "TradeBrowser" })).DataTextField("TdRef")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Confirm Ref No:</td>
+        <td class="searchtd2">
+            <select id="drpConfirmRefOp" name="drpConfirmRefOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtConfirmRef").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "ConfirmRefNo", source = "TradeBrowser" })).DataTextField("ConfirmRefNo")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Stock Symbol:</td>
+        <td class="searchtd2">
+            <select id="drpStockSymbolOp" name="drpStockSymbolOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtStockSymbol").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "StockSymbol", source = "TradeBrowser" })).DataTextField("StockSymbol")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Broker Code:</td>
+        <td class="searchtd2">
+            <select id="drpBrokerCodeOp" name="drpBrokerCodeOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+                <option value="IN">IN</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtBrokerCode").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "BCode", source = "TradeBrowser" })).DataTextField("BCode")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Custodian Agent ID:</td>
+        <td class="searchtd2">
+            <select id="drpDTCAgentIdOp" name="drpDTCAgentIdOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtDTCAgentId").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "DTCAgentId", source = "TradeBrowser" })).DataTextField("DTCAgentId")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Custodian Int Acct:</td>
+        <td class="searchtd2">
+            <select id="drpDTCAgentInternalAccountNoOp" name="drpDTCAgentInternalAccountNoOp">
+                <option value="=" selected="selected">=</option>
+                <option value="like">like</option>
+            </select>
+        </td>
+        <td class="searchtd3">
+            @Html.Kendo().AutoComplete().Filter("contains").Name("txtDTCAgentInternalAccountNo").DataSource(dataSource => dataSource.Read("GetAutoComplete", "QuickFind", new { columnName = "DTCAgentInternalAccountNo", source = "TradeBrowser" })).DataTextField("DTCAgentInternalAccountNo")
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">Include Deleted:</td>
+        <td class="searchtd2">=</td>
+        <td class="searchtd3">
+            <select id="drpDeleted" name="drpDeleted">
+                <option value="No" selected="selected">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">
+            Current @Html.RadioButtonFor(m => m.historyArchiveCurrent, "Current", new { Checked = "checked" })
+         
+        </td>
+        <td class="searchtd2">
+
+        </td>
+        <td class="searchtd3">
+
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">
+            Archive @Html.RadioButtonFor(m => m.historyArchiveCurrent, "Archive")
+        
+        </td>
+        <td class="searchtd2">
+
+        </td>
+        <td class="searchtd3">
+
+        </td>
+    </tr>
+    <tr>
+        <td class="searchtd1">
+            History @Html.RadioButtonFor(m => m.historyArchiveCurrent, "History")
+          
+
+        </td>
+        <td class="searchtd2">
+
+        </td>
+        <td class="searchtd3">
+
+        </td>
+    </tr>
+    </table>
+  
+}
+<script>
+    function SetModel() {
+
+    }
+</script>

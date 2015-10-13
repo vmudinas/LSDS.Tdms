@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    // ViewBag.Title = "Home Page";
+}
+<div class="pickerTradeRepair">
+    <div id="gridTradeRepair"></div>
+    <div id="chartTradeRepair"></div>
+</div>
+<script type="text/x-kendo-template" id="tradeRepairToolBar">
+
+    <div class="widgetTitleText">TDMS Trade Repair Status  <img class="title" src="@Url.Content("~/Content/Images/drag_and_drop-128.png" )" /></div>
+    <span class="widgetSpanText">Refresh:  </span>
+    <select id="tradeRepairRefresh">
+        <option value="1" selected>30 sec</option>
+        <option value="2">1 min</option>
+        <option value="10">5 min</option>
+        <option value="60">30 min</option>
+        <option value="120">1 hr</option>
+    </select>
+    <span class="widgetSpanText">Display:</span>
+    <img id="idTradeRepairList" src="@Url.Content("~/Content/Images/list_off_20.png")" alt="List Display" />
+    <img id="idTradeRepairBar" src="@Url.Content("~/Content/Images/bar_on_20.png")" alt="Bar Chart Display" />
+    <img id="idTradeRepairPie" src="@Url.Content("~/Content/Images/pie_on_20.png")" alt="Pie Chart Display" />
+</script>

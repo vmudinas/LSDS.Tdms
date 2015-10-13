@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    // ViewBag.Title = "Home Page";
+}
+<div class="pickerSysStatus">
+    <div id="gridSystemStatus"></div>
+</div>
+<script type="text/x-kendo-template" id="systemStatusToolBar">
+
+    <div class="widgetTitleText">TDMS System Status  <img class="title" src="@Url.Content("~/Content/Images/drag_and_drop-128.png" )" /></div>
+    <span class="widgetSpanText">
+        <img id="btnRunNowSystemStaus" src="@Url.Content("~/Content/Images/Run.gif")" onclick="SystemStatusRunNow();" style="width: 20px !important; height: 20px !important; overflow: visible;" />
+    </span>
+    <span class="widgetSpanText">Refresh:  </span>
+    <select id="systemStatusRefresh">
+        <option value="1" selected>30 sec</option>
+        <option value="2">1 min</option>
+        <option value="10">5 min</option>
+        <option value="60">30 min</option>
+        <option value="120">1 hr</option>
+    </select>
+</script>
+
+

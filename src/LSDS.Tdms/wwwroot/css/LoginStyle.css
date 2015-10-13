@@ -1,0 +1,180 @@
+﻿body {
+     background-color: #EEF0EE;
+}
+.loginWindow {
+margin: -9em auto auto -15em;
+position: absolute;
+top: 34%;
+left: 50%;
+width: 30em;
+height: 334px;
+border: 1px solid #CCC;
+background-color: #FFF;
+padding-top: 11px;
+
+}
+#idFooter {
+ font-family: Trebuchet MS;
+color: #048;
+font-size: 7pt;
+text-align: justify;
+padding: 10px;
+    border: 1px solid #CCC;
+background-color: #F5F5F5;
+position: absolute;
+top: 239px;
+    left: -1px;
+    width: 420px;
+}
+#loginFooterLink {
+    float: right;
+}
+#loginMainW
+ {
+font-family: Trebuchet MS;
+color: #000;
+font-size: 9pt;
+text-align: center;
+padding-right: 7px;
+padding-top: 13px;
+
+}
+legend {
+
+    border-width: 0px;
+    padding-top: 3px;
+}
+#version {
+    font-family: Trebuchet MS;
+    color: #048;
+    font-size: 7pt;
+    position: absolute;
+    top: 134px;
+    left: 296px;
+
+}
+
+.loginWindow label {
+    width: 100px;
+    text-align: right;
+}
+#loginLDSLogo {
+
+   padding-left: 50px;
+}
+.loginButton {
+    font-family: Arial;
+border-style: none;
+background-color: #83ACCF;
+text-align: center;
+color: #FFF;
+cursor: pointer;
+font-size: 9pt;
+font-weight: bold;
+}
+#idLog {
+   padding: 16px;
+position: absolute;
+left: 29px;
+top: 132px;
+}
+#idLogBut {
+ padding: -5px;
+position: absolute;
+top: 205px;
+left: 152px;
+}
+#passwordId {
+    position: absolute;
+    left: 112px;
+    top: 0px;
+}
+#UserName,#Password ,#NewPassword,#ConfirmPassword{
+
+    width: 200px;
+}
+
+#didFooter {
+    font-family: Trebuchet MS;
+    color: #048;
+    font-size: 7pt;
+    text-align: justify;
+    padding: 10px;
+    border-top: 1px solid #048;
+    background-color: #F5F5F5;
+    position: absolute;
+    top: 301px;
+}
+.loginWindowp {
+    margin: -9em auto auto -15em;
+    position: absolute;
+    top: 34%;
+    left: 50%;
+    width: 30em;
+    height: 396px;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+    padding-top: 11px;
+}
+#loginMainWP
+{
+font-family: Trebuchet MS;
+color: #000;
+font-size: 9pt;
+text-align: right;
+padding-right: 7px;
+padding-top: 13px;
+position: absolute;
+left: 25px;
+}
+#versionP {
+    font-family: Trebuchet MS;
+    color: #048;
+    font-size: 7pt;
+    position: absolute;
+    top: 50px;
+    left: 298px;
+}
+#pwdLogin {
+
+    position: absolute;
+}
+#idSaveBLog {
+    position: absolute;
+left: 106px;
+top: 104px;
+width: 58px;
+}
+#idCancelLog {
+    
+position: absolute;
+left: 232px;
+top: 104px;
+width: 71px;
+}
+#idTdmsLoginT {
+    position: absolute;
+    left: 25px;
+}
+#idErrorMsg
+{
+    position: absolute;
+    left: 289px;
+    top: 206px;
+    font-weight: bold;
+    font-size: x-small;
+    color: red;
+}
+#idErrorMsgP
+{
+    position: absolute;
+    left: 50px;
+    top: 281px;
+    font-weight: bold;
+    font-size: x-small;
+    color: red;
+}
+#UserNameD,
+#PasswordD {
+    width: 200px;
+}

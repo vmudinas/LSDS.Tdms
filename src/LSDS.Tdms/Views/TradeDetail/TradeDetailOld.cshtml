@@ -1,0 +1,987 @@
+﻿@*@using System.Web.UI.WebControls
+@using Kendo.Mvc.UI
+@model LSDS.Tdms.Models.TdmsDataModel.TradeDetailViewModel
+
+@{
+    ViewBag.Title = "TradeDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Content/TradeDetail.css")" rel="stylesheet" type="text/css" />
+
+@Html.Kendo().Window().Modal(true).Name("poopTDMSTradeResolution").Title("Tdms Trade Resolution").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(800).Actions(actions => actions.Maximize().Close()).Events(events => events.Close("tdmsTradeResolutionClose")).Animation(true).Width(800)
+@Html.Kendo().Window().Modal(true).Name("poopTDMSManualMatch").Title("Tdms Manual Match").Draggable().Resizable().Scrollable(true).AutoFocus(true).Visible(false).Height(800).Actions(actions => actions.Maximize().Close()).Events(events => events.Close("tdmsManualMatchClose")).Animation(true).Width(800)
+
+
+<div id="tradeDetailButtons">
+    <div><input type="button" value="Resolution" class="loginButton"/>
+    </div>
+    <div><input type="button" value="Manual Match" class="loginButton" onclick="TDMSManualMatch();" />
+    </div>
+    <div><input type="button" value="Save" class="loginButton" onclick="UpdateSave();"/>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("UpdateDetail", "TradeDetail", FormMethod.Post, new { name = "idPostTradeDetail", id = "idPostTradeDetail" }))
+{
+
+    <div id="pagerTradeDetail">
+        @Html.ActionLink("Previous", "TradeDetailPager", "TradeDetail", new { tdTrade = ViewBag.TradeId, tdTradeList = ViewBag.TradeListIds, nextPrev = "Previous" }, new { id = "idPrevious" })
+        <div>@ViewBag.CurrentPage</div>
+        @Html.ActionLink("Next", "TradeDetailPager", "TradeDetail", new { tdTrade = ViewBag.TradeId, tdTradeList = ViewBag.TradeListIds, nextPrev = "Next" }, new { id = "idNext" }))
+    </div>
+    <div id="idStatuslb">
+        <div id="idMatchStatus" name="idMatchStatus"></div>&nbsp; >&nbsp;
+        <div id="idAffirmed" name="idAffirmed"></div>&nbsp; >&nbsp;
+        <div id="idNotified" name="idNotified"></div>
+    </div>
+    <table id="idDetailTable">
+        <tr>
+            <td colspan="5">
+
+            </td>
+
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Loaded:</div></td>
+            <td><input type="text" id="idLoaded" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Traded:</div></td>
+            <td> <input type="text" id="idTraded" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Affirm:</div> </td>
+            <td><input type="text" id="idAffirm" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Notify:</div></td>
+            <td> <input type="text" id="idNotify" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Posted:</div></td>
+            <td> <input type="text" id="idPosted" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Match:</div> </td>
+            <td><input type="text" id="idMatch" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Settle:</div></td>
+            <td> <input type="text" id="idSettle" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Actual Settle:</div> </td>
+            <td><input type="text" id="idActualSettle" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <div class="labelDetail">Trades As:</div> </td>
+            <td><input type="text" id="idTradesAs" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Settlement Type:</div> </td>
+            <td><input type="text" id="idSettleType" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Contractual Settle:</div> </td>
+            <td><input type="text" id="idContractualSettle" readonly class="classReadOnly"/></td>
+        </tr>
+    </table>
+    <div class="idTableDetailLine"></div>
+    <table id="idtableDetail2">
+        <tr>
+            <td>
+                <div class="labelDetail">Port No:</div></td>
+            <td> <input type="text" id="idPortNo" name="idPortNo" readonly class="classReadOnly" /></td>
+            <td>
+                <div class="labelDetail">Port 2:</div></td>
+            <td> <input type="text" id="idPort2" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Name:</div> </td>
+            <td><input type="text" id="idName" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Trade Ref:</div></td>
+            <td> <input type="text" id="idTradeRef" name="idTradeRef" readonly class="classReadOnly" /></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Sec ID:</div></td>
+            <td> <input type="text" id="idSec" name="idSec" readonly class="classReadOnly" /></td>
+            <td>
+                <div class="labelDetail">ISIN:</div></td>
+            <td> <input type="text" id="idIsin" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Symbol:</div></td>
+            <td> <input type="text" id="idSymbol" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Block ID:</div></td>
+            <td> <input type="text" id="idBlockId" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Fund MEI:</div></td>
+            <td> <input type="text" id="idFundMei" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Agent MEI:</div></td>
+            <td> <input type="text" id="idAgentMei" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Brk MEI:</div></td>
+            <td> <input type="text" id="idBerkMei" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">ClearPar Ref:</div></td>
+            <td> <input type="text" id="idClearParRef" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">B/S:</div></td>
+            <td> <input type="text" id="idBS" readonly class="classReadOnly"/><input type="text" id="idSide2" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Broker:</div></td>
+            <td> <input type="text" id="ShawBrokerCode" name="ShawBrokerCode" maxlength="12" /></td>
+            <td></td>
+            <td> <input type="text" id="BrokerFINNo" name="BrokerFINNo" /><input type="text" id="ClearingBrokerFINNo" name="ClearingBrokerFINNo" maxlength="5" /> </td>
+            <td>
+                <div class="labelDetail">User Code:</div></td>
+            <td> <input type="text" id="UserCode" name="UserCode" maxlength="4" /></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Long/Short:</div></td>
+            <td> <input type="text" id="idLongShort" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Markit Entity:</div></td>
+            <td> <input type="text" id="idMarkitEntity" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">U tran:</div></td>
+            <td> <input type="text" id="idUserTransactionID1" readonly class="classReadOnly"/><input type="text" id="idUserTransactionID2" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Delayed Comp:</div></td>
+            <td> <input type="text" id="idDelayedComp" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Security:</div>
+            </td>
+            <td colspan="2"> <input type="text" id="idSecurity" readonly class="classReadOnly"/></td>
+            <td></td>
+            <td>
+                <div class="labelDetail">Security Type:</div></td>
+            <td> <select id="tdxSecurityType" name="tdxSecurityType"></select></td>
+            <td>
+                <div class="labelDetail">Isitc Type:</div></td>
+            <td> <select id="idIsitcType" name="idIsitcType"></select></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"><input type="text" id="idIssueDesc" readonly class="classReadOnly"/></td>
+            <td></td>
+            <td>
+                <div class="labelDetail">Notify Status:</div>
+            </td>
+            <td><input type="text" id="idNotifyStatus" readonly class="classReadOnly"/> </td>
+            <td>
+                <div class="labelDetail">Asset Type:</div>
+            </td>
+            <td> <input type="text" id="idAssetType" readonly class="classReadOnly"/></td>
+        </tr>
+    </table>
+    <div class="idTableDetailLine"></div>
+    <table id="idTradeDTable">
+        <tr>
+            <td>
+                <div class="labelDetail">Shares:</div> </td>
+            <td><input type="text" id="mNumberofShares" name="mNumberofShares" readonly class="classReadOnly" /></td>
+            <td>
+                <div class="labelDetail">Unit Price:</div></td>
+            <td> <input type="text" id="CurrencyCode" name="CurrencyCode" readonly class="classReadOnly" /><input type="text" id="idUnitPrice2" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Income:</div></td>
+            <td><input type="text" id="idIncome" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Principal:</div></td>
+            <td> <input type="text" id="idPrincipal" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">SEC Fee:</div></td>
+            <td> <input type="text" id="idSECFee" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Fed Tax:</div></td>
+            <td> <input type="text" id="idFedTax" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Commission:</div></td>
+            <td> <input type="text" id="idCommission" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Other Fee:</div></td>
+            <td> <input id="mOtherFee" name="mOtherFee" type="number" step="0.01" /></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">OFV:</div></td>
+            <td> <input type="text" id="idOfv" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Net Amt:</div></td>
+            <td> <input type="text" id="idNetAmt" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Stamp Duty:</div></td>
+            <td> <input type="number" step="0.01" id="StampDuty" name="idStampDuty" /></td>
+            <td>
+                <div class="labelDetail">Value Added Tax:</div></td>
+            <td> <input type="number" step="0.01" id="ValueAddedTax" name="ValueAddedTax" /></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Current Quantity:</div></td>
+            <td> <input type="text" id="idCurrentQuantity" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Cost of Carry: </div></td>
+            <td><input type="text" id="idCostOfCarry" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Additional Fee 1:</div></td>
+            <td> <input type="text" id="idAdditionalFee1" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Additional Fee 2:</div></td>
+            <td> <input type="text" id="idAdditionalFee2" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Assigment Fee:</div></td>
+            <td> <input type="text" id="idAssigmentFee" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Cost of Carry Rate: </div></td>
+            <td><input type="text" id="idCostOfCarryRate" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">ClearPar Fee:</div></td>
+            <td> <input type="text" id="idClearParFee" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Factor:</div></td>
+            <td> <input type="text" id="idFactor" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Total Net Proceeds:</div></td>
+            <td> <input type="text" id="idTotalNetProceeds" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Original Cost Base:</div></td>
+            <td> <input type="text" id="idOriginalCostBase" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Original Cost Local:</div></td>
+            <td> <input type="text" id="idOriginalCostLocal" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Economic Benefit:</div></td>
+            <td> <input type="text" id="idEconomicBenefit" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Comments:</div> </td>
+            <td colspan="3"><input type="text" id="TradeComments" name="TradeComments" maxlength="64" /></td>
+            <td>
+                <div class="labelDetail">Net Back:</div></td>
+            <td> <input type="text" id="idNetBack" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Spot Rate:</div></td>
+            <td> <input type="text" id="idSpotRate" readonly class="classReadOnly"/></td>
+
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Notify Comments:</div>
+            </td>
+            <td colspan="5"><input type="text" id="idNotifyComments"/></td>
+            <td>
+                <label for="chkFlat" class="labelDetail">Flat:<input type="checkbox" value="Flat" id="chkFlat" name="chkFlat"/></label>
+                <label for="FlagDeleted" class="labelDetail">Deleted:<input type="checkbox" value="Delete" id="FlagDeleted" name="FlagDeleted"/></label>
+                <label for="chkFail" class="labelDetail">Fail:<input type="checkbox" value="Fail" id="chkFail" name="chkFail"/></label>
+                <label for="DoNotAffirm" class="labelDetail">Do Not Affirm: <input type="checkbox" value="Do Not Affirm" id="DoNotAffirm" name="DoNotAffirm"/></label>
+            </td>
+        </tr>
+    </table>
+    <div class="idTableDetailLine"></div>
+    <table id="idTradesConfirmsTable">
+        <tr>
+            <td>
+                <div class="labelDetailTItle">Related Confirms & Trades:</div></td>
+            <td></td>
+            <td>
+                <div class="labelDetailTItle">Discrepancies:</div></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Confirms:</div></td>
+            <td>
+                <div class="labelDetail">Trades:</div></td>
+            <td>
+                <div class="labelDetail">Trade Value:</div></td>
+            <td>
+                <div class="labelDetail">Confirm Value:</div></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType1"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade1" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm1" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType2"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade2" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm2" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType3"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade3" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm3" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType4"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade4" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm4" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType5"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade5" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm5" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType6"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade6" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm6" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="labelDetail">Attachments:</div></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType7"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade7" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm7" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType8"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade8" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm8" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType9"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade9" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm9" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType10"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade10" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm10" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType11"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade11" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm11" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType12"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade12" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm12" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType13"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade13" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm13" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType14"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade14" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm14" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><label id="txtDiscrepancyType15"></label></td>
+            <td><input type="text" id="idDiscrepancyTrade15" readonly class="classReadOnly"/></td>
+            <td><input type="text" id="idDiscrepancyConfirm15" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="idTableDetailLine"></div>
+    <table id="idSettlementTable">
+        <tr>
+            <td>
+                <div class="labelDetailTItle">Settlement:</div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="labelDetail">Executing Broker:</div></td>
+            <td><input type="text" id="idExecutingBroker" name="idExecutingBroker" readonly class="classReadOnly" /></td>
+            <td>
+                <div class="labelDetail">FIN:</div></td>
+            <td><input type="text" id="idExecutingBrokerFin" name="idExecutingBrokerFin" readonly class="classReadOnly" /></td>
+            <td>
+                <div class="labelDetail">BIC:</div></td>
+            <td><input type="text" id="idExecutingBrokerBic" name="idExecutingBrokerBic" readonly class="classReadOnly" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="labelDetail">Clearing Broker:</div></td>
+            <td><input type="text" id="idClearingBroker" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">FIN:</div></td>
+            <td><input type="text" id="idClearingBrokerFin" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">BIC:</div></td>
+            <td><input type="text" id="idClearingBrokerBic" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="labelDetail">Bank Name:</div></td>
+            <td><input type="text" id="idBankName" name="idBankName" readonly class="classReadOnly" /></td>
+            <td>
+                <div class="labelDetail">ABA No:</div></td>
+            <td><input type="text" id="idAbaNo" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">A/C No:</div></td>
+            <td><input type="text" id="idAccountNumber" readonly class="classReadOnly"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="labelDetail">Settlement Type:</div> </td>
+            <td><input type="text" id="idSettlementType" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Settlement No:</div></td>
+            <td> <input type="text" id="idSettlementNo" readonly class="classReadOnly"/></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="labelDetail">Reference:</div></td>
+            <td><input type="text" id="idReference" readonly class="classReadOnly"/></td>
+            <td>
+                <div class="labelDetail">Settlement Loc:</div></td>
+            <td><select id="idSettlementLoc" name="idSettlementLoc"></select></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td >
+                <div class="labelDetail">Instructions:</div>
+            </td>
+            <td colspan="6"><input type="text" id="idInstructions" readonly class="classReadOnly"/></td>
+        </tr>
+    </table>
+    <div class="idTableDetailLine"></div>
+    <table id="idTradeHistoryTable">
+        <tr>
+            <td>
+                <div class="labelDetailTItle">Trade History:</div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                <div id="tradeHistoryGrid"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+    </table>
+    <div class="idTableDetailLine"></div>
+    <table id="idNotificationTable">
+        <tr>
+            <td colspan="4">
+                <div class="labelDetailTItle">Notifications:</div>
+            </td>
+        </tr>
+        <tr><td colspan="4">
+
+
+            </td>
+        </tr>
+    </table>
+    <div id="notifyListView"></div>
+    <input type="hidden" id="timestamp" name="timestamp"/>
+    <input type="hidden" id="tradeListId" name="tradeListId"/>
+    <input type="hidden" id="tradeListIds" name="tradeListIds" value="@ViewBag.TradeListIds" />
+}
+
+<script>
+
+
+    function UpdateSave() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action( "UpdateDetail","TradeDetail")',
+            success: function(data) {
+                alert("Supper");
+
+            }
+        });
+        $("#idPostTradeDetail").submit();
+    }
+
+    function TDMSManualMatch() {
+
+        // if ($("#tdToolhammer").attr("src") !== "/Images/hammer-icon_d.png") {
+        $("#poopTDMSManualMatch").html("<div>Loading...</div>");
+        $("#poopTDMSManualMatch").show();
+        $("#poopTDMSManualMatch").data("kendoWindow").center().open();
+        kendo.ui.progress($("#poopTDMSManualMatch"), true);
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("TDMSManualMatch","TDMSManualMatch")',
+            data: {
+                "idList": $("#tradeListId").val()
+
+            },
+            success: function(data) {
+                $("#poopTDMSManualMatch").html(data);
+                $("#poopTDMSManualMatch").show();
+                $("#poopTDMSManualMatch").data("kendoWindow").center().open();
+
+            }
+        });
+        //  } else {
+        //       console.log("Match disabled");
+        //  }
+    }
+
+    function tdmsTradeResolutionClose() {
+    }
+
+    function tdmsManualMatchClose() {
+    }
+
+    function failedTradesClose() {
+    }
+
+    function returnNoName(value) {
+
+        if (value.trim().length > 0) {
+            return value;
+        }
+        // console.log(value);
+        return "No Contact Name Available";
+
+    }
+
+    $(document).ready(function() {
+
+        if (@ViewBag.CurrentPage === 1) {
+            $("#idPrevious").hide();
+        }
+        if (@ViewBag.TradeListIdsCount === @ViewBag.CurrentPage) {
+            $("#idNext").hide();
+    }
+        var jsonTradeDetail = JSON.parse('@Html.Raw(jsonTradeDetail)');
+    var jsontdxTradeNotifyCode = JSON.parse('@Html.Raw(jsontdxTradeNotifyCode)');
+    var jsontdxSecurityType = JSON.parse('@Html.Raw(jsontdxSecurityType)');
+    var jsonIsitcIssue = JSON.parse('@Html.Raw(jsonIsitcIssue)');
+    var jsonTradeRepairLog = JSON.parse('@Html.Raw(jsonTradeRepairLog)');
+    var jsontdxSettlementType = JSON.parse('@Html.Raw(jsontdxSettlementType)');
+    var jsontdxSettlementLoc = JSON.parse('@Html.Raw(jsontdxSettlementLoc)');
+    var jsonTradeNotifyList = JSON.parse('@Html.Raw(jsonTradeNotifyList)');
+    $("#tradeListId").val(jsonTradeDetail[0].tdTrade);
+    $("#notifyListView").kendoListView({
+        dataSource: {
+            data: jsonTradeNotifyList,
+            schema: {
+                type: 'json',
+                model: {
+                    id: "ShawPortNo",
+                    fields: {
+                        ContactTypeDesc: { type: "string" },
+                        TransportDesc: { type: "string" },
+                        date_time: { type: "date" }
+                    }
+                }
+            }
+        },
+        template: '<div class="custNotifyClass"><div class="custStyle">#= ContactTypeDesc #</div> <br/>&nbsp;&nbsp;&nbsp;  <div class="classNotifyContactName">#=returnNoName(contact_name)#<div>  <br/> &nbsp;&nbsp;&nbsp; #= contact_company #  <div class="custNSentBy">  Sent By:' + GetLink("#= TransportDesc #", "#=Fax_File_Name_Local#", "#=iomessageLog#") + ' &nbsp; on: #= date_time # </div> </div>'
+    });
+
+
+    $("#tradeHistoryGrid").kendoGrid({
+        dataSource: {
+            data: jsonTradeRepairLog,
+            schema: {
+                type: 'json',
+                model: {
+                    id: "tdTradeRepairLog",
+                    fields: {
+                        RepairType: { type: "string" },
+                        RepairDescription: { type: "string" },
+                        RepairedDate: { type: "string" },
+                        RepairedBy: { type: "string" }
+                    }
+                }
+            }
+        },
+        height: 200,
+        columns: [
+            { field: "RepairType", title: "Type", template: "<div>#= RepairType#</div>" },
+            { field: "RepairDescription", title: "Description", template: "<div>#= RepairDescription#</div>" },
+            { field: "RepairedDate", title: "Date", template: "<div>#= GetJsonDate(RepairedDate)#</div>" },
+            { field: "RepairedBy", title: "User", template: "<div>#= RepairedBy#</div>" }
+        ]
+    });
+
+    $("#timestamp").val(jsonTradeDetail[0].timestamp);
+    //$("#idMatchStatus").text(jsonTradeDetail[0].MatchStatus);
+    //if (jsonTradeDetail[0].MatchStatus === "Matched") {
+
+    //    $("#idMatchStatus").css("color", "Green");
+    //} else {
+
+    //    $("#idMatchStatus").css("color", "Orange");
+    //}
+    //$("#idAffirmed").text(jsonTradeDetail[0].AffirmStatus);
+    //if (jsonTradeDetail[0].AffirmStatus === "Affirmed") {
+
+    //    $("#idAffirmed").css("color", "Green");
+    //} else {
+
+    //    $("#idAffirmed").css("color", "Orange");
+    //}
+    //$("#idNotified").text(jsonTradeDetail[0].NotifyStatus);
+    //if (jsonTradeDetail[0].NotifyStatus === "Notified") {
+
+    //    $("#idNotified").css("color", "Green");
+    //} else {
+    idAffirm
+    //    $("#idNotified").css("color", "Orange");
+    //}
+
+    $("#idLoaded").val(GetJsonDate(jsonTradeDetail[0].TransactionLoadDate));
+
+    $("#idTraded").val(GetJsonDate(jsonTradeDetail[0].mTradeDate));
+
+    $("#idTraded").removeClass("k-picker-wrap");
+
+    // Hide the icon
+    $(".k-state-default > .k-select").css("visibility", "hidden");
+
+
+    $("#idAffirm").val(GetJsonDate(jsonTradeDetail[0].AffirmDate));
+
+    $("#idNotify").val(GetJsonDate(jsonTradeDetail[0].NotifyDate));
+    $("#idPosted").val(GetJsonDate(jsonTradeDetail[0].TranDate));
+    $("#idSettle").val(GetJsonDate(jsonTradeDetail[0].mSettlementDate));
+
+    $("#idMatch").val(GetJsonDate(jsonTradeDetail[0].TradeMatchDate));
+
+    $("#idActualSettle").val(GetJsonDate(jsonTradeDetail[0].ActualSettle));
+    console.log("x" + jsonTradeDetail[0].ActualSettle);
+    $("#idTradesAs").val(jsonTradeDetail[0].TradesAs);
+    $("#idSettleType").val(jsonTradeDetail[0].SettlementType);
+
+    $("#idContractualSettle").val(GetJsonDate(jsonTradeDetail[0].ContractualSettlementDate));
+
+
+    $("#idPortNo").val(jsonTradeDetail[0].ShawPortNo);
+    $("#idPort2").val(jsonTradeDetail[0].PortNo2);
+    $("#idName").val(jsonTradeDetail[0].PortName);
+    $("#idTradeRef").val(jsonTradeDetail[0].TradeRefNo);
+    $("#idSec").val(jsonTradeDetail[0].CUSIPNo);
+    $("#idIsin").val(jsonTradeDetail[0].ISIN);
+    $("#idSymbol").val(jsonTradeDetail[0].StockSymbol);
+    $("#idBlockId").val(jsonTradeDetail[0].trade_block);
+
+    $("#idFundMei").val(jsonTradeDetail[0].FundMEI);
+    $("#idAgentMei").val(jsonTradeDetail[0].AgentMEI);
+    $("#idBerkMei").val(jsonTradeDetail[0].BrokerMEI);
+    $("#idClearParRef").val(jsonTradeDetail[0].ClearParSubtradeTicketNo);
+    $("#idBS").val(jsonTradeDetail[0].mTransactionCode);
+    $("#idSide2").val(jsonTradeDetail[0].Side2);
+    $("#ShawBrokerCode").val(jsonTradeDetail[0].ShawBrokerCode);
+    $("#BrokerFINNo").val(jsonTradeDetail[0].BrokerFINNo);
+    $("#ClearingBrokerFINNo").val(jsonTradeDetail[0].ClearingBrokerFINNo);
+    $("#UserCode").val(jsonTradeDetail[0].UserCode);
+    $("#idLongShort").val(jsonTradeDetail[0].LongShort);
+    $("#idMarkitEntity").val(jsonTradeDetail[0].MarkitEntityID);
+    $("#idUserTransactionID1").val(jsonTradeDetail[0].UserTransactionID1);
+    $("#idUserTransactionID2").val(jsonTradeDetail[0].UserTransactionID2);
+    $("#idDelayedComp").val(jsonTradeDetail[0].DelayedComp);
+    $("#idSecurity").val(jsonTradeDetail[0].StockName);
+    $("#idIssueDesc").val(jsonTradeDetail[0].issue_desc);
+    $("#idAssetType").val(jsonTradeDetail[0].AssetType);
+
+    $.each(jsontdxTradeNotifyCode, function(key, data) {
+        if (data.tdxTradeNotifyCode === jsonTradeDetail[0].TradeNotifyCode) {
+            $("#idNotifyStatus").val(data.description);
+        }
+    });
+    $.each(jsontdxSecurityType, function(key, data) {
+
+        if (data.Description === jsonTradeDetail[0].SecurityType) {
+
+            $("#tdxSecurityType").append($("<option/>", {
+                value: data.tdxSecurityType,
+                text: data.Description,
+                selected: true
+            }));
+        } else {
+            $("#tdxSecurityType").append($("<option/>", {
+                value: data.Description,
+                text: data.Description
+            }));
+        }
+    });
+
+
+    $.each(jsonIsitcIssue, function(key, data) {
+
+        if (data.Description === jsonTradeDetail[0].SecurityType) {
+
+            $("#tdxSecurityType").append($("<option/>", {
+                value: data.tdxSecurityType,
+                text: data.Description,
+                selected: true
+            }));
+        } else {
+            $("#idIsitcType").append($("<option/>", {
+                value: data.Description,
+                text: data.Description
+            }));
+        }
+    });
+
+    //MatchStatus
+    ////tdxTradeNotifyCode
+
+    $("#mNumberofShares").val(jsonTradeDetail[0].mNumberofShares);
+    $("#CurrencyCode").val(jsonTradeDetail[0].CurrencyCode);
+    $("#idUnitPrice2").val(jsonTradeDetail[0].mUnitPrice);
+    $("#idIncome").val(jsonTradeDetail[0].mIncome);
+    $("#idPrincipal").val(jsonTradeDetail[0].mPrincipalAmount);
+
+
+    $("#idSECFee").val(jsonTradeDetail[0].mSECFees);
+    $("#idFedTax").val(jsonTradeDetail[0].mFederalTax);
+    $("#idCommission").val(jsonTradeDetail[0].mCommission);
+    $("#mOtherFee").val(jsonTradeDetail[0].mOtherFee);
+    $("#idOfv").val(jsonTradeDetail[0].mOriginalFace);
+    $("#idNetAmt").val(jsonTradeDetail[0].mNetAmount);
+    $("#StampDuty").val(jsonTradeDetail[0].StampDuty);
+    $("ValueAddedTax").val(jsonTradeDetail[0].ValueAddedTax);
+    $("#idCurrentQuantity").val(jsonTradeDetail[0].CurrentQuantity);
+    $("#idCostOfCarry").val(jsonTradeDetail[0].CostofCarry);
+    $("#idAdditionalFee1").val(jsonTradeDetail[0].AdditionalFee1);
+    $("#idAdditionalFee2").val(jsonTradeDetail[0].AdditionalFee2);
+    $("#idAssigmentFee").val(jsonTradeDetail[0].AssignmentFee);
+    $("#idCostOfCarryRate").val(jsonTradeDetail[0].CostofCarryRate);
+    $("#idClearParFee").val(jsonTradeDetail[0].ClearParFee);
+    $("#idFactor").val(jsonTradeDetail[0].mCurrenFactor);
+    $("#idTotalNetProceeds").val(jsonTradeDetail[0].TotalNetProceeds);
+    $("#idOriginalCostBase").val(jsonTradeDetail[0].OriginalCostBase);
+    $("#idOriginalCostLocal").val(jsonTradeDetail[0].OriginalCostLocal);
+    $("#idEconomicBenefit").val(jsonTradeDetail[0].EconomicBenefit);
+    $("#TradeComments").val(jsonTradeDetail[0].TradeComments);
+    $("#idNetBack").val(jsonTradeDetail[0].NetBack);
+    $("#idSpotRate").val(jsonTradeDetail[0].FxRate);
+    $("#idNotifyComments").val(jsonTradeDetail[0].NotifyComment);
+    $("#chkFlat").prop('checked', jsonTradeDetail[0].TradeFlat);
+    $("#FlagDeleted").prop('checked', jsonTradeDetail[0].FlagDeleted);
+    $("#chkFail").prop('checked', jsonTradeDetail[0].Failed);
+    $("#DoNotAffirm").prop('checked', jsonTradeDetail[0].DoNotAffirm);
+    $("#txtDiscrepancyType1").val(jsonTradeDetail[0].Discrepancy_Label1);
+    $("#idDiscrepancyTrade1").val(jsonTradeDetail[0].Discrepancy_Trade1);
+    $("#idDiscrepancyConfirm1").val(jsonTradeDetail[0].Discrepancy_Confirm1);
+    $("#txtDiscrepancyType2").val(jsonTradeDetail[0].Discrepancy_Label2);
+    $("#idDiscrepancyTrade2").val(jsonTradeDetail[0].Discrepancy_Trade2);
+    $("#idDiscrepancyConfirm2").val(jsonTradeDetail[0].Discrepancy_Confirm2);
+    $("#txtDiscrepancyType3").val(jsonTradeDetail[0].Discrepancy_Label3);
+    $("#idDiscrepancyTrade3").val(jsonTradeDetail[0].Discrepancy_Trade3);
+    $("#idDiscrepancyConfirm3").val(jsonTradeDetail[0].Discrepancy_Confirm3);
+    $("#txtDiscrepancyType4").val(jsonTradeDetail[0].Discrepancy_Label4);
+    $("#idDiscrepancyTrade4").val(jsonTradeDetail[0].Discrepancy_Trade4);
+    $("#idDiscrepancyConfirm4").val(jsonTradeDetail[0].Discrepancy_Confirm4);
+    $("#txtDiscrepancyType5").val(jsonTradeDetail[0].Discrepancy_Label5);
+    $("#idDiscrepancyTrade5").val(jsonTradeDetail[0].Discrepancy_Trade5);
+    $("#idDiscrepancyConfirm5").val(jsonTradeDetail[0].Discrepancy_Confirm5);
+    $("#txtDiscrepancyType6").val(jsonTradeDetail[0].Discrepancy_Label6);
+    $("#idDiscrepancyTrade6").val(jsonTradeDetail[0].Discrepancy_Trade6);
+    $("#idDiscrepancyConfirm6").val(jsonTradeDetail[0].Discrepancy_Confirm6);
+    $("#txtDiscrepancyType7").val(jsonTradeDetail[0].Discrepancy_Label7);
+    $("#idDiscrepancyTrade7").val(jsonTradeDetail[0].Discrepancy_Trade7);
+    $("#idDiscrepancyConfirm7").val(jsonTradeDetail[0].Discrepancy_Confirm7);
+    $("#txtDiscrepancyType8").val(jsonTradeDetail[0].Discrepancy_Label8);
+    $("#idDiscrepancyTrade8").val(jsonTradeDetail[0].Discrepancy_Trade8);
+    $("#idDiscrepancyConfirm8").val(jsonTradeDetail[0].Discrepancy_Confirm8);
+    $("#txtDiscrepancyType9").val(jsonTradeDetail[0].Discrepancy_Label9);
+    $("#idDiscrepancyTrade9").val(jsonTradeDetail[0].Discrepancy_Trade9);
+    $("#idDiscrepancyConfirm9").val(jsonTradeDetail[0].Discrepancy_Confirm9);
+    $("#txtDiscrepancyType10").val(jsonTradeDetail[0].Discrepancy_Label10);
+    $("#idDiscrepancyTrade10").val(jsonTradeDetail[0].Discrepancy_Trade10);
+    $("#idDiscrepancyConfirm10").val(jsonTradeDetail[0].Discrepancy_Confirm10);
+    $("#txtDiscrepancyType11").val(jsonTradeDetail[0].Discrepancy_Label11);
+    $("#idDiscrepancyTrade11").val(jsonTradeDetail[0].Discrepancy_Trade11);
+    $("#idDiscrepancyConfirm11").val(jsonTradeDetail[0].Discrepancy_Confirm11);
+    $("#txtDiscrepancyType12").val(jsonTradeDetail[0].Discrepancy_Label12);
+    $("#idDiscrepancyTrade12").val(jsonTradeDetail[0].Discrepancy_Trade12);
+    $("#idDiscrepancyConfirm12").val(jsonTradeDetail[0].Discrepancy_Confirm12);
+    $("#txtDiscrepancyType13").val(jsonTradeDetail[0].Discrepancy_Label13);
+    $("#idDiscrepancyTrade13").val(jsonTradeDetail[0].Discrepancy_Trade13);
+    $("#idDiscrepancyConfirm13").val(jsonTradeDetail[0].Discrepancy_Confirm13);
+    $("#txtDiscrepancyType14").val(jsonTradeDetail[0].Discrepancy_Label14);
+    $("#idDiscrepancyTrade14").val(jsonTradeDetail[0].Discrepancy_Trade14);
+    $("#idDiscrepancyConfirm14").val(jsonTradeDetail[0].Discrepancy_Confirm14);
+    $("#txtDiscrepancyType15").val(jsonTradeDetail[0].Discrepancy_Label15);
+    $("#idDiscrepancyTrade15").val(jsonTradeDetail[0].Discrepancy_Trade15);
+    $("#idDiscrepancyConfirm15").val(jsonTradeDetail[0].Discrepancy_Confirm15);
+
+    $("#idExecutingBroker").val(jsonTradeDetail[0].ExecutingBrokerName);
+    $("#idExecutingBrokerFin").val(jsonTradeDetail[0].ExecutingFIN);
+    $("#idExecutingBrokerBic").val(jsonTradeDetail[0].ExecutingBrokerBIC);
+    $("#idClearingBroker").val(jsonTradeDetail[0].txtClearingBrokerName);
+    $("#idClearingBrokerFin").val(jsonTradeDetail[0].txtClearingBrokerFIN);
+    $("#idClearingBrokerBic").val(jsonTradeDetail[0].ClearingBrokerBIC);
+    $("#idBankName").val(jsonTradeDetail[0].BankName);
+    $("#idAbaNo").val(jsonTradeDetail[0].ABANo);
+    $("#idAccountNumber").val(jsonTradeDetail[0].AccountNumber);
+
+    $("#idSettlementNo").val(jsonTradeDetail[0].SettlementNumber);
+    $("#idReference").val(jsonTradeDetail[0].Reference);
+
+    $("#idInstructions").val(jsonTradeDetail[0].SettlementInstructions);
+
+
+    $.each(jsontdxSettlementType, function(key, data) {
+
+        if (data.tdxSettlementType === jsonTradeDetail[0].tdxSettlementType) {
+            $("#idSettlementType").val(data.Description);
+        }
+    });
+
+    $.each(jsontdxSettlementLoc, function(key, data) {
+
+        if (data.SettlementLoc === jsonTradeDetail[0].SettlementLoc) {
+
+            $("#idSettlementLoc").append($("<option/>", {
+                value: data.SettlementLoc,
+                text: data.SettlementLocDesc,
+                selected: true
+            }));
+        } else {
+            $("#idSettlementLoc").append($("<option/>", {
+                value: data.SettlementLoc,
+                text: data.SettlementLocDesc
+            }));
+        }
+    });
+
+
+    });
+
+    var monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    function GetJsonDate(date) {
+        if (date == null || date === "undefined" || date === "" || !date.trim()) {
+            return "";
+        }
+        if (date.indexOf("Date") > -1) {
+            console.log(date);
+            try {
+                var value = new Date
+                (
+                    parseInt(date.replace(/(^.*\()|([+-].*$)/g, ''))
+                );
+                var dat = value.getDate() +
+                    1 +
+                    " " +
+                    monthNames[value.getMonth()] +
+                    " " +
+                    value.getFullYear();
+
+                return dat;
+            } catch (err) {
+                //  console.log(err.Message);
+            }
+
+            return "";
+        } else {
+            console.log("a" + date);
+            var d = convertToJSONDate(date);
+            console.log(d);
+            try {
+                var valueD = new Date
+                (
+                    parseInt(d.replace(/(^.*\()|([+-].*$)/g, ''))
+                );
+                var dateN = valueD.getDate() +
+                    1 +
+                    " " +
+                    monthNames[valueD.getMonth()] +
+                    " " +
+                    valueD.getFullYear();
+
+                return dateN;
+            } catch (err) {
+                //  console.log(err.Message);
+            }
+        }
+
+
+        return date;
+    }
+
+    function convertToJSONDate(strDate) {
+        try {
+            var splitted = strDate.split("/");
+            var dt = new Date(splitted[2], splitted[0], splitted[1]);
+            var newDate = new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes(), dt.getSeconds(), dt.getMilliseconds()));
+            return '/Date(' + newDate.getTime() + ')/';
+        } catch (e) {
+
+        }
+        return strDate;
+    }
+
+    function GetLink(name,strFileName,logId) {
+
+        return  '@Html.ActionLink("%%Link%%", "DownloadFile", "DisplayBlob", new { strFileName = "%filename%", logId =  "%LogIdLink%"})'.replace('%filename%',strFileName).replace('%LogIdLink%',logId).replace('%%Link%%',name);
+    }
+
+</script>
+    
+<style>
+    
+    .labelDetail {
+           width: 100%;
+    float: left;
+    text-align: right;
+    }
+</style>*@

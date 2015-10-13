@@ -1,0 +1,1322 @@
+﻿body {
+}
+.linkClass
+ a:link {color: #fff;}
+           .style1
+            {
+                z-index: 213;
+                left: 467px;
+                position: absolute;
+                top: 411px;
+                width: 6px;
+            }
+            #txtMatchStatus
+            {
+                position:absolute;
+                top:168px;
+                left:224px;
+            }
+            #lblMatchStep
+            {
+                position: absolute; 
+                top: 166px;
+                left: 383px; 
+            }
+            #txtAffirmStatus
+            {
+                position: absolute; 
+                top:168px;
+                left: 449px; 
+            }
+            #lblAffirmStep
+            {
+                position: absolute; 
+                top: 166px;
+                left: 604px; 
+            }
+            #txtNotifyStatus
+            {
+                position: absolute; 
+                top:168px;
+                left: 666px; 
+            }
+            /*TradeDetailContainer1*/
+            #TradeDetailContainer1
+            {
+	            position:absolute;
+	            top:210px;
+	            left:10px;
+	            height:85px;
+	            width:1060px;
+	            border-bottom:1px solid #A9B4BD;
+	            background-color:transparent;
+            }
+            #lblLoadDT,
+            #lblTraded,
+            #Label8,
+            #Label9
+            {
+            	position:absolute;
+            	top:10px;
+            }
+            
+            #txtLoadDT,
+            #txtTradeDate,
+            #txtAffirmDate, 
+            #txtNotifyDate
+            {
+            	position:absolute;
+            	top:6px;
+            } 
+            
+            #lblPostedDate,
+            #Label7,
+            #lblSettle,
+            #lblActualSettle
+            {
+            	position:absolute;
+            	top:36px;
+            }
+            
+            #txtPostedDate,
+            #txtMatchDate,
+            #txtSettleDate,
+            #valSettleDate,
+            #txtActualSettle
+            {
+            	position:absolute;
+            	top:32px;
+            }
+            /*end of tradeDetailContainer1 */
+            /* TradeDetailContainer2 */
+            #TradeDetailContainer2
+            {
+	            position:absolute;
+	            top:303px;
+	            left:10px;
+	            height:193px;
+	            width:1060px;
+	            border-bottom:1px solid #A9B4BD;
+	            background-color:transparent;
+            	
+            }
+            #lblPortNo,
+            #lblPortName,
+            #lblRefNo,
+            #lblPort2
+            {
+	            position:absolute;
+                top:10px;
+            }
+
+            #txtPort,
+            #txtPortName,
+            #txtTradeRef,
+            #txtPort2
+            {
+                position:absolute;
+                top:6px;
+            }
+            #Label1,
+            #Label10,
+            #lblStockSymbol
+            {
+                position:absolute;
+                top:36px;
+            }
+
+            #txtSecurityID2,
+            #txtISIN,
+            #txtSecurity2,
+            #lblBlockId,
+            #txtBlockId
+            {
+                position:absolute;
+                top:32px;
+            }
+
+            #lblBS,
+            #Label4,
+            #lblUserCode
+            {
+                position:absolute;
+                top:88px;
+            }
+
+            #txtBS,
+            #txtSide2,
+            #txtSecBroker,
+            #txtBrokerFIN,
+            #txtClearingB,
+            #txtUserCode,
+            #txtSecBrokerID1,
+            #txtClearingBrokerFINNo
+            {
+                position:absolute;
+                top:84px;
+            }
+            #lblSecurityType,
+            #Label2,            
+            #lblIsitcSecurityType
+            {
+                position:absolute;
+                top:143px;
+            }
+
+            #txtSecurity1,
+            #drpSecurityType,
+            #drpIsitc
+            {
+                position:absolute;
+                top:136px;
+            }
+            #lblNotifyStatus
+            {
+                position:absolute;
+                top:170px;
+            }
+
+            #txtIssueDesc,
+            #drpNotifyStatus
+            {
+                position:absolute;
+                top:163px;
+            }
+            
+            
+          #lbAssetType {
+    position: absolute;
+    top: 170px;
+    left: 836px;
+}
+
+          #txtAssetType {
+    position: absolute;
+    top: 163px;
+    left: 902px;
+    width: 149px;
+}
+
+            #lbDelayedComp
+            {
+            	 position:absolute;
+                 top:116px;
+                  left:820px;
+            }
+				#txtDelayedComp {
+				position: absolute;
+				top: 110px;
+				left: 902px;
+				width: 146px;
+				}
+
+            #lbMarkitEntityID
+            {
+            	 position:absolute;
+                top:116px;
+                 left:286px;
+            }
+          #txtMarkitEntityID {
+    position: absolute;
+    top: 110px;
+    left: 359px;
+    width: 147px;
+}
+
+          #txtUserTransactionID2 {
+    position: absolute;
+    top: 110px;
+    left: 674px;
+    width: 121px;
+}
+
+           #txtUserTransactionID1 {
+    position: absolute;
+    top: 110px;
+    left: 554px;
+    width: 114px;
+}
+
+            #lbUserTransactionID1
+            {
+            	 position:absolute;
+                 top:116px;
+                 left:516px;
+            }
+            #lbLongShort
+            {
+            	 position:absolute;
+                top:116px;
+                left:52px;
+            }
+ #txtLongShort {
+    position: absolute;
+    top: 110px;
+    left: 120px;
+    width: 148px;
+}
+
+            
+            
+            /*end of TradeDetailContainer2*/
+            /*TradeDetailContainer3*/
+            #TradeDetailContainer3
+            {
+	            position:absolute;
+	            top:501px;
+	            left:10px;
+	            height:218px;
+	            width:1060px;
+	            border-bottom:1px solid #A9B4BD;
+	            background-color:transparent;
+            }
+            #lblShares,
+            #lblUnitPrice,
+            #lblIncome,
+            #lblPrincipal
+            {
+                position:absolute;
+                top:10px;
+            }
+
+            #txtShares,
+            #txtCurrency,
+            #txtUnitPrice2,
+            #Regularexpressionvalidator1,
+            #txtIncome,
+            #Regularexpressionvalidator5,
+            #txtPrincipal,
+            #Regularexpressionvalidator7
+            {
+                position:absolute;
+                top:6px;
+            }
+            #lblSECFee,
+            #lblFedTax,
+            #lblCommission,
+            #lblOtherFee
+            {
+                position:absolute;
+                top:36px;
+            }
+
+            #txtSECFee,
+            #valSecFee,
+            #txtFedTax,
+            #Regularexpressionvalidator4,
+            #txtCommission,
+            #Regularexpressionvalidator6,
+            #txtOtherFee,
+            #Regularexpressionvalidator8
+            {
+                position:absolute;
+                top:32px;
+            }
+
+            #lblOFV,
+            #lblNetAmount,
+            #lblStampDuty,
+            #lblValueAddedTax
+            {
+                position:absolute;
+                top:62px;
+            }
+
+            #txtOFV,
+            #Regularexpressionvalidator2,
+            #txtNetAmount,
+            #Regularexpressionvalidator3,
+            #txtStampDuty,
+            #txtValueAddedTax
+            {
+                position:absolute;
+                top:58px;
+            }
+
+           
+            #lblFactor
+            {
+                position:absolute;
+                top:114px;
+            }
+             #lblComments
+            {
+                position:absolute;
+                top:165px;
+            }
+             #txtTradeComments
+             {
+             	
+                position:absolute;
+                top:163px;
+                width:388px !important;
+             }
+
+           
+            #txtFactor
+            {
+                position:absolute;
+                top:110px;
+            }
+
+            #lblNotifyComments
+            {
+            	position:absolute;
+                top:195px;
+            }
+            #lblFxRate
+            {
+                position:absolute;
+                top:166px;
+            }
+
+            #txtNotifyComments
+            {
+            	position:absolute;
+                top:189px;
+            }
+            #txtFxRate
+            {
+                position:absolute;
+                top:162px;
+            }
+               #txtFxRate
+            {
+               text-align:right;
+
+            }
+            #lbTotalNetProceeds
+            {
+				position:absolute;
+				top:340px;
+				left:19px;	
+            }
+            #txtTotalNetProceeds
+            {
+				position:absolute;
+				top:334px;
+				left:120px;	
+				width:125px !important;
+				text-align:right;
+            }
+            #lbEconomicBenefit
+            {
+            	position:absolute;
+				top:340px;
+				left:807px;
+            }
+			#txtEconomicBenefit 
+			{
+				position: absolute;
+				top: 334px;
+				left: 902px;
+				width: 146px !important;
+				text-align: right;
+			}
+#lbOriginalCostBase {
+    position: absolute;
+    top: 340px;
+    left: 260px;
+}
+
+           #txtOriginalCostBase {
+    position: absolute;
+    top: 334px;
+    left: 359px;
+    width: 149px !important;
+    text-align: right;
+}
+
+
+			#lbOriginalCostLocal {
+				position: absolute;
+				top: 340px;
+				left: 522px;
+			}
+
+			#txtOriginalCostLocal {
+			position: absolute;
+			top: 334px;
+			left: 620px;
+			width: 146px !important;
+			text-align: right;
+			}
+
+ #lbNetBack {
+    position: absolute;
+    top: 364px;
+    left: 568px;
+}
+
+			#txtNetBack {
+    position: absolute;
+    top: 360px;
+    left: 620px;
+    width: 146px !important;
+    text-align: right;
+}
+
+
+            /*end of TradeDetailContainer3*/
+    /*TradeDetailContainer4*/
+            #TradeDetailContainer4
+            {
+                position:absolute;
+                top:714px;
+                left:10px;
+                height:460px;
+                width:1060px;
+                border-bottom:1px solid #A9B4BD;
+                background-color:transparent;
+    	
+            }
+            #lblConfirmsTrades,
+            #lblDiscrepancies
+            {
+                position:absolute;
+                top:10px;
+            }
+            #lblConfirmsTrades
+            {
+                background-color: Transparent;
+                color: #000000;
+                z-index: 166;
+                left: 17px;
+                position: absolute;
+                top: 10px;
+            }
+            #lblDiscrepancies
+            {
+    	        left:814px;
+            }
+            /*Related Confirms and Trades Section*/
+            #lblConfirmNo,
+            #lblRelatedTrades, 
+            #lbAttachments,
+            #Label11,
+            #Label12
+            {
+                position:absolute;
+                top:40px;
+            }
+    
+            #txtDiscrepancyType1,
+            #txtDiscrepancyTrade1,
+            #txtDiscrepancyConfirm1
+            {
+                position:absolute;
+                top:66px;
+            }
+
+            #txtDiscrepancyType2,
+            #txtDiscrepancyTrade2,
+            #txtDiscrepancyConfirm2
+            {
+                position:absolute;
+                top:92px;
+            }
+            #txtDiscrepancyType3,
+            #txtDiscrepancyTrade3,
+            #txtDiscrepancyConfirm3
+            {
+                position:absolute;
+                top:118px;
+            }
+            #txtDiscrepancyType4,
+            #txtDiscrepancyTrade4,
+            #txtDiscrepancyConfirm4
+            {
+                position:absolute;
+                top:144px;
+            }
+            #txtDiscrepancyType5,
+            #txtDiscrepancyTrade5,
+            #txtDiscrepancyConfirm5
+            {
+                position:absolute;
+                top:170px;
+            }
+            #txtDiscrepancyType6,
+            #txtDiscrepancyTrade6,
+            #txtDiscrepancyConfirm6
+            {
+                position:absolute;
+                top:196px;
+            }
+            #txtDiscrepancyType7,
+            #txtDiscrepancyTrade7,
+            #txtDiscrepancyConfirm7
+            {
+                position:absolute;
+                top:222px;
+            }
+            #txtDiscrepancyType8,
+            #txtDiscrepancyTrade8,
+            #txtDiscrepancyConfirm8
+            {
+                position:absolute;
+                top:248px;
+            }
+            #txtDiscrepancyType9,
+            #txtDiscrepancyTrade9,
+            #txtDiscrepancyConfirm9
+            {
+                position:absolute;
+                top:274px;
+            }
+            #txtDiscrepancyType10,
+            #txtDiscrepancyTrade10,
+            #txtDiscrepancyConfirm10
+            {
+                position:absolute;
+                top:300px;
+            }
+            #txtDiscrepancyType11,
+            #txtDiscrepancyTrade11,
+            #txtDiscrepancyConfirm11
+            {
+                position:absolute;
+                top:326px;
+            }
+            #txtDiscrepancyType12,
+            #txtDiscrepancyTrade12,
+            #txtDiscrepancyConfirm12
+            {
+                position:absolute;
+                top:352px;
+            }
+            #txtDiscrepancyType13,
+            #txtDiscrepancyTrade13,
+            #txtDiscrepancyConfirm13
+            {
+                position:absolute;
+                top:378px;
+            }
+            #txtDiscrepancyType14,
+            #txtDiscrepancyTrade14,
+            #txtDiscrepancyConfirm14
+            {
+                position:absolute;
+                top:404px;
+            }
+            #txtDiscrepancyType15,
+            #txtDiscrepancyTrade15,
+            #txtDiscrepancyConfirm15
+            {
+                position:absolute;
+                top:430px;
+            }
+            #lblConfirmNo
+            {
+                left:52px;
+            }
+
+            #lblRelatedTrades
+            {
+                left:227px;
+            }
+	  
+             #lbAttachments
+            {
+                left:40px;
+                top:237px !important;
+            }
+            #Label11
+            {
+                left:719px;
+            }
+            #Label12
+            {
+                left:934px;
+            }
+            #txtDiscrepancyType1,
+            #txtDiscrepancyType2,
+            #txtDiscrepancyType3,
+            #txtDiscrepancyType4,
+            #txtDiscrepancyType5,
+            #txtDiscrepancyType6,
+            #txtDiscrepancyType7,
+            #txtDiscrepancyType8,
+            #txtDiscrepancyType9,
+            #txtDiscrepancyType10,
+            #txtDiscrepancyType11,
+            #txtDiscrepancyType12,
+            #txtDiscrepancyType13,
+            #txtDiscrepancyType14,
+            #txtDiscrepancyType15
+            {
+    	        left:525px;
+            }
+            #txtDiscrepancyTrade1,
+            #txtDiscrepancyTrade2,
+            #txtDiscrepancyTrade3,
+            #txtDiscrepancyTrade4,
+            #txtDiscrepancyTrade5,
+            #txtDiscrepancyTrade6,
+            #txtDiscrepancyTrade7,
+            #txtDiscrepancyTrade8,
+            #txtDiscrepancyTrade9,
+            #txtDiscrepancyTrade10,
+            #txtDiscrepancyTrade11,
+            #txtDiscrepancyTrade12,
+            #txtDiscrepancyTrade13,
+            #txtDiscrepancyTrade14,
+            #txtDiscrepancyTrade15
+            {
+    	        left:687px;
+            }
+            #txtDiscrepancyConfirm1,
+            #txtDiscrepancyConfirm2,
+            #txtDiscrepancyConfirm3,
+            #txtDiscrepancyConfirm4,
+            #txtDiscrepancyConfirm5,
+            #txtDiscrepancyConfirm6,
+            #txtDiscrepancyConfirm7,
+            #txtDiscrepancyConfirm8,
+            #txtDiscrepancyConfirm9,
+            #txtDiscrepancyConfirm10,
+            #txtDiscrepancyConfirm11,
+            #txtDiscrepancyConfirm12,
+            #txtDiscrepancyConfirm13,
+            #txtDiscrepancyConfirm14,
+            #txtDiscrepancyConfirm15
+            {
+    	        left:901px;
+            }
+
+            /*end of Related Confirms and trades section */
+    /*Settlement Section*/
+    /*end of TradeDetailContainer4*/
+    /*TradeDetailContainer5*/
+    #TradeDetailContainer5
+    {
+        position:absolute;
+        top:1180px;
+        left:10px;
+        height:210px;
+        width:1060px;
+        border-bottom:1px solid #A9B4BD;
+        background-color:transparent;
+    }
+    #Label3
+    {
+	    position:absolute;
+	    top: 10px;
+	    left: 14px; 
+    }
+
+    #Label6,
+    #Label13,
+    #Label14
+    {
+        position:absolute;
+        top:53px;
+    }
+    #txtExecutingBrokerName,
+    #txtExecutingBrokerFIN,
+    #txtExecutingBrokerBIC
+    {
+        position:absolute;
+        top:49px;
+    }
+    #Label15,
+    #Label16,
+    #Label17
+    {
+        position:absolute;
+        top:79px;
+    }
+
+    #txtClearingBrokerName,
+    #txtClearingBrokerFIN,
+    #txtClearingBrokerBIC
+    {
+        position:absolute;
+        top:75px;
+    }
+    #Label18,
+    #Label20,
+    #Label21
+    {
+        position:absolute;
+        top:105px;
+    }
+
+    #txtBankName,
+    #txtABANo,
+    #txtAccountNumber
+    {
+        position:absolute;
+        top:101px;
+    }
+    #Label36,
+    #Label22
+    
+    {
+        position:absolute;
+        top:131px;
+    }
+
+    #drpSettlementType,
+    #txtSettlementNumber
+    {
+        position:absolute;
+        top:127px;
+    }
+
+    #Label23,
+    #lblSettlementLoc
+    {
+        position:absolute;
+        top:157px;
+    }
+
+    #txtReference
+    {
+        position:absolute;
+        top:153px;
+    }
+    #Label24
+    {
+        position:absolute;
+        top:183px;
+    }
+
+    #txtSettlementInstructions
+    {
+        position:absolute;
+        top:179px;
+    }
+/*end of Settlement Section*/
+/*end of TradeDetailContainer5*/
+/*TradeDetailContainer6*/
+    /*Repair section*/
+    #TradeDetailContainer6
+    {
+        position:absolute;
+        top:1395px;
+        left:10px;
+        height:250px;
+        width:1060px;
+        border-bottom:1px solid #A9B4BD;
+        background-color:transparent;
+    }
+    #Label19
+    {
+        position:absolute;
+        top:10px;
+        left: 14px;
+    }
+
+    #dvRepairDetail
+    {
+        position:absolute;
+        top:38px;
+        left:72px;
+        border: #dcdcdc 1px solid;
+    }
+    /*end of TradeDetailContainer6*/
+    /*TradeDetailContainer7*/
+    /*Notification section*/
+    #TradeDetailContainer7
+    {
+        position:absolute;
+        top:1640px;
+        left:10px;
+        width:1060px;
+        background-color:transparent;
+    }
+    #Label5
+    {
+	    position: absolute;	
+	    top: 10px;	
+	    left: 14px;  
+    }
+    #tblNotifyList
+    {
+    	position:absolute;
+    	top:36px;
+    	left:92px;
+    }    
+    /*end of TradeDetailContainer7*/
+    /*first label column*/
+    #lblLoadDT,
+    #lblPostedDate,
+    #lblPortNo,
+    #Label1,
+    #lblBS,
+    #Label2,
+    #lblShares,
+    #lblSECFee,
+    #lblOFV,
+    #lblComments,
+    #lblNotifyComments,
+    #Label6,
+    #Label15,
+    #Label18,
+    #Label36,
+    #Label23,
+    #Label24
+    {
+	    left:9px;
+	    width:100px;
+	    text-align:right;
+    }
+
+    /*first text column*/
+    #txtLoadDT,
+    #txtPostedDate,
+    #txtPort,
+    #txtSecurityID2,
+    #txtBS,
+    #txtSecurity1,
+    #txtIssueDesc
+    {
+    	  left:120px;
+	    width:148px;
+    }
+    #txtShares,
+    #txtSECFee,
+    #txtOFV,
+    #txtTradeComments,
+    #txtNotifyComments,
+    #txtExecutingBrokerName,
+    #txtClearingBrokerName,
+    #txtBankName,
+    #drpSettlementType,
+    #txtReference,
+    #txtSettlementInstructions
+    {
+	    left:120px;
+	    width:125px;
+    }
+    /*end of first text column*/
+    #txtSide2
+    {
+    	left:172px;
+    }
+    #valSecFee,
+    #Regularexpressionvalidator2
+    {
+    	left:273px;
+    }
+    /*second label column*/
+    #lblTraded,
+    #Label7,
+    #lblPort2,
+    #Label10,
+    #Label4,
+    #lblUnitPrice,
+    #lblFedTax,
+    #lblNetAmount
+    {
+    	left: 290px;
+    	width:60px;
+    	text-align:right;
+    }
+
+	#lblPortName
+	{
+         left: 493px  !important;
+    	width:60px  !important;
+    	text-align:right  !important;
+        z-index:202 !important;
+	}
+
+    #txtPortName
+    {
+        background-color:#D3D3D3 !important;
+        height:20px !important;
+        left:554px !important;
+        width:240px !important;
+        z-index:156 !important;
+     }
+    /*second text column*/
+    #txtTradeDate,
+    #txtMatchDate,
+
+
+    #txtSecBrokerID1,
+    #txtCurrency,
+    #txtFedTax,
+    #txtNetAmount
+    {
+	    left: 359px;
+	    width:148px;	
+    }
+    #txtISIN,
+    #txtPort2
+    {
+	    left: 359px;
+	    width:146px !important;	
+    }
+	#txtPortName
+	{
+          left: 459px;
+	    width:240px;
+	}
+    #txtBrokerFIN
+    {
+    	left:554px;
+    }
+    #txtClearingBrokerFINNo
+    {
+    	left:674px;
+    }
+    #txtUnitPrice2
+    {
+    	left:411px;
+    }
+    #Regularexpressionvalidator1,
+    #Regularexpressionvalidator4,
+    #Regularexpressionvalidator3
+    {
+    	left:512px;
+    } 
+    /*third label column*/
+    #Label8,
+    #lblSettle,
+    #lblIncome,
+    #lblCommission,
+    #lblStampDuty,
+    #Label13,
+    #Label16,
+    #Label20,
+    #lblSettlementLoc,
+    #Label22
+    {
+    	left:530px;
+    	width:80px;
+    	text-align:right;
+    }
+       #lblSecurityType,
+    #lblNotifyStatus
+    {
+    	left:471px;
+    	width:80px;
+    	text-align:right;
+    }
+    /*third text column*/
+
+    #lblIsitcSecurityType 
+    {
+       left:812px;
+    	width:80px;
+    	text-align:right;   
+    }
+    
+    #txtAffirmDate,
+    #txtSettleDate,
+    #txtIncome,
+    #txtCommission,
+    #txtStampDuty,
+    #txtExecutingBrokerFIN,
+    #txtClearingBrokerFIN,
+    #txtABANo,
+    #txtSettlementNumber
+    {
+	    left:620px;
+	    width:146px;
+    }
+    #drpSecurityType,
+    #drpNotifyStatus
+    {
+	    left:554px;
+	    width:246px;
+    }
+    
+    #drpIsitc {
+        
+          left:902px;
+	    width:73px;
+    }
+    #valSettleDate,
+    #Regularexpressionvalidator5,
+    #Regularexpressionvalidator6
+    {
+	    left:770px;
+    } 
+    #lblStockSymbol
+    {
+      left: 493px  !important;
+    	width:60px  !important;
+    	text-align:right  !important;
+        z-index:202 !important;
+    }
+       
+    #txtSecurity2
+    {
+        height:20px !important;
+        left:554px !important;
+        width:240px !important;
+        z-index:156 !important;
+    }
+    
+
+
+         
+    /*fourth label column*/
+    #Label9,
+    #lblActualSettle,
+    #lblRefNo,
+    #lblUserCode,
+    #lblPrincipal,
+    #lblOtherFee,
+    #lblValueAddedTax,
+    #lblFactor,
+    #Label14,
+    #Label17,
+    #Label21,
+    #lblBlockId,
+    #lblFxRate
+    {
+    	left: 792px;
+    	width:100px;
+    	text-align:right;
+    }
+    /*fourth text column*/
+    #txtNotifyDate,
+    #txtActualSettle,
+    #txtTradeRef,
+    #txtUserCode,
+    #txtPrincipal,
+    #txtOtherFee,
+    #txtValueAddedTax,
+    #txtFactor,
+    #txtExecutingBrokerBIC,
+    #txtClearingBrokerBIC,
+    #txtAccountNumber,
+    #txtBlockId,
+    #txtFxRate
+    {
+    	left:902px;
+    	width:146px;
+    }
+    
+    #Regularexpressionvalidator7,
+    #Regularexpressionvalidator8
+    {
+    	left: 1052px;
+    }
+
+    .style2
+    {
+        z-index: 127;
+        left: 9px;
+        top: 246px;
+    }
+    #lbTradeAs
+    {
+        position:absolute;
+        top:60px;
+        left:298px;
+        width:146px;
+    }
+    #txtTradesAs,
+    #txtContractualSettle
+    {
+        position:absolute;
+        top:58px;
+        left:902px;
+        width:146px;
+    }
+     #lbSettlementType
+    {
+        position:absolute;
+        top:60px;
+        left:527px;
+        width:146px;
+    }
+     #txtTradesAs
+    {
+        position:absolute;
+        top:58px;
+        left:359px;
+        width:148px;
+    }  
+      #txtSettlementType
+      {
+      	 position:absolute;
+        top:58px;
+        left:620px;
+        width:146px;
+      	}
+      #lbContractualSettle
+    {
+    	position:absolute;
+        top:60px;
+        left:528px;
+        width:146px;
+    }  
+    #lbContractualSettle
+    {
+    	position:absolute;
+        top:60px;
+        left:800px;
+        width:146px;
+    }  
+    #lbFundMEI
+    {
+        position:absolute;
+        top:60px;
+        left:60px;
+        text-align:left;	
+    } 
+    #txtFundMEI
+     {
+        position:absolute;
+        top:58px;
+        left:120px;
+        width:148px;
+    } 
+    #lbAgentMEI
+    {
+    	position:absolute;
+        top:60px;
+        left:295px;      
+    }
+    #txtAgentMEI
+    {
+       position:absolute;
+        top:58px;
+        left:359px;
+        width:146px;		
+    }
+    #lbBrkMEI
+    {
+    	position:absolute;
+        top:60px;
+        left:514px;      
+    }
+    #txtBrkMEI
+    {
+       position:absolute;
+        top:58px;
+        left:554px;
+        width:240px;		
+    }
+      #lbClearParId
+    {
+    	position:absolute;
+        top:60px;
+        left:826px;      
+    }
+    #txtClearParId
+    {
+        position:absolute;
+        top:58px;
+        left:902px;
+        width:146px;		
+    }
+    #lbAdditionalFee2
+    {
+        position:absolute;
+        top:88px;
+        left:811px;
+    }
+    #txtAdditionalFee2
+    {
+    	position:absolute;
+        top:84px;
+        left:902px;
+        width:146px;
+        text-align:right;
+    }
+    #lbAdditionalFee1
+    {
+    	position:absolute;
+        top:87px;
+        left:530px;
+    }
+    #txtCostofCarry
+    {
+      left:359px;
+      width:149px;
+      text-align:right;	
+    }
+      #lbCostofCarry,
+        #lbCurrentQuantity
+        {
+            position:absolute;
+            top:87px;
+        }
+        #lbCostofCarry
+        {
+          left:280px;	
+      }
+      
+    #txtAdditionalFee1,  
+    #txtCostofCarry,  
+    #txtCurrentQuantity
+    {	
+    	position:absolute;
+        top:84px;
+        text-align:right;
+    }
+    #txtCurrentQuantity
+    {
+    	left:120px;
+    	width:125px;
+    }
+    #lbCurrentQuantity
+    {
+    left:23px;	
+    }
+    #lbAssigmentFee,
+    #lbCostofCarryRate,
+    #lbClearParFee
+   {	
+    	position:absolute;
+        top:112px;
+    }
+    #lbAssigmentFee
+    {
+    	left:34px;
+    	}
+     #txtAssigmentFee
+     {
+       position:absolute;
+        top:110px;
+        text-align:right;
+        left:120px;
+        width:125px;
+     }
+    #txtCostofCarryRate,
+    #txtClearParFee
+   {	
+    	position:absolute;
+        top:110px;
+        text-align:right;
+    }
+    #lbCostofCarryRate
+    {
+        left:255px; 	
+    }
+    #txtCostofCarryRate
+    {
+        left:359px;
+        width:149px;	
+    }
+      #lbClearParFee
+      {
+      	left:546px;
+      	}
+      #txtClearParFee
+   {	
+    	left:620px;
+    	width:146px;
+    }
+    #txtAdditionalFee1
+    {
+    	left:620px;
+    	width:146px;
+    }
+#txtUnitPrice2
+{
+ width:112px !important;
+ margin-left:-16px;
+}
+#txtCurrency
+{
+ width:30px !important;
+}

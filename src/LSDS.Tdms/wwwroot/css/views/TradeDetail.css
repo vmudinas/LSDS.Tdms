@@ -1,0 +1,659 @@
+﻿
+body {
+}
+
+#idDetailTable {
+    width: 800px;
+    position: absolute;
+    left: 78px;
+    top: 146px;
+}
+#idDetailTable td {
+    white-space: nowrap;
+}
+#idDetailTable span.k-datepicker {
+    width: 173px !important;
+    
+}
+#idDetailTable span.k-datetimepicker {
+    width: 173px !important;
+    
+}
+#idLoaded {
+}
+
+#idTraded {
+}
+
+#idAffirm {
+}
+
+#idNotify {
+}
+
+#idPosted {
+}
+
+#idMatch {
+}
+
+#idSettle {
+}
+
+#idActualSettle {
+    /* position: absolute; */
+    /* left: 11px; */
+}
+
+#idTradesAs {
+}
+
+#idSettleType {
+   
+}
+
+#idContractualSettle {
+   
+}
+
+#idPortNo {
+}
+
+#idPort2 {
+    width: 122px;
+}
+
+#idName {
+    width: 268px;
+}
+
+#idTradeRef {
+    width: 133px;
+    
+}
+
+#idSec {
+}
+
+#idIsin {
+    width: 122px;
+}
+
+#idSymbol {
+    width: 268px;
+   
+}
+
+#idBlockId {
+    width: 133px;
+   
+}
+
+#idFundMei {
+}
+
+#idAgentMei {
+    width: 122px;
+}
+
+#idBerkMei {
+   
+    width: 268px;
+}
+
+#idClearParRef {
+    width: 133px;
+   
+}
+
+#idBS {
+    width: 77px;
+}
+
+#idS {
+}
+
+#ide2 {
+}
+
+#idBroker {
+    width: 122px;
+}
+
+#idClearingBrokerFINNo {
+   
+    width: 128px;
+}
+
+#idUserCode {
+    width: 133px;
+   
+}
+
+#idLongShort {
+}
+
+#idMarkitEntity {
+    width: 122px;
+}
+
+#idUserTransactionID1 {
+   
+    width: 136px;
+}
+
+#idUserTransactionID2 {
+   
+    width: 128px;
+}
+
+#idDelayedComp {
+    width: 133px;
+   
+}
+
+#idSecurity {
+    width: 255px;
+}
+
+#idSecurityType {
+  
+    width: 272px;
+}
+
+#idIsitcType {
+   
+    width: 136px;
+}
+
+#idIssueDesc {
+    width: 255px;
+}
+
+#idNotifyStatus {
+    width: 268px;
+   
+}
+
+#idAssetType {
+    width: 133px;
+   
+}
+
+#idShares {
+    width: 100px;
+}
+
+#idCurrency {
+    width: 28px;
+}
+
+#idIncome {
+}
+
+#idPrincipal {
+   
+}
+
+#idSECFee {
+    width: 100px;
+}
+
+#idFedTax {
+    width: 122px;
+}
+
+#idCommission {
+}
+
+#idOtherFee {
+   
+}
+
+#idOfv {
+    width: 100px;
+}
+
+#idNetAmt {
+    width: 122px;
+}
+
+#idStampDuty {
+}
+
+#idValueAddedTax {
+ 
+}
+
+#idCurrentQuantity {
+    width: 100px;
+}
+
+#idCostOfCarry {
+    width: 122px;
+}
+
+#idAdditionalFee1 {
+}
+
+#idAdditionalFee2 {
+  
+}
+
+#idAssigmentFee {
+    width: 100px;
+}
+
+#idCostOfCarryRate {
+    width: 122px;
+}
+
+#idClearParFee {
+}
+
+#idFactor {
+    
+}
+
+#idTotalNetProceeds {
+    width: 100px;
+}
+
+#idOriginalCostBase {
+    width: 122px;
+}
+
+#idOriginalCostLocal {
+}
+
+#idEconomicBenefit {
+  
+}
+
+#idComments {
+    width: 385px;
+}
+
+#idNetBack {
+}
+
+#idSpotRate {
+  
+}
+
+#idNotifyComments #chkFlat {
+}
+
+#chkDelete {
+}
+
+#chkFail {
+}
+
+#chkDoNotAffirm {
+}
+
+#idDiscrepancyTrade1 {
+}
+
+#idDiscrepancyTrade2 {
+}
+
+#idDiscrepancyTrade3 {
+}
+
+#idDiscrepancyTrade4 {
+}
+
+#idDiscrepancyTrade5 {
+}
+
+#idDiscrepancyTrade6 {
+}
+
+#idDiscrepancyTrade7 {
+}
+
+#idDiscrepancyTrade8 {
+}
+
+#idDiscrepancyTrade9 {
+}
+
+#idDiscrepancyTrade10 {
+}
+
+#idDiscrepancyTrade11 {
+}
+
+#idDiscrepancyTrade12 {
+}
+
+#idDiscrepancyTrade13 {
+}
+
+#idDiscrepancyTrade14 {
+}
+
+#idDiscrepancyTrade15 {
+}
+
+#idDiscrepancyConfirm1 {
+}
+
+#idDiscrepancyConfirm2 {
+}
+
+#idDiscrepancyConfirm3 {
+}
+
+#idDiscrepancyConfirm4 {
+}
+
+#idDiscrepancyConfirm5 {
+}
+
+#idDiscrepancyConfirm6 {
+}
+
+#idDiscrepancyConfirm7 {
+}
+
+#idDiscrepancyConfirm8 {
+}
+
+#idDiscrepancyConfirm9 {
+}
+
+#idDiscrepancyConfirm10 {
+}
+
+#idDiscrepancyConfirm11 {
+}
+
+#idDiscrepancyConfirm12 {
+}
+
+#idDiscrepancyConfirm13 {
+}
+
+#idDiscrepancyConfirm14 {
+}
+
+#idDiscrepancyConfirm15 {
+}
+
+#idExecutingBroker {
+    width: 306px;
+}
+
+#idExecutingBrokerFin {
+    width: 250px;
+}
+
+#idExecutingBrokerBic {
+    width: 244px;
+}
+
+#idClearingBroker {
+    width: 305px;
+}
+
+#idClearingBrokerFin {
+    width: 250px;
+}
+
+#idClearingBrokerBic {
+    width: 244px;
+}
+
+#idBankName {
+    width: 305px;
+}
+
+#idAbaNo {
+    width: 250px;
+}
+
+#idAccountNumber {
+    width: 244px;
+}
+
+#idSettlementType {
+    width: 305px;
+}
+
+#idSettlementNo {
+    width: 250px;
+}
+
+#idReference {
+    width: 305px;
+}
+
+#idSettlementLoc {
+    width: 255px;
+}
+
+#idInstructions {
+}
+
+#idInstructions {
+    width: 980px;
+}
+
+#tradeHistoryGr {
+}
+#idSide2 {
+    width: 88px;
+    
+}
+#idUnitPrice2 {
+    width: 92px;
+}
+#idBrokerFin {
+    width: 136px;
+}
+#idStatuslb {
+   font-family: Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 12pt;
+   white-space: nowrap;
+   width: 299px;
+   display: flex;
+   position: absolute;
+   left: 388px;
+   top: 113px;
+}
+#idNotifyComments {
+    width: 688px;
+}
+.classReadOnly {
+    background-color: lightgrey;
+     -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;        
+}
+
+
+
+#idTradeDTable {
+    position: absolute;
+    
+    top: 484px;
+    left: 10px;
+}
+#idTradesConfirmsTable {
+    position: absolute;
+    
+    top: 730px;
+    left: 362px;
+}
+#idSettlementTable {
+    position: absolute;
+    
+    top: 1185px;
+    left: 26px;
+}
+#idTradeHistoryTable {
+    position: absolute;
+    
+    top: 1409px;
+    left: 20px;
+    width: 1116px;
+}
+#idNotificationTable {
+    position: absolute;
+    
+
+    top: 1658px;
+    left: 20px;
+}
+#idtableDetail2 {
+    position: absolute;
+    
+    top: 265px;
+    left: 53px;
+}
+.labelDetailTItle {
+    font-size: 13pt;
+    font-weight: bold;
+}
+#notifyListView {
+   
+}
+.custStyle {
+    font-weight: bold;
+    
+}
+.custNotifyClass
+{
+  
+}
+.custNSentBy {
+    padding-left: 296px;
+    
+    position: relative;
+    bottom: 35px;
+}
+#tradeDetailButtons
+{
+    position: absolute;
+    left: 728px;
+    white-space: nowrap;
+    display: inline-flex;
+    top: 85px;
+}
+.classNotifyContactName {
+    
+}
+#pagerTradeDetail 
+{
+    white-space: nowrap;
+    display: inline-flex;
+    position: relative;
+    top: 59px;
+    left: 50px;
+}
+hr {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.control-label {
+    white-space: nowrap;
+}
+
+#TradeDetail_0__tdxSecurityType, #TradeDetail_0__ISITCIssueType, #NotifyComment {
+    width: 100%;
+}
+
+#TradeDetail_0__ClearParSubtradeTicketNo {
+    float: left;
+}
+
+.form-control {
+    height: 20px !important;
+    padding-left: 3px !important;
+}
+
+.classReadOnly {
+    border: 1px #000000;
+    background-color: #d3d3d3;
+    -moz-min-width: 90px;
+    -ms-min-width: 90px;
+    -o-min-width: 90px;
+    -webkit-min-width: 90px;
+    min-width: 90px;
+    height: 20px;
+    padding-left: 3px !important;
+}
+
+.col-md-1 {
+    -moz-min-width: 90px;
+    -ms-min-width: 90px;
+    -o-min-width: 90px;
+    -webkit-min-width: 90px;
+    min-width: 90px;
+}
+
+.col-md-2 {
+    -moz-min-width: 180px;
+    -ms-min-width: 180px;
+    -o-min-width: 180px;
+    -webkit-min-width: 180px;
+    min-width: 180px;
+}
+
+.col-md-4, .col-md-3, .col-md-2, .col-md-1, .col-md-7, .col-md-6, .col-md-5 {
+    padding-left: 0px !important;
+    padding-right: 2px !important;
+    padding-top: 5px !important;
+    height: 22px;
+    padding-left: 0px !important;
+}
+
+#mTransactionCode,
+#Side2, #UserTransactionID1, #UserTransactionID2, #BrokerFINNo, #ClearingBrokerFINNo {
+    width: 50%;
+}
+
+.form-group {
+    margin-bottom: 0px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.twoElementsTradeDetail {
+    display: inline-flex;
+    width: 100%;
+}
+
+#tdxSecurityType, #ISITCIssueType {
+    width: 100%;
+}
+
+#idStatus {
+    position: absolute;
+    left: 40%;
+    top: 84px;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+    #idStatus label {
+        background-color: Transparent;
+        color: #000000;
+        text-align: center;
+        font-family: Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+        font-size: 12pt;
+        font-weight: bold;
+        padding-left: 0px !important;
+    }
+    #tdTradeHistory,
+    #tdNotifications,#tdSettlement {
+        font-weight: bold;
+            float: right;
+    }

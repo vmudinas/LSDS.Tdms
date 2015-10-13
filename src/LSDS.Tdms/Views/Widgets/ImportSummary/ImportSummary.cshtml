@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    // ViewBag.Title = "Home Page";
+}
+<div class="pickerImportSummary">
+    <div id="gridImportSummary"></div>
+
+</div>
+<script type="text/x-kendo-template" id="importToolBar">
+    <div class="widgetTitleText">TDMS Import Summary  <img class="title" src="@Url.Content("~/Content/Images/drag_and_drop-128.png" )" /></div>
+    <span class="widgetSpanText">Import Days:  </span>
+    <select id="idImportDays" onchange="importChangeDays()">
+        <option value="2" selected>2</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="14">14</option>
+        <option value="30">30</option>
+    </select>
+</script>
+

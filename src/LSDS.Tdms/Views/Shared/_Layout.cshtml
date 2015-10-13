@@ -1,0 +1,78 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<title>@ViewBag.Title - TDMS Application</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/dist/css/bootstrap-touch-carousel.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
+        <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
+              asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
+              asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
+        <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
+    </environment>
+   @RenderSection("LayoutHead", false)
+</head>
+<body>
+<header>
+  
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row k-header layoutheaderTitle">
+                <img class="headerImage" src="@Url.Content("~/Content/Images/LDS-Logo-134x31.png")" alt=""/>
+                <label class="headerLabel">TDMS Enterprise</label>
+                <select id="headerLocationSelect" onchange="updateUserLocation()"></select>
+              
+                <div class="row k-header">
+                    @Html.Partial("~/Views/Home/MenuPartial.cshtml")
+
+                </div>
+
+            </div>
+            <div id="loginNameStyle">
+                @if (User.Identity.IsAuthenticated)
+                {
+                        <div id="idLogOutB">
+                           @Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "logOutLink" })&nbsp;
+                           <a class="logOutLink" href="@Url.Content("~/Content/Support/TDMS Enterprise User Manual v5.0.pdf")" download>Help</a>
+                       
+                        </div>
+                        <div id="iduserNameDetails">
+                            <label id="userNameFull">Add FullName</label>
+                            <label id="userLastLogin">Add Las Login</label>
+                            <input id="userNameLable" name="userNameLable" type="hidden" value="@User.Identity.Name" />
+                        </div>
+                        }
+                        else
+                        {
+                        <script type="text/javascript" language="javascript">
+                            window.location.href = '/';
+                        </script>
+                        }
+
+                    </div>
+
+
+
+        </div>
+    </div>
+</header>
+<div id="body">
+  
+    @RenderSection("featured", required: false)
+    <section class="content-wrapper main-content clear-fix">
+        @RenderBody()
+    </section>
+</div>
+  
+   
+</body>
+</html>
+

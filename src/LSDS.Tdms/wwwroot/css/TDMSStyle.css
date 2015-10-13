@@ -1,0 +1,2891 @@
+BODY
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal;
+    LETTER-SPACING: normal;
+    TEXT-TRANSFORM: none;
+    WORD-SPACING: normal;
+    color:#000000;
+    margin-bottom:0;
+    margin-left:0;
+    margin-right:0;
+    margin-top:0;
+  }
+
+#Form1
+{
+     height:500px;
+}
+
+INPUT
+{
+    color:#000000;
+    font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal;
+}
+
+SELECT
+{
+    color:#000000;
+    font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal;
+}
+
+TEXTAREA
+{
+	color: #000000;
+	font-family: Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+H1, H2, H3, H4, H5, TH, THEAD, TFOOT
+{
+    /*COLOR: #003366;*/
+}
+H1	{	
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:	2em;
+	font-weight:	700;
+	font-style:	normal;
+	text-decoration:	none;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+    color:#000000;
+	}	
+		
+H2	{	
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:	1.75em;
+	font-weight:	700;
+	font-style:	normal;
+	text-decoration:	none;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+    color:#000000;
+	}	
+		
+H3	{	
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:	1.58em;
+	font-weight:	500;
+	font-style:	normal;
+	text-decoration:	none;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+    color:#000000;
+	}	
+		
+H4	{	
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:	1.33em;
+	font-weight:	500;
+	text-decoration:	none;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+    color:#000000;
+	}	
+		
+H5, DT	{	
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:	1em;
+	font-weight:	700;
+	font-style:	normal;
+	text-decoration:	none;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+    color:#000000;
+	}	
+		
+H6	{	
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:	.8em;
+	font-weight:	700;
+	font-style:	normal;
+	text-decoration:	none;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+    color:#000000;
+	}	
+		
+TFOOT, THEAD	{	
+	font-size:	1em;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
+	}	
+		
+TH	{	
+	vertical-align:	baseline;
+	font-size:	1em;
+	font-weight:	bold;
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
+	}	
+/*Commented for new Menu
+A:link	{	
+	text-decoration:	none;
+	color:	#3333cc;
+	}	
+		
+A:visited	{	
+	text-decoration:	none;
+	color:	#333399;
+	}	
+		
+A:active	{	
+	text-decoration:	none;
+	color:	#333399;
+	}	
+		
+A:hover	{	
+	text-decoration:	underline;
+	color:	#3333cc;
+	}
+End Comments*/	
+SMALL	{	
+	font-size:	.7em;
+	}	
+
+BIG	{	
+	font-size:	1.17em;
+	}	
+
+BLOCKQUOTE, PRE	{	
+	font-family:	Courier New, monospace;
+	}	
+	
+
+UL LI	{	
+	list-style-type:	square ;
+	}	
+
+UL LI LI	{	
+	list-style-type:	disc;
+	}	
+
+UL LI LI LI	{	
+	list-style-type:	circle;
+	}	
+	
+OL LI	{	
+	list-style-type:	decimal;
+	}	
+
+OL OL LI	{	
+	list-style-type:	lower-alpha;
+	}	
+
+OL OL OL LI	{	
+	list-style-type:	lower-roman;
+	}	
+
+IMG 	{
+	margin-top: 5px;
+	margin-left: 8px;
+	margin-right: 8px;
+	}
+	
+DIV.clsMenuDIV
+{
+	padding:0px; 
+	background-color: Navy; 
+	border:0px outset #cccccc; 
+	width:500px;
+	font-style:normal;
+	font-family:Trebuchet MS;
+	color:#FFFFFF;
+	font-weight:bold;	
+}
+BODY.clsMenu
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:70%;
+	background-color: #FFFFFF;
+}
+
+TABLE.clsMenuTable
+{
+	color:#FFFFFF;
+}
+.clsAccessTree
+{
+	color:#000000;
+	background-color:#FFFFFF;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
+	font-size:9pt;
+}
+
+BODY.menu
+{
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFFFFF;
+}
+TABLE.mainmenu
+{
+	font-size: 8pt;
+	font-weight: bold;
+	width: 100%;
+	background-color: #004488;
+	border-bottom: silver 1px solid;
+	color: #FFFFFF;
+}
+.separator
+{
+	font-size: 8pt;
+}
+/*
+.menuitem
+{
+	border-left: silver thin outset;
+	border-right: gray thin outset;
+	border-top: silver thin outset;
+	font-weight: bold;
+	border-left-width: thin;
+	font-size: 9pt;
+	cursor: pointer;
+	background-color: #FFFFFF;
+	text-align: center;
+}
+*/
+.menuitemsave
+{
+	font-weight: bold;
+	font-size: 9pt;
+	border-right: #000000 thin double;
+	cursor: pointer;
+	background-color: #ccff99;
+	text-align: center;
+
+	
+}
+.menuitemSel
+{
+	border-left: silver thin outset;
+	border-right: gray thin outset;
+	border-top: silver thin outset;
+	font-weight: bold;
+	border-left-width: thin;
+	font-size: 9pt;
+	cursor: pointer;
+	background-color: #004488;
+	color: #FFFFFF;
+	text-align: center;
+	
+}
+.menuitemHi
+{ 
+	
+	border-left: silver thin outset;
+	border-right: gray thin outset;
+	border-top: silver thin outset;
+	font-weight: bold;
+	border-left-width: thin;
+	font-size: 9pt;
+	cursor: pointer;
+	background-color: #004488;
+	color: #FFFFFF;
+	text-align: center;
+ }
+
+
+.clsTableHeader
+{
+	cursor: pointer;
+	font-family: Trebuchet MS;
+	font-size: 9pt;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+	background-color: #004488;
+	white-space:nowrap;
+}
+
+.clsDiscrepancyTop
+{
+	cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	color:#FFFFFF;
+	text-align:center;
+	background-color:#004488;
+}
+/*
+.clsDiscrepancyHeader
+{
+	cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	font-style:italic;
+	font-weight:bold;
+	color:#000000;
+	text-align:right;
+	border-bottom:solid 1px silver;
+	border-top:solid 1px silver;
+	border-left:solid 1px silver;
+	border-right:solid 1px silver;
+}*/
+
+.clsBlankCell
+{
+	background-color:#FFFFFF;
+}
+
+.clsMenuRowSelect1
+{
+    cursor: pointer;
+    color: #000000;
+	background-color: #FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	z-index:99999;
+}
+.clsMenuRowRollover
+{
+    cursor: pointer;
+	background-color: #004488;
+	font-family:Trebuchet MS;
+	font-size:8pt;	
+	z-index:99999;
+}	
+
+.clsDataGrid
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:8pt;
+	vertical-align:super;
+}	
+
+
+
+.clsHeaderCell,
+.clsSummaryCell
+{
+	font-family: 'Trebuchet MS';
+	font-size: 8pt;
+	font-weight: normal;
+	color: #FFFFFF;
+	/*text-align: right;*/
+	background-color: #004488;
+	border: 1px solid #FFFFFF;
+	cursor: pointer;
+	padding:3px 5px 3px 5px;
+	white-space:nowrap;
+}
+
+
+.clsDataCell
+{
+	padding:3px 5px 3px 5px;
+	/*text-align:left;*/
+	/*border-bottom:solid 2px silver;
+	border-top:solid 2px silver;
+	border-left:solid 2px silver;
+	border-right:solid 2px silver;
+*/
+
+	
+}
+.clsDiscrepancyCell
+{
+	text-align:right;
+	border-bottom:solid 1px silver;
+	border-top:solid 1px silver;
+	border-left:solid 1px silver;
+	border-right:solid 1px silver;
+}
+.clsMenuRowDisplay
+{
+    cursor: hand;
+    color: #000000;
+	background-color: #FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	z-index:99999;
+	height:20px;
+}
+.clsLinkedRow
+{
+    cursor: pointer;
+    color: #FFFFFF;
+	background-color:Navy;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+}
+
+.clsAltRowDisplay
+{
+    cursor: hand;
+    color: #000000;
+	background-color: #d3d3e6;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	height:20px;
+}
+
+.clsDropdownDisplay
+{
+    cursor: pointer;
+    color: #000000;
+	background-color: #FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+}
+
+.clsAltDropdownDisplay
+{
+    cursor: pointer;
+    color: #000000;
+	background-color: #d3d3e6;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+}
+.clsMenuRowSelect
+{
+    cursor: pointer;
+    color: #FFFFFF;
+	background-color: #4D6082;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	border-right-color:Silver;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-left-color:Silver;
+	border-left-style:solid;
+	border-left-width:1px;
+	z-index:99999;
+	height:20px;
+}
+.clsMenuRow
+{
+    cursor: pointer;
+	background-color: #004488;
+	font-family:Trebuchet MS;
+	font-size:8pt;	
+	z-index:99999;
+}
+.clsTableCell
+{
+	border-right-color:Silver;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-left-color:Silver;
+	border-left-style:solid;
+	border-left-width:1px;
+}
+
+.clsMenuTitle
+{
+	width:300px;
+	z-index:99999;
+
+}
+
+.clsSortHeader
+{
+    cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	text-align:left; 
+	/* 
+	border-right-color:#000000;
+	border-right-style:outset;
+	border-right-width:2px;
+	border-left-color:#FFFFFF;
+	border-left-style:outset;
+	border-left-width:2px;
+	border-bottom-color:#000000;
+	border-bottom-style:outset;
+	border-bottom-width:2px;	
+	border-top-color:#FFFFFF;
+	border-top-style:outset;
+	border-top-width:2px;
+*/
+	
+	background-color:#004488;
+	
+}
+
+.clsStealthRow
+{
+	border-top-width:0px;	
+	border-right-width:0px;	
+	border-left-width:0px;
+	border-bottom-width:0px;	
+}	
+
+.clsIMGSortHeader
+{
+    cursor: pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	text-align:left;
+	border-right-color:#000000;
+	border-right-style:outset;
+	border-right-width:2px;
+	border-left-color:#FFFFFF;
+	border-left-style:outset;
+	border-left-width:2px;
+	border-bottom-color:#000000;
+	border-bottom-style:outset;
+	border-bottom-width:2px;	
+	border-top-color:#FFFFFF;
+	border-top-style:outset;
+	border-top-width:2px;
+	background-color:#004488;
+	
+	
+}
+
+
+.clsFilterTable
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+}
+.clsImageLink
+{
+	cursor:pointer;
+}
+.clsDataDetail
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	vertical-align:super;
+}	
+
+
+.clsLogon
+{
+	background-color:Transparent;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	text-align:right;
+}
+.clsDataDetailSmall
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:7pt;
+	vertical-align:super;
+}	
+.clsScheduleGrid
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	vertical-align:super;
+}	
+.clsTBADetail
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	vertical-align:super;
+}	
+.clsBanner
+{
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#004488,endColorStr=#83accf);
+	FONT-WEIGHT: bold; 
+	COLOR: #FFFFFF; 
+	FONT-FAMILY: Trebuchet MS;
+}
+.clsBannerText
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	color:#83accf;
+	font-weight:bold;
+	font-size:12pt;
+	vertical-align:super;	
+}
+.clsDescBox
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+}
+.clsEditText
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	vertical-align:super;
+}
+.clsStaticText
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	border:none;
+	color:#000000;
+	font-size:9pt;
+	font-weight:bold;
+}
+.clsLinkText
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:blue;
+	font-size:9pt;
+    text-decoration: underline;
+}
+
+.clsStaticText1
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:blue;
+	font-size:9pt;
+	text-align:left;
+}
+.clsLblMsg
+{
+	background-color:#FFFFFF;
+	text-align:left;
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	color:Red;
+}
+.clslblInfo
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	color:Blue;
+}
+.clsRdoList
+{
+	font-family:Trebuchet MS;
+	font-size:9pt;
+}
+
+.clsIntroDetails
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	font-weight:bold;
+	font-size:10pt;
+	color:Blue;	
+}
+
+.clsIntroLabel
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:10pt;
+	color:Blue;	
+}
+
+.clsEditBox
+{
+	font-family:Trebuchet MS;
+	color:Blue;
+	font-size:9pt;
+	font-style:italic;
+	background-color:Transparent;
+	cursor:pointer;
+}
+
+.clsEditBoxEdit
+{
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	background-color:#FFFFFF;
+	cursor:text;
+}
+   
+.clsLogin
+{
+	
+}
+   
+   
+   
+.clsUpperCase
+{
+	TEXT-TRANSFORM: uppercase;
+}
+
+.clsNumeric
+{
+ 
+}	
+.clsNonDisplay
+{
+	display:none;
+}
+.clsReadOnly
+{
+	
+	background-color: LightGrey;
+	color:#FFFFFF;
+	
+}
+
+
+.clsTradeDetailStatusLabel
+{
+	
+	background-color:Transparent;
+	color:#000000;
+	
+}
+
+.clsTradeDetailStatus
+{
+	
+	background-color:Transparent;
+	color:#000000;
+	text-align:center;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:12pt;
+	font-weight:bold;
+	
+	
+}
+.clsTextArea
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	vertical-align:super;
+}
+
+.clsMenuSpacer
+{
+ width:20px;
+ cursor:pointer;
+	z-index:99999;
+}
+
+.clsMenuBorder
+{
+	width:3px;
+ cursor:pointer;
+	background-color:#FFFFFF;	
+	z-index:99999;
+}	
+.clsButtonBar
+{
+	background-color:deepskyblue;
+	 border-top-color:#004488;
+	 border-top-style:solid;
+	 border-top-width:1px;	
+}	
+
+.clsDenyAccess
+{
+	color:Red;	
+}
+
+
+
+.clsToolbarTitle
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	color:#FFFFFF;
+	font-size:13pt;
+	font-weight:bold
+}
+
+.clsToolbarLabel
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:Transparent;
+	color:#FFFFFF;
+	font-size:13pt;
+	font-weight:bold
+}	
+
+.clsToolbarLocations
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:#004488;
+	color:#FFFFFF;
+	font-size:13pt;
+	font-weight:bold;
+	
+}
+
+.clsToolbarList
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:Transparent;
+	color:Silver;
+	font-size:10pt;
+	font-weight:bold
+}	
+.clsToolbarListOver
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	background-color:Transparent;
+	color:#FFFFFF;
+	font-size:10pt;
+	font-weight:bold
+}	
+.clsWelcomeLabel
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	color:#004488;
+	font-size:11pt;
+	/*font-style:italic;*/
+	font-weight:bold
+}	
+
+.clsHomeButton
+{
+	font-family:Trebuchet MS;
+	border-style:none;
+	background-color:transparent;
+	/*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#004488,endColorStr=#83accf);*/
+	color:#FFFFFF;
+	cursor:pointer;
+	font-size:9pt;
+	font-style:italic;
+	font-weight:bold;
+	text-decoration:underline;
+	
+}	
+.clsFloatButton
+{ 
+	font-family:Arial;
+	border-style:none;
+	background-color:#83accf;
+	text-align:center;
+	/* filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#FFFFFFsmoke,endColorStr=#004488); */
+	color:#FFFFFF;
+	cursor:pointer;
+	font-size:8pt;
+	font-weight:bold;
+	/*text-decoration:underline;*/ 
+/*
+	BORDER-RIGHT: #004488 1px groove; 
+	BORDER-TOP: #004488 1px groove; 
+	BORDER-LEFT: #004488 1px groove; 
+	BORDER-BOTTOM: #004488 1px groove; 
+*/
+}
+	
+.clsFloatButtonOver
+{
+	font-family:Arial;
+	border-style:none;
+	background-color:#004488;
+	/*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#004488,endColorStr=#FFFFFFsmoke);*/
+	color:#FFFFFF;
+	cursor:pointer;
+	font-size:8pt;
+	/*font-style:italic;*/
+	font-weight:bold;
+	text-align:center;
+	/*text-decoration:underline;*/
+	/*BORDER-RIGHT: blue 1px groove; 
+	BORDER-TOP: blue 1px groove; 
+	BORDER-LEFT: blue 1px groove; 
+	BORDER-BOTTOM: blue 1px groove; */
+}		
+.clsHomeButtonDown
+{
+	font-family:Trebuchet MS;
+	color:#FFFFFF;
+	cursor:pointer;
+	font-size:10pt;
+	font-style:italic;
+	font-weight:bold;
+}	
+
+.clsLoginLabel
+{
+	font-family:Arial;
+	color:#004488;
+	font-size:26pt;
+	letter-spacing:2px;
+	/*font-style:italic;*/
+	/*font-weight:bold;	*/
+}
+
+
+.clsVersionLabel
+{
+	font-family:Trebuchet MS;
+	color:#004488;
+	font-size:8pt;
+	font-style:italic;
+	text-align:right;	
+}
+
+.clsTabTable
+{
+	border-collapse:collapse;
+	border-width:2px;
+}
+.clsTransBox
+{
+	background-color:#FFFFFF;
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+}	
+.clsMsgNotify
+{
+	background-color:Transparent;
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	color:yellow;
+ 
+}
+.clsInvisible
+{
+ background-color:Transparent;
+ border-style:none;	
+}
+
+
+/*Menu Styles*/
+.menuBar
+{
+    POSITION: relative;
+    BACKGROUND-COLOR: transparent;
+    TEXT-ALIGN: center
+}
+
+.menuCell
+{
+    BACKGROUND-COLOR: #FFFFFF;
+}	
+.Bar
+{	
+	
+	BORDER-RIGHT: #FFFFFF 1px solid;
+    BORDER-LEFT: #FFFFFF 1px solid;
+    /*BORDER-TOP: blue 1px outset;
+    BORDER-BOTTOM: blue 1px outset;*/
+    FLOAT: left;
+    WIDTH: 100px;
+    cursor: pointer;
+    TEXT-INDENT: 1px;
+    POSITION: relative;
+    BACKGROUND-COLOR: #004488;
+    TEXT-ALIGN: center;
+    font-family:Trebuchet MS;
+    font-size:9px;
+}
+.menu
+{
+    BORDER-TOP: darkgray 1px solid;
+    BORDER-BOTTOM: darkgray 1px solid;
+    BORDER-RIGHT: darkgray 1px solid;
+    BORDER-LEFT: darkgray 1px solid;
+    VISIBILITY: hidden;
+    WIDTH: 150px;
+    height:auto;
+    LINE-HEIGHT: 140%;
+    POSITION: absolute;
+    BACKGROUND-COLOR: #004488;
+    font-family:Trebuchet MS;
+    font-size:9px;
+}
+.menuItem
+{
+    PADDING-RIGHT: 5px;
+    PADDING-LEFT: 5px;
+    WIDTH: 100%;
+    cursor: pointer;
+    LINE-HEIGHT: 15px;
+    BORDER-BOTTOM: #FFFFFF 1px solid;
+    font-family:Trebuchet MS;
+    font-size:9px;
+}
+.ItemMouseOver
+{
+    PADDING-RIGHT: 5px;
+    PADDING-LEFT: 5px;
+    WIDTH: 100%;
+    cursor: pointer;
+    COLOR: #FFFFFF;
+    LINE-HEIGHT: 15px;
+    BORDER-BOTTOM: #FFFFFF 1px solid;
+    BACKGROUND-COLOR: #4169E1;
+    font-family:Trebuchet MS;
+    font-size:9px;
+}
+.ItemMouseOut
+{
+    WIDTH: 100%
+}
+.Arrow
+{
+    FLOAT: right;
+    FONT-FAMILY: Webdings;
+    POSITION: absolute;
+    TEXT-ALIGN: left
+}
+.barOver
+{
+	BORDER-RIGHT: #FFFFFF 1px solid;
+    BORDER-LEFT: #FFFFFF 1px solid;
+    /*BORDER-RIGHT: blue 1px ridge;
+    BORDER-TOP: blue 1px ridge;
+    BORDER-LEFT: blue 1px ridge;
+    BORDER-BOTTOM: blue 1px ridge;*/
+    FLOAT: left;
+    WIDTH: 100px;
+    cursor: pointer;
+    TEXT-INDENT: 5px;
+    POSITION: relative;
+    BACKGROUND-COLOR: #004488;
+    TEXT-ALIGN: center;
+    font-family:Trebuchet MS;
+    font-size:9px;
+}
+
+.clsScrollTable
+	{ 
+	behavior:url(scrolltable.htc); 
+	background-color: transparent; 
+	width:980px;
+	} 
+	
+.clsTaskStatusType
+	{ 
+	behavior:url(scrollTaskStatusType.htc); 
+	background-color: transparent; 
+	width:980px;
+	} 
+	
+.clsMenuRow
+{
+    cursor: pointer;
+	background-color: transparent;
+	font-family:Trebuchet MS;
+	/*border-color:#004488;
+	border-width:1px;
+	border-style:solid;*/
+	font-size:8pt;
+	z-index:99999;
+}
+	
+.clsSortHeader
+{
+    cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	text-align:left;
+	border-right-color:#000000;
+	border-right-style:outset;
+	border-right-width:1px;
+	border-left-color:#FFFFFF;
+	border-left-style:outset;
+	border-left-width:1px;
+	border-bottom-color:#000000;
+	border-bottom-style:solid;
+	border-bottom-width:1px;	
+	border-top-color:#FFFFFF;
+	border-top-style:outset;
+	border-top-width:1px;
+	background-color:#004488;
+	
+}
+	
+.clsSortHeaderScroll
+{	
+	cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	text-align:left;
+	border-right-color:#FFFFFF;
+	border-right-style:outset;
+	border-right-width:2px;
+	border-left-color:#FFFFFF;
+	border-left-style:outset;
+	border-left-width:1px;
+	border-bottom-color:#000000;
+	border-bottom-style:solid;
+	border-bottom-width:1px;	
+	border-top-color:#FFFFFF;
+	border-top-style:outset;
+	border-top-width:2px;
+	background-color:#004488;
+	
+}
+.clsTableHeader
+{
+	font-family: Trebuchet MS;
+	font-size: 9pt;
+	font-weight: Normal;
+	text-align: left;
+	border-right-color: #FFFFFF;
+	/*border-right-style: outset;*/
+	border-right-width: 1px;
+	border-left-color: #FFFFFF;
+	/*border-left-style: outset;*/
+	border-left-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-color: #FFFFFF;
+	/*border-top-style: outset;*/
+	border-top-width: 1px;
+	background-color: #004488;
+	color: #FFFFFF;
+	white-space:nowrap;
+}
+
+.clsGroupHeader
+{
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	text-align:center;
+	border-right-color:#FFFFFF;
+	border-right-style:outset;
+	border-right-width:2px;
+	border-left-color:#FFFFFF;
+	border-left-style:outset;
+	border-left-width:1px;
+	border-bottom-color:#000000;
+	border-bottom-style:solid;
+	border-bottom-width:1px;	
+	border-top-color:#FFFFFF;
+	border-top-style:outset;
+	border-top-width:2px;
+	background-color:#004488;
+}
+.clsMenuCell
+{
+	text-align:left;
+	/* border-bottom:solid 1px #004488;
+	border-top:solid 1px #004488;
+	border-left:solid 1px #004488;
+	border-right:solid 1px #004488; */
+	z-index:99999;
+	
+}
+.clsFilterCell
+{
+	text-align:center;
+	border-bottom:solid 1px #004488;
+	border-top:solid 1px #004488;
+	border-left:solid 1px #004488;
+	border-right:solid 1px #004488;
+	
+}
+.clsToolbar2
+{
+	font-family:Trebuchet MS;
+	color:#FFFFFF;
+	font-size:8pt;
+	font-weight:bold;
+	background-color:#00ccff;
+	border-top:solid thin #004488;
+	border-bottom:solid thin silver
+}
+.clsToolbarTextbox
+{
+	font-family:Trebuchet MS;
+	color:#FFFFFF;
+	font-size:15pt;
+	font-style:italic;
+	font-weight:bold;
+	background-color:transparent;
+		
+}
+.clsListBox
+{
+	font-family:Trebuchet MS;
+}	
+.clsTradeBrowserReadOnly
+{
+	background-color:LightGrey;
+	color:#000000;
+	text-align:right;
+	border:solid 1px #000000;
+}		
+.clsTradeBrowserReadOnlyRJ
+{
+	background-color:LightGrey;
+	color:#000000;
+	text-align:right;
+	border:solid 1px #000000;
+}		
+.clsTradeBrowserRJ
+{
+	color:black;
+	text-align:right;
+	border:solid 1px black;
+}
+.clsTradeBrowserReadOnlyLJ
+{
+	background-color:LightGrey;
+	color:#000000;
+	text-align:left;
+	border:solid 1px #000000;
+    margin-left: 0px;
+}	
+
+.clsTradeBrowserMatched
+{
+	background-color:silver;
+	color:#000000;
+	text-align:right;
+	border:solid 1px #000000;
+}	
+.clsTradeBrowserEdit
+{
+	background-color:#FFFFFF;
+	color:#000000;
+	text-align:right;
+}	
+.clsTradeBrowserEditLeftAlign
+{
+	background-color:#FFFFFF;
+	color:#000000;
+	text-align:left;
+}	
+.clsRightAlign
+{
+	text-align:right;
+}
+
+.clsScheduleHeader
+{
+	cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	text-align:center;
+	border-right-color:#FFFFFF;
+	border-right-style:outset;
+	border-right-width:2px;
+	border-left-color:#FFFFFF;
+	border-left-style:outset;
+	border-left-width:1px;
+	border-bottom-color:#000000;
+	border-bottom-style:solid;
+	border-bottom-width:1px;	
+	border-top-color:#FFFFFF;
+	border-top-style:outset;
+	border-top-width:2px;
+	background-color:#004488;
+}
+.clsScheduleCell
+{
+	cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	text-align:left;
+	border-right-color:transparent;
+	border-right-style:outset;
+	border-right-width:2px;
+	border-left-color:transparent;
+	border-left-style:outset;
+	border-left-width:1px;
+	border-bottom-color:transparent;
+	border-bottom-style:solid;
+	border-bottom-width:1px;	
+	border-top-color:transparent;
+	border-top-style:outset;
+	border-top-width:2px;
+	background-color:transparent;
+}
+
+.clsNavigatorLabel
+{
+	text-align: center;
+	font-weight:bold;
+}
+/*Tab Strip Items*/
+.clsTabStripOn
+{
+	font-weight:bold; 
+	background-color:#FFFFFF;
+	color: #000000;
+	cursor:pointer;
+	font-weight:bold;
+	text-align: center;
+	white-space:nowrap;
+	background: #FFFFFF;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:12px;
+	border-right:#FFFFFF thin outset;
+	border-left:#FFFFFF thin outset;
+	border-top:#FFFFFF thin outset;
+
+	padding-left:5px;
+	padding-right:5px;
+	
+}
+.clsTabStripLeftOn
+{
+	background-color:#FFFFFF;
+	cursor:pointer;
+	width: 0px;
+	background-repeat:no-repeat;
+	visibility:hidden;
+	/*	
+	background-image:url(images/LtBlueTabLeft.gif);
+	*/	
+}
+.clsTabStripRightOn
+{
+	background-color:#FFFFFF;
+	cursor:pointer;
+	width: 0px;
+	background-repeat:no-repeat;
+	visibility:hidden;
+	/*	
+	background-image:url(images/LtBlueTabRight.gif);
+*/
+}
+.clsTabStripHigh
+{
+	background-color:#FFFFFF;
+	color: #FFFFFF;
+	cursor:pointer;	
+	font-weight:bold;
+	text-align: center;
+	padding-left:5px;
+	padding-right:5px;
+	/*
+	background: url(images/DkBlueBack.gif)
+*/	
+}
+.clsTabStripLeftHigh
+{
+	background-color:#FFFFFF;
+	cursor:pointer;
+	width: 1px;
+	background-repeat:no-repeat;	
+	visibility:hidden;
+	/*
+	background-image:url(images/DkBlueTabLeft.gif);
+	*/	
+}
+.clsTabStripRightHigh
+{
+	background-color:#FFFFFF;
+	cursor:pointer;
+	width: 1px;
+	background-repeat:no-repeat;
+	visibility:hidden;	
+	/*
+	background-image:url(images/DkBlueTabRight.gif);
+*/
+}
+.clsTabStripLeftOff
+{
+	background-color:#FFFFFF;
+	cursor:pointer;
+	width: 0px;
+	background-repeat:no-repeat;
+	visibility:hidden;
+/*
+	background-image:url(images/GrayTabLeft.gif);
+*/ 
+}
+.clsTabStripRightOff
+{
+	background-color:#FFFFFF;
+	cursor:pointer;
+	width: 0px;
+	background-repeat:no-repeat;
+	visibility:hidden;
+/*	
+	background-image:url(images/GrayTabRight.gif);
+*/
+}
+.clsTabStripOff
+{
+	background-color:#FFFFFF;
+	color: #FFFFFF;
+	cursor:pointer;	
+	font-weight:bold;
+	text-align: center;
+	background: Gray;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:12px;
+	border-right:#FFFFFF thin outset;
+	border-left:#FFFFFF thin outset;
+	border-top:#FFFFFF thin outset;
+	padding-left:5px;
+	padding-right:5px;
+}
+.clsTabStripDisabled
+{
+	background-color:#FFFFFF;
+	color: DarkGray;
+	font-weight:bold;
+	text-align: center;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:11px;
+	border-right:#FFFFFF thin outset;
+	border-left:#FFFFFF thin outset;
+	border-top:#FFFFFF thin outset;
+	padding-left:5px;
+	padding-right:5px;
+	/*
+	background: url(images/GrayBack.gif)
+*/
+	}
+.clsTabStripLeftDisabled
+{
+	background-color:#FFFFFF;
+	width: 1px;
+	background-repeat:no-repeat;	
+/*
+	background-image:url(images/GrayTabLeft.gif);
+*/
+}
+.clsTabStripRightDisabled
+{
+	background-color:#FFFFFF;
+	width: 1px;
+	background-repeat:no-repeat;	
+/*
+	background-image:url(images/GrayTabRight.gif);
+*/
+}
+
+
+/* Menu Items */
+.clsMenuContainer
+{
+ background-color:#004488;
+    z-index:99999;
+    /*height:27px;*/
+    height:28px;
+    width:600px;
+}
+.clsMenuGroup
+{
+	background-color:#83accf;
+	border:0px;
+	padding:0px;
+	padding-left:0px;
+	padding-right:0px;
+	/*border-style:solid;
+	border-top-color:gray; 
+	border-left-color:gray; 
+	border-right-color:#004488; 
+	border-bottom-color:#004488; */
+	z-index:99999;
+
+}
+
+.clsASPMenu
+{
+	background-color:transparent;
+	z-index:99999;
+}
+.clsMenuTop
+{
+	background-color:transparent;
+	color:#FFFFFF;
+	/*border:1px;
+	border-style:solid;
+	border-top-color:gray; 
+	border-left-color:gray; 
+	border-right-color:#004488; 
+	border-bottom-color:#004488; */
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:5px;
+	padding-right:8px;
+	cursor:pointer;
+	white-space:nowrap;
+	z-index:99999;
+}
+.clsMenuItem
+{
+	border:0px;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	
+	/*padding:3px;
+	padding-left:5px;
+	padding-right:8px;*/
+	cursor:default;
+	color:azure; 
+	cursor:pointer;
+	/*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#004488,endColorStr=#83accf);*/
+	background-color:#004488;	
+	z-index:9999;
+	z-index:99999;
+
+}
+
+.clsMenuItemDown 
+{/*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#83accf,endColorStr=#004488);	
+	*/	
+	border:0px;
+	background-color:#83accf;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	/*padding:3px;
+	padding-left:5px;
+	padding-right:8px;*/
+	cursor:default;
+	color:#FFFFFF; 
+	cursor:pointer;
+	z-index:9999;
+	z-index:99999;
+}
+
+.clsMenuItemOver 
+{
+	background-color:#004488;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:1px;
+	padding-left:2px;
+	padding-right:5px;
+	cursor:default;
+	color:#FFFFFF; 
+	cursor:pointer;
+	z-index:9999;
+	z-index:99999;
+}
+
+.clsTopMenuItemDown 
+{
+	background-color:#83accf;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:5px;
+	padding-right:8px;
+	cursor:default;
+	color:#000000; 
+	cursor:pointer;
+	white-space:nowrap;
+	z-index:99999;
+}
+
+.clsDisabledMenuItem
+{
+}
+
+.clsDisabledMenuItemOver 
+{
+}
+
+.clsMenuBreak
+{
+}
+
+.MenuGroup
+{
+  background-color:#000000;
+  border:1px;
+  border-style:solid;
+  border-top-color:gray; 
+  border-left-color:gray; 
+  border-right-color:#000000; 
+  border-bottom-color:#000000; 
+	z-index:99999;
+}
+
+.MenuItem
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  cursor:default;
+  color:#FFFFFF; 
+  cursor:pointer;
+	z-index:99999;
+}
+
+.MenuItemOver 
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  text-decoration:underline; 
+  cursor:default;
+  color:#FFFFFF; 
+  cursor:pointer;
+	z-index:99999;
+}
+
+.MenuItemDown 
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  text-decoration:underline; 
+  cursor:default;
+  color:red; 
+  cursor:pointer;
+	z-index:99999;
+}
+
+.DisabledMenuItem
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  padding:1px;
+  cursor:default;
+  color:gray; 
+}
+
+.DisabledMenuItemOver 
+{
+  font-family:Trebuchet MS; 
+  font-size:8px; 
+  font-weight:bold; 
+  padding:1px;
+  cursor:default;
+  color:gray; 
+}
+
+.MenuBreak
+{
+  margin-left:27px; 
+  margin-right:2px; 
+}
+.clsTBADisplay
+{
+	BORDER-RIGHT: #004488 thin solid; 
+	BORDER-TOP: #004488 thin solid; 
+	BORDER-LEFT: #004488 thin solid; 
+	BORDER-BOTTOM: #004488 thin solid; 
+	POSITION: absolute; 
+	TOP: 165px;
+	Z-INDEX: 999; 
+	LEFT: 400px; 
+}
+
+.clsContentHeader
+{
+  font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+  font-size:8px; 
+  font-weight:bold; 
+  color:#000000;
+}
+.clsContentItem
+{
+	/*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#83accf,endColorStr=#004488);
+	color: #FFFFFF;*/
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	color:blue;
+	cursor:pointer;
+}
+
+
+.clsContentArrow
+{
+	font-family:Trebuchet MS; 
+	font-size:18px; 
+	font-weight:bolder; 
+	color:#004488;
+	cursor:default;
+}
+
+.clsContentItemOver
+{
+  /*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#83accf,endColorStr=#004488);
+  color:#FFFFFF;*/  
+  font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+  font-size:12px; 
+  font-weight:bold; 
+  color:blue;
+  cursor:pointer;
+  text-decoration:underline;
+}
+.clsCalendar
+{
+	background-color:Silver;	
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:13px; 
+}
+
+.clsHomeImage
+{
+ FILTER: progid:DXImageTransform.Microsoft.Slide(slidestyle=HIDE,Bands=1);
+}
+
+.clsWeeklyStatusHeader
+{
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	/*font-weight:bold;*/
+	text-align:left;
+	/*border-right-color:Silver;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-left-color:Silver;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-bottom-color:Silver;
+	border-bottom-style:solid;
+	border-bottom-width:2px;*/
+	background-color:#004488;
+	color:#FFFFFF;
+}
+
+
+.clsHomeTradeSummaryLabel
+{
+	cursor:pointer;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	color:#004488;
+	font-size:9pt;
+	font-weight:bold;
+	text-align:left;
+	background-color:Transparent;
+}
+
+.clsHomeTradeSummary
+{
+    color: #004488;
+	background-color: Transparent;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:9pt;
+	font-weight:bold;
+	text-align:right;
+}
+
+.clsWeeklyStatus
+{
+  font-family:Trebuchet MS; 
+  font-size:9px; 
+  font-weight:bold; 
+  color:blue;
+  text-align:right;
+}
+.clsWeeklyStatusDay
+{
+  font-family:Trebuchet MS; 
+  font-size:9px; 
+  font-weight:bold; 
+  color:blue;
+  text-align:left;
+}
+
+.clsWeeklyStatusToday
+{
+  font-family:Trebuchet MS; 
+  font-size:9px; 
+  font-weight:bold; 
+  color:#004488;
+  background-color:#83accf;
+  text-align:right;
+}
+
+.clsWeeklyStatusHoliday
+{
+  font-family:Trebuchet MS; 
+  font-size:9px; 
+  font-weight:bold; 
+  color:#FFFFFF;
+  background-color:green;
+  text-align:right;
+}
+
+.clsUserLabel
+{
+  font-family:Trebuchet MS; 
+  font-size:9px; 
+  font-weight:bold; 
+  color:blue;
+}
+
+.clsUserLogin
+{
+	font-family:Trebuchet MS; 
+	font-size:12px; 
+	color:#004488;
+	font-weight:bold;
+	text-align:right;
+}
+.clsLabel
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+    FONT-SIZE: 9pt;
+}
+.clsLabelRightAlign
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+    FONT-SIZE: 9pt;
+    text-align:right;
+}
+
+.clsDiscrepancyHeader
+{
+	text-align:right;
+	font-weight:bold;
+	/*border-bottom:solid 1px silver;
+	border-top:solid 1px silver;
+	border-left:solid 1px silver;
+	border-right:solid 1px silver;*/
+}
+
+.clsCorrectionType
+{
+	text-align:center;
+	font-weight:bolder;
+    color: #FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	border-bottom:solid 1px silver;
+	border-top:solid 1px silver;
+	border-left:solid 1px silver;
+	border-right:solid 1px silver;
+}
+.clsVerticalLine
+{
+	background-color:#000000;
+}
+
+.clsDropdownList
+{
+	background-color:#FFFFFF;	
+	BORDER-RIGHT: #004488 thin solid; 
+	BORDER-TOP: #004488 thin solid; 
+	BORDER-LEFT: #004488 thin solid; 
+	BORDER-BOTTOM: #004488 thin solid; 
+}
+.clsDropdownRow
+{
+	font-family:Trebuchet MS;
+	color:#000000;
+	font-size:9pt;
+	cursor:wait;
+	
+}
+
+.clsMatchStatistic
+{
+	
+	background-color:#004488;
+	color:#FFFFFF;
+	text-align:right;
+	
+}
+
+.clsResolutionData
+{
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	text-align:right;
+}
+.clsResolutionReadOnly
+{
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	text-align:right;
+	background-color:LightGrey;
+	color:#004488;
+	border:solid 1px #000000;
+}
+.clsResolutionLabel
+{
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	text-align:right;
+}
+.clsResolutionDataComment
+{
+	font-family:Trebuchet MS;
+	font-size:8pt;
+}
+.clsSummaryLabel
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	font-size:10pt;
+	color: #004488;
+	font-weight:bold;
+}
+
+.clsMenuFloat
+{
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	color: blue;
+	font-weight:bold;
+}
+.clsStatusDisplay
+{
+    color: #000000;
+	background-color: #FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	/*font-weight:bold;*/
+	text-align:right;
+}
+.clsAltStatusDisplay
+{
+    color: #000000;
+	background-color: whitesmoke;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	/*font-weight:bold;*/
+	text-align:right;
+}
+.clsHomeMenuSelect
+{
+	color:Green;
+	border-right-color:#004488;
+	border-right-style:inset;
+	border-right-width:1px;
+	border-left-color:#004488;
+	border-left-style:inset;
+	border-left-width:1px;
+	border-bottom-color:#004488;
+	border-bottom-style:inset;
+	border-bottom-width:1px;	
+	border-top-color:#004488;
+	border-top-style:inset;
+	border-top-width:1px;
+}
+.clsHomeMenu
+{
+	border-right-color:#FFFFFF;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-left-color:#FFFFFF;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-bottom-color:#FFFFFF;
+	border-bottom-style:solid;
+	border-bottom-width:1px;	
+	border-top-color:#FFFFFF;
+	border-top-style:solid;
+	border-top-width:1px;
+}
+
+.clsListBox
+{
+	font-family:Lucida Console;
+}
+/*Tavita added*/
+.StaticHeaderGrid_MouseManage
+{
+	behavior:url(StaticHeaderGrid.htc); 
+}
+.clsMultiLineText
+{
+    font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal;
+
+}
+
+.clsLoginBanner
+{
+	font-family:Trebuchet MS;
+	color:#004488;
+	font-size:7pt;
+	text-align:justify;
+	padding:10px 10px 10px 10px;
+	border-top: solid 1px #004488;
+	background-color:#F5F5F5;
+}
+
+/*.clsClientSearchLabel
+{
+    color: #004488;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+}
+*/
+/*.clsClientSearchTitle
+{
+    color: #004488;
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	font-weight:bold;
+	text-align:center;
+}
+*/
+.clsUpdateProgress
+{
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif;
+	color:red;
+	font-size:9pt;
+	font-weight:bold
+}	
+
+clsAjaxIndicatorHidden
+{
+	display:none;
+	visibility:hidden;
+	z-index:9999;
+}
+clsAjaxIndicator
+{
+	display:inline;
+	visibility:visible;
+	z-index:9999;
+}
+
+.clsASPMenuTop,
+.clsASPMenuTop a,
+.clsASPMenuTop a:link,
+.clsASPMenuTop a:hover,
+.clsASPMenuTop a:visited,
+.clsASPMenuTop a:active
+{
+    background:#004488;
+    color:#FFFFFF;
+    font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+    font-size:12px; 
+    font-weight:bold; 
+    padding-bottom:1px;
+    padding-left:5px;
+    padding-right:15px;
+    cursor:pointer;
+    z-index:999;
+    height:23px;
+    white-space:nowrap;
+
+}
+
+.clsASPMenuTopHighlight,
+.clsASPMenuTopHighlight a,
+.clsASPMenuTopHighlight a:link,
+.clsASPMenuTopHighlight a:hover,
+.clsASPMenuTopHighlight a:visited,
+.clsASPMenuTopHighlight a:active
+{
+	background:#004488;
+	color:#83accf;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:0px;
+    padding-bottom:1px;
+	padding-left:5px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+	height:23px;
+    white-space:nowrap;
+}
+
+.clsASPMenuItemLevel1,
+.clsASPMenuItemLevel1 a,
+.clsASPMenuItemLevel1 a:link,
+.clsASPMenuItemLevel1 a:hover,
+.clsASPMenuItemLevel1 a:visited,
+.clsASPMenuItemLevel1 a:active
+{
+	background-color:#004488;
+	border-top:solid 1px #83accf;
+	color:#FFFFFF;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+	height:23px;
+}
+
+.clsASPMenuItemLevel2,
+.clsASPMenuItemLevel2 a,
+.clsASPMenuItemLevel2 a:link,
+.clsASPMenuItemLevel2 a:hover,
+.clsASPMenuItemLevel2 a:visited,
+.clsASPMenuItemLevel2 a:active
+{
+	background-color:#004488;
+	border-top:solid 1px #83accf;
+	color:#FFFFFF;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+	margin-left:1px;
+	height:23px;
+}
+
+.clsASPMenuItemLevel3,
+.clsASPMenuItemLevel3 a,
+.clsASPMenuItemLevel3 a:link,
+.clsASPMenuItemLevel3 a:hover,
+.clsASPMenuItemLevel3 a:visited,
+.clsASPMenuItemLevel3 a:active
+{
+	background-color:#004488;
+	border-top:solid 1px #83accf;
+	color:#FFFFFF;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+	height:23px;
+}
+
+.clsASPMenuItemHighlight,
+.clsASPMenuItemHighlight a,
+.clsASPMenuItemHighlight a:link,
+.clsASPMenuItemHighlight a:hover,
+.clsASPMenuItemHighlight a:visited,
+.clsASPMenuItemHighlight a:active
+{
+	background-color:#83accf;
+	border-top:solid 1px #83accf;
+	color:#FFFFFF;
+	font-family:Trebuchet MS,Verdana, Helvetica, Arial, sans-serif; 
+	font-size:12px; 
+	font-weight:bold; 
+	padding:3px;
+	padding-left:15px;
+	padding-right:15px;
+	cursor:pointer;
+	z-index:999;
+	height:23px;
+}
+
+.HomeStatus
+{
+	width:40px;
+}
+
+.clsNonDisplay
+{
+	display:none;
+}
+.clsWeeklyStatusHeader
+{
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	text-align:left;
+	background-color:#004488;
+	color:#FFFFFF;
+}
+
+.clsWeeklyHeaderCell
+{
+	cursor:pointer;
+	font-family:Trebuchet MS;
+	font-size:8pt;
+	font-weight:bold;
+	color:#FFFFFF;
+	background-color:#004488;
+    white-space:nowrap;
+}
+
+.clsClientSearch
+{
+	display:none;
+	width:500px;
+	background-color:#FFFFFF; 
+	border:2px solid #666699;
+	padding: 0px 0px 0px 0px;
+}
+.clsClientSearchTitle
+{
+	width:375px;
+	text-align:center;
+	padding:5px 5px 5px 5px;
+	display:block;
+	font-size:1.1em;
+	font-weight:bold;
+	color: #004488;
+}
+.clsClientSearchLabel
+{
+	padding:5px 5px 5px 5px;
+	width:100px;
+	display:inline-block;
+}
+.clsClientSearchOperator
+{
+	width:120px;
+	padding:5px 5px 5px 5px;
+}
+.clsClientSearchValue
+{
+	width:150px;
+	padding:5px 5px 5px 5px;
+}
+.clsClientSearchButtonDiv
+{
+	
+	white-space:nowrap;
+	padding:10px 10px 10px 10px;
+}
+
+.clsClientSearchCancelButton
+{
+	position:relative;
+	left:10px;
+	display:inline-block;
+	text-align:left;
+	float:left;
+	top:-10px;
+}
+.clsClientSearchSearchButton
+{
+	right: 10px;
+	position: relative;
+	display: inline-block;
+	text-align: right;
+	float: right;
+	top:-10px;
+}
+.clsClientSearchTitleDiv
+{
+	border-style: none none solid none;
+	border-width: 1px;
+	border-color: #2D637F;
+	background-color: #BCC7D8;
+	cursor:move;
+}
+.clsClientContainerTitle
+{
+	border-style: none none solid none;
+	border-width: 1px;
+	border-color: #2D637F;
+	background-color: #BCC7D8;
+}
+
+
+#tradeChartContainer,
+#confirmChartContainer,
+#metricsChartContainer,
+#applicationChartContainer
+{
+    border:1px solid #2D637F;
+    position:relative;
+    top:50px;
+    height:400px;
+    margin-bottom:10px;
+}
+
+#tradeChartImageContainer,
+#confirmChartImageContainer,
+#metricsChartImageContainer,
+#applicationChartImageContainer
+{
+    position:relative;
+    margin:5px 5px 5px 5px ;
+    height:360px;
+}
+
+#tradeChartImage,
+#confirmChartImage,
+#metricsChartImage,
+#applicationChartImage
+{
+    position:absolute;
+    margin:5px 5px 5px 5px ;
+    height:350px;
+    width:800px;
+}
+
+#TradeChartControls,
+#ConfirmChartControls,
+#MetricsChartControls,
+#ApplicationChartControls
+{
+    position:relative;
+    left:5px;
+    top:5px;
+}
+
+#drpTradeMonth,
+#drpTradeQuarter,
+#drpConfirmMonth,
+#drpConfirmQuarter,
+#drpMetricsMonth,
+#drpMetricsQuarter,
+#drpApplicationMonth,
+#drpApplicationQuarter
+{
+    display:none;
+}
+
+#TradeChartExpand,
+#ConfirmChartExpand,
+#MetricsChartExpand,
+#ApplicationChartExpand
+{
+    float:right;
+    cursor:pointer;
+}
+
+
+
+.widgetLink
+{
+    color:#004488;
+    text-decoration:underline;
+    cursor:pointer;
+    font-weight:bold;
+    padding-right:20px;
+    padding-top:1px;
+    padding-bottom:2px;
+}
+
+
+.tradeStatusTable,
+.tradeRepairStatusTable
+{
+    border-collapse:collapse;
+}
+
+.tradeStatusTableHeader,
+.tradeRepairStatusTableHeader
+{
+    color:#FFFFFF;
+    font-size:1.1em;
+    background-color:#004488;
+}
+
+.tradeStatusTableHeaderRow th,
+.tradeRepairStatusTableHeaderRow th{
+    height:25px;
+    padding: 3px 5px;
+    border:none;
+}
+
+.tradeStatusTableCell
+{
+    padding:5px 20px 1px 0px;
+}
+
+
+.widgetSettingsTitle
+{
+    color:#004488;
+    width:100%;
+    text-align:center;
+    font-weight:bold;
+}
+
+
+ 
+.statusTableHeader
+{ font-size:11px;
+ font-weight:bold;
+ /*background-color:#004488;*/
+ color:#004488;
+ border-left:0; 
+border-top:0; 
+margin-bottom:3px;
+border-bottom:1px solid #004488;
+ }
+
+.statusTableBody
+{ 
+	font: 12px normal Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+	background-color:#fff; }
+
+.tablescroll
+{ 
+	font: 12px normal Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+	background-color:#fff; }
+ 
+.tablescroll td, 
+.tablescroll th,
+.tablescroll_wrapper,
+.tablescroll_hwrapper,
+.tablescroll_head,
+.tablescroll_foot
+{ 
+    /*border:1px solid #ccc;*/
+}
+
+
+
+.tablescroll_head
+{
+    border-bottom:none;
+}
+
+.tablescroll_wrapper
+{
+    border-top:none;
+}
+
+
+.tablescroll td
+{ padding:1px 3px; }
+ 
+.tablescroll_wrapper,
+.tablescroll_hwrapper
+{ border-left:0; }
+ 
+.tablescroll_head
+{ font-size:11px; font-weight:bold; 
+  /*background-color:#004488; */
+  color:#FFFFFF; border-left:0; border-top:0; margin-bottom:0px; }
+ 
+ 
+ 
+.tablescroll thead td
+{ border-right:0; border-bottom:0;text-align:left; }
+
+ .tablescroll thead th
+{ border-right:0;
+border-bottom:0;
+text-align:left;
+/*text-align:left;*/
+/*padding:1px 3px;*/ }
+ 
+.tablescroll tbody td
+{/* border-right:0; 
+border-bottom:0;
+padding:1px 3px;*/ }
+ 
+.tablescroll tbody tr.first td
+{ border-top:0; }
+ 
+.tablescroll_foot
+{ font-weight:bold; background-color:#eee; border-left:0; border-top:0; margin-top:0px; }
+ 
+.tablescroll tfoot td
+{ border-right:0; border-bottom:0; }
+
+.tablescroll_body{
+border:none;
+border-collapse:collapse;
+}
+
+.systemStatusTable,
+.notificationJobStatusTable{
+border:none;
+border-collapse:collapse;
+}
+
+.statusTableBody,
+.statusTableHeader th,
+.statusTableBody td
+{ 
+/*border:0px solid #ccc;*/
+}
+
+.statusTableHeader th{
+padding:3px 5px;
+    background-color:#004488;
+}
+
+.statusTableBody td
+{ 
+border-right:0px solid #FFFFFF; 
+border-bottom:0px solid #FFFFFF; 
+padding:3px 5px;}
+
+
+.savedReportsHeader th,
+.savedReportsBody td,
+.tradeStatusTableHeader th,
+.tradeStatusTableBody td,
+.tradeRepairStatusTableHeader th,
+.tradeRepairStatusTableBody td
+{ 
+padding:5px 5px;
+}
+
+
+.statusTableBody .odd,
+.tradeStatusTableBody .odd,
+.tradeRepairStatusTableBody .odd
+{
+	background-color: #FFFFFF;
+}
+
+.statusTableBody .even,
+.tradeStatusTableBody .even,
+.tradeRepairStatusTableBody .even
+{
+	background-color: #F5F5F5;
+}
+
+
+
+.xOut,
+.xOutOver,
+.xOutW,
+.xOutWOver
+{
+	position:absolute;
+	top:5px;
+	right:10px;
+	cursor:pointer;
+	font-weight:bold;
+	color:#FFFFFF;	
+	z-index:9999;
+}
+
+
+.xOutW
+{
+	color:#FFFFFF;	
+}
+
+.xOutWOver
+{
+	color:#004488;	
+}
+
+.xOutOver
+{
+	color:#004488;	
+}
+
+.referenceDataHeader{
+    font-weight:bold;
+    padding-top:5px;
+    cursor:move;
+    text-align:center;
+    height:20px;
+    background-color:#83ACCF;
+    color:#FFFFFF;
+}
+
+.referenceDataContainer
+{
+	/*width:740px;*/
+}
+
+.referenceDataContent
+{
+	margin:20px;
+}
+
+.treeviewStyle a:hover
+{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.reportTreeStyle
+{
+	color: #000000;
+	font-size: 9pt;
+	font-family: Verdana;
+}
+
+.reportTreeStyle a:hover
+{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+.tooltip {
+	display: none;
+	background: transparent url(../images/white_arrow.png);
+	font-size: 12px;
+	height: 90px;
+	width: 180px;
+	padding: 25px;
+	color: #333333;
+	z-index: 9999999999;
+	background-repeat: no-repeat;
+}
+
+#logInContainer
+{
+	
+	-webkit-box-shadow: 7px 7px 8px #818181;
+	-moz-box-shadow: 7px 7px 8px #818181;
+	border: 1px solid #DADADA;
+	-webkit-box-shadow: 7px 7px 8px #818181;
+	-moz-box-shadow: 7px 7px 8px #818181;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135, strength=4);
+	-webkit-filter: progid:DXImageTransform.Microsoft.dropShadow(color=#818181, offX=7, offY=7, positive=true);
+	-moz-filter: progid:DXImageTransform.Microsoft.dropShadow(color=#818181, offX=7, offY=7, positive=true);
+}
+
+.clsTabDiv
+{
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+	background-color:#F7F7F7;
+	
+}
+
+#breadcrumbsContainer
+{
+	position:absolute;
+	left:0px;
+	top:63px;
+	width:100%;
+	height:40px;
+	z-index:0;
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+	background-color:#F7F7F7;
+}
+
+#toolbarContainer
+{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	z-index:999;
+	height:60px;
+
+}
+
+#accordion
+{
+    border-left:1px solid #666699;
+    border-right:1px solid #666699;
+    border-bottom:1px solid #666699;
+}
+#accordion .pane {
+	/*display:none;*/
+	height:480px; 
+	width:1060px;
+	border-top:1px solid #666699;
+}
+
+#accordion h2 
+{
+	background-color: #BCC7D8;
+    text-align:left;
+    width: 472; 
+    padding: 5px 5px 5px 5px; 
+    /*cursor:pointer;*/
+    font-size: 1.1em; 
+    font-weight: bold;
+    border-top:1px solid #666699;
+    /*border-bottom:1px solid #666699;*/
+}
+
+#accordion h2.current
+{
+    cursor:default;
+}
+
+
+.ErrorAcknowledgement
+{
+    position:absolute;
+    top:200px;
+    background-color:#FFFFFF;
+    width:770px;
+    border:1px solid #004488;
+}
+
+.ErrorAcknowledgementHeader
+{
+    color:#004488;
+    font-weight:bold;
+    background-color:#FFFFFF;
+    padding-top:5px;
+    padding-bottom:5px;
+    text-align:center;
+    font-size:1.2em;
+}
+
+.ErrorAcknowledgementBody
+{
+    height:270px;
+}
+
+
+.ErrorAcknowledgementFooter
+{
+    height:20px;
+}
+
+.ErrorAcknowledgementCancel,
+.ErrorAcknowledgementAcknowledge
+{
+    height:20px;
+    width:100px;
+    color:#FFFFFF;
+}
+
+.ErrorAcknowledgementAcknowledge{
+    margin-right:20px;
+}
+
+.ErrorAcknowledgementBody table th
+{
+    color:#004488;
+    font-weight:bold;
+    font-size:1.1em;
+}
+
+.ErrorAcknowledgementBody table tr.even
+{
+    background-color:#CCCCCC;
+}
+
+.ErrorAcknowledgementBody table tr.even td
+{
+    border-color:#FFFFFF;
+}
+
+.ErrorAcknowledgementBody table td
+{
+}
+.notificationJobStatusTable
+{
+    overflow:visible;
+}
+div[id*=notificationGrid]
+{
+    overflow:visible;
+}
+
+.NotificationJobStatusWidgetContent
+{
+    overflow:visible !important;
+}
+.k-grid-header
+{
+    background-color:#00458C !important;
+     background-image:none !important;
+      color:white !important;
+}
+.k-grid {
+    white-space: nowrap !important;
+
+}
+
+div[id*=notificationGrid] th
+{
+    background-color:#00458C !important;
+    color:white !important;
+     background-image:none !important;
+}
+
+div[role=columnheader]
+{
+       background-color:#00458C !important;
+    color:white !important;
+    background-image:none !important;
+}
+
+.nStatusChckMainClass
+{
+    text-align:center;
+}
+
+ div[id*=notificationGrid] .k-grid-header
+ {
+
+     color:white !important;
+     text-align:center !important;
+}
+ .k-header,.k-link   {
+     color:white !important;
+     text-align:center !important;
+}
+.k-header,.k-header td, .k-header th, .k-header tr,
+ .k-link, .k-link td, .k-link th, .k-link tr,
+ .k-grid, .k-grid td, .k-grid th, .k-grid tr{
+  
+    text-align:center !important;
+   
+}
+
+.ChckClass
+{
+    text-align:center !important;
+
+}
+#ErrorIcon
+{
+    display:inline;
+    cursor:pointer;
+    border:0;
+    margin-right:0px;
+    margin-left:0px;
+    margin-top:1px;
+    float:right;
+    overflow: visible;
+}
+#lblTestMode
+{
+  display:inline-block;
+  left:139px;
+  position:absolute;
+  top:369px;
+  width:184px;
+  z-index:148;
+}
+#TradeBrowser_UploadFileButton {
+height:35px;
+padding:0px;
+width:35px;
+position:relative;
+left:15px;
+
+}
+#btn_uploadfile {
+position:relative;
+top:25px;
+}
+#btnUploadCancel {
+position:relative;
+top:74px;
+}
+#lblPoolNo
+{
+margin-left:10px;	
+}
+#lblSprating
+{
+margin-left:9px;	
+}
+#lbsecond_leg_initial_stub_first_regular_period_start_date
+{
+margin-left:-5px;	
+}
+#lblConfirmsTrades
+{
+ width:359px !important;	
+}

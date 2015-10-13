@@ -1,0 +1,121 @@
+﻿body {
+   
+}
+   .enterNewFind {
+        margin-top: 3px;
+    }
+    .selectViewExisting, .enterNewFind {
+        width: 350px;
+    }
+
+    .k-calendar .k-state-selected {
+        background: blue;
+    }
+    .row1 {
+
+    }
+    .c1 {
+        padding-top: 5px;
+        width: 95px;
+        text-align: right;
+    }
+    .dropListStyleQuickFind
+    {
+         width: 80px !important;
+    }
+   .c2 {
+        width: 75px;
+
+    }
+    .c4 {
+        width: 100% !important;
+
+    }
+   .c4 {
+        width: 100% !important;
+
+    }
+    .c3 {
+        border: none !important;
+         width: 75px;
+    }
+    .c4 {
+
+    }
+    .titleDefault {
+        white-space: nowrap;
+        font: normal;
+    }
+    .titleQuickFind {
+
+        white-space: nowrap;
+        font: normal;
+    }
+    .titleQuickFindL {
+        text-align: right;
+        white-space: nowrap;
+        font: normal;
+    }
+    #nTraded {
+
+    }
+
+    #quickFindTable span.k-datepicker, #quickFindTable span.k-timepicker, #quickFindTable span.k-datetimepicker, #quickFindTable span.k-colorpicker, #quickFindTable span.k-numerictextbox, #quickFindTable span.k-combobox, #quickFindTable span.k-dropdown, #quickFindTable .k-toolbar .k-split-button {
+
+    }
+
+    #quickFindTable input {
+
+
+    }
+
+    .rangeHidden {
+        display: none;
+
+    }
+
+    #quickFindTable, #quickFindTableTitle {
+        display: inline-table;
+        float: left;
+        position: absolute;
+        left: 50px;
+        top: 114px;
+    }
+   
+    #quickFindTable {
+        position: absolute;
+        left: 15px;
+
+    }
+    #quickFindPopup {
+        overflow-x: hidden !important;
+    }
+    #idSaveQuickFindBtn, #quickFindCancel {
+        width: 80px;
+    }
+.firstDate {
+    background: white !important;
+   
+}
+#quickFindTable .k-header {
+
+             background: none !important;
+
+         }
+.checkBoxStyle {
+    padding-top: 1px;
+}
+    .testSomething
+    {}
+    .rangeDate {
+
+        visibility: visible;
+    }
+
+
+      #quickFindTableTitle .k-textbox,#quickFindTableTitle  .k-widget,#quickFindTableTitle  .k-dropdown,#quickFindTableTitle  .k-header {
+            width: 80px;
+        }
+        #quickFindTableTitle .c2 {
+    width: 30px;
+}
