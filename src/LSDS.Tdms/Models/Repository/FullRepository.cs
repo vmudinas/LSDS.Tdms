@@ -30,7 +30,7 @@ namespace LSDS.Tdms.Repository
             var columnList = "new (" + columnName + ")";
             var repo = new GenericRepository<TradeListModel>();
 
-            return  repo.ExecuteStoredProcedure("usp_returnTradeList_Query", parameters).Select(columnList).Distinct();
+            return  repo.ExecuteStoredProcedure("usp_returnTradeList_Query", parameters).Select(columnList).FirstOrDefault();
         }
 
         public async void DeleteSort(string sortId)
