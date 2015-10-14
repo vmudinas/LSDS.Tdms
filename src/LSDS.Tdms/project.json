@@ -31,7 +31,8 @@
         "LinqProjector": "1.2.0",
         "System.Linq": "4.0.1-beta-23225",
         "System.Linq.Dynamic.Library": "1.1.14",
-        "System.Linq.Parallel": "4.0.0-beta-23019"
+        "System.Linq.Parallel": "4.0.0-beta-23019",
+        "CtmLibrary": "4.0.1"
     },
 
     "commands": {

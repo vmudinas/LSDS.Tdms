@@ -1,0 +1,20 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "TestApp Console Application",
+  "authors": [ "vmudinas" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "CtmLibrary": "4.0.1"
+  },
+
+  "commands": {
+    "TestApp": "TestApp"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}
