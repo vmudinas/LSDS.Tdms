@@ -1,10 +1,12 @@
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnWidgetLocation_Result
     {
+        [Key]
         public int WidgetId { get; set; }
         public string WidgetIdName { get; set; }
         public Nullable<int> DataRow { get; set; }

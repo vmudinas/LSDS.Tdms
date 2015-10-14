@@ -4,6 +4,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class UspReturnSettlementTypeList
     {
+        [Key]
         public int tdxSettlementType { get; set; } 
         [MaxLength(12)]
         public string SettlementTypeCode { get; set; } 

@@ -1,10 +1,12 @@
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_LoginReport_Result
     {
+        [Key]
         public Guid id { get; set; }
         public string user_name { get; set; }
         public string Fullname { get; set; }

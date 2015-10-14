@@ -8,11 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnSecurityAccess_Result
     {
+        [Key]
         public string item_name { get; set; }
         public Nullable<byte> item_view { get; set; }
         public Nullable<byte> item_edit { get; set; }

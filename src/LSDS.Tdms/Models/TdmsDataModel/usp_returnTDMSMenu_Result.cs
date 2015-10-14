@@ -7,12 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     using System;
     
     public partial class usp_returnTDMSMenu_Result
     {
+        [Key]
         public int sxapplication_itemid { get; set; }
         public string item_type_desc { get; set; }
         public Nullable<int> item_parent { get; set; }

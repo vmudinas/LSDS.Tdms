@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
@@ -10,7 +11,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
             this.tblBrokerContactMCs = new List<tblBrokerContactMC>();
             this.tblSettlementInstructionsMCs = new List<tblSettlementInstructionsMC>();
         }
-
+        [Key]
         public int tblBrokerInfo { get; set; }
         public string BrokerCode { get; set; }
         public string BrokerName { get; set; }

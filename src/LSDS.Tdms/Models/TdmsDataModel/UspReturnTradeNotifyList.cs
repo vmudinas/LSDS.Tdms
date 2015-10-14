@@ -6,6 +6,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
     public class UspReturnTradeNotifyList
     {
         [MaxLength(12)]
+        [Key]
         public string ShawPortNo { get; set; } 
         public int? tblPortContact { get; set; } 
         public int? contact_no { get; set; } 

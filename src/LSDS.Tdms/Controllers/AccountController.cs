@@ -130,9 +130,9 @@ namespace LSDS.Tdms.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult LogOff()
+        public async Task<IActionResult> LogOff()
         {
-            _signInManager.SignOut();
+            await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -445,7 +445,7 @@ namespace LSDS.Tdms.Controllers
             if (!_databaseChecked)
             {
                 _databaseChecked = true;
-                context.Database.AsRelational().ApplyMigrations();
+                context.Database.Migrate();//AsRelational().ApplyMigrations();
             }
         }
 

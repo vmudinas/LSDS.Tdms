@@ -9,6 +9,8 @@ using LSDS.Tdms.Models;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Data.Entity.Infrastructure;
+using Microsoft.Framework.DependencyInjection;
 
 namespace Tdms.Controllers
 {
@@ -23,7 +25,7 @@ namespace Tdms.Controllers
 
         public  IActionResult  Login()
         {
-            ViewBag.Version = _context.Version.FromSql<UspReturnVersion>("EXEC Usp_ReturnVersion")?.FirstOrDefault()?.project_name ?? "No Version!";
+            ViewBag.Version = _context.Set<UspReturnVersion>().FromSql("Usp_ReturnVersion")?.FirstOrDefault()?.project_name ?? "No Version!";
             return View();
         }
         [Authorize]

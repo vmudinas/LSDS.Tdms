@@ -8,12 +8,14 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 
 {
     public partial class usp_returnquickfindquery_Result
     {
+        [Key]
         public int QF_QueryID { get; set; }
         public Nullable<int> QuickFindID { get; set; }
         public string QueryString { get; set; }

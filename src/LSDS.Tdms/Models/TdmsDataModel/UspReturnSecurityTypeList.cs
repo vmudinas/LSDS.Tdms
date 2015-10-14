@@ -4,6 +4,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class UspReturnSecurityTypeList
     {
+        [Key]
         public int tdxSecurityType { get; set; } 
         [MaxLength(3)]
         public string TypeCode { get; set; } 

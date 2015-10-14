@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class tdGridsterModel
     {
+        [Key]
         public int GridsterId { get; set; }
         public string id { get; set; }
         public string col { get; set; }

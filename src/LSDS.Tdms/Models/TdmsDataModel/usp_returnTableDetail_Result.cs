@@ -7,12 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     using System;
     
     public partial class usp_returnTableDetail_Result
     {
+        [Key]
         public int TableDetail_ID { get; set; }
         public string SourceName { get; set; }
         public Nullable<int> Row_Position { get; set; }

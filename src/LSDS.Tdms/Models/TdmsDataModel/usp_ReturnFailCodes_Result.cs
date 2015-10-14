@@ -7,10 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnFailCodes_Result
     {
+        [Key]
         public int tdxFailureReason { get; set; }
         public string Description { get; set; }
         public string ReasonCode { get; set; }

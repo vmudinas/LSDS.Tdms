@@ -1,8 +1,11 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class usp_ReturnPackageMaintenanceListHome
     {
+        [Key]
         public int PackageMaintenanceId { get; set; }
         public int? PackagePrimary { get; set; }
         public string PackageName { get; set; }

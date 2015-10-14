@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
@@ -26,6 +27,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         public Nullable<System.DateTime> transactionloaddate { get; set; }
         public string traderefno { get; set; }
         public Nullable<System.DateTime> tradematchdate { get; set; }
+        [Key]
         public int tdtrade { get; set; }
     }
 }

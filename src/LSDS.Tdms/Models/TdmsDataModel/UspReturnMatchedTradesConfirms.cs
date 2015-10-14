@@ -5,8 +5,10 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class UspReturnMatchedTradesConfirms
     {
+       
         public int? tdTrade { get; set; }
         [MaxLength(16)]
+        [Key]
         public string TradeRefNo { get; set; } 
         public int? tdConfirm { get; set; }
         [MaxLength(16)]

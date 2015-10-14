@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class TdmsTradeListSeachModel
     {
+        [Key]
         public string txtPortfolio { get; set; }
         public string txtCUSIP { get; set; }
         public string txtBrokerFIN { get; set; }

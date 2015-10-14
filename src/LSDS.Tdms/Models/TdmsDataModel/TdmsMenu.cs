@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
@@ -7,6 +8,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         public string text { get; set; }
         public string url { get; set; }
         public string ImageUrl { get; set; }
+        [Key]
         public string ItemSortCode { get; set; }
         public string ItemParent { get; set; }
         public string ItemLine { get; set; }

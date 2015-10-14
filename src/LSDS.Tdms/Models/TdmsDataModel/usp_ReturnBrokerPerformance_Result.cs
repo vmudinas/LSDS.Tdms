@@ -8,11 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnBrokerPerformance_Result
     {
+        [Key]
         public int tblBrokerPerformanceId { get; set; }
         public Nullable<int> MonthPeriod { get; set; }
         public string BrokerCode { get; set; }

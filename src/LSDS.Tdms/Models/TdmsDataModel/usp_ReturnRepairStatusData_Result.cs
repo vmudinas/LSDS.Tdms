@@ -7,10 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnRepairStatusData_Result
     {
+        [Key]
         public int RepairTypeDataId { get; set; }
         public int QuickfindId { get; set; }
         public string Description { get; set; }

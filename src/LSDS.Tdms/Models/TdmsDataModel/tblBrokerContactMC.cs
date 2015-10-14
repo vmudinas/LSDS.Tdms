@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class tblBrokerContactMC
     {
+        [Key]
         public int tblBrokerContact { get; set; }
         public string BrokerCode { get; set; }
         public int tdxLocationID { get; set; }

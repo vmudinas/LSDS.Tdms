@@ -1,10 +1,12 @@
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnImportSummary_Result
     {
+        [Key]
         public int tdMasterLog { get; set; }
         public short? LogType { get; set; }
         public string LogTypeAlt { get; set; }

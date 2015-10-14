@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class LocationUserData
     {
+        [Key]
         public int tdUserGroupID { get; set; }
         public int tdxLocationID { get; set; }
         public string User_Group_Name { get; set; }

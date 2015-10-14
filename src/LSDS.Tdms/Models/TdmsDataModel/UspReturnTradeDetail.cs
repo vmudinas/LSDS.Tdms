@@ -6,6 +6,9 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class UspReturnTradeDetail
     {
+        [Key]
+        public int Tabledetail_ID { get; set; }
+
         [MaxLength(9)]
         public string ABANo { get; set; }
         

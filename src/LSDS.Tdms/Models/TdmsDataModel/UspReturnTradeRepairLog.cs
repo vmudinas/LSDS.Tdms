@@ -5,6 +5,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class UspReturnTradeRepairLog
     {
+        [Key]
         public int tdTradeRepairLog { get; set; } 
         public DateTime mTradeDate { get; set; } 
         [MaxLength(15)]

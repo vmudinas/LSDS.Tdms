@@ -8,11 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_returnBulkCopyOptions_Result
     {
+        [Key]
         public int tdxBulkCopy_ID { get; set; }
         public string SourceName { get; set; }
         public string TargetColumn { get; set; }

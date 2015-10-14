@@ -8,11 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnFailedTrade_Result
     {
+        [Key]
         public int ReturnFailedTradeID { get; set; }
         public Nullable<int> tdTradeFailed { get; set; }
         public Nullable<DateTime> mTradeDate { get; set; }

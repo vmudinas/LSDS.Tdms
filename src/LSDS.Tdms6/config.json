@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "LSDS.Tdms6"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-LSDS.Tdms6-6945dce0-c00e-46f4-8727-dd528285d735;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}

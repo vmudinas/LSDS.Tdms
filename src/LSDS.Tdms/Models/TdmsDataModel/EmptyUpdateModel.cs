@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.Tdms.Model.TdmsDataModel
+namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class EmptyUpdateModel
     {

@@ -67,7 +67,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
             //};
 
 
-            var userLogin = _context.UserByUserName.FromSql<usp_returnUserbyUserName_Result>("EXEC usp_returnUserbyUserName @p0", username)?.Where(a=> a.psw == GetSwcMD5(password) && a.user_status == 0).FirstOrDefault();
+            var userLogin = _context.Set<usp_returnUserbyUserName_Result>().FromSql("EXEC usp_returnUserbyUserName @p0", username).FirstOrDefault(a => a.psw == GetSwcMd5(password) && a.user_status == 0);
 
 
 
@@ -80,27 +80,17 @@ namespace LSDS.Tdms.Models.TdmsDataModel
             LogLoginAttempt(username, false, _context);
             return false;
         }
-        public static string GetSwcSH1(string value)
+        public static string GetSwcSh1(string value)
         {
-            SHA1 algorithm = SHA1.Create();
-            byte[] data = algorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
-            string sh1 = "";
-            for (int i = 0; i < data.Length; i++)
-            {
-                sh1 += data[i].ToString("x2").ToUpperInvariant();
-            }
-            return sh1;
+            var algorithm = SHA1.Create();
+            var data = algorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
+            return data.Aggregate("", (current, t) => current + t.ToString("x2").ToUpperInvariant());
         }
-        public static string GetSwcMD5(string value)
+        public static string GetSwcMd5(string value)
         {
-            MD5 algorithm = MD5.Create();
-            byte[] data = algorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
-            string sh1 = "";
-            for (int i = 0; i < data.Length; i++)
-            {
-                sh1 += data[i].ToString("x2").ToUpperInvariant();
-            }
-            return sh1;
+            var algorithm = MD5.Create();
+            var data = algorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
+            return data.Aggregate("", (current, t) => current + t.ToString("x2").ToUpperInvariant());
         }
         public string ReturnPassword(string username)
         {
@@ -144,20 +134,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         private static void LogLoginAttempt(string userId, bool loginSuccess, TdmsDbContext context)
         {
 
-            var parameters = new[]
-            {
-                new SqlParameter
-                {
-                    ParameterName = "user_name",
-                    Value = userId
-                },
-                new SqlParameter
-                {
-                    ParameterName = "LoginSuccess",
-                    Value = loginSuccess
-                }
-            };
-            context.Database.AsRelational().ExecuteSqlCommand("EXEC usp_LogLoginAttempt @user_name, @LoginSuccess   ", parameters);
+            context.Database.ExecuteSqlCommand("EXEC usp_LogLoginAttempt @user_name, @LoginSuccess   ", userId, loginSuccess);
 
         }
     }

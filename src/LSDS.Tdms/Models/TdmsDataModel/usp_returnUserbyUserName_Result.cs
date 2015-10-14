@@ -7,7 +7,8 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_returnUserbyUserName_Result
     {
-        public Guid id { get; set; }
+        [Key]
+      
         public string user_name { get; set; }
         public string description { get; set; }
         public Nullable<int> priority { get; set; }

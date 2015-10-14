@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class tblSettlementInstructionsMC
     {
+        [Key]
         public int tblSettlementInstructions { get; set; }
         public string BrokerCode { get; set; }
         public string SecurityType { get; set; }

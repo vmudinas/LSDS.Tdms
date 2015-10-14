@@ -1,8 +1,11 @@
-﻿namespace LSDS.Tdms.Models.TdmsDataModel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class UspReturnIsitcIssueType
     {
-            public int tdxSecurityType { get; set; } //(int, not null)
+        [Key]
+        public int tdxSecurityType { get; set; } //(int, not null)
             public string TypeCode { get; set; } //(varchar(3), null)
             public string Description { get; set; } //(varchar(36), null)
             public int? FlagBond1 { get; set; } //(int, null)

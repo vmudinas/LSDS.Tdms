@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace LSDS.Tdms.Models.TdmsDataModel
@@ -9,7 +10,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         {
             this.tblSettlementInstructionsMCs = new List<tblSettlementInstructionsMC>();
         }
-
+        [Key]
         public int tdxSettlementLoc1 { get; set; }
         public string SettlementLoc { get; set; }
         public string SettlementLocDesc { get; set; }

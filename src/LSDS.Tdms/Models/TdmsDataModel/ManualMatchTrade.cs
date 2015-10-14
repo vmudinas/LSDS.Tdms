@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class ManualMatchTrade
     {
+        [Key]
         public int tdTrade { get; set; }
         public int tdConfirm { get; set; }
         public DateTime TransactionLoadDate { get; set; }

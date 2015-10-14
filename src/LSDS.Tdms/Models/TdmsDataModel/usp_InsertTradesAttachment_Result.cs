@@ -8,11 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_InsertTradesAttachment_Result
     {
+        [Key]
         public int tblFileStoreId { get; set; }
         public string user_name { get; set; }
         public Nullable<int> tdUserGroupId { get; set; }

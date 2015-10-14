@@ -4,6 +4,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class UspLookupNotifyStatus
     {
+        [Key]
         public int tdxTradeNotifyCode { get; set; }
         [MaxLength(16)]
         public string code { get; set; }

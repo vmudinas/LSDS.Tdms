@@ -19,9 +19,9 @@ using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using Microsoft.Framework.Runtime;
 using LSDS.Tdms.Models;
 using LSDS.Tdms.Services;
+using Microsoft.Dnx.Runtime;
 
 namespace LSDS.Tdms
 {
@@ -102,7 +102,7 @@ namespace LSDS.Tdms
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseErrorPage();
                 app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
             }
             else

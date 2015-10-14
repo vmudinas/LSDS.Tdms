@@ -1,11 +1,11 @@
-﻿using Antlr.Runtime.Misc;
-using Microsoft.Data.Entity.Relational;
-using Microsoft.Data.Entity.Storage;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Antlr.Runtime.Misc;
+using Microsoft.Data.Entity.Relational;
+using Microsoft.Data.Entity.Storage;
 
-namespace Tdms
+namespace LSDS.Tdms
 {
     public static class Extensions
     {
@@ -34,60 +34,60 @@ namespace Tdms
             System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
             return new string(chars);
         }
-        public static int ExecuteSqlCommand(this RelationalDatabase database, string sql)
-        {
-            var connection = database.Connection;
-            var command = connection.DbConnection.CreateCommand();
-            command.CommandText = sql;
+        //public static int ExecuteSqlCommand(this RelationalDatabase database, string sql)
+        //{
+        //    var connection = datab
+        //    var command = connection.DbConnection.CreateCommand();
+        //    command.CommandText = sql;
 
-            try
-            {
-                connection.Open();
+        //    try
+        //    {
+        //        connection.Open();
 
-                return command.ExecuteNonQuery();
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-        public static int ExecuteSqlCommand(this RelationalDatabase database, string sql, SqlParameter[] paramArray)
-        {
-            var connection = database.Connection;
-            var command = connection.DbConnection.CreateCommand();
-            command.CommandText = sql;
-            foreach (var item in paramArray)
-            {
-                command.Parameters.Add(item);
-            }
+        //        return command.ExecuteNonQuery();
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
+        //}
+        //public static int ExecuteSqlCommand(this RelationalDatabase database, string sql, SqlParameter[] paramArray)
+        //{
+        //    var connection = database.Connection;
+        //    var command = connection.DbConnection.CreateCommand();
+        //    command.CommandText = sql;
+        //    foreach (var item in paramArray)
+        //    {
+        //        command.Parameters.Add(item);
+        //    }
 
-            try
-            {
-                connection.Open();
+        //    try
+        //    {
+        //        connection.Open();
 
-                return command.ExecuteNonQuery();
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-        public static IDataReader ExecuteSqlCommandModel(this RelationalDatabase database, string sql)
-        {
-            var connection = database.Connection;
-            var command = connection.DbConnection.CreateCommand();
-            command.CommandText = sql;
+        //        return command.ExecuteNonQuery();
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
+        //}
+        //public static IDataReader ExecuteSqlCommandModel(this RelationalDatabase database, string sql)
+        //{
+        //    var connection = database.Connection;
+        //    var command = connection.DbConnection.CreateCommand();
+        //    command.CommandText = sql;
 
-            try
-            {
-                connection.Open();
-                return command.ExecuteReader();
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
+        //    try
+        //    {
+        //        connection.Open();
+        //        return command.ExecuteReader();
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
+        //}
         public  static IEnumerable<T> GetData<T>(IDataReader reader, Func<IDataRecord, T> BuildObject)
         {
             try

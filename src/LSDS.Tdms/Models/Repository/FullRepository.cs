@@ -13,7 +13,6 @@ using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Models.KendoModel;
 using LSDS.Tdms.Models;
 using LSDS.Tdms.Models.Code;
-using LSDS.Tdms.Model.TdmsDataModel;
 
 namespace LSDS.Tdms.Repository
 {

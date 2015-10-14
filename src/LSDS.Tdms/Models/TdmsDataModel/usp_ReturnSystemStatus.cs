@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class usp_ReturnSystemStatus
     {
+        [Key]
         public int tdSystemStatus { get; set; }
         public string StatusType { get; set; }
         public DateTime? LastRun { get; set; }

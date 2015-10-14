@@ -4,7 +4,7 @@
   },
   "Data": {
     "DefaultConnection": {
-      "ConnectionString": "Server=.;Database=tdmse_sei_5;Trusted_Connection=True;MultipleActiveResultSets=true"
+      "ConnectionString": "Server=lds-devel4;Database=tdmse_sei_5;Trusted_Connection=True;MultipleActiveResultSets=true"
     }
   }
 }
