@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D19E2D43-1F21-4E64-AA98-D37152E25EE5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CTMLibrary</RootNamespace>
+    <AssemblyName>CTMLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OmgeoDCIWeb_API, Version=3.0.4422.41882, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>CTMReference\OmgeoDCIWeb_API.DLL</HintPath>
+    </Reference>
+    <Reference Include="SmartThreadPool, Version=1.0.2235.39078, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>CTMReference\SmartThreadPool.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionManager.cs" />
+    <Compile Include="CtmMessages\CTM_Message.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequest.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequestInfoRequestBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequestInfoRequestBodyAccessPath.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequestInfoRequestBodyAccessPathTradeLevelIdentifiers.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequestInfoRequestBodyExecutingBroker.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequestSubmitHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequestSubmitHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInfoRequestSubmitHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInvalid.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInvalidInvalidBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInvalidInvalidBodySynchError.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInvalidInvalidBodySynchErrorErrorParameter.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInvalidInvalidHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageInvalidInvalidHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailRequest.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailRequestMultiTradeDetailRequestBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailRequestMultiTradeDetailRequestBodyMultiTradeDetailStatusQuery.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailRequestSubmitHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailRequestSubmitHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailRequestSubmitHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailResponse.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailResponseMultiTradeDetailResponseBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailResponseResponseHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailResponseResponseHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeDetailResponseResponseHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelRequest.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelRequestMultiTradeLevelRequestBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelRequestSubmitHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelRequestSubmitHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelRequestSubmitHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponse.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLR.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRAdditionalSecurityIdentifiers.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRAdditionalSecurityIdentifiersSecurityCodeType.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRDealPrice.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRExecutingBroker.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRIdentificationOfASecurity.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRIdentificationOfASecuritySecurityCodeType.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRInstructingParty.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRMultiTradeLevelStatuses.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRQuantityOfTheBlockTrade.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRTimeZone.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRTotalTradeAmount.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseMultiTradeLevelResponseBodyMTLRTradeLevelReferences.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseResponseHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseResponseHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageMultiTradeLevelResponseResponseHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetail.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailSubmitHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailSubmitHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailSubmitHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyExecutingBroker.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyIdentificationOfASecurity.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyIdentificationOfASecuritySecurityCodeType.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyInstructingParty.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyIPSettlement.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyPartySettlement.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailData.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataCommFeesTaxes.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxesChargeAmount.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataCommFeesTaxesCommissions.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataCommFeesTaxesCommissionsCommission.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataNetCashAmount.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataQuantityAllocated.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailDataTradeAmount.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeDetailReferences.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeLevelInformation.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeLevelInformationDealPrice.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeLevelInformationTimeZone.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeLevelInformationTotalTradeAmount.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeDetailTradeDetailBodyTradeLevelReferences.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevel.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelSubmitHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelSubmitHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelSubmitHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyExecutingBroker.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyIdentificationOfASecurity.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyIdentificationOfASecuritySecurityCodeType.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyInstructingParty.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformation.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationDealPrice.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationQuantityOfTheBlockTrade.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationTimeZone.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationTotalTradeAmount.cs" />
+    <Compile Include="CtmMessages\CTM_MessageTradeLevelTradeLevelBodyTradeLevelReferences.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValid.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidResponseHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidResponseHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidResponseHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidValidBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidValidBodyExecutingBroker.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidValidBodyInstructingParty.cs" />
+    <Compile Include="CtmProcessor.cs" />
+    <Compile Include="ICtmProcess.cs" />
+    <Compile Include="InfoRequest.cs" />
+    <Compile Include="MultiTradeDetail.cs" />
+    <Compile Include="MultiTradeLevel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seralizer.cs" />
+    <Compile Include="TradeLevel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CTMReference\OmgeoDCIWeb_API.DLL" />
+    <Content Include="CTMReference\SmartThreadPool.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
