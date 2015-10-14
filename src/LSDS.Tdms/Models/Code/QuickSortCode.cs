@@ -8,9 +8,9 @@ namespace LSDS.Tdms.Models.Code
     {
         public QuickSortItem QuickSortName { get; set; }
 
-        public IEnumerable<QuickSort> GetQuickSortName(string userName, string source)
+        public IEnumerable<QuickSort> GetQuickSortName(string userName, string source, TdmsDbContext context)
         {
-            var newItem = new ReturnQuickFindSort();
+            var newItem = new ReturnQuickFindSort(context);
             return newItem.ReturnQuickSort(userName, source, true);
         }
     }

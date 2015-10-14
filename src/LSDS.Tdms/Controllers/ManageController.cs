@@ -365,7 +365,7 @@ namespace LSDS.Tdms.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
+                return RedirectToAction(nameof(HomeController.TdmsPortal), nameof(HomeController));
             }
         }
 

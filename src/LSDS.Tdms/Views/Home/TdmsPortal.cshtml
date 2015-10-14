@@ -1,5 +1,4 @@
-﻿@using DataAccessLibrary
-
+﻿
 @{
 
     ViewBag.Title = "TdmsPortal";
@@ -8,8 +7,9 @@
 
 @section LayoutHead
 {
-   
-   @Scripts.Render("~/bundles/tdmsPortal") 
+
+    <link rel="stylesheet" href="~/css/views/Layout.css" />
+
 }
 
 <div id="tdmsPortalControls">
@@ -93,3 +93,6 @@
 </div>
 
 
+<script src="~/js/GridsterConfig.js"></script>
+<script src="~/js/TDMSPortal.js"></script>
+<script src="~/js/views/TdmsPortal.js" ></script>

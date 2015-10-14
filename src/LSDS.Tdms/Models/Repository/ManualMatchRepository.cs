@@ -2,11 +2,17 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Models.Code;
+using LSDS.Tdms.Models;
 
 namespace LSDS.Tdms.Repository
 {
-    public class ManualMatchRepository : Repository
+    public class ManualMatchRepository 
     {
+        private TdmsDbContext _context;
+        public ManualMatchRepository(TdmsDbContext context)
+        {
+            _context = context;
+        }
         public ReturnDataToKendo TdmsManualMatchData<T>(string tdTrade, bool chkPortNo, bool chkTraded, bool chkSecId, bool chkBs, bool chkBrokerFin, string confirmRefNo, string userName, string source, string storeProcedure)
         {
             var paramSourceName = new[]
@@ -19,7 +25,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("BrokerFIN", ReturnInt(chkBrokerFin)),
                 new SqlParameter("ConfirmRefNo", confirmRefNo)
             };
-            var returnData = new ReturnDataToKendo();
+            var returnData = new ReturnDataToKendo(_context);
             return returnData.ReturnKendoDataAll<ManualMatchTrade>(userName, source, paramSourceName,
                 storeProcedure);
          
@@ -37,7 +43,7 @@ namespace LSDS.Tdms.Repository
             {
                 return null;
             }
-            var returnData = new ReturnDataToKendo();
+            var returnData = new ReturnDataToKendo(_context);
 
             return returnData.ReturnKendoDataAll<ManualMatchTrade>(userName, source, parameters,
                 storeProcedureName);

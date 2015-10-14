@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Mvc;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class TDMSUserSecurityController : Controller
     {

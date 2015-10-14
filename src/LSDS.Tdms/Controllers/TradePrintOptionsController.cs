@@ -1,13 +1,18 @@
-﻿using LSDS.Tdms.Repository;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Mvc;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class TradePrintOptionsController : Controller
     {
-        Repository _DataAccessLibrary = new Repository();
-      
-       
+    //    Repository _DataAccessLibrary = new Repository();
+        private TdmsDbContext _context;
+        public TradePrintOptionsController(TdmsDbContext context)
+        {
+            _context = context;
+        }    
+
         public IActionResult TradePrintOptions()
         {
             return PartialView();
@@ -15,13 +20,15 @@ namespace Tdms.Controllers
                 
         public JsonResult ReturnComment()
         {
-            return Json(_DataAccessLibrary.ReturnComment());
+            var rep = new Repository.Repository(_context);
+            return Json(rep.ReturnComment());
         }
        
       
         public JsonResult ReturnPortfolioContact()
         {
-            return Json(_DataAccessLibrary.ReturnPortfolioContact());
+            var rep = new Repository.Repository(_context);
+            return Json(rep.ReturnPortfolioContact());
         }
     }
 }

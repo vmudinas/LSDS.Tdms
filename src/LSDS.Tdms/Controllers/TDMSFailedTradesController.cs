@@ -1,22 +1,29 @@
-﻿using LSDS.Tdms.Repository;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Mvc;
 using System.Linq;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class TDMSFailedTradesController : Controller
     {
-        private static readonly Repository _DataAccessLibrary = new Repository();
+        private TdmsDbContext _context;
+        public TDMSFailedTradesController(TdmsDbContext context)
+        {
+            _context = context;
+        }
+        //private static readonly Repository _DataAccessLibrary = new Repository();
         // GET: /TDMSFailedTrades/
-         [AcceptVerbs]
+        [AcceptVerbs]
         public IActionResult TDMSFailedTrades(string idList)
          {
              ViewBag.idList = idList;
 
-                var reasonCodes = _DataAccessLibrary.ReturnFailCodesList();
+                var rep =  new Repository.Repository(_context);
+                var reasonCodes = rep.ReturnFailCodesList();
                 ViewBag.reasonCodes = reasonCodes.ToList();
 
-                var gridData = Json(_DataAccessLibrary.ReturnFailedTradeGrid(idList,User.Identity.Name));
+                var gridData = Json(rep.ReturnFailedTradeGrid(idList,User.Identity.Name));
                  ViewBag.gridData = gridData;
 
             return PartialView();
@@ -25,7 +32,8 @@ namespace Tdms.Controllers
          public IActionResult TDMSFailedTradesSave(string idList, int tdxfailurereason, string resolveddate, string comment)
          {
              ViewBag.idList = idList;
-             return Json(new { success = _DataAccessLibrary.TdmsFailedTradesSave(idList, tdxfailurereason, resolveddate, comment,User.Identity.Name) });
+            var rep = new Repository.Repository(_context);
+            return Json(new { success = rep.TdmsFailedTradesSave(idList, tdxfailurereason, resolveddate, comment,User.Identity.Name) });
          }
         
 	}

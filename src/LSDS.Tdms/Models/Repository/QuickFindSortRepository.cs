@@ -1,3 +1,4 @@
+using LSDS.Tdms.Models;
 using LSDS.Tdms.Models.TdmsDataModel;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -5,10 +6,13 @@ using System.Data.SqlClient;
 
 namespace LSDS.Tdms.Repository
 {
-    public class QuickFindSortRepository : Repository
+    public class QuickFindSortRepository 
     {
-      
-
+        private TdmsDbContext _context;
+        public QuickFindSortRepository(TdmsDbContext context)
+        {
+            _context = context;
+        }
         public IEnumerable<QuickfindMC> ReturnQuickFind(string source, bool system, string userName)
         {
             IEnumerable<QuickfindMC> linqQuery = null;
@@ -19,7 +23,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@SourceName",source),
                 new SqlParameter("@System",system)
             };
-            var repo = new GenericRepository<QuickfindMC>();
+            var repo = new GenericRepository<QuickfindMC>(_context);
             linqQuery = repo.ExecuteStoredProcedure("usp_returnquickfind",parameters);
          
 
@@ -43,7 +47,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@LastUsedToday",
                             lastUsedToday)
             };
-            var repo = new GenericRepository<QuickfindMC>();
+            var repo = new GenericRepository<QuickfindMC>(_context);
             linqQuery = repo.ExecuteStoredProcedure("usp_SaveQuickFind", parameters);
 
 

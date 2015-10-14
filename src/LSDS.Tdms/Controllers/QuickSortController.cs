@@ -1,16 +1,23 @@
-﻿using LSDS.Tdms.Models.Code;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Models.Code;
 using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Mvc;
 using System;
 using System.Collections.Immutable;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class QuickSortController : Controller
     {
-        private static readonly QuickFindSortRepository _DataAccessLibrary = new QuickFindSortRepository();
+   
+        private TdmsDbContext _context;
+
+        public QuickSortController(TdmsDbContext context)
+        {
+            _context = context;
+        }
         // GET: /QuickSort/
-     [AcceptVerbs]
+        [AcceptVerbs]
         public IActionResult QuickSortPage(string source)
         {
             var tableDetail = new GetTableDetail();
@@ -20,7 +27,8 @@ namespace Tdms.Controllers
 
         public IActionResult GetAutoComplete(string columnName, string source)
         {
-            return Json(_DataAccessLibrary.GetAutoComplete(columnName,source, User.Identity.Name));
+           var repo = new Repository.Repository(_context);
+            return Json(repo.GetAutoComplete(columnName,source, User.Identity.Name));
         }
         [HttpPost]
         public IActionResult Save()
@@ -68,7 +76,8 @@ namespace Tdms.Controllers
         [AcceptVerbs]
         public JsonResult DeleteSort(string sortId)
         {
-            _DataAccessLibrary.DeleteSort(sortId);
+            var repo = new Repository.Repository(_context);
+            repo.DeleteSort(sortId);
             // Take sort name and username and remove it
             return Json(new { items = new[] { new { result = "true" } } });
         }
@@ -76,7 +85,7 @@ namespace Tdms.Controllers
         [AcceptVerbs]
         public JsonResult ReturnSortName(string userName, string source)
         {
-            var quickSortName = new ReturnQuickFindSort();
+            var quickSortName = new ReturnQuickFindSort(_context);
             return Json(quickSortName.ReturnQuickSort(userName, source));
         }
 	}

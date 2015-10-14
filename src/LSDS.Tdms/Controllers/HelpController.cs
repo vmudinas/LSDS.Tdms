@@ -2,7 +2,7 @@
 using Microsoft.Dnx.Runtime;
 using System.IO;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class HelpController : Controller
     {

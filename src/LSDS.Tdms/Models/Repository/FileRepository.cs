@@ -3,12 +3,17 @@ using System.Collections;
 using System.Data.SqlClient;
 using System.Linq;
 using LSDS.Tdms.Models.TdmsDataModel;
-
+using LSDS.Tdms.Models;
 
 namespace LSDS.Tdms.Repository
 {
-    public class FileRepository: Repository
+    public class FileRepository
     {
+        private TdmsDbContext _context;
+        public FileRepository(TdmsDbContext context)
+        {
+            _context = context;
+        }
 
         public async void SaveToFileStore(string fileName, IEnumerable fileImage, string userId, string fileType,
             string tdTradeList)
@@ -24,7 +29,7 @@ namespace LSDS.Tdms.Repository
 
             };
 
-            var tdmsDataAccess = new GenericRepository<usp_InsertTradesAttachment_Result>();
+            var tdmsDataAccess = new GenericRepository<usp_InsertTradesAttachment_Result>(_context);
            await  tdmsDataAccess.ExecuteStoredProcedureAsync("usp_InsertTradesAttachment", parameters);
         }
     }

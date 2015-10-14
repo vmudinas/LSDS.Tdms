@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿
+@using LSDS.Tdms.Controllers
+@model LSDS.Tdms.Models.TdmsDataModel.UserLogin
+@{
+    ViewBag.Title = "Login Page";
+    Layout = null;
+}
+
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Login Page</title>
@@ -24,14 +35,6 @@
     </environment>
 </head>
 <body>
-
-    @using Tdms.Controllers
-    @model LSDS.Tdms.Models.TdmsDataModel.UserLogin
-    @{
-        ViewBag.Title = "Login Page";
-        Layout = null;
-    }
-
 
     <div class="container">
         <div class="loginWindow" autocomplete="off">

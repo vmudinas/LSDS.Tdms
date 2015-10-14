@@ -1,20 +1,27 @@
-﻿using LSDS.Tdms.Models.TdmsDataModel;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LSDS.Tdms;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class MenuController : Controller
     {
-        private static readonly Repository _DataAccessLibrary = new Repository();
-
+       // private static readonly Repository _DataAccessLibrary = new Repository();
+        private TdmsDbContext _context;
+        public MenuController(TdmsDbContext context)
+        {
+            _context = context;
+        }
         [AcceptVerbs]
         public async Task<JsonResult> GetMenu()
         {
-            var menu = await _DataAccessLibrary.GetMenu(User.Identity.Name);
+            var repo = new Repository.Repository(_context);
+            var menu = await repo.GetMenu(User.Identity.Name);
 
             var menuList = new List <TdmsMenu>();
             var returnTdmsMenuResults = menu as usp_returnTDMSMenu_Result[] ?? menu.ToArray();

@@ -1,7 +1,7 @@
 ﻿using LSDS.Tdms.Models.KendoModel;
 using Microsoft.AspNet.Mvc;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class TableDetailController : Controller
     {

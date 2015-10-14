@@ -6,15 +6,18 @@ using LSDS.Tdms.Models.KendoModel;
 
 using Microsoft.Dnx.Runtime;
 using LSDS.TradeManagement;
+using LSDS.Tdms.Models;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     [Authorize]
     public class TradeListController : Controller
     {
         private readonly IApplicationEnvironment _appEnvironment;
-        public TradeListController(IApplicationEnvironment appEnvironment)
+        private readonly TdmsDbContext _context;
+        public TradeListController(IApplicationEnvironment appEnvironment, TdmsDbContext context)
         {
+            _context = context;
             _appEnvironment = appEnvironment;
         }
 
@@ -28,7 +31,7 @@ namespace Tdms.Controllers
         public JsonResult TradewViewData(KendoGridItems item)
         {
             var newTradeView = new TradeView();
-            var result =  newTradeView.ReturnTradeViewData(item, User.Identity.Name);      
+            var result =  newTradeView.ReturnTradeViewData(item, User.Identity.Name, _context);      
          
             return Json(result);
         }
@@ -78,21 +81,21 @@ namespace Tdms.Controllers
         [AcceptVerbs]
         public JsonResult TradeSort()
         {
-            var newTradeViewSort = new ReturnQuickFindSort();
+            var newTradeViewSort = new ReturnQuickFindSort(_context);
             return Json(newTradeViewSort.ReturnQuickSort(User.Identity.Name, "TradeBrowser",true));
         }
 
         [AcceptVerbs]
         public JsonResult TradeFind()
         {
-            var newTradeViewFind = new ReturnQuickFindSort();
+            var newTradeViewFind = new ReturnQuickFindSort(_context);
             return Json(newTradeViewFind.ReturnQuickFind(User.Identity.Name, "TradeBrowser", true));
         }
         [HttpPost]
         public IActionResult TradeSortUpdate(int quickSortId)
         {
             //Update QuickSort
-            var sortUpdate = new ReturnQuickFindSort();
+            var sortUpdate = new ReturnQuickFindSort(_context);
             sortUpdate.UpdateSorting(User.Identity.Name, "TradeBrowser",quickSortId);
             return Json(new { success = true });
         }
@@ -101,7 +104,7 @@ namespace Tdms.Controllers
         public IActionResult TradeFindUpdate(int quickFindtId)
         {
             //Update QuickSort table LastUsedToday column 
-            var findUpdate = new ReturnQuickFindSort();
+            var findUpdate = new ReturnQuickFindSort(_context);
             findUpdate.UpdateFind(User.Identity.Name, "TradeBrowser", quickFindtId);
             return Json(new { success = true });
         }

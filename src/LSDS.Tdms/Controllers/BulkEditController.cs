@@ -3,12 +3,17 @@ using Microsoft.AspNet.Mvc;
 using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Repository;
 using System.Data.SqlClient;
+using LSDS.Tdms.Models;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class BulkEditController : Controller
     {
-       
+        private TdmsDbContext _context;
+        public BulkEditController(TdmsDbContext context)
+        {
+            _context = context;
+        }
         // GET: BulkEdit
         public IActionResult BulkEdit()
         {
@@ -16,7 +21,7 @@ namespace Tdms.Controllers
        
         public IActionResult BulkEditType()
         {
-            var rep = new GenericRepository<usp_returnBulkCopyOptions_Result>();
+            var rep = new GenericRepository<usp_returnBulkCopyOptions_Result>(_context);
             var parameters = new SqlParameter[1];
             parameters[0].ParameterName = "@user_name";
             parameters[0].Value = "TradeBrowser";
@@ -25,7 +30,7 @@ namespace Tdms.Controllers
         }
         public async Task<IActionResult> BulkEditCommentExecute(string selectedTrades, string bulkComment, string bulkCommentType)
         {
-            var rep = new Repository();
+            var rep = new Repository.Repository(_context);
             return Json(await rep.BulkEditCommentExecute(selectedTrades,bulkComment,bulkCommentType,User.Identity.Name));
         }
         

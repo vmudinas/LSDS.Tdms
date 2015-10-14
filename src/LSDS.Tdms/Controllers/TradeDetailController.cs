@@ -6,14 +6,19 @@ using LSDS.Tdms.Repository;
 using LSDS.Tdms.Models.TdmsDataModel;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http.Internal;
+using LSDS.Tdms.Models;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     [Authorize]
     public class TradeDetailController : Controller
     {
-
-        private readonly Repository _DataAccessLibrary = new Repository();
+        private TdmsDbContext _context;
+        public TradeDetailController(TdmsDbContext context)
+        {
+            _context = context;
+        }
+        // private readonly Repository _DataAccessLibrary = new Repository();
         [HttpPost]
         public async Task<IActionResult> TradeDetail(FormCollection model)
         {
@@ -68,7 +73,8 @@ namespace Tdms.Controllers
         [HttpPost]
         public  async Task<IActionResult> UpdateDetail(UspReturnTradeDetail tradeDetailVModel)
         {
-            return await _DataAccessLibrary.UpdateDetail(tradeDetailVModel, User.Identity.Name) > 0
+            var rep = new Repository.Repository(_context);
+            return await rep.UpdateDetail(tradeDetailVModel, User.Identity.Name) > 0
                 ? (ActionResult)
                     Content("<script language='javascript' type='text/javascript'>alert('Updated'); window.location='" + Request.Headers["referer"] + "'</script>")
                 : Content("<script language='javascript' type='text/javascript'>alert('Not updated!');</script>");
@@ -77,16 +83,18 @@ namespace Tdms.Controllers
 
         public async Task<JsonResult> GetTradeRepairLog(int tdTradet)
         {
+            var rep = new Repository.Repository(_context);
             var notifyList =
                 await
-                    _DataAccessLibrary.GetTradeRepairLog(User.Identity.Name, tdTradet);
+                    rep.GetTradeRepairLog(User.Identity.Name, tdTradet);
 
             return Json(notifyList.ToList());
         }
         public async Task<JsonResult> GetNotifyList( int tdTradet)
         {
-                    var notifyList = await
-                    _DataAccessLibrary.GetTradeRepairLogN(User.Identity.Name, tdTradet);
+            var rep = new Repository.Repository(_context);
+            var notifyList = await
+                    rep.GetTradeRepairLogN(User.Identity.Name, tdTradet);
            
             return  Json(notifyList.ToList());
         }
@@ -98,6 +106,8 @@ namespace Tdms.Controllers
             var settlementTypeListRepo = new GenericRepository<UspReturnSettlementTypeList>();
             var lookupNotifyStatusRepo = new GenericRepository<UspLookupNotifyStatus>();
             var tradeDetailRepo = new GenericRepository<UspLookupMatchStatus>();
+            var rep = new Repository.Repository(_context);
+
 
             var  tradeDetailModel = new TradeDetailViewModel
             {
@@ -106,13 +116,13 @@ namespace Tdms.Controllers
                 PageCount = PageCount,
                 TradeDetail =
                     await
-                    _DataAccessLibrary.ReturnTradeDetail(User.Identity.Name, tdTrade),
+                    rep.ReturnTradeDetail(User.Identity.Name, tdTrade),
                 MatchedTradesConfirms =
-                    await _DataAccessLibrary.ReturnMatchedTradesConfirms(User.Identity.Name, tdTrade),
+                    await rep.ReturnMatchedTradesConfirms(User.Identity.Name, tdTrade),
                 SecurityTypeList =
-                   await _DataAccessLibrary.ReturnSecurityTypeList(tdTrade, 1),
+                   await rep.ReturnSecurityTypeList(tdTrade, 1),
                 IsitcIssueType =
-                     await _DataAccessLibrary.ReturnSecurityTypeList(tdTrade),              
+                     await rep.ReturnSecurityTypeList(tdTrade),              
                 SettlementLocList =
                     await
                         settlementLocListRepo.ExecuteStoredProcedureAsync(

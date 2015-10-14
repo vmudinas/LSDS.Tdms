@@ -1,4 +1,5 @@
-﻿using LSDS.Tdms.Models.Code;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Models.Code;
 using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Http.Internal;
@@ -10,12 +11,16 @@ using System.Diagnostics;
 using System.Linq;
 
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class TDMSTradeSearchController : Controller
     {
-
-        private static readonly QuickFindSortRepository _DataAccessLibrary = new QuickFindSortRepository();
+        private TdmsDbContext _context;
+        public TDMSTradeSearchController(TdmsDbContext context)
+        {
+            _context = context;
+        }
+        // private static readonly QuickFindSortRepository _DataAccessLibrary = new QuickFindSortRepository();
         // GET: TDMSTradeSearch
         public IActionResult TDMSTradeSearch()
         {
@@ -777,7 +782,8 @@ namespace Tdms.Controllers
 
         private IEnumerable<QuickfindMC> SaveQuickFind(string source, string description, bool lastUsed, bool lastUsedToday)
         {
-            return _DataAccessLibrary.SaveQuickFind(User.Identity.Name, source, description,
+            var rep = new QuickFindSortRepository(_context);
+            return rep.SaveQuickFind(User.Identity.Name, source, description,
                 lastUsed, lastUsedToday);
 
         }

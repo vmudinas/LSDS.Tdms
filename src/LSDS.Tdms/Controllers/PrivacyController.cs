@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class PrivacyController : Controller
     {

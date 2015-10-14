@@ -18,8 +18,13 @@ namespace LSDS.Tdms.Repository
 {
     public partial class  Repository
     {
-       
-     
+        private TdmsDbContext _context;
+
+        public Repository(TdmsDbContext context)
+        {
+            _context = context;
+        }
+
         public IQueryable  GetAutoComplete(string columnName, string source, string userName)
         {
             var parameters = new[]
@@ -27,7 +32,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName)
                 };
             var columnList = "new (" + columnName + ")";
-            var repo = new GenericRepository<TradeListModel>();
+            var repo = new GenericRepository<TradeListModel>(_context);
 
             return  repo.ExecuteStoredProcedure("usp_returnTradeList_Query", parameters).Select(columnList).FirstOrDefault();
         }
@@ -38,7 +43,7 @@ namespace LSDS.Tdms.Repository
                {
                 new SqlParameter("@QuickSortID", sortId)
                 };
-            var repo = new GenericRepository<QuickfindMC>();
+            var repo = new GenericRepository<QuickfindMC>(_context);
             await repo.ExecueUpdateAsync("usp_deleteQuickSort", parameters);
            
         }
@@ -50,7 +55,7 @@ namespace LSDS.Tdms.Repository
                 {
                 new SqlParameter("@user_name", userName)
                 };
-            var repo = new GenericRepository<usp_returnTDMSMenu_Result>();
+            var repo = new GenericRepository<usp_returnTDMSMenu_Result>(_context);
             return await repo.ExecuteStoredProcedureAsync("usp_returnTDMSMenu", parameters);
         }
 
@@ -61,7 +66,7 @@ namespace LSDS.Tdms.Repository
             {
                 new SqlParameter("@SourceName", "TradeBrowser")
             };
-            var repo = new GenericRepository<usp_returnBulkCopyOptions_Result>();
+            var repo = new GenericRepository<usp_returnBulkCopyOptions_Result>(_context);
             return await repo.ExecuteStoredProcedureAsync("usp_returnBulkCopyOptions", parameters);
         }
         public async Task<IEnumerable<usp_returnBulkCopyOptions_Result>> BulkEditCommentExecute(string selectedTrades, string bulkComment, string bulkCommentType, string userName)
@@ -73,7 +78,7 @@ namespace LSDS.Tdms.Repository
                    new SqlParameter("@bulkData", bulkComment),
                 new SqlParameter("@bulkColumn", bulkCommentType)
             };
-            var repo = new GenericRepository<usp_returnBulkCopyOptions_Result>();
+            var repo = new GenericRepository<usp_returnBulkCopyOptions_Result>(_context);
             return await repo.ExecuteStoredProcedureAsync("usp_returnBulkCopyOptions", parameters);
 
         }
@@ -81,20 +86,20 @@ namespace LSDS.Tdms.Repository
 
         public IEnumerable ReturnComment()
         {
-            var repo = new GenericRepository<usp_ReturnFailCodes_Result>();
+            var repo = new GenericRepository<usp_ReturnFailCodes_Result>(_context);
             return repo.ExecuteStoredProcedure("usp_ReturnProblemCodes");
         }
 
 
         public IEnumerable ReturnPortfolioContact()
         {
-            var repo = new GenericRepository<usp_ReturnFailCodes_Result>();
+            var repo = new GenericRepository<usp_ReturnFailCodes_Result>(_context);
             return repo.ExecuteStoredProcedure("usp_ReturnContactTypeList");
         }
 
         public IList<usp_ReturnFailCodes_Result> ReturnFailCodesList()
         {
-                var repo = new GenericRepository<usp_ReturnFailCodes_Result>();
+                var repo = new GenericRepository<usp_ReturnFailCodes_Result>(_context);
                 return repo.ExecuteStoredProcedure("usp_ReturnFailCodesList").ToList();
 
         }
@@ -107,7 +112,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName)
             };
 
-            var returnData = new ReturnDataToKendo();
+            var returnData = new ReturnDataToKendo(_context);
             return returnData.ReturnKendoData<usp_ReturnFailedTrade_Result>(userName, "FailEdit", parameters,
                     "usp_ReturnFailedTrades");
 
@@ -125,7 +130,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@resolveddate", resolveddate),
                 new SqlParameter("@comment", comment)
             };
-            var repo = new GenericRepository<EmptyUpdateModel>();
+            var repo = new GenericRepository<EmptyUpdateModel>(_context);
             count =  repo.ExecueUpdate("usp_UpdateFailedTrades", parameters);          
 
             return count;
@@ -140,7 +145,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName),
                 new SqlParameter("@TimePeriod", intTimePeriod)
             };
-            var repo = new GenericRepository<usp_ReturnBrokerPerformance_Result>();
+            var repo = new GenericRepository<usp_ReturnBrokerPerformance_Result>(_context);
             return  await repo.ExecuteStoredProcedureAsync("usp_ReturnBrokerPerformance", parameters);
         }
 
@@ -151,7 +156,7 @@ namespace LSDS.Tdms.Repository
             {
                 new SqlParameter("@user_name", userName)
             };
-            var repo = new GenericRepository<usp_ReturnWidgetLocation_Result>();
+            var repo = new GenericRepository<usp_ReturnWidgetLocation_Result>(_context);
             return  await repo.ExecuteStoredProcedureAsync("usp_ReturnWidgetLocation", parameters);
         }
         public async Task<IEnumerable<usp_ReturnPackageMaintenanceListHome>> NotificationJobStatus(string userId)
@@ -161,7 +166,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@userId", userId),
                 new SqlParameter("@NotificationOnly", true)
             };
-            var repo = new GenericRepository<usp_ReturnPackageMaintenanceListHome>();
+            var repo = new GenericRepository<usp_ReturnPackageMaintenanceListHome>(_context);
             var notificationStatus = await repo.ExecuteStoredProcedureAsync("usp_ReturnPackageMaintenanceListHome", parameters);
 
             return notificationStatus;
@@ -175,7 +180,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userId)
             };
 
-            var repo = new GenericRepository<usp_ReturnUserSavedReports_Result>();
+            var repo = new GenericRepository<usp_ReturnUserSavedReports_Result>(_context);
             return await repo.ExecuteStoredProcedureAsync("usp_ReturnUserSavedReports", parameters);
           
         }
@@ -187,7 +192,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userId),
                 new SqlParameter("@days", days)
             };
-            var repo = new GenericRepository<usp_ReturnImportSummary_Result>();
+            var repo = new GenericRepository<usp_ReturnImportSummary_Result>(_context);
             return  await repo.ExecuteStoredProcedureAsync("usp_ReturnImportSummary", parameters);
 
         }
@@ -198,7 +203,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName),
                 new SqlParameter("@tdTrade", tdTrade)
             };
-            var repo = new GenericRepository<UspReturnTradeRepairLog>();
+            var repo = new GenericRepository<UspReturnTradeRepairLog>(_context);
             return await repo.ExecuteStoredProcedureAsync(
                         "usp_ReturnTradeRepairLog", param);
 
@@ -210,7 +215,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName),
                 new SqlParameter("@tdTrade", tdTrade)
             };
-            var repo = new GenericRepository<UspReturnTradeNotifyList>();
+            var repo = new GenericRepository<UspReturnTradeNotifyList>(_context);
             return await repo.ExecuteStoredProcedureAsync(
                         "usp_ReturnTradeRepairLog", param);
 
@@ -223,7 +228,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName),
                 new SqlParameter("@tdTrade", tdTrade)
             };
-            var repo = new GenericRepository<UspReturnTradeNotifyList>();
+            var repo = new GenericRepository<UspReturnTradeNotifyList>(_context);
             return await repo.ExecuteStoredProcedureAsync(
                         "usp_ReturnTradeNotifyList", param);
 
@@ -235,7 +240,7 @@ namespace LSDS.Tdms.Repository
             {
                 new SqlParameter("@tdTrade", tdTrade)
             };
-            var repo = new GenericRepository<UspReturnIsitcIssueType>();
+            var repo = new GenericRepository<UspReturnIsitcIssueType>(_context);
             return await repo.ExecuteStoredProcedureAsync(
                    "usp_ReturnSecurityTypeList", param);
 
@@ -247,7 +252,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@tdTrade", tdTrade),
                 new SqlParameter("@ISITC", isitc)
             };
-            var repo = new GenericRepository<UspReturnSecurityTypeList>();
+            var repo = new GenericRepository<UspReturnSecurityTypeList>(_context);
             return await repo.ExecuteStoredProcedureAsync("usp_ReturnSecurityTypeList", param);
             
         }
@@ -260,7 +265,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName) ,
                 new SqlParameter("@tdTrade", tdTrade)
             };
-            var repo = new GenericRepository<UspReturnTradeDetail>();
+            var repo = new GenericRepository<UspReturnTradeDetail>(_context);
             return await repo.ExecuteStoredProcedureAsync(
                         "usp_ReturnTradeDetail", tradeDetailParam);
 
@@ -274,7 +279,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@user_name", userName) ,
                 new SqlParameter("@tdTrade", tdTrade)
             };
-            var repo = new GenericRepository<UspReturnMatchedTradesConfirms>();
+            var repo = new GenericRepository<UspReturnMatchedTradesConfirms>(_context);
 
             return await repo.ExecuteStoredProcedureAsync(
                         "usp_ReturnMatchedTradesConfirms", tradeDetailParam);
@@ -285,7 +290,7 @@ namespace LSDS.Tdms.Repository
         public IList<tdGridsterModel> GetGridsterExt(string userName)
         {
             var newGridster = new List<tdGridsterModel>();
-            var repo = new GenericRepository<tdGridsterModel>();
+            var repo = new GenericRepository<tdGridsterModel>(_context);
             return repo.GetAll().Where(c => c.user_name == userName).ToList();
         }      
 
@@ -296,7 +301,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@AllGroups", false)
             };
 
-            var tdmsDataAccess = new GenericRepository<usp_ReturnSystemStatus>();
+            var tdmsDataAccess = new GenericRepository<usp_ReturnSystemStatus>(_context);
             return await tdmsDataAccess.ExecuteStoredProcedureAsync("usp_ReturnSystemStatus", parameters);
 
         }
@@ -326,7 +331,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@timestamp", tradeDetailVModel?.timestamp),
                 new SqlParameter("@user_name", userName)
             };
-            var repo = new GenericRepository<UspReturnTradeDetail>();
+            var repo = new GenericRepository<UspReturnTradeDetail>(_context);
             return  await repo.ExecueUpdateAsync("usp_updateTradeDetail", parameters);
         }
 
@@ -341,7 +346,7 @@ namespace LSDS.Tdms.Repository
 
             };
 
-            var tdmsDataAccess = new GenericRepository<usp_returnquickfindquery_Result>();
+            var tdmsDataAccess = new GenericRepository<usp_returnquickfindquery_Result>(_context);
             var quickFindColumnName = await tdmsDataAccess.ExecuteStoredProcedureAsync("usp_returnquickfind", parameters);
 
             var list = new List<string>();
@@ -351,14 +356,7 @@ namespace LSDS.Tdms.Repository
 
               return list;
 
-        }
-
-          
-
-         
-         
-           
-
+        }     
        
     }
     

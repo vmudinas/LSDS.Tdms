@@ -1,16 +1,18 @@
-﻿using LSDS.Tdms.Models.Code;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Models.Code;
 using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class QuickFindController : Controller
     {
-        private static readonly QuickFindSortRepository DataAccessLibrary = new QuickFindSortRepository();
-        private static readonly Repository Repository = new Repository();
+        //  private static readonly QuickFindSortRepository DataAccessLibrary = new QuickFindSortRepository();
+        //   private static readonly Repository Repository = new Repository();
+        private TdmsDbContext _context;
         // GET: /QuickFind/
         [AcceptVerbs]
         public IActionResult QuickFindPage(string source)
@@ -22,13 +24,13 @@ namespace Tdms.Controllers
 
         public IActionResult GetAutoComplete(string columnName, string source)
         {
-
-             return Json(Repository.GetAutoComplete(columnName, source, User.Identity.Name));
+            var repo = new Repository.Repository(_context);
+            return Json(repo.GetAutoComplete(columnName, source, User.Identity.Name));
         }
         private IEnumerable<QuickfindMC> ReturnQuickFind(string source, bool system)
         {
-
-            return DataAccessLibrary.ReturnQuickFind(source,system,User.Identity.Name);
+            var repo = new QuickFindSortRepository(_context);
+            return repo.ReturnQuickFind(source,system,User.Identity.Name);
         }
         [AcceptVerbs]
         public bool GetCheckBox(string itemid)

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class DisplayBlogController : Controller
     {

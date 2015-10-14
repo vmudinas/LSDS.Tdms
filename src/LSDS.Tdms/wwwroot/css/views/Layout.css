@@ -8,7 +8,7 @@
         width: 100px;
         height: 34px;
         overflow: hidden;
-        background: url(Images/ArrowDownWhite.GIF) no-repeat right !important;
+        background: url(~/images/ArrowDownWhite.GIF) no-repeat right !important;
         border: 1px solid white;
         color: white !important;
         position: absolute !important;
@@ -22,7 +22,7 @@
 
     .layoutheaderTitle {
         font-family: Trebuchet MS, Verdana, Helvetica, Arial, sans-serif;
-        background-image: url(Images/Gradient.jpg) !important;
+        background-image: url(~/images/Gradient.jpg) !important;
         color: #FFF;
         font-size: 13pt;
         font-weight: bold;
@@ -36,7 +36,7 @@
     .clsToolbar {
         font-family: Trebuchet MS, Verdana, Helvetica, Arial, sans-serif;
         /*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#004488,endColorStr=#83accf);	*/
-        background-image: url(~/Content/Images/Gradient.jpg);
+        background-image: url(~/images/Gradient.jpg);
         color: #FFFFFF;
         font-size: 13pt;
         font-weight: bold

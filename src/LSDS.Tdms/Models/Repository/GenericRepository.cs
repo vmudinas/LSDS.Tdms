@@ -44,6 +44,11 @@ namespace LSDS.Tdms.Repository
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
+        public int  Edit(TEntity entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            return _dbContext.SaveChanges();
+        }
 
         public async Task InsertAsync(TEntity entity)
         {

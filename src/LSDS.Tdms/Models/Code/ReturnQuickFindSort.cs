@@ -8,7 +8,11 @@ namespace LSDS.Tdms.Models.Code
 {
     public class ReturnQuickFindSort
     {
-       
+        private TdmsDbContext _context;
+        public ReturnQuickFindSort(TdmsDbContext context)
+        {
+            _context = context;
+        }
         public IEnumerable<QuickfindMC> ReturnQuickFind(string userName, string source, bool system)
         {
           
@@ -32,7 +36,7 @@ namespace LSDS.Tdms.Models.Code
                     Value = system
                 }
             };
-            var repo = new  GenericRepository<QuickfindMC>();
+            var repo = new  GenericRepository<QuickfindMC>(_context);
             var result = repo.ExecuteStoredProcedure("usp_returnquickfind",
                 parameters);
 
@@ -65,7 +69,7 @@ namespace LSDS.Tdms.Models.Code
                         Value = quickFindId
                     }
                 };
-            var repo = new GenericRepository<QuickFind_Query>();
+            var repo = new GenericRepository<QuickFind_Query>(_context);
             var resultQuery = repo.ExecuteStoredProcedure("usp_returnquickfindquery",
                 parameters);
             result = resultQuery.Aggregate(result,
@@ -99,7 +103,7 @@ namespace LSDS.Tdms.Models.Code
                     }
                 };
 
-            var repo = new GenericRepository<QuickSort>();
+            var repo = new GenericRepository<QuickSort>(_context);
             result = repo.ExecuteStoredProcedure("usp_returnquicksort", parameters).ToList();
 
             return result;
@@ -107,7 +111,7 @@ namespace LSDS.Tdms.Models.Code
 
         public string ReturnQuickSort(string userName, string source)
         {
-            var returnQFindSort = new ReturnQuickFindSort();
+            var returnQFindSort = new ReturnQuickFindSort(_context);
 
 
             var resultLastSort = from sort in returnQFindSort.ReturnQuickSort(userName, source, true)
@@ -138,7 +142,7 @@ namespace LSDS.Tdms.Models.Code
 
         public string ReturnQueryString(string userName, string source)
         {
-            var returnQFindSort = new ReturnQuickFindSort();
+            var returnQFindSort = new ReturnQuickFindSort(_context);
             var qiuckFind = returnQFindSort.ReturnQuickFind(userName, source, true);
             var quickfindMcs = qiuckFind as QuickfindMC[] ?? qiuckFind.ToArray();
             var query = (from find in quickfindMcs
@@ -160,50 +164,54 @@ namespace LSDS.Tdms.Models.Code
             return returnQFindSort.ReturnQuickFindQueryString(userName, source, true, quickFindId);
         }
 
-        public async void RemoveLastUsedTodayFindUserName(string userName)
+        public void RemoveLastUsedTodayFindUserName(string userName)
         {
             //1. Remove LastUsedToday From the User Sort Table
 
-            var rep = new GenericRepository<QuickfindMC>();
+            var rep = new GenericRepository<QuickfindMC>(_context);
             var query = rep.GetAll().Where(s => s.User_name == userName).ToList();
         
             foreach (var item in query)
             {
                 item.LastUsedToday = 0;
                 item.LastUsed = false;
-                await rep.EditAsync(item);
-            }         
-
+                _context.UpdateRange(item);
+            }
+          //  await _context.UpdateRange(item);
 
         }
 
-        public async void RemoveLastUsedTodayFindAll(string userName, string source)
+        public void RemoveLastUsedTodayFindAll(string userName, string source)
         {
             //1. Remove LastUsedToday From the User Sort Table
-            var rep = new GenericRepository<QuickfindMC>();
+            var rep = new GenericRepository<QuickfindMC>(_context);
 
             var query = rep.GetAll().Where(s => s.SourceName == source && (s.User_name == userName || s.User_name == null)).ToList();
 
             foreach (var item in query)
             {
                 item.LastUsedToday = 0;
-                item.LastUsed = false;
-                await rep.EditAsync(item);
+                item.LastUsed = false;             
+               
             }
-            
+
+            _context.QuickfindMC.UpdateRange(query);
+            _context.SaveChangesAsync();
+
         }
 
         public async void RemoveLastSearchFindQuery(string userName, string source)
         {
             //1. Remove LastUsedToday From the User Sort Table
 
-            var rep = new GenericRepository<QuickfindMC>();
+            var rep = new GenericRepository<QuickfindMC>(_context);
             var query = rep.GetAll().Where(s => s.QuickfindID == GetQuickFindId(userName, source, "Last Search")).ToList();
-
-            foreach (var item in query)
-            {           
-                await rep.DeleteAsync(item);
-            }        
+            query.ForEach(a => _context.Remove(a));
+            await _context.SaveChangesAsync();
+            //foreach (var item in query)
+            //{           
+            //    await rep.DeleteAsync(item);
+            //}        
           
         }
 
@@ -211,41 +219,35 @@ namespace LSDS.Tdms.Models.Code
         {
             //1. Remove LastUsedToday From the User Sort Table
 
-            var rep = new GenericRepository<QuickfindMC>();
+            var rep = new GenericRepository<QuickfindMC>(_context);
             var query = rep.GetAll().Where(s => s.SourceName == source && (s.User_name == userName || s.User_name == null)).ToList();
-
-            foreach (var item in query)
-            {
-                item.LastUsedToday = 0;            
-                await rep.EditAsync(item);
-            }
+            query.ForEach(a => a.LastUsedToday = 0);
+            await _context.SaveChangesAsync();
+           
         }
 
         public async void RemoveLastUsedTodaySortingForUsername(string userName)
         {
             //1. Remove LastUsedToday From the User Sort Table
-            var rep = new GenericRepository<QuickSort>();
+            var rep = new GenericRepository<QuickSort>(_context);
 
-            var query = rep.GetAll().Where(s => s.User_name == userName);
-                foreach (var value in query)
-                {
-                    value.LastUsedToday = 0;
-                    await rep.EditAsync(value);
-                }
-
-           
+            var query = rep.GetAll().Where(s => s.User_name == userName).ToList();
+            query.ForEach(a => a.LastUsedToday = 0);
+            await _context.SaveChangesAsync();
+                //foreach (var value in query)
+                //{
+                //    value.LastUsedToday = 0;
+                //    await rep.EditAsync(value);
+                //}           
         }
         public async void SetLastUsedTodayFind(string userName, string source, string description)
         {
             //1. Remove LastUsedToday From the User Sort Table
-            var rep = new GenericRepository<QuickfindMC>();
-            var query = rep.GetAll().Where(s => s.User_name == userName && s.SourceName == source && s.Description == description);
-                foreach (var value in query)
-                {
-                    value.LastUsedToday = 1;
-                    await rep.EditAsync(value);
-                }
-            
+            var rep = new GenericRepository<QuickfindMC>(_context);
+            var query = rep.GetAll().Where(s => s.User_name == userName && s.SourceName == source && s.Description == description).ToList();
+
+            query.ForEach(a => a.LastUsedToday = 1);
+            await _context.SaveChangesAsync();       
         }
 
         public async void UpdateSorting(string userName, string source, int quickSortId)
@@ -253,7 +255,7 @@ namespace LSDS.Tdms.Models.Code
             RemoveLastUsedTodaySortingAll(userName, source);
             var quickSortQuery = "";
             //1. Get QuickSort  LastUsedToday
-            var rep = new GenericRepository<QuickSort>();
+            var rep = new GenericRepository<QuickSort>(_context);
             quickSortQuery =
                     rep.GetAll().Where(s => s.QuickSortID == quickSortId).Select(s => s.QuickSort_Query).First();
          
@@ -296,7 +298,7 @@ namespace LSDS.Tdms.Models.Code
             RemoveLastUsedTodayFindAll(userName, source);
             RemoveLastSearchFindQuery(userName, source);
             //1. Update QuickFind  LastUsedToday for Last Search
-            var rep = new GenericRepository<QuickfindMC>();
+            var rep = new GenericRepository<QuickfindMC>(_context);
 
             var parameters = new[]
             {
@@ -359,10 +361,10 @@ namespace LSDS.Tdms.Models.Code
 
         }
 
-        private static void UpdateFindQuery(int quickFindId, int quickFindSeach)
+        private void UpdateFindQuery(int quickFindId, int quickFindSeach)
         {
             //  var quickFindList = new IEnumerable<QuickFind_Query>();
-            var rep = new GenericRepository<QuickFind_Query>();
+            var rep = new GenericRepository<QuickFind_Query>(_context);
             var quickFindQ = rep.GetAll().Where(s => s.QuickFindID == quickFindId);
                 if (quickFindQ.Any())
                 {
@@ -386,11 +388,11 @@ namespace LSDS.Tdms.Models.Code
            
         }
 
-        private static int GetQuickFindId(string userName, string source, string descriptionParameter)
+        private int GetQuickFindId(string userName, string source, string descriptionParameter)
         {
             var quickFindId = -1;
             //1. Get QuickSort  LastUsedToday
-            var rep = new GenericRepository<QuickfindMC>();
+            var rep = new GenericRepository<QuickfindMC>(_context);
             quickFindId =
                     rep.GetAll().Where(
                         s => s.SourceName == source && s.User_name == userName && s.Description == descriptionParameter)
@@ -400,9 +402,9 @@ namespace LSDS.Tdms.Models.Code
             return quickFindId;
         }
 
-        private async static void InsertQuickFindQuery(QuickFind_Query queryObject)
+        private async void InsertQuickFindQuery(QuickFind_Query queryObject)
         {
-            var rep = new GenericRepository<QuickFind_Query>();
+            var rep = new GenericRepository<QuickFind_Query>(_context);
             await rep.InsertAsync(queryObject);
            
         }
@@ -410,7 +412,7 @@ namespace LSDS.Tdms.Models.Code
         public async void InsertQuickSort(QuickSort quickSortObject)
         {
             
-                var rep = new GenericRepository<QuickSort>();
+                var rep = new GenericRepository<QuickSort>(_context);
                 if (quickSortObject.LastUsedToday == 1)
                 {
                     var some = rep.GetAll().Where(x => x.User_name.Contains(quickSortObject.User_name)).ToList();

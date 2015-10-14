@@ -14,7 +14,12 @@ namespace LSDS.Tdms.Models
         public DbSet<usp_returnUserbyUserName_Result> UserByUserName { get; set; }
         public DbSet<usp_LoginReport_Result> LoginReport { get; set; }
         public DbSet<object> LoginAttemt { get; set; }
-
+        public DbSet<QuickfindMC> QuickfindMC { get; set; }
+        public DbSet<Quickfind_Default> Quickfind_Default { get; set; }
+        public DbSet<QuickFind_Query> QuickFind_Query { get; set; }
+        public DbSet<QuickSort> QuickSort { get; set; }
+        public DbSet<QuickSortItem> QuickSortItem { get; set; }
+      //  public DbSet<T> Generic { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
     {

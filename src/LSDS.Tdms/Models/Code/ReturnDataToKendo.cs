@@ -10,6 +10,11 @@ namespace LSDS.Tdms.Models.Code
 {
     public class ReturnDataToKendo
     {
+        private TdmsDbContext _context;
+        public ReturnDataToKendo(TdmsDbContext context)
+        {
+            _context = context;
+        }
         [XmlIgnore]
         public int Total { get; set; }
 
@@ -18,7 +23,7 @@ namespace LSDS.Tdms.Models.Code
         public ReturnDataToKendo ReturnKendoDataAsync<TradeListModel>(KendoGridItems item, string userName, string source,
             SqlParameter[] procedureParametersList, string storeProcedureName)
         {
-            var newTradeView = new ReturnDataToKendo();
+            var newTradeView = new ReturnDataToKendo(_context);
             var getTableDetail = new GetTableDetail();
             var tableDetail = getTableDetail.ReturnTableDetailData(source, userName);
             var columnList = "new (" + getTableDetail.ReturnColumnListCommaSeparated(tableDetail.ToList()) + ")";
@@ -38,7 +43,7 @@ namespace LSDS.Tdms.Models.Code
         public  ReturnDataToKendo ReturnKendoData<T>(KendoGridItems item, string userName, string source,
            SqlParameter[] procedureParametersList, string storeProcedureName)
         {
-            var newTradeView = new ReturnDataToKendo();
+            var newTradeView = new ReturnDataToKendo(_context);
             var getTableDetail = new GetTableDetail();
             var tableDetail = getTableDetail.ReturnTableDetailData(source, userName);
             var columnList = "new (" + getTableDetail.ReturnColumnListCommaSeparated(tableDetail.ToList()) + ")";
@@ -58,7 +63,7 @@ namespace LSDS.Tdms.Models.Code
         public ReturnDataToKendo ReturnKendoData<T>(string userName, string source,
             SqlParameter[] procedureParametersList, string storeProcedureName)
         {
-            var newTradeView = new ReturnDataToKendo();
+            var newTradeView = new ReturnDataToKendo(_context);
             var getTableDetail = new GetTableDetail();
             var tableDetail = getTableDetail.ReturnTableDetailData(source, userName);
 
@@ -84,7 +89,7 @@ namespace LSDS.Tdms.Models.Code
             {
                 return null;
             }
-            var newTradeView = new ReturnDataToKendo();
+            var newTradeView = new ReturnDataToKendo(_context);
             var getTableDetail = new GetTableDetail();
             //var tableDetail = getTableDetail.ReturnTableDetailData(source, userName);
 

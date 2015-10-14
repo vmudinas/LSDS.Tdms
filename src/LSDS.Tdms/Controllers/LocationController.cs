@@ -1,24 +1,32 @@
-﻿using LSDS.Tdms.Repository;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class LocationController : Controller
     {
-        private static readonly LocationRepository DataAccessLibrary = new LocationRepository();
+        //private static readonly LocationRepository DataAccessLibrary = new LocationRepository();
+        private TdmsDbContext _context;
+        public LocationController(TdmsDbContext context)
+        {
+            _context = context;
+        }
         [AcceptVerbs]
         public async Task<JsonResult> GetLocationList()
         {
-            return Json(await DataAccessLibrary.GetLocationList(User.Identity.Name));
+           var repo = new LocationRepository(_context);
+            return Json(await repo.GetLocationList(User.Identity.Name));
         }
   
 
          [AcceptVerbs]
         public JsonResult UpdateLocationList(string tdUserGroupId)
         {
-            return Json(new { result = DataAccessLibrary.UpdageLocation(User.Identity.Name,tdUserGroupId) });
+            var repo = new LocationRepository(_context);
+            return Json(new { result = repo.UpdageLocation(User.Identity.Name,tdUserGroupId) });
         }
 	}
 }

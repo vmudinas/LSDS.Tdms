@@ -9,11 +9,11 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public class TradeView
     {
-        public ReturnDataToKendo ReturnTradeViewDataAsync(KendoGridItems item, string userName)
+        public ReturnDataToKendo ReturnTradeViewDataAsync(KendoGridItems item, string userName,TdmsDbContext context)
         {
             const string source = "TradeBrowser";
             const string storedProcedureName = "usp_returnTradeList_Query";
-            var returnQuickFind = new ReturnQuickFindSort();
+            var returnQuickFind = new ReturnQuickFindSort(context);
             // Create required Parameter for a query
             var parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("user_name", userName);
@@ -29,16 +29,16 @@ namespace LSDS.Tdms.Models.TdmsDataModel
             parameters[1] = new SqlParameter("QueryString", SetFillter(item, queryStringParameter));
 
 
-            var returnData = new ReturnDataToKendo();
+            var returnData = new ReturnDataToKendo(context);
             // Return query parameter together with Kendo Grid default parameters
             // Sorting and Filtering to be added
             return  returnData.ReturnKendoDataAsync<TradeListModel>(item, userName, source, parameters, storedProcedureName);
         }
-        public  ReturnDataToKendo ReturnTradeViewData(KendoGridItems item, string userName)
+        public  ReturnDataToKendo ReturnTradeViewData(KendoGridItems item, string userName, TdmsDbContext context)
         {
             const string source = "TradeBrowser";
             const string storedProcedureName = "usp_returnTradeList_Query";
-            var returnQuickFind = new ReturnQuickFindSort();
+            var returnQuickFind = new ReturnQuickFindSort(context);
             // Create required Parameter for a query
             var parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("user_name", userName);
@@ -55,17 +55,17 @@ namespace LSDS.Tdms.Models.TdmsDataModel
             parameters[1] = new SqlParameter("QueryString", SetFillter(item, queryStringParameter));
 
 
-            var returnData = new ReturnDataToKendo();
+            var returnData = new ReturnDataToKendo(context);
             // Return query parameter together with Kendo Grid default parameters
             // Sorting and Filtering to be added
             return  returnData.ReturnKendoData<TradeListModel>(item, userName, source, parameters, storedProcedureName);
         }
 
-        public ReturnDataToKendo ReturnTradeViewDataAll(string userName)
+        public ReturnDataToKendo ReturnTradeViewDataAll(string userName, TdmsDbContext context)
         {
             const string source = "TradeBrowser";
             const string storedProcedureName = "usp_returnTradeList_Query";
-            var returnQuickFind = new ReturnQuickFindSort();
+            var returnQuickFind = new ReturnQuickFindSort(context);
             // Create required Parameter for a query
             var parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("user_name", userName);
@@ -80,7 +80,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
             parameters[1] = new SqlParameter("QueryString", queryStringParameter);
 
 
-            var returnData = new ReturnDataToKendo();
+            var returnData = new ReturnDataToKendo(context);
             // Return query parameter together with Kendo Grid default parameters
             // Sorting and Filtering to be added
             return returnData.ReturnKendoDataAll<TradeListModel>(userName, source, parameters, storedProcedureName);

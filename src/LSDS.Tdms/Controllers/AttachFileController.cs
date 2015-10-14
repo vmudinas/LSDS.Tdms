@@ -1,11 +1,18 @@
 ﻿using Microsoft.AspNet.Mvc;
 using LSDS.Tdms.Repository;
 using System.Collections;
+using LSDS.Tdms.Models;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class AttachFileController : Controller
     {
+        private TdmsDbContext _context;
+
+        public AttachFileController(TdmsDbContext context)
+        {
+            _context = context;
+        }
         [HttpPost]
         public IActionResult AttachmentUpload()
         {
@@ -26,7 +33,7 @@ namespace Tdms.Controllers
             var blSuccess = false;
             try
             {
-                FileRepository repo = new FileRepository();
+                FileRepository repo = new FileRepository(_context);
                 repo.SaveToFileStore(fileName, fileImage, userId, fileType, tdTradeList);
 
                 blSuccess = true;

@@ -11,17 +11,31 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Framework.DependencyInjection;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
   
     public class LoginController : Controller
     {
         private TdmsDbContext _context;
-        public LoginController(TdmsDbContext context )
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _applicationDbContext;
+        private static bool _databaseChecked;
+
+        public LoginController(TdmsDbContext context, UserManager<ApplicationUser> userManager,
+         SignInManager<ApplicationUser> signInManager,
+         ApplicationDbContext applicationDbContext)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _applicationDbContext = applicationDbContext;
         }
+      
 
         public  IActionResult  Login()
         {
@@ -36,26 +50,25 @@ namespace Tdms.Controllers
 
         [HttpPost]
         public IActionResult Login(UserLogin user)
-        {
-          
+        {           
+    
             if (user.IsValid(user.UserName, user.Password, _context))
-                {
-                    RemoveFindSortState(user.UserName);
-                    //   FormsAuthenticationExtensions.SetAuthCookie(user.UserName, user.RememberMe);
-                    //    Microsoft.AspNet.Authentication.AuthenticationTicket ticket = new AuthenticationTicket();
-                    // ticket.
-                    return user.PasswordChange
-                        ? RedirectToAction("PasswordChange", "Login", user)
-                        : RedirectToAction("TdmsPortal", "Home");
+            {                
+                RemoveFindSortState(user.UserName, _context);
+
+          
+                return user.PasswordChange
+                            ? View("~/Views/Login/PasswordChange.cshtml", user)
+                            : View("~/Views/Home/TdmsPortal.cshtml");
                 }
             ModelState.AddModelError("LoginError", "Login data is incorrect!");
-            return View();
+            return View(user);
         }
 
      
-        private static void RemoveFindSortState(string userName)
+        private static void RemoveFindSortState(string userName, TdmsDbContext context)
         {
-             var removeStateFindSort = new ReturnQuickFindSort();
+             var removeStateFindSort = new ReturnQuickFindSort(context);
              removeStateFindSort.RemoveLastUsedTodaySortingForUsername(userName);
              removeStateFindSort.RemoveLastUsedTodayFindUserName(userName);
         }

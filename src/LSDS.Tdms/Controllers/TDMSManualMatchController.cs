@@ -1,4 +1,5 @@
-﻿using LSDS.Tdms.Models.KendoModel;
+﻿using LSDS.Tdms.Models;
+using LSDS.Tdms.Models.KendoModel;
 using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Repository;
 using LSDS.TradeManagement;
@@ -10,11 +11,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 
-namespace Tdms.Controllers
+namespace LSDS.Tdms.Controllers
 {
     public class TdmsManualMatchController : Controller
     {
-        private static readonly ManualMatchRepository manualMatchRepo = new ManualMatchRepository();
+       // private static readonly ManualMatchRepository manualMatchRepo = new ManualMatchRepository();
+
+        private TdmsDbContext _context;
+
+        public TdmsManualMatchController(TdmsDbContext context)
+        {
+            _context = context;
+        }
+
         [AcceptVerbs]
         public IActionResult TdmsManualMatch(string idList)
         {
@@ -25,15 +34,16 @@ namespace Tdms.Controllers
         [HttpPost]
         public IActionResult TdmsManualMatchData(KendoGridItems item)
         {
+            var rep = new ManualMatchRepository(_context);
             if (!item.ConfirmCheck)
             {
              return
                 Json(
-                    manualMatchRepo.TdmsManualMatchData<ManualMatchTrade>(User.Identity.Name,item.IdList, item.Source, item.StoreProcedureName));
+                    rep.TdmsManualMatchData<ManualMatchTrade>(User.Identity.Name,item.IdList, item.Source, item.StoreProcedureName));
             }
             return
                 Json(
-                    manualMatchRepo.TdmsManualMatchData<ManualMatchTrade>(item.tdTrade, item.ChkPortNo, item.ChkTraded, item.ChkSecId, item.ChkBs, item.ChkBrokerFIN, item.ConfirmRefNo, User.Identity.Name, item.Source, item.StoreProcedureName));
+                    rep.TdmsManualMatchData<ManualMatchTrade>(item.tdTrade, item.ChkPortNo, item.ChkTraded, item.ChkSecId, item.ChkBs, item.ChkBrokerFIN, item.ConfirmRefNo, User.Identity.Name, item.Source, item.StoreProcedureName));
         }
 
 

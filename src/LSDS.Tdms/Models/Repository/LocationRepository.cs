@@ -4,13 +4,18 @@ using System.Linq;
 
 using LSDS.Tdms.Models.TdmsDataModel;
 using System.Threading.Tasks;
+using LSDS.Tdms.Models;
 
 namespace LSDS.Tdms.Repository
 {
     public class LocationRepository 
     {
         private readonly Gridster _gridster = new Gridster();
-    
+        private TdmsDbContext _context;
+        public LocationRepository(TdmsDbContext context)
+        {
+            _context = context;
+        }
         public Gridster Gridster
         {
             get { return _gridster; }
@@ -28,7 +33,7 @@ namespace LSDS.Tdms.Repository
                     new SqlParameter("@app_usr_id", userName)
                 };
          
-                var rep = new GenericRepository<usp_returnUserData>();
+                var rep = new GenericRepository<usp_returnUserData>(_context);
                 var groupId = rep.ExecuteStoredProcedure("usp_returnUserData", usrName).Select(a => a.tdUserGroupId).FirstOrDefault();
                 var repLoc = new GenericRepository<LocationUserData>();
                 await repLoc.ExecuteStoredProcedureAsync("sp_SetAppUser", appUsrId);
@@ -50,7 +55,7 @@ namespace LSDS.Tdms.Repository
             object[] tdUserGroupIdParam = {
                     new SqlParameter("@tdUserGroupId", tdUserGroupId)
                 };
-                var rep = new GenericRepository<usp_returnUserData>();
+                var rep = new GenericRepository<usp_returnUserData>(_context);
                 rep.ExecueUpdate("sp_SetAppUser", appUsrId);
                 rep.ExecueUpdate("usp_ChangeUserLocation", tdUserGroupIdParam);
                

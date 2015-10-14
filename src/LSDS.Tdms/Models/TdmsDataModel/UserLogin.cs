@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Tdms;
+using LSDS.Tdms;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
@@ -48,27 +48,8 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         /// <returns>True if user exist and password is correct</returns>
         public bool IsValid(string username, string password, TdmsDbContext _context)
         {
-            //var parameters = new object[]
-            //{
-            //    new SqlParameter
-            //    {
-            //        ParameterName = "@user_name",
-            //        Value = username
-            //    }
-            //};
-            ////var TdmsDataAccess = new Repository.GenericRepository<usp_returnUserbyUserName_Result>();
-            ////var userLogin = TdmsDataAccess.ExecuteStoredProcedure("usp_returnUserbyUserName",parameters);
-            ////    var repo = new LSDS.Tdms.Entity();
-            ////var userLogin = ""; 
-
-            //var parameterDictionary = new IDictionary
-            //{
-            //    {"@user_name", username}
-            //};
-
 
             var userLogin = _context.Set<usp_returnUserbyUserName_Result>().FromSql("EXEC usp_returnUserbyUserName @p0", username).FirstOrDefault(a => a.psw == GetSwcMd5(password) && a.user_status == 0);
-
 
 
             if (userLogin != null)
@@ -134,7 +115,7 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         private static void LogLoginAttempt(string userId, bool loginSuccess, TdmsDbContext context)
         {
 
-            context.Database.ExecuteSqlCommand("EXEC usp_LogLoginAttempt @user_name, @LoginSuccess   ", userId, loginSuccess);
+            context.Database.ExecuteSqlCommand("EXEC usp_LogLoginAttempt @p0, @p1 ", userId, loginSuccess);
 
         }
     }
