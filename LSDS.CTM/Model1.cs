@@ -1,5 +1,5 @@
-using CtmProcessor.CtmMessages;
-using LSDS.CTM.CtmMessages;
+using LSDS.CTM;
+using LSDS.CTM;
 
 namespace LSDS.CTM
 {
@@ -19,7 +19,10 @@ namespace LSDS.CTM
             : base("name=Model1")
         {
         }
-
+        public Model1(string connectionString)
+           : base(connectionString)
+        {
+        }
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 

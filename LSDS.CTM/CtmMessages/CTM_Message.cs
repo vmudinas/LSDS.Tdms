@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CtmProcessor;
-using CtmProcessor.CtmMessages;
+using LSDS.CTM;
+using LSDS.CTM;
 
-namespace LSDS.CTM.CtmMessages
+namespace LSDS.CTM
 {
     /// <remarks/>
     [Serializable]

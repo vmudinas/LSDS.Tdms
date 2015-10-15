@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using CtmProcessor;
+using LSDS.CTM;
 
-namespace LSDS.CTM.CtmMessages
+namespace LSDS.CTM
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]

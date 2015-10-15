@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CtmProcessor
+namespace LSDS.CTM
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
