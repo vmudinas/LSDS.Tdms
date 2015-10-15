@@ -1,21 +1,22 @@
 {
-    "version": "1.0.0-*",
-    "description": "TestApp Console Application",
-    "authors": [ "vmudinas" ],
-    "tags": [ "" ],
-    "projectUrl": "",
-    "licenseUrl": "",
+  "version": "1.0.0-*",
+  "description": "TestApp Console Application",
+  "authors": [ "vmudinas" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
 
-    "dependencies": {
-        "CtmLibrary": "4.0.2"
-    },
+  "dependencies": {
+    "CtmLibrary": "4.0.7",
+    "Microsoft.Framework.Configuration": "1.0.0-rc1-15666"
 
-    "commands": {
-        "TestApp": "TestApp"
-    },
+  },
 
-  "frameworks": 
-  {
+  "commands": {
+    "TestApp": "TestApp"
+  },
+
+  "frameworks": {
     "dnx451": { }
   }
 }
