@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
-using LSDS.CTM;
 
 namespace LSDS.CTM
 {
-   public static class Seralizer
+    public static class Seralizer
     {
         public static T Deserialize<T>(string input)
         where T : class
         {
-            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(T));
+            XmlSerializer ser = new XmlSerializer(typeof(T));
 
             using (var sr = new StringReader(input))
                 return (T)ser.Deserialize(sr);

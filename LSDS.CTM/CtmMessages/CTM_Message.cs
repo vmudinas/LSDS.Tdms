@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using LSDS.CTM;
-using LSDS.CTM;
 
 namespace LSDS.CTM
 {

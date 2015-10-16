@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Amib.Threading;
-using LSDS.CTM;
 using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM

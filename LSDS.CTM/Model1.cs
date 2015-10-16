@@ -1,11 +1,6 @@
-using LSDS.CTM;
-using LSDS.CTM;
-
 namespace LSDS.CTM
 {
-    using System;
     using System.Data.Entity;
-    using System.Linq;
 
     public class Model1 : DbContext
     {
@@ -28,7 +23,7 @@ namespace LSDS.CTM
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<CTM_Message> MyMessage { get; set; }
-       
+        public virtual DbSet<iomessage_trade> iomessage_trade { get; set; }
     }
 
     //public class MyEntity

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LSDS.CTM;
-using OmgeoDCIWeb_API;
+﻿using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
 {
@@ -23,7 +17,7 @@ namespace LSDS.CTM
         private readonly string _multiTradeLevelResponseIndicator;
         private readonly string _byOrAgainstFlag;
         private readonly ulong _minLastUpdateDateTime;
-        private readonly string[] _matchStatus;
+       // private readonly string[] _matchStatus;
 
         public MultiTradeLevel(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole, 
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue, 

@@ -25,14 +25,14 @@
         "Microsoft.Framework.Logging": "1.0.0-beta7",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta7",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta7",
-        "LSDSTdms5": "1.0.1",
         "System.Linq.Dynamic": "1.0.4",
         "Microsoft.Dnx.Runtime": "1.0.0-rc1-15838",
         "LinqProjector": "1.2.0",
         "System.Linq": "4.0.1-beta-23225",
         "System.Linq.Dynamic.Library": "1.1.14",
         "System.Linq.Parallel": "4.0.0-beta-23019",
-        "CtmLibrary": "4.0.1"
+        "OmgeoDCIWeb_Api": "4.5.1",
+        "LSDSTdms5": "1.0.1"
     },
 
     "commands": {
