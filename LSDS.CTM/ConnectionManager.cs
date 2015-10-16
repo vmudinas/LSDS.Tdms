@@ -21,7 +21,7 @@ namespace LSDS.CTM
         private readonly int _idleTimeout;
         private readonly bool _trace;
         private DCIWebSession _webSession;
-        private readonly static CtmProcessor _instance;
+        //private readonly static CtmProcessor _instance;
         public static SmartThreadPool SmartThreadPool;
         protected IDictionary<string, ArrayList> CtmWebSessionMap = new Dictionary<string, ArrayList>();
         protected int NoOfWebSession;

@@ -51,22 +51,22 @@ namespace LSDS.CTM
         public CTM_Message GenerateInfoRequest()
         {
             var msg = new CTM_Message();
-            var newReuqestMsg = new CTM_MessageInfoRequest();
+            var newReuqestMsg = new CTM_InfoRequest();
 
-            var newSubmitHeaderMsg = new CTM_MessageInfoRequestSubmitHeader
+            var newSubmitHeaderMsg = new CTM_Header
             {
                 ProtocolVersion = _protocolVersion, //"CM01",
                 SendersMessageReference = _sendersMessageReference, // "ars455",
                 DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
             };
-            var originatorOfMeessage = new CTM_MessageInfoRequestSubmitHeaderOriginatorOfMessage
+            var originatorOfMeessage = new CTM_SubmitHeaderOriginatorOfMessage
             {
                 PartyRole = _orgPartyRole, //"MEOR",
                 PartyType = _orgPartyType, //"BIC",
                 PartyValue = _orgPartyValue // "LIGHTSPD"
             };
 
-            var recipientOfMessage = new CTM_MessageInfoRequestSubmitHeaderRecipientOfMessage
+            var recipientOfMessage = new CTM_SubmitHeaderRecipientOfMessage
             {
                 PartyRole = _receiptPartyRole, //"MEOR",
                 PartyType = _receiptPartyType, //"BIC",
@@ -76,25 +76,25 @@ namespace LSDS.CTM
             newSubmitHeaderMsg.OriginatorOfMessage = originatorOfMeessage;
             newSubmitHeaderMsg.RecipientOfMessage = recipientOfMessage;
 
-            var newRequestBodyMsg = new CTM_MessageInfoRequestInfoRequestBody
+            var newRequestBodyMsg = new CTM_InfoRequestBody
             {
                 ViewRequestedIndicator = _viewRequestedIndicator, 
                 QueryType = _queryType 
              
             };
-            var newExecutingBroker = new CTM_MessageInfoRequestInfoRequestBodyExecutingBroker
+            var newExecutingBroker = new CTM_InfoRequestBodyExecutingBroker
             {
                 PartyRole = _executingBrokerPartyRole, 
                 PartyType = _executingBrokerPartyType,
                 PartyValue = _executingBrokerPartyValue
 
             };
-            var newMasterReference = new CTM_MessageInfoRequestInfoRequestBodyAccessPathTradeLevelIdentifiers
+            var newMasterReference = new CTM_InfoRequestBodyAccessPathTradeLevelIdentifiers
             {
                 MasterReference = _accessPathTradeLevelIdentifiersMasterReference
 
             };
-            var newAccessPath = new CTM_MessageInfoRequestInfoRequestBodyAccessPath
+            var newAccessPath = new CTM_InfoRequestBodyAccessPath
             {
                 IDOwner = _accessPathIdOwner,
                 TradeLevelIdentifiers = newMasterReference

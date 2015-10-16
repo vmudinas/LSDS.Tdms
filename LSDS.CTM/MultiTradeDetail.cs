@@ -16,21 +16,21 @@ namespace LSDS.CTM
             string multiTradeDetailResponseRequested, string byOrAgainstFlag, ulong minLastUpdateDateTime, string[] matchStatus)
         {
             var msg = new CTM_Message();
-            var newReuqestMsg = new CTM_MessageMultiTradeDetailRequest();
-            var newSubmitHeaderMsg = new CTM_MessageMultiTradeDetailRequestSubmitHeader
+            var newReuqestMsg = new CTM_MultiTradeDetailRequest();
+            var newSubmitHeaderMsg = new CTM_Header
             {
                 ProtocolVersion = protocolVersion, //"CM01",
                 SendersMessageReference = sendersMessageReference, // "ars455",
                 DateTimeOfSentMessage = dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
             };
-            var originatorOfMeessage = new CTM_MessageMultiTradeDetailRequestSubmitHeaderOriginatorOfMessage
+            var originatorOfMeessage = new CTM_SubmitHeaderOriginatorOfMessage
             {
                 PartyRole = orgPartyRole, //"MEOR",
                 PartyType = orgPartyType, //"BIC",
                 PartyValue = orgPartyValue // "LIGHTSPD"
             };
 
-            var receiptOfMessage = new CTM_MessageMultiTradeDetailRequestSubmitHeaderRecipientOfMessage
+            var receiptOfMessage = new CTM_SubmitHeaderRecipientOfMessage
             { 
                 PartyRole = receiptPartyRole, //"MERE",
                 PartyType = receiptPartyType, //"TFID",
@@ -39,7 +39,7 @@ namespace LSDS.CTM
             newSubmitHeaderMsg.OriginatorOfMessage = originatorOfMeessage;
             newSubmitHeaderMsg.RecipientOfMessage = receiptOfMessage;
 
-            var newRequestBodyMsg = new CTM_MessageMultiTradeDetailRequestMultiTradeDetailRequestBody
+            var newRequestBodyMsg = new CTM_MultiTradeDetailRequestBody
             {
                 MultiTradeDetailResponseRequested = multiTradeDetailResponseRequested, //"ADDD",
                 ByOrAgainstFlag = byOrAgainstFlag, //"A",
@@ -47,7 +47,7 @@ namespace LSDS.CTM
             };
 
             var newStatusQuery =
-                new CTM_MessageMultiTradeDetailRequestMultiTradeDetailRequestBodyMultiTradeDetailStatusQuery
+                new CTM_MultiTradeDetailRequestBodyMultiTradeDetailStatusQuery
                 {
                     TDMatchStatusValues = matchStatus
                 };

@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Amib.Threading;
-using LSDS.CTM;
-using LSDS.CTM;
 using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM

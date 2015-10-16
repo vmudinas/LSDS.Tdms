@@ -15,20 +15,20 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
-        private CTM_MessageInvalid invalidField;
-        private CTM_MessageTradeLevel tradeLevelField;
-        private CTM_MessageValid validField;
+        private CTM_Invalid invalidField;
+        private CTM_TradeLevel tradeLevelField;
+        private CTM_Valid validField;
 
-        private CTM_MessageMultiTradeDetailResponse multiTradeDetailResponseField;
-        private CTM_MessageMultiTradeDetailRequest multiTradeDetailRequestField;
-        private CTM_MessageInfoRequest infoRequestField;
-        private CTM_MessageMultiTradeLevelRequest multiTradeLevelRequestField;
-        private CTM_MessageMultiTradeLevelResponse multiTradeLevelResponseField;
+        private CTM_MultiTradeDetailResponse multiTradeDetailResponseField;
+        private CTM_MultiTradeDetailRequest multiTradeDetailRequestField;
+        private CTM_InfoRequest infoRequestField;
+        private CTM_MultiTradeLevelRequest multiTradeLevelRequestField;
+        private CTM_MultiTradeLevelResponse multiTradeLevelResponseField;
         private string[] textField;
         
         
         /// <remarks/>
-        public CTM_MessageTradeLevel TradeLevel
+        public CTM_TradeLevel TradeLevel
         {
             get
             {
@@ -40,7 +40,7 @@ namespace LSDS.CTM
             }
         }
         /// <remarks/>
-        public CTM_MessageInfoRequest InfoRequest
+        public CTM_InfoRequest InfoRequest
         {
             get
             {
@@ -53,7 +53,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public CTM_MessageInvalid Invalid
+        public CTM_Invalid Invalid
         {
             get
             {
@@ -68,7 +68,7 @@ namespace LSDS.CTM
 
 
         /// <remarks/>
-        public CTM_MessageMultiTradeDetailResponse MultiTradeDetailResponse
+        public CTM_MultiTradeDetailResponse MultiTradeDetailResponse
         {
             get
             {
@@ -86,7 +86,7 @@ namespace LSDS.CTM
        
 
         /// <remarks/>
-        public CTM_MessageMultiTradeDetailRequest MultiTradeDetailRequest
+        public CTM_MultiTradeDetailRequest MultiTradeDetailRequest
         {
             get
             {
@@ -114,7 +114,7 @@ namespace LSDS.CTM
 
       
         /// <remarks/>
-        public CTM_MessageMultiTradeLevelResponse MultiTradeLevelResponse
+        public CTM_MultiTradeLevelResponse MultiTradeLevelResponse
         {
             get
             {
@@ -130,7 +130,7 @@ namespace LSDS.CTM
 
 
         /// <remarks/>
-        public CTM_MessageMultiTradeLevelRequest MultiTradeLevelRequest
+        public CTM_MultiTradeLevelRequest MultiTradeLevelRequest
         {
             get
             {
@@ -145,7 +145,7 @@ namespace LSDS.CTM
        
 
         /// <remarks/>
-        public CTM_MessageValid Valid
+        public CTM_Valid Valid
         {
             get
             {
@@ -157,10 +157,10 @@ namespace LSDS.CTM
             }
         }
   
-        private CTM_MessageTradeDetail tradeDetailField;
+        private CTM_TradeDetail tradeDetailField;
 
         /// <remarks/>
-        public CTM_MessageTradeDetail TradeDetail
+        public CTM_TradeDetail TradeDetail
         {
             get
             {

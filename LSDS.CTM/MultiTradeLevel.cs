@@ -42,22 +42,22 @@ namespace LSDS.CTM
    public CTM_Message GenerateMultiTradeLevelRequest()
         {
             var msg = new CTM_Message();
-            var newReuqestMsg = new CTM_MessageMultiTradeLevelRequest();
+            var newReuqestMsg = new CTM_MultiTradeLevelRequest();
           
-            var newSubmitHeaderMsg = new CTM_MessageMultiTradeLevelRequestSubmitHeader
+            var newSubmitHeaderMsg = new CTM_Header
             {
                 ProtocolVersion = _protocolVersion, //"CM01",
                 SendersMessageReference = _sendersMessageReference, // "ars455",
                 DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
             };
-            var originatorOfMeessage = new CTM_MessageMultiTradeLevelRequestSubmitHeaderOriginatorOfMessage
+            var originatorOfMeessage = new CTM_SubmitHeaderOriginatorOfMessage
             {
                 PartyRole = _orgPartyRole, //"MEOR",
                 PartyType = _orgPartyType, //"BIC",
                 PartyValue = _orgPartyValue // "LIGHTSPD"
             };
 
-            var recipientOfMessage = new CTM_MessageMultiTradeLevelRequestSubmitHeaderRecipientOfMessage
+            var recipientOfMessage = new CTM_SubmitHeaderRecipientOfMessage
             {
                 PartyRole = _receiptPartyRole, //"MEOR",
                 PartyType = _receiptPartyType, //"BIC",
@@ -67,7 +67,7 @@ namespace LSDS.CTM
             newSubmitHeaderMsg.OriginatorOfMessage = originatorOfMeessage;
             newSubmitHeaderMsg.RecipientOfMessage = recipientOfMessage;
 
-            var newRequestBodyMsg = new CTM_MessageMultiTradeLevelRequestMultiTradeLevelRequestBody
+            var newRequestBodyMsg = new CTM_MultiTradeLevelRequestBody
             {
                 MultiTradeLevelResponseIndicator = _multiTradeLevelResponseIndicator, //"ADDD",
                 ByOrAgainstFlag = _byOrAgainstFlag, //"A",

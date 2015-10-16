@@ -87,22 +87,22 @@ namespace LSDS.CTM
         public CTM_Message GenerateTradeLevelRequest()
         {
             var msg = new CTM_Message();
-            var newReuqestMsg = new CTM_MessageTradeLevel();
+            var newReuqestMsg = new CTM_TradeLevel();
 
-            var newSubmitHeaderMsg = new CTM_MessageTradeLevelSubmitHeader
+            var newSubmitHeaderMsg = new CTM_Header
             {
                 ProtocolVersion = _protocolVersion, //"CM01",
                 SendersMessageReference = _sendersMessageReference, // "ars455",
                 DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
             };
-            var originatorOfMeessage = new CTM_MessageTradeLevelSubmitHeaderOriginatorOfMessage
+            var originatorOfMeessage = new CTM_SubmitHeaderOriginatorOfMessage
             {
                 PartyRole = _orgPartyRole, //"MEOR",
                 PartyType = _orgPartyType, //"BIC",
                 PartyValue = _orgPartyValue // "LIGHTSPD"
             };
 
-            var recipientOfMessage = new CTM_MessageTradeLevelSubmitHeaderRecipientOfMessage
+            var recipientOfMessage = new CTM_SubmitHeaderRecipientOfMessage
             {
                 PartyRole = _receiptPartyRole, //"MEOR",
                 PartyType = _receiptPartyType, //"BIC",
@@ -114,52 +114,52 @@ namespace LSDS.CTM
 
           
            
-            var newExecutingBroker = new CTM_MessageTradeLevelTradeLevelBodyExecutingBroker
+            var newExecutingBroker = new CTM_TradeLevelBodyExecutingBroker
             {
                 PartyRole = _executingBrokerPartyRole, //"EXEC",
                 PartyType = _executingBrokerPartyType, //"BIC",
                 PartyValue = _executingBrokerPartyValue // "TECHSOLBXXX"
 
             };
-            var newTradeLevelReferences = new CTM_MessageTradeLevelTradeLevelBodyTradeLevelReferences
+            var newTradeLevelReferences = new CTM_TradeLevelBodyTradeLevelReferences
             {
                 MasterReference = _masterReference //"-893838912000000",
             };
 
            
-            var newIdentificationOfASecuritySecurityCodeType = new CTM_MessageTradeLevelTradeLevelBodyIdentificationOfASecuritySecurityCodeType
+            var newIdentificationOfASecuritySecurityCodeType = new CTM_TradeLevelBodyIdentificationOfASecuritySecurityCodeType
             {
                 NumberingAgencyCode = _numberingAgencyCode,
                  //"SEDO"
               
             };
-            var newSecurityCodeType = new CTM_MessageTradeLevelTradeLevelBodyIdentificationOfASecurity
+            var newSecurityCodeType = new CTM_TradeLevelBodyIdentificationOfASecurity
             {
                 SecurityCodeType = newIdentificationOfASecuritySecurityCodeType, //"v",
                 SecurityCode = _securityCode//5668287
             };
-            var newDealPrice = new CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationDealPrice
+            var newDealPrice = new CTM_TradeLevelBodyTradeLevelInformationDealPrice
             {
                 CurrencyCode = _currencyCode, //USD
                 Amount = _amount // Ammount
             };
-            var newQuantityOfTheBlockTrade = new CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationQuantityOfTheBlockTrade
+            var newQuantityOfTheBlockTrade = new CTM_TradeLevelBodyTradeLevelInformationQuantityOfTheBlockTrade
             {
                 QuantityTypeCode = _quantityTypeCode, //USD
                 Amount = _qTypeCodeAmount // Ammount
             };
-            var newTotalTradeAmount = new CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationTotalTradeAmount
+            var newTotalTradeAmount = new CTM_TradeLevelBodyTradeLevelInformationTotalTradeAmount
             {
                 CurrencyCode = _currencyCodeTotalTradeAmount, //USD
                 Amount = _currencyAmountTotalTradeAmount // Ammount
             };
-            var newTimeZone = new CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformationTimeZone
+            var newTimeZone = new CTM_TradeLevelBodyTradeLevelInformationTimeZone
             {
                 TradeTimeQualifier = _timeZoneTradeTimeQualifier //LOCL
 
             };
 
-            var newTradeLevelInformation = new CTM_MessageTradeLevelTradeLevelBodyTradeLevelInformation
+            var newTradeLevelInformation = new CTM_TradeLevelBodyTradeLevelInformation
             {
                 TypeOfTransactionIndicator = _typeOfTransactionIndicator, //  TRAD 
                 BuySellIndicator = _buySellIndicator, // BUYI
@@ -173,7 +173,7 @@ namespace LSDS.CTM
 
             };
 
-            var newInstructingParty = new CTM_MessageTradeLevelTradeLevelBodyInstructingParty
+            var newInstructingParty = new CTM_TradeLevelBodyInstructingParty
             {
                 PartyRole = _instructingPartyRole, //"INST",
                 PartyType = _instructingPartyType, //"BIC",
@@ -182,7 +182,7 @@ namespace LSDS.CTM
 
 
 
-            var newRequestBodyMsg = new CTM_MessageTradeLevelTradeLevelBody
+            var newRequestBodyMsg = new CTM_TradeLevelBody
             {
                 FunctionOfTheMessage = _functionOfTheMessage, //"NEWM"
                 VersionOfTradeComponent = _versionOfTradeComponent, //"001",
