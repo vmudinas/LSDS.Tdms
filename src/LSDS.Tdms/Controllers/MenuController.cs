@@ -6,22 +6,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LSDS.Tdms;
+using Microsoft.AspNet.Identity;
 
 namespace LSDS.Tdms.Controllers
 {
     public class MenuController : Controller
     {
-       // private static readonly Repository _DataAccessLibrary = new Repository();
+        // private static readonly Repository _DataAccessLibrary = new Repository();
+
         private TdmsDbContext _context;
-        public MenuController(TdmsDbContext context)
+        private readonly ApplicationUser _identity;
+
+        public MenuController(TdmsDbContext context, ApplicationUser identity)
         {
             _context = context;
+            _identity = identity;
+         
         }
+
         [AcceptVerbs]
         public async Task<JsonResult> GetMenu()
         {
+            var xxx = _identity.UserName;
             var repo = new Repository.Repository(_context);
-            var menu = await repo.GetMenu(User.Identity.Name);
+            var menu = await repo.GetMenu(_identity.UserName);
 
             var menuList = new List <TdmsMenu>();
             var returnTdmsMenuResults = menu as usp_returnTDMSMenu_Result[] ?? menu.ToArray();

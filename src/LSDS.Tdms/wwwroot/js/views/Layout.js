@@ -1,11 +1,11 @@
 ﻿$(document).ready(function() {
 
 
-    $("#responsive-panel").kendoResponsivePanel({
-        breakpoint: 768,
-        autoClose: false,
-        orientation: "top"
-    });
+    //$("#responsive-panel").kendoResponsivePanel({
+    //    breakpoint: 768,
+    //    autoClose: false,
+    //    orientation: "top"
+    //});
    
     CheckSecurity(GetCheckSecurityUrl(), GetTdmsPortalUrl());
     GetUserLocation(GetLocationListUrl());

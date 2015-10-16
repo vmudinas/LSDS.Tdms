@@ -21,19 +21,14 @@ namespace LSDS.Tdms.Controllers
     public class LoginController : Controller
     {
         private TdmsDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ApplicationDbContext _applicationDbContext;
-        private static bool _databaseChecked;
+        private readonly ApplicationUser _identity;
+      
 
-        public LoginController(TdmsDbContext context, UserManager<ApplicationUser> userManager,
-         SignInManager<ApplicationUser> signInManager,
-         ApplicationDbContext applicationDbContext)
+        public LoginController(TdmsDbContext context, ApplicationUser identity )
         {
             _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _applicationDbContext = applicationDbContext;
+            _identity = identity;
+          
         }
       
 
@@ -50,13 +45,15 @@ namespace LSDS.Tdms.Controllers
 
         [HttpPost]
         public IActionResult Login(UserLogin user)
-        {           
-    
+        {
+          
             if (user.IsValid(user.UserName, user.Password, _context))
             {                
                 RemoveFindSortState(user.UserName, _context);
+              
+                _identity.UserName = user.UserName;
+                       
 
-          
                 return user.PasswordChange
                             ? View("~/Views/Login/PasswordChange.cshtml", user)
                             : View("~/Views/Home/TdmsPortal.cshtml");
@@ -104,6 +101,7 @@ namespace LSDS.Tdms.Controllers
                 ModelState.AddModelError("ErrorMsg", err);
                 return View("~/Views/Login/PasswordChange.cshtml", user);
             }
+            _identity.UserName = user.UserName;
             return RedirectToAction("TdmsPortal", "Home");
 
         }

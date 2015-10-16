@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
 /// <reference path="js/gridsterconfig.js" />
+/// <reference path="js/masterpage.js" />
 /// <reference path="js/menu/Menu.js" />
 /// <reference path="js/quickfind.js" />
 /// <reference path="js/quicksort.js" />

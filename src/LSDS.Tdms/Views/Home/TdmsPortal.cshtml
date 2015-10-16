@@ -7,8 +7,10 @@
 
 @section LayoutHead
 {
+    <link rel="stylesheet" href="/lib/gridster/dist/jquery.gridster.css" asp-file-version="true" />
+    <link rel="stylesheet" href="/css/Gridster.css" asp-file-version="true" />
+    <link rel="stylesheet" href="/css/views/TdmsPortal.css"  asp-file-version="true" />
 
-    <link rel="stylesheet" href="~/css/views/Layout.css" />
 
 }
 
@@ -91,8 +93,23 @@
         </div>
     </section>
 </div>
+@section featured
+{
+  
+   
+    <script src="/lib/gridster/dist/jquery.gridster.js"></script>
+    <script src="/js/widgets/BrokerPreformance/brokerPerformance.js"></script>
+    <script src="/js/widgets/NotificationJobStatus/NotificationJobStatusWidget.js"></script>
+    <script src="/js/widgets/SavedReports/savedReports.js"></script>
+    <script src="/js/widgets/ImportSummaryStatus/importSummary.js"></script>
+    <script src="/js/widgets/TradeRepair/tradeRepair.js"></script>
+    <script src="/js/widgets/SystemStatus/systemStatus.js"></script>
+    <script src="/js/widgets/SettlementStatus/settlementStatus.js"></script>
+    <script src="/js/widgets/TradeMatch/tradeMatch.js"></script>
+    <script src="/js/GridsterConfig.js"></script>
+    <script src="/js/TDMSPortal.js"></script>
+    <script src="/js/views/TdmsPortal.js" ></script>
 
 
-<script src="~/js/GridsterConfig.js"></script>
-<script src="~/js/TDMSPortal.js"></script>
-<script src="~/js/views/TdmsPortal.js" ></script>
+
+}
