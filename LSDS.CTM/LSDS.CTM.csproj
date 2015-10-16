@@ -139,7 +139,6 @@
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
     <Compile Include="InfoRequest.cs" />
-    <Compile Include="iomessage_trade.cs" />
     <Compile Include="Migrations\201510142223320_CtmName.cs" />
     <Compile Include="Migrations\201510142223320_CtmName.Designer.cs">
       <DependentUpon>201510142223320_CtmName.cs</DependentUpon>
