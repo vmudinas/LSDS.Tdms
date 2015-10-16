@@ -2,19 +2,19 @@ namespace LSDS.CTM
 {
     using System.Data.Entity;
 
-    public class Model1 : DbContext
+    public class CTMDBContext : DbContext
     {
-        // Your context has been configured to use a 'Model1' connection string from your application's 
+        // Your context has been configured to use a 'CTMDBContext' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
-        // 'CTMEntity.Model1' database on your LocalDb instance. 
+        // 'CTMEntity.CTMDBContext' database on your LocalDb instance. 
         // 
-        // If you wish to target a different database and/or database provider, modify the 'Model1' 
+        // If you wish to target a different database and/or database provider, modify the 'CTMDBContext' 
         // connection string in the application configuration file.
-        public Model1()
-            : base("name=Model1")
+        public CTMDBContext()
+            : base("name=CTMDBContext")
         {
         }
-        public Model1(string connectionString)
+        public CTMDBContext(string connectionString)
            : base(connectionString)
         {
         }
@@ -23,7 +23,7 @@ namespace LSDS.CTM
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<CTM_Message> MyMessage { get; set; }
-        public virtual DbSet<iomessage_trade> iomessage_trade { get; set; }
+    
     }
 
     //public class MyEntity
