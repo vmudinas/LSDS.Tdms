@@ -15,6 +15,7 @@ namespace LSDS.CTM
         private string partyValueField;
 
         /// <remarks/>
+        [MaxLength(4)]
         public string PartyRole
         {
             get
@@ -28,6 +29,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
+        [MaxLength(35)]
         public string PartyType
         {
             get

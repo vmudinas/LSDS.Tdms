@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace LSDS.CTM
 {
@@ -8,6 +10,9 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
+
+        public DateTime LastUpdated { get; set; }
+       
         private CTM_MessageTradeDetailSubmitHeader submitHeaderField;
 
         private CTM_MessageTradeDetailTradeDetailBody tradeDetailBodyField;
