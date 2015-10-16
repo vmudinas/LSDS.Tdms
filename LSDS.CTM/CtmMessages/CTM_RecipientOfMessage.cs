@@ -4,7 +4,7 @@ namespace LSDS.CTM
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CTM_SubmitHeaderRecipientOfMessage
+    public partial class CTM_RecipientOfMessage
     {
         [Key]
         public int CtmId { get; set; }

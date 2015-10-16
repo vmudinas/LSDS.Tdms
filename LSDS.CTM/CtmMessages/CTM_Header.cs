@@ -10,9 +10,9 @@ namespace LSDS.CTM
         public int CtmId { get; set; }
         private string protocolVersionField;
 
-        private CTM_SubmitHeaderOriginatorOfMessage originatorOfMessageField;
+        private CTM_OriginatorOfMessage originatorOfMessageField;
 
-        private CTM_SubmitHeaderRecipientOfMessage recipientOfMessageField;
+        private CTM_RecipientOfMessage recipientOfMessageField;
 
         private string sendersMessageReferenceField;
 
@@ -32,7 +32,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public CTM_SubmitHeaderOriginatorOfMessage OriginatorOfMessage
+        public CTM_OriginatorOfMessage OriginatorOfMessage
         {
             get
             {
@@ -45,7 +45,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public CTM_SubmitHeaderRecipientOfMessage RecipientOfMessage
+        public CTM_RecipientOfMessage RecipientOfMessage
         {
             get
             {

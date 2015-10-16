@@ -23,14 +23,14 @@ namespace LSDS.CTM
                 SendersMessageReference = sendersMessageReference, // "ars455",
                 DateTimeOfSentMessage = dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
             };
-            var originatorOfMeessage = new CTM_SubmitHeaderOriginatorOfMessage
+            var originatorOfMeessage = new CTM_OriginatorOfMessage
             {
                 PartyRole = orgPartyRole, //"MEOR",
                 PartyType = orgPartyType, //"BIC",
                 PartyValue = orgPartyValue // "LIGHTSPD"
             };
 
-            var receiptOfMessage = new CTM_SubmitHeaderRecipientOfMessage
+            var receiptOfMessage = new CTM_RecipientOfMessage
             { 
                 PartyRole = receiptPartyRole, //"MERE",
                 PartyType = receiptPartyType, //"TFID",

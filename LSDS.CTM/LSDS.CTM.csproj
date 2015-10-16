@@ -65,9 +65,8 @@
     <Compile Include="CtmMessages\CTM_RequestInfoRequestBodyAccessPath.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequestBodyAccessPathTradeLevelIdentifiers.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequestBodyExecutingBroker.cs" />
-    <Compile Include="CtmMessages\CTM_SubmitHeader.cs" />
-    <Compile Include="CtmMessages\CTM_SubmitHeaderOriginatorOfMessage.cs" />
-    <Compile Include="CtmMessages\CTM_SubmitHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_Header.cs" />
+    <Compile Include="CtmMessages\CTM_RecipientOfMessage.cs" />
     <Compile Include="CtmMessages\CTM_Invalid.cs" />
     <Compile Include="CtmMessages\CTM_InvalidBody.cs" />
     <Compile Include="CtmMessages\CTM_InvalidBodySynchError.cs" />
@@ -132,7 +131,7 @@
     <Compile Include="CtmMessages\CTM_TradeLevelBodyTradeLevelReferences.cs" />
     <Compile Include="CtmMessages\CTM_Valid.cs" />
     <Compile Include="CtmMessages\CTM_ResponseHeader.cs" />
-    <Compile Include="CtmMessages\CTM_ResponseHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_OriginatorOfMessage.cs" />
     <Compile Include="CtmMessages\CTM_ValidResponseHeaderRecipientOfMessage.cs" />
     <Compile Include="CtmMessages\CTM_ValidBody.cs" />
     <Compile Include="CtmMessages\CTM_ValidBodyExecutingBroker.cs" />

@@ -300,13 +300,13 @@ namespace LSDS.CTM.Migrations
                         RecipientOfMessage_CtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
-                .ForeignKey("dbo.CTM_ResponseHeaderOriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
+                .ForeignKey("dbo.CTM_OriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
                 .ForeignKey("dbo.CTM_ResponseHeaderRecipientOfMessage", t => t.RecipientOfMessage_CtmId)
                 .Index(t => t.OriginatorOfMessage_CtmId)
                 .Index(t => t.RecipientOfMessage_CtmId);
             
             CreateTable(
-                "dbo.CTM_ResponseHeaderOriginatorOfMessage",
+                "dbo.CTM_OriginatorOfMessage",
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
@@ -362,13 +362,13 @@ namespace LSDS.CTM.Migrations
                         RecipientOfMessage_CtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
-                .ForeignKey("dbo.CTM_SubmitHeaderOriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
-                .ForeignKey("dbo.CTM_SubmitHeaderRecipientOfMessage", t => t.RecipientOfMessage_CtmId)
+                .ForeignKey("dbo.CTM_OriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
+                .ForeignKey("dbo.CTM_RecipientOfMessage", t => t.RecipientOfMessage_CtmId)
                 .Index(t => t.OriginatorOfMessage_CtmId)
                 .Index(t => t.RecipientOfMessage_CtmId);
             
             CreateTable(
-                "dbo.CTM_SubmitHeaderOriginatorOfMessage",
+                "dbo.CTM_OriginatorOfMessage",
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
@@ -379,7 +379,7 @@ namespace LSDS.CTM.Migrations
                 .PrimaryKey(t => t.CtmId);
             
             CreateTable(
-                "dbo.CTM_SubmitHeaderRecipientOfMessage",
+                "dbo.CTM_RecipientOfMessage",
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
@@ -426,13 +426,13 @@ namespace LSDS.CTM.Migrations
                         RecipientOfMessage_CtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
-                .ForeignKey("dbo.CTM_ResponseHeaderOriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
+                .ForeignKey("dbo.CTM_OriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
                 .ForeignKey("dbo.CTM_ResponseHeaderRecipientOfMessage", t => t.RecipientOfMessage_CtmId)
                 .Index(t => t.OriginatorOfMessage_CtmId)
                 .Index(t => t.RecipientOfMessage_CtmId);
             
             CreateTable(
-                "dbo.CTM_ResponseHeaderOriginatorOfMessage",
+                "dbo.CTM_OriginatorOfMessage",
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
@@ -478,13 +478,13 @@ namespace LSDS.CTM.Migrations
                         RecipientOfMessage_CtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
-                .ForeignKey("dbo.CTM_SubmitHeaderOriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
-                .ForeignKey("dbo.CTM_SubmitHeaderRecipientOfMessage", t => t.RecipientOfMessage_CtmId)
+                .ForeignKey("dbo.CTM_OriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
+                .ForeignKey("dbo.CTM_RecipientOfMessage", t => t.RecipientOfMessage_CtmId)
                 .Index(t => t.OriginatorOfMessage_CtmId)
                 .Index(t => t.RecipientOfMessage_CtmId);
             
             CreateTable(
-                "dbo.CTM_SubmitHeaderOriginatorOfMessage",
+                "dbo.CTM_OriginatorOfMessage",
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
@@ -495,7 +495,7 @@ namespace LSDS.CTM.Migrations
                 .PrimaryKey(t => t.CtmId);
             
             CreateTable(
-                "dbo.CTM_SubmitHeaderRecipientOfMessage",
+                "dbo.CTM_RecipientOfMessage",
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
@@ -984,13 +984,13 @@ namespace LSDS.CTM.Migrations
                         RecipientOfMessage_CtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
-                .ForeignKey("dbo.CTM_ResponseHeaderOriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
+                .ForeignKey("dbo.CTM_OriginatorOfMessage", t => t.OriginatorOfMessage_CtmId)
                 .ForeignKey("dbo.CTM_ResponseHeaderRecipientOfMessage", t => t.RecipientOfMessage_CtmId)
                 .Index(t => t.OriginatorOfMessage_CtmId)
                 .Index(t => t.RecipientOfMessage_CtmId);
             
             CreateTable(
-                "dbo.CTM_ResponseHeaderOriginatorOfMessage",
+                "dbo.CTM_OriginatorOfMessage",
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
@@ -1058,7 +1058,7 @@ namespace LSDS.CTM.Migrations
             DropForeignKey("dbo.CTM_ValidBody", "ExecutingBroker_CtmId", "dbo.CTM_ValidBodyExecutingBroker");
             DropForeignKey("dbo.CTM_", "ResponseHeader_CtmId", "dbo.CTM_ResponseHeader");
             DropForeignKey("dbo.CTM_ResponseHeader", "RecipientOfMessage_CtmId", "dbo.CTM_ResponseHeaderRecipientOfMessage");
-            DropForeignKey("dbo.CTM_ResponseHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_ResponseHeaderOriginatorOfMessage");
+            DropForeignKey("dbo.CTM_ResponseHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_OriginatorOfMessage");
             DropForeignKey("dbo.TdmsCTM", "TradeLevel_CtmId", "dbo.CTM_MessageTradeLevel");
             DropForeignKey("dbo.CTM_MessageTradeLevel", "TradeLevelBody_CtmId", "dbo.CTM_MessageTradeLevelTradeLevelBody");
             DropForeignKey("dbo.CTM_MessageTradeLevelTradeLevelBody", "TradeLevelReferences_CtmId", "dbo.CTM_MessageTradeLevelTradeLevelBodyTradeLevelReferences");
@@ -1094,22 +1094,22 @@ namespace LSDS.CTM.Migrations
             DropForeignKey("dbo.CTM_TradeDetailBodyIdentificationOfASecurity", "SecurityCodeType_CtmId", "dbo.CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType");
             DropForeignKey("dbo.CTM_TradeDetailBody", "ExecutingBroker_CtmId", "dbo.CTM_TradeDetailBodyExecutingBroker");
             DropForeignKey("dbo.CTM_", "SubmitHeader_CtmId", "dbo.CTM_SubmitHeader");
-            DropForeignKey("dbo.CTM_SubmitHeader", "RecipientOfMessage_CtmId", "dbo.CTM_SubmitHeaderRecipientOfMessage");
-            DropForeignKey("dbo.CTM_SubmitHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_SubmitHeaderOriginatorOfMessage");
+            DropForeignKey("dbo.CTM_SubmitHeader", "RecipientOfMessage_CtmId", "dbo.CTM_RecipientOfMessage");
+            DropForeignKey("dbo.CTM_SubmitHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_OriginatorOfMessage");
             DropForeignKey("dbo.TdmsCTM", "MultiTradeLevelResponse_CtmId", "dbo.CTM_");
             DropForeignKey("dbo.CTM_", "ResponseHeader_CtmId", "dbo.CTM_ResponseHeader");
             DropForeignKey("dbo.CTM_ResponseHeader", "RecipientOfMessage_CtmId", "dbo.CTM_ResponseHeaderRecipientOfMessage");
-            DropForeignKey("dbo.CTM_ResponseHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_ResponseHeaderOriginatorOfMessage");
+            DropForeignKey("dbo.CTM_ResponseHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_OriginatorOfMessage");
             DropForeignKey("dbo.CTM_", "MultiTradeLevelResponseBody_CtmId", "dbo.CTM_MultiTradeLevelResponseBody");
             DropForeignKey("dbo.TdmsCTM", "MultiTradeLevelRequest_CtmId", "dbo.CTM_");
             DropForeignKey("dbo.CTM_", "SubmitHeader_CtmId", "dbo.CTM_Header");
-            DropForeignKey("dbo.CTM_Header", "RecipientOfMessage_CtmId", "dbo.CTM_SubmitHeaderRecipientOfMessage");
-            DropForeignKey("dbo.CTM_Header", "OriginatorOfMessage_CtmId", "dbo.CTM_SubmitHeaderOriginatorOfMessage");
+            DropForeignKey("dbo.CTM_Header", "RecipientOfMessage_CtmId", "dbo.CTM_RecipientOfMessage");
+            DropForeignKey("dbo.CTM_Header", "OriginatorOfMessage_CtmId", "dbo.CTM_OriginatorOfMessage");
             DropForeignKey("dbo.CTM_", "MultiTradeLevelRequestBody_CtmId", "dbo.CTM_MultiTradeLevelRequestBody");
             DropForeignKey("dbo.TdmsCTM", "MultiTradeDetailResponse_CtmId", "dbo.CTM_MultiTradeDetailResponse");
             DropForeignKey("dbo.CTM_MultiTradeDetailResponse", "ResponseHeader_CtmId", "dbo.CTM_ResponseHeader");
             DropForeignKey("dbo.CTM_ResponseHeader", "RecipientOfMessage_CtmId", "dbo.CTM_ResponseHeaderRecipientOfMessage");
-            DropForeignKey("dbo.CTM_ResponseHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_ResponseHeaderOriginatorOfMessage");
+            DropForeignKey("dbo.CTM_ResponseHeader", "OriginatorOfMessage_CtmId", "dbo.CTM_OriginatorOfMessage");
             DropForeignKey("dbo.CTM_MultiTradeDetailResponse", "MultiTradeDetailResponseBody_CtmId", "dbo.CTM_MultiTradeDetailResponseMultiTradeDetailResponseBody");
             DropForeignKey("dbo.TdmsCTM", "MultiTradeDetailRequest_CtmId", "dbo.CTM_MessageMultiTradeDetailRequest");
             DropForeignKey("dbo.CTM_MessageMultiTradeDetailRequest", "SubmitHeader_CtmId", "dbo.CTM_MessageMultiTradeDetailRequestSubmitHeader");
@@ -1213,7 +1213,7 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_ValidBodyExecutingBroker");
             DropTable("dbo.CTM_ValidBody");
             DropTable("dbo.CTM_ResponseHeaderRecipientOfMessage");
-            DropTable("dbo.CTM_ResponseHeaderOriginatorOfMessage");
+            DropTable("dbo.CTM_OriginatorOfMessage");
             DropTable("dbo.CTM_ResponseHeader");
             DropTable("dbo.CTM_");
             DropTable("dbo.CTM_MessageTradeLevelTradeLevelBodyTradeLevelReferences");
@@ -1252,22 +1252,22 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_TradeDetailBodyIdentificationOfASecurity");
             DropTable("dbo.CTM_TradeDetailBodyExecutingBroker");
             DropTable("dbo.CTM_TradeDetailBody");
-            DropTable("dbo.CTM_SubmitHeaderRecipientOfMessage");
-            DropTable("dbo.CTM_SubmitHeaderOriginatorOfMessage");
+            DropTable("dbo.CTM_RecipientOfMessage");
+            DropTable("dbo.CTM_OriginatorOfMessage");
             DropTable("dbo.CTM_SubmitHeader");
             DropTable("dbo.CTM_");
             DropTable("dbo.CTM_ResponseHeaderRecipientOfMessage");
-            DropTable("dbo.CTM_ResponseHeaderOriginatorOfMessage");
+            DropTable("dbo.CTM_OriginatorOfMessage");
             DropTable("dbo.CTM_ResponseHeader");
             DropTable("dbo.CTM_MultiTradeLevelResponseBody");
             DropTable("dbo.CTM_");
-            DropTable("dbo.CTM_SubmitHeaderRecipientOfMessage");
-            DropTable("dbo.CTM_SubmitHeaderOriginatorOfMessage");
+            DropTable("dbo.CTM_RecipientOfMessage");
+            DropTable("dbo.CTM_OriginatorOfMessage");
             DropTable("dbo.CTM_Header");
             DropTable("dbo.CTM_MultiTradeLevelRequestBody");
             DropTable("dbo.CTM_");
             DropTable("dbo.CTM_ResponseHeaderRecipientOfMessage");
-            DropTable("dbo.CTM_ResponseHeaderOriginatorOfMessage");
+            DropTable("dbo.CTM_OriginatorOfMessage");
             DropTable("dbo.CTM_ResponseHeader");
             DropTable("dbo.CTM_MultiTradeDetailResponseMultiTradeDetailResponseBody");
             DropTable("dbo.CTM_MultiTradeDetailResponse");
