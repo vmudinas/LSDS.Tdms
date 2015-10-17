@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -8,6 +8,7 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
+        [MaxLength(4)]
         private string functionOfTheMessageField;
 
         private byte versionOfTradeComponentField;
@@ -18,11 +19,15 @@ namespace LSDS.CTM
 
         private CTM_TradeDetailBodyTradeLevelReferences tradeLevelReferencesField;
 
+        private CTM_TradeDetailBodyCPTYTradeLevelIdentifiers cPTYTradeLevelIdentifiers;
+
         private CTM_TradeDetailBodyTradeDetailReferences tradeDetailReferencesField;
 
         private string tradeLevelExpectedField;
 
         private CTM_TradeDetailBodyIdentificationOfASecurity identificationOfASecurityField;
+
+        private CTM_AdditionalSecurityIdentifiers additionalSecurityIdentifiers;
 
         private CTM_TradeDetailBodyTradeLevelInformation tradeLevelInformationField;
 
@@ -31,8 +36,16 @@ namespace LSDS.CTM
         private CTM_TradeDetailBodyIPSettlement iPSettlementField;
 
         private CTM_TradeDetailBodyPartySettlement partySettlementField;
+        [MaxLength(35)]
+        public string TDUpdateGuard { get; set; }
+        [MaxLength(35)]
+        public string L2MatchingProfileName { get; set; }
+        [MaxLength(35)]
+        public string ShowHiddenFieldsIndicator { get; set; }
+
 
         /// <remarks/>
+        [MaxLength(4)]
         public string FunctionOfTheMessage
         {
             get
@@ -44,8 +57,20 @@ namespace LSDS.CTM
                 this.functionOfTheMessageField = value;
             }
         }
+        public CTM_AdditionalSecurityIdentifiers AdditionalSecurityIdentifiers
+        {
+            get
+            {
+                return this.additionalSecurityIdentifiers;
+            }
+            set
+            {
+                this.additionalSecurityIdentifiers = value;
+            }
+        }
 
         /// <remarks/>
+        [MaxLength(10)]
         public byte VersionOfTradeComponent
         {
             get
@@ -111,6 +136,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
+        [MaxLength(1)]
         public string TradeLevelExpected
         {
             get

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -10,9 +10,10 @@ namespace LSDS.CTM
         public int CtmId { get; set; }
         private string quantityTypeCodeField;
 
-        private string amountField;
+        private double amountField;
 
         /// <remarks/>
+        [MaxLength(4)]
         public string QuantityTypeCode
         {
             get
@@ -26,7 +27,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string Amount
+         [MaxLength(17)] public double Amount
         {
             get
             {

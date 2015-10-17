@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using LSDS.CTM;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [Serializable]

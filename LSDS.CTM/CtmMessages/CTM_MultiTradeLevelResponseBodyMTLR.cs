@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -29,7 +29,7 @@ namespace LSDS.CTM
 
         private CTM_MultiTradeLevelResponseBodyMTLRIdentificationOfASecurity identificationOfASecurityField;
 
-        private CTM_MultiTradeLevelResponseBodyMTLRAdditionalSecurityIdentifiers additionalSecurityIdentifiersField;
+        private CTM_AdditionalSecurityIdentifiers additionalSecurityIdentifiersField;
 
         private ulong tradeDateTimeField;
 
@@ -123,7 +123,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string BuySellIndicator
+         [MaxLength(4)]  public string BuySellIndicator
         {
             get
             {
@@ -149,7 +149,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string TypeOfFinancialInstrument
+         [MaxLength(4)] public string TypeOfFinancialInstrument
         {
             get
             {
@@ -175,7 +175,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public CTM_MultiTradeLevelResponseBodyMTLRAdditionalSecurityIdentifiers AdditionalSecurityIdentifiers
+        public CTM_AdditionalSecurityIdentifiers AdditionalSecurityIdentifiers
         {
             get
             {

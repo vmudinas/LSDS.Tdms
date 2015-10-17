@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -9,8 +9,26 @@ namespace LSDS.CTM
         [Key]
         public int CtmId { get; set; }
         private string numberingAgencyCodeField;
+        private string _countryCode;
 
         /// <remarks/>
+        [MaxLength(4)]
+        public string CountryCode
+        {
+            get
+            {
+                return this._countryCode;
+            }
+            set
+            {
+                this._countryCode = value;
+            }
+        }
+      
+
+        /// <remarks/>
+        
+        [MaxLength(4)]
         public string NumberingAgencyCode
         {
             get

@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using LSDS.CTM;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]

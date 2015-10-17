@@ -1,4 +1,5 @@
 using LSDS.CTM;
+using LSDS.CTM.CtmMessages;
 using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
@@ -23,7 +24,7 @@ namespace LSDS.CTM
         private readonly string _executingBrokerPartyRole;
         private readonly string _executingBrokerPartyType;
         private readonly string _executingBrokerPartyValue;
-        private readonly long _masterReference;
+        private readonly string _masterReference;
         private readonly string _numberingAgencyCode;
         private readonly string _typeOfTransactionIndicator;
         private readonly string _buySellIndicator;
@@ -31,11 +32,11 @@ namespace LSDS.CTM
         private readonly ulong _tradeDateTime;
         private readonly uint _settlementDate;
         private readonly string _currencyCode;
-        private readonly string _amount;
+        private readonly double _amount;
         private readonly string _quantityTypeCode;
-        private readonly string _qTypeCodeAmount;
+        private readonly double _qTypeCodeAmount;
         private readonly string _currencyCodeTotalTradeAmount;
-        private readonly string _currencyAmountTotalTradeAmount;
+        private readonly double _currencyAmountTotalTradeAmount;
         private readonly string _timeZoneTradeTimeQualifier;
         private readonly uint _securityCode;
 
@@ -44,9 +45,9 @@ namespace LSDS.CTM
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
             string functionOfTheMessage, byte versionOfTradeComponent, string instructingPartyRole, string instructingPartyType, 
             string instructingPartyValue, string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
-            long masterReference, uint securityCode, string numberingAgencyCode, string typeOfTransactionIndicator, string buySellIndicator,
-            string typeOfFinancialInstrument, ulong tradeDateTime, uint settlementDate, string currencyCode, string amount, string quantityTypeCode,
-            string qTypeCodeAmount, string currencyCodeTotalTradeAmount, string currencyAmountTotalTradeAmount, 
+            string masterReference, uint securityCode, string numberingAgencyCode, string typeOfTransactionIndicator, string buySellIndicator,
+            string typeOfFinancialInstrument, ulong tradeDateTime, uint settlementDate, string currencyCode, double amount, string quantityTypeCode,
+            double qTypeCodeAmount, string currencyCodeTotalTradeAmount, double currencyAmountTotalTradeAmount, 
             string timeZoneTimeQualifier)
         {
             _protocolVersion = protocolVersion;

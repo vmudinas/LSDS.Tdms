@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_TradeLevelBodyTradeLevelInformation
     {
         [Key]
+       
         public int CtmId { get; set; }
 
         private string typeOfTransactionIndicatorField;
@@ -14,7 +16,7 @@ namespace LSDS.CTM
         private string buySellIndicatorField;
 
         private string typeOfFinancialInstrumentField;
-
+       
         private CTM_TradeLevelBodyTradeLevelInformationDealPrice dealPriceField;
 
         private CTM_TradeLevelBodyTradeLevelInformationQuantityOfTheBlockTrade quantityOfTheBlockTradeField;
@@ -28,7 +30,7 @@ namespace LSDS.CTM
         private uint settlementDateField;
 
         /// <remarks/>
-        public string TypeOfTransactionIndicator
+         [MaxLength(4)]   public string TypeOfTransactionIndicator
         {
             get
             {
@@ -41,7 +43,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string BuySellIndicator
+         [MaxLength(4)]  public string BuySellIndicator
         {
             get
             {
@@ -54,7 +56,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string TypeOfFinancialInstrument
+         [MaxLength(4)] public string TypeOfFinancialInstrument
         {
             get
             {

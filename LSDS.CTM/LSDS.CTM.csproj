@@ -78,6 +78,12 @@
     <Compile Include="CtmMessages\CTM_MultiTradeDetailResponseMultiTradeDetailResponseBody.cs" />
     <Compile Include="CtmMessages\CTM_MultiTradeLevelRequest.cs" />
     <Compile Include="CtmMessages\CTM_MultiTradeLevelRequestBody.cs" />
+    <Compile Include="CtmMessages\CTM_ResponseHeaderAuditEvent.cs" />
+    <Compile Include="CtmMessages\CTM_ResponseHeaderAuditTrail.cs" />
+    <Compile Include="CtmMessages\CTM_TLReferences.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailBodyCPTYTradeLevelIdentifiers.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailBodyTDReferences.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeDetailLinkages.cs" />
     <Compile Include="CtmMessages\CTM_TradeLevelResponse.cs" />
     <Compile Include="CtmMessages\CTM_MultiTradeLevelResponseMultiTradeLevelResponseBody.cs" />
     <Compile Include="CtmMessages\CTM_MultiTradeLevelResponseBodyMTLR.cs" />
@@ -132,7 +138,6 @@
     <Compile Include="CtmMessages\CTM_Valid.cs" />
     <Compile Include="CtmMessages\CTM_ResponseHeader.cs" />
     <Compile Include="CtmMessages\CTM_OriginatorOfMessage.cs" />
-    <Compile Include="CtmMessages\CTM_ValidResponseHeaderRecipientOfMessage.cs" />
     <Compile Include="CtmMessages\CTM_ValidBody.cs" />
     <Compile Include="CtmMessages\CTM_ValidBodyExecutingBroker.cs" />
     <Compile Include="CtmMessages\CTM_ValidBodyInstructingParty.cs" />

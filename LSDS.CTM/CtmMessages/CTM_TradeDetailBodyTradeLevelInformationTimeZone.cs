@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -11,7 +11,7 @@ namespace LSDS.CTM
         private string tradeTimeQualifierField;
 
         /// <remarks/>
-        public string TradeTimeQualifier
+        [MaxLength(4)] public string TradeTimeQualifier
         {
             get
             {

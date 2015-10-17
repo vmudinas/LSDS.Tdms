@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -8,6 +8,7 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
+        [MaxLength(4)]
         private string protocolVersionField;
 
         private CTM_OriginatorOfMessage originatorOfMessageField;
@@ -17,9 +18,23 @@ namespace LSDS.CTM
         private string sendersMessageReferenceField;
 
         private ulong dateTimeOfSentMessageField;
-
+        [MaxLength(32)]
+        private string userId;
         /// <remarks/>
-        public string ProtocolVersion
+        /// 
+        [MaxLength(32)]
+        public string UserId
+        {
+            get
+            {
+                return this.userId;
+            }
+            set
+            {
+                this.userId = value;
+            }
+        }
+        [MaxLength(4)]   public string ProtocolVersion
         {
             get
             {
@@ -58,6 +73,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
+        [MaxLength(16)]
         public string SendersMessageReference
         {
             get

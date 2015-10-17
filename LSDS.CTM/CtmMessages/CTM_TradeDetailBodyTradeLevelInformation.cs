@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -26,8 +26,36 @@ namespace LSDS.CTM
         private CTM_TradeDetailBodyTradeLevelInformationTimeZone timeZoneField;
 
         private uint settlementDateField;
-
+        private string typeOfPriceIndicator;
+        
+        private string bestExecution;
+        private string lotSize;
+        [MaxLength(15)]
+        public string LotSize
+        {
+            get
+            {
+                return this.lotSize;
+            }
+            set
+            {
+                this.lotSize = value;
+            }
+        }
+        [MaxLength(4)]
+        public string BestExecution
+        {
+            get
+            {
+                return this.bestExecution;
+            }
+            set
+            {
+                this.bestExecution = value;
+            }
+        }
         /// <remarks/>
+        [MaxLength(4)]
         public string TypeOfTransactionIndicator
         {
             get
@@ -39,9 +67,21 @@ namespace LSDS.CTM
                 this.typeOfTransactionIndicatorField = value;
             }
         }
+        [MaxLength(4)]
+        public string TypeOfPriceIndicator
+        {
+            get
+            {
+                return this.typeOfPriceIndicator;
+            }
+            set
+            {
+                this.typeOfPriceIndicator = value;
+            }
+        }
 
         /// <remarks/>
-        public string BuySellIndicator
+        [MaxLength(4)]  public string BuySellIndicator
         {
             get
             {
@@ -54,7 +94,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string TypeOfFinancialInstrument
+         [MaxLength(4)] public string TypeOfFinancialInstrument
         {
             get
             {

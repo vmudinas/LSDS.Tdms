@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -8,13 +8,15 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
+        [MaxLength(4)]
         private string partyRoleField;
-
+        [MaxLength(35)]
         private string partyTypeField;
-
+        [MaxLength(11)]
         private string partyValueField;
 
         /// <remarks/>
+        [MaxLength(4)]
         public string PartyRole
         {
             get
@@ -28,6 +30,8 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
+
+        [MaxLength(35)]
         public string PartyType
         {
             get
@@ -41,6 +45,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
+        [MaxLength(11)]
         public string PartyValue
         {
             get

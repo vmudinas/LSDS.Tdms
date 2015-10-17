@@ -2,6 +2,7 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Serialization;
+using LSDS.CTM.CtmMessages;
 
 namespace LSDS.CTM
 {

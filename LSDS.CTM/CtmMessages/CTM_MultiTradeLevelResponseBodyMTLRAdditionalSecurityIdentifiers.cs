@@ -1,19 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CTM_MultiTradeLevelResponseBodyMTLRAdditionalSecurityIdentifiers
+    public partial class CTM_AdditionalSecurityIdentifiers
     {
         [Key]
         public int CtmId { get; set; }
-        private CTM_MultiTradeLevelResponseBodyMTLRAdditionalSecurityIdentifiersSecurityCodeType securityCodeTypeField;
+        private CTM_AdditionalSecurityIdentifiersSecurityCodeType securityCodeTypeField;
 
         private string securityCodeField;
 
         /// <remarks/>
-        public CTM_MultiTradeLevelResponseBodyMTLRAdditionalSecurityIdentifiersSecurityCodeType SecurityCodeType
+        public CTM_AdditionalSecurityIdentifiersSecurityCodeType SecurityCodeType
         {
             get
             {
@@ -26,6 +26,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
+        [MaxLength(30)]
         public string SecurityCode
         {
             get

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -8,17 +8,57 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
+        [MaxLength(4)]
         private string protocolVersionField;
 
         private CTM_OriginatorOfMessage originatorOfMessageField;
 
-        private CTM_ResponseHeaderRecipientOfMessage recipientOfMessageField;
-
+        private CTM_RecipientOfMessage recipientOfMessageField;
+        private CTM_ResponseHeaderAuditTrail auditTrail;
+        private CTM_ResponseHeaderAuditEvent auditEvent;
+        [MaxLength(16)]
         private string echoSendersMessageReferenceField;
-
+        [MaxLength(32)]
+        private string echoUserId;
         private ulong echoDateTimeOfSentMessageField;
 
+        public CTM_ResponseHeaderAuditTrail AuditTrail
+        {
+            get
+            {
+                return this.auditTrail;
+            }
+            set
+            {
+                this.auditTrail = value;
+            }
+        }
+        public CTM_ResponseHeaderAuditEvent AuditEvent
+        {
+            get
+            {
+                return this.auditEvent;
+            }
+            set
+            {
+                this.auditEvent = value;
+            }
+        }
+        [MaxLength(32)]
+        public string EchoUserId
+        {
+            get
+            {
+                return this.echoUserId;
+            }
+            set
+            {
+                this.echoUserId = value;
+            }
+        }
+
         /// <remarks/>
+        [MaxLength(4)]
         public string ProtocolVersion
         {
             get
@@ -45,7 +85,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public CTM_ResponseHeaderRecipientOfMessage RecipientOfMessage
+        public CTM_RecipientOfMessage RecipientOfMessage
         {
             get
             {
@@ -58,7 +98,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string EchoSendersMessageReference
+        [MaxLength(16)]    public string EchoSendersMessageReference
         {
             get
             {
@@ -69,7 +109,7 @@ namespace LSDS.CTM
                 this.echoSendersMessageReferenceField = value;
             }
         }
-
+        
         /// <remarks/>
         public ulong EchoDateTimeOfSentMessage
         {

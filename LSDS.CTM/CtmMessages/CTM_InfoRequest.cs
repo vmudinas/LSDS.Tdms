@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -8,6 +8,7 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
+
         private CTM_Header submitHeaderField;
 
         private CTM_InfoRequestBody infoRequestBodyField;

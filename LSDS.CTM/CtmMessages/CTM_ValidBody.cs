@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -15,7 +15,7 @@ namespace LSDS.CTM
 
         private long echoMasterReferenceField;
 
-        private uint cTMTradeSideIdField;
+        private string cTMTradeSideIdField;
 
         /// <remarks/>
         public CTM_ValidBodyInstructingParty InstructingParty
@@ -57,7 +57,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public uint CTMTradeSideId
+        [MaxLength(16)]  public string CTMTradeSideId
         {
             get
             {

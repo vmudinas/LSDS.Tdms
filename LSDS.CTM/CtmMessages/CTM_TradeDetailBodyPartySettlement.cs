@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -31,6 +31,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
+        [MaxLength(30)]
         public string AlertCountryCode
         {
             get

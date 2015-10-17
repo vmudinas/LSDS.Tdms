@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -9,10 +9,36 @@ namespace LSDS.CTM
         [Key]
         public int CtmId { get; set; }
 
-        private ulong masterReferenceField;
-
+         private string masterReferenceField;
+        private string _CTMTradeSideId;
+        private CTM_TLReferences _TLReferences;
+        public CTM_TLReferences TLReferences
+        {
+            get
+            {
+                return this._TLReferences;
+            }
+            set
+            {
+                this._TLReferences = value;
+            }
+        }
+        [MaxLength(16)]
+        public string CTMTradeSideId
+        {
+            get
+            {
+                return this._CTMTradeSideId;
+            }
+            set
+            {
+                this._CTMTradeSideId = value;
+            }
+        }
         /// <remarks/>
-        public ulong MasterReference
+        /// 
+        [MaxLength(16)]
+        public string MasterReference
         {
             get
             {

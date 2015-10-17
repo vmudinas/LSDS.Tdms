@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -8,10 +8,10 @@ namespace LSDS.CTM
     {
         [Key]
         public int CtmId { get; set; }
-        private string masterReferenceField;
+         [MaxLength(16)]  private string masterReferenceField;
 
         /// <remarks/>
-        public string MasterReference
+         [MaxLength(16)]  public string MasterReference
         {
             get
             {

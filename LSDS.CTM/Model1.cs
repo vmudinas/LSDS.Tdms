@@ -1,3 +1,5 @@
+using LSDS.CTM.CtmMessages;
+
 namespace LSDS.CTM
 {
     using System.Data.Entity;

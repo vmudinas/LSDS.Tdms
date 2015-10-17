@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LSDS.CTM
+namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -10,10 +10,24 @@ namespace LSDS.CTM
         public int CtmId { get; set; }
 
         private string currencyCodeField;
+        private string signField;
+        private double amountField;
 
-        private string amountField;
+        [MaxLength(1)]
+        public string Sign
+        {
+            get
+            {
+                return this.signField;
+            }
+            set
+            {
+                this.signField = value;
+            }
+        }
 
         /// <remarks/>
+        [MaxLength(3)]
         public string CurrencyCode
         {
             get
@@ -27,7 +41,7 @@ namespace LSDS.CTM
         }
 
         /// <remarks/>
-        public string Amount
+         [MaxLength(17)] public double Amount
         {
             get
             {

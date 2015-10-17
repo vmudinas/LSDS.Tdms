@@ -1,19 +1,19 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
 {
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CTM_MultiTradeLevelResponseBodyMTLRTradeLevelReferences
+    internal class CTM_TradeDetailBodyCPTYTradeLevelIdentifiers
     {
         [Key]
         public int CtmId { get; set; }
-         [MaxLength(16)]  private string masterReferenceField;
+        [MaxLength(16)]
+        private string masterReferenceField;
 
         private string cTMTradeSideIdField;
 
         /// <remarks/>
-         [MaxLength(16)]  public string MasterReference
+        [MaxLength(16)]
+        public string MasterReference
         {
             get
             {
@@ -26,7 +26,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        [MaxLength(16)]  public string CTMTradeSideId
+        [MaxLength(16)]
+        public string CTMTradeSideId
         {
             get
             {
