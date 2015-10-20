@@ -17,7 +17,7 @@ namespace LSDS.CTM.CtmMessages
         private CTM_Invalid invalidField;
         private CTM_TradeLevel tradeLevelField;
         private CTM_Valid validField;
-
+        private CTM_TradeDetail tradeDetailField;
         private CTM_MultiTradeDetailResponse multiTradeDetailResponseField;
         private CTM_MultiTradeDetailRequest multiTradeDetailRequestField;
         private CTM_InfoRequest infoRequestField;
@@ -156,7 +156,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
   
-        private CTM_TradeDetail tradeDetailField;
+       
 
         /// <remarks/>
         public CTM_TradeDetail TradeDetail

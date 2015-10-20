@@ -15,260 +15,255 @@ namespace TestApp
         public void Main(string[] args)
         {
             Console.WriteLine("Start");
-          //  var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
+            //  var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
             var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
-            var msg = new CTM_TradeDetail
+          
+            var msg = new CTM_Message
             {
-                SubmitHeader =
-                {
-                    DateTimeOfSentMessage = 1111,
-                    OriginatorOfMessage =
+                    TradeDetail =
                     {
-                        PartyRole = "sss",
-                        PartyValue = "partyvlar",
-                        PartyType = "pType"
-                    },
-                    ProtocolVersion = "sss",
-                    RecipientOfMessage =
-                    {
-                        PartyRole = "prole",
-                        PartyValue = "partyvlar",
-                        PartyType = "pType"
-                    },
-                    SendersMessageReference = "serverRef",
-                    UserId = "testuser"
-                },
-                LastUpdated = DateTime.Now,
-                TradeDetailBody = {
+                                SubmitHeader =
+                                {
+                                    DateTimeOfSentMessage = 1111,
+                                    OriginatorOfMessage =
+                                    {
+                                        PartyRole = "sss",
+                                        PartyValue = "partyvlar",
+                                        PartyType = "pType"
+                                    },
+                                    ProtocolVersion = "sss",
+                                    RecipientOfMessage =
+                                    {
+                                        PartyRole = "prole",
+                                        PartyValue = "partyvlar",
+                                        PartyType = "pType"
+                                    },
+                                    SendersMessageReference = "serverRef",
+                                    UserId = "testuser"
+                                },
+                                LastUpdated = DateTime.Now,
+                                TradeDetailBody = {
 
-                    AdditionalDisclosures =
-                    {
-                        AssetBackedSecuritiesDisclosure = "fdsafds",
-                         AssetBacked = "asx",
-                        FINRAMember = "asd",
-                        MarkUpMarkDown =
-                        {
-                           Amount = 222,
-                           CurrencyCode = "CurrencyCode",
-                           Sign = "-"
-                        },
-                        OddLotDifferential = "oddLot",
-                        OddLotDisclosure = "OddLotDisclosure",
-                        OrderFlowDisclosure = "OrderFlowDisclosure",
-                        OtherRemuneration = "OtherRemuneration",
-                        OtherRemunerationDisclosure = "OtherRemunerationDisclosure",
-                         ReportedPrice =
-                        {
-                           Amount = 222,
-                           CurrencyCode = "CurrencyCode"
-                        },
-                        RedemptionDisclosure = "RedemptionDisclosure",
-                        MarketMaker = "marketMaker",
-                        SIPCMember = "SIPMember"
-                    },
-                    AdditionalData =
-                    {
-                        AdditionalText = "AddTextData",
-                        DataXML = "dxml"
-                    },
-                    AdditionalSecurityIdentifiers =
-                    {
-                       SecurityCode = "SecCode",
-                       SecurityCodeType =
-                    {
-                        CountryCode = "SecCpdeType",
-                        NumberingAgencyCode = "NumberingAgencyCode"
-                    }
-                    },
-                    ConfirmDisclosureData =
-                    {
-                        ConfirmDisclosureBypassIndicator = "ConDBind",
-                        UserDefinedDisclosureCode = "uDDCode"
-                    },
-                    DetailLevelPartyCapacityIndicator = "DetailLEvel",
-                    EBSettlement =
-                    {
-                        AccountID = "AccountID",
-                        AccountReference = "accRef"
-                    },
-                    ExecutingBroker =
-                    {
-                        PartyRole = "ExbroVAl",
-                        PartyType = "exPRle",
-                        PartyValue = "pvalue"
-                    },
-        
-                    FunctionOfTheMessage = "funcMsg",
-                    IPSettlement =
-                    {
-                        AccountID = 99
-                     
-                    },
-                      IdentificationOfASecurity =
-                    {
-                        DescriptionOfTheSecurity = "descSec",
-                        SecurityCode = "SecCode",
-                        SecurityCodeType =
-                        {
-                            CountryCode = "CCpde",
-                            NumberingAgencyCode = "nAgencyC"
-                        }
-                    },
-                    InstructingParty =
-                    {
-                        PartyRole = "PartyRole",
-                        PartyType = "PartyType",
-                        PartyValue ="PValue"
-                    },
-        
-            L2MatchingProfileName = "L2MName",
+                                    AdditionalDisclosures =
+                                    {
+                                        AssetBackedSecuritiesDisclosure = "fdsafds",
+                                         AssetBacked = "asx",
+                                        FINRAMember = "asd",
+                                        MarkUpMarkDown =
+                                        {
+                                           Amount = 222,
+                                           CurrencyCode = "CurrencyCode",
+                                           Sign = "-"
+                                        },
+                                        OddLotDifferential = "oddLot",
+                                        OddLotDisclosure = "OddLotDisclosure",
+                                        OrderFlowDisclosure = "OrderFlowDisclosure",
+                                        OtherRemuneration = "OtherRemuneration",
+                                        OtherRemunerationDisclosure = "OtherRemunerationDisclosure",
+                                         ReportedPrice =
+                                        {
+                                           Amount = 222,
+                                           CurrencyCode = "CurrencyCode"
+                                        },
+                                        RedemptionDisclosure = "RedemptionDisclosure",
+                                        MarketMaker = "marketMaker",
+                                        SIPCMember = "SIPMember"
+                                    },
+                                    AdditionalData =
+                                    {
+                                        AdditionalText = "AddTextData",
+                                        DataXML = "dxml"
+                                    },
+                                    AdditionalSecurityIdentifiers =
+                                    {
+                                       SecurityCode = "SecCode",
+                                       SecurityCodeType =
+                                    {
+                                        CountryCode = "SecCpdeType",
+                                        NumberingAgencyCode = "NumberingAgencyCode"
+                                    }
+                                    },
+                                    ConfirmDisclosureData =
+                                    {
+                                        ConfirmDisclosureBypassIndicator = "ConDBind",
+                                        UserDefinedDisclosureCode = "uDDCode"
+                                    },
+                                    DetailLevelPartyCapacityIndicator = "DetailLEvel",
+                                    EBSettlement =
+                                    {
+                                        AccountID = "AccountID",
+                                        AccountReference = "accRef"
+                                    },
+                                    ExecutingBroker =
+                                    {
+                                        PartyRole = "ExbroVAl",
+                                        PartyType = "exPRle",
+                                        PartyValue = "pvalue"
+                                    },
 
-             PartySettlement =
-                    {
-                        AlertCountryCode = "AlCode",
-                        AlertMethodType = "AMethodT",
-                        AlertSecurityType ="SecType",
-                        AlertSettlementModelName = "ASMName",
-                        FXDealCurrencyCode = "CCode",
-                        PartyFundName = "FundName",
-                        PartyIdentifier = "PIdent",
-                         PlaceOfSafekeeping =
-                    {
-                        PlaceOfSafekeepingPlace = "PSP",
-                        PlaceOfSafekeepingType = "Type",
-                       PlaceOfSafekeepingValue = "value"
-                    },
-                    SNReleaseOverride = "SNReleaseOve",
-                    SettlementInstructionProcessingNarrative = "lll",
-                    SettlementInstructionsSourceIndicator = "SInd",
-                         SettlementInstructions =
-                    {
+                                        FunctionOfTheMessage = "funcMsg",
+                                            IPSettlement =
+                                            {
+                                                AccountID = 99
 
-                        ID1 = "",
-                        ID2= "",
-                        ID3="dd",
-                        ID4="dd",
-                        ID5="dd",
-                        ParticipantName1="dd",
-                        ParticipantName2="dd",
-                        AccountRef1="dd",
-                        AccountRef2="dd",
-                        SecurityAccount="dd",
-                        SubAccountRef1="dd",
-                        SubAccountRef2="dd",
-                        SubAccountNo="dd",
-                        PaymentCurrency="dd",
-                        CashAccountNo="dd",
-                        AlternateCurrency="dd",
-                        AlternateCashAccountNo="dd",
-                        CustodianBIC="dd",
-                        CustodianName1="dd",
-                        CustodianName2="dd",
-                        CustodianAddress1="dd",
-                        CustodianAddress2="dd",
-                        CustodianCity="dd",
-                        CustodianLocality="dd",
-                        CustodianCountry="dd",
-                        CustodianPostCode="dd",
-                        SubAgentBIC="dd",
-                        SubAgentName1="dd",
-                        SubAgentName2="dd",
-                        SubAgentAddress1="dd",
-                        SubAgentAddress2="dd",
-                        SubAgentCity="dd",
-                        SubAgentLocality="dd",
-                        SubAgentCountry="dd",
-                        SubAgentPostCode="dd",
-                        CorrespBIC="dd",
-                        CorrespName1="dd",
-                        CorrespName2="dd",
-                        CorrespAddress1="dd",
-                        CorrespAddress2="dd",
-                        CorrespCity="dd",
-                        CorrespLocality="dd",
-                        CorrespCountry="dd",
-                        CorrespPostCode="dd",
-                        CorrespCashAccountNo="dd",
-                        CorrespSecAccountNo="dd",
-                        Relationship="dd",
-                        RegName1="dd",
-                        PSET="dd",
-                        RegAddress1="dd",
-                        RegAddress2="dd",
-                        RegCity="dd",
-                        RegLocality="dd",
-                        RegCountry="dd",
-                        RegPostCode="dd",
-                        SettlementContact="dd",
-                        SettlementPhone="dd",
-                        SettlementFax="dd",
-                        SettlementTelex="dd",
-                        SpecialInstr1="dd",
-                        SpecialInstr2="dd",
-                        AffirmingPartyIndicator="dd",
-                        InstitutionBIC="dd",
-                        InstitutionContact="dd",
-                        InstitutionPhone="dd",
-                        IP1ID="dd",
-                        IP1BIC="dd",
-                        IP1AccountNo="dd",
-                        IP1Name="dd",
-                        IP1Contact="dd",
-                        IP1Phone="dd",
-                        IP1SpecialInstr1="dd",
-                        IP1SpecialInstr2="dd",
-                        IP2ID="dd",
-                        IP2BIC="dd",
-                        IP2AccountNo="dd",
-                        IP2Name="dd",
-                        IP2Contact="dd",
-                        IP2Phone="dd",
-                        IP2SpecialInstr1="dd",
-                        IP2SpecialInstr2="dd",
-                        IP3ID="dd",
-                        IP3BIC="dd",
-                        IP3AccountNo="dd",
-                        IP3Name="dd",
-                        IP3Contact="dd",
-                        IP3Phone="dd",
-                        IP3SpecialInstr1="dd",
-                        IP3SpecialInstr2="dd",
-                        AgentID="dd",
-                        INSTorBrokerID="dd",
-                        ReceiverAgentBIC="dd",
-                        ReceiverAgentName="dd",
-                        LEI="dd",
-                        AccountLEI="dd",
-                        LargeTraderID="dd",
+                                            },
+                                              IdentificationOfASecurity =
+                                            {
+                                                DescriptionOfTheSecurity = "descSec",
+                                                SecurityCode = "SecCode",
+                                                SecurityCodeType =
+                                                {
+                                                    CountryCode = "CCpde",
+                                                    NumberingAgencyCode = "nAgencyC"
+                                                }
+                                            },
+                                            InstructingParty =
+                                            {
+                                                PartyRole = "PartyRole",
+                                                PartyType = "PartyType",
+                                                PartyValue ="PValue"
+                                            },
 
-    }
-                        
+                                        L2MatchingProfileName = "L2MName",
 
-                    }
-       
-        
-         
-           
-          
+                                        PartySettlement =
+                                        {
+                                            AlertCountryCode = "AlCode",
+                                            AlertMethodType = "AMethodT",
+                                            AlertSecurityType ="SecType",
+                                            AlertSettlementModelName = "ASMName",
+                                            FXDealCurrencyCode = "CCode",
+                                            PartyFundName = "FundName",
+                                            PartyIdentifier = "PIdent",
+                                            PlaceOfSafekeeping =
+                                            {
+                                                PlaceOfSafekeepingPlace = "PSP",
+                                                PlaceOfSafekeepingType = "Type",
+                                               PlaceOfSafekeepingValue = "value"
+                                            },
+                                            SNReleaseOverride = "SNReleaseOve",
+                                            SettlementInstructionProcessingNarrative = "lll",
+                                            SettlementInstructionsSourceIndicator = "SInd",
+                                             SettlementInstructions =
+                                            {
 
-        
-    }
+                                                ID1 = "",
+                                                ID2= "",
+                                                ID3="dd",
+                                                ID4="dd",
+                                                ID5="dd",
+                                                ParticipantName1="dd",
+                                                ParticipantName2="dd",
+                                                AccountRef1="dd",
+                                                AccountRef2="dd",
+                                                SecurityAccount="dd",
+                                                SubAccountRef1="dd",
+                                                SubAccountRef2="dd",
+                                                SubAccountNo="dd",
+                                                PaymentCurrency="dd",
+                                                CashAccountNo="dd",
+                                                AlternateCurrency="dd",
+                                                AlternateCashAccountNo="dd",
+                                                CustodianBIC="dd",
+                                                CustodianName1="dd",
+                                                CustodianName2="dd",
+                                                CustodianAddress1="dd",
+                                                CustodianAddress2="dd",
+                                                CustodianCity="dd",
+                                                CustodianLocality="dd",
+                                                CustodianCountry="dd",
+                                                CustodianPostCode="dd",
+                                                SubAgentBIC="dd",
+                                                SubAgentName1="dd",
+                                                SubAgentName2="dd",
+                                                SubAgentAddress1="dd",
+                                                SubAgentAddress2="dd",
+                                                SubAgentCity="dd",
+                                                SubAgentLocality="dd",
+                                                SubAgentCountry="dd",
+                                                SubAgentPostCode="dd",
+                                                CorrespBIC="dd",
+                                                CorrespName1="dd",
+                                                CorrespName2="dd",
+                                                CorrespAddress1="dd",
+                                                CorrespAddress2="dd",
+                                                CorrespCity="dd",
+                                                CorrespLocality="dd",
+                                                CorrespCountry="dd",
+                                                CorrespPostCode="dd",
+                                                CorrespCashAccountNo="dd",
+                                                CorrespSecAccountNo="dd",
+                                                Relationship="dd",
+                                                RegName1="dd",
+                                                PSET="dd",
+                                                RegAddress1="dd",
+                                                RegAddress2="dd",
+                                                RegCity="dd",
+                                                RegLocality="dd",
+                                                RegCountry="dd",
+                                                RegPostCode="dd",
+                                                SettlementContact="dd",
+                                                SettlementPhone="dd",
+                                                SettlementFax="dd",
+                                                SettlementTelex="dd",
+                                                SpecialInstr1="dd",
+                                                SpecialInstr2="dd",
+                                                AffirmingPartyIndicator="dd",
+                                                InstitutionBIC="dd",
+                                                InstitutionContact="dd",
+                                                InstitutionPhone="dd",
+                                                IP1ID="dd",
+                                                IP1BIC="dd",
+                                                IP1AccountNo="dd",
+                                                IP1Name="dd",
+                                                IP1Contact="dd",
+                                                IP1Phone="dd",
+                                                IP1SpecialInstr1="dd",
+                                                IP1SpecialInstr2="dd",
+                                                IP2ID="dd",
+                                                IP2BIC="dd",
+                                                IP2AccountNo="dd",
+                                                IP2Name="dd",
+                                                IP2Contact="dd",
+                                                IP2Phone="dd",
+                                                IP2SpecialInstr1="dd",
+                                                IP2SpecialInstr2="dd",
+                                                IP3ID="dd",
+                                                IP3BIC="dd",
+                                                IP3AccountNo="dd",
+                                                IP3Name="dd",
+                                                IP3Contact="dd",
+                                                IP3Phone="dd",
+                                                IP3SpecialInstr1="dd",
+                                                IP3SpecialInstr2="dd",
+                                                AgentID="dd",
+                                                INSTorBrokerID="dd",
+                                                ReceiverAgentBIC="dd",
+                                                ReceiverAgentName="dd",
+                                                LEI="dd",
+                                                AccountLEI="dd",
+                                                LargeTraderID="dd",
+
+                                            }
+                                    }
+                     }
+                }
             };
-          
 
 
 
 
 
 
-            // conn.SendMsg(msg);
-            //     var newMsg = conn.SendMsg(tdInfoMsg);
+
+             var result = conn.SendMsg(msg);
+             //var newMsg = conn.SendMsg(tdInfoMsg);
             //newMsg.CtmId = ReturnUniqInt();
 
-            var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
-          
-           // dbAccess.MyMessage.AddOrUpdate(newMsg);
-            dbAccess.SaveChanges();
+          //  var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+
+           // dbAccess.MyMessage.AddOrUpdate(msg);
+           // dbAccess.SaveChanges();
 
             Console.WriteLine("End");
         }
@@ -284,11 +279,11 @@ namespace TestApp
         {
             var msg = new CTM_Message();
             msg.TradeDetail.SubmitHeader.OriginatorOfMessage.PartyRole = "";
-          //  msg.TradeDetail.SubmitHeader.ProtocolVersion
+            //  msg.TradeDetail.SubmitHeader.ProtocolVersion
 
         }
     }
-    
+
 }
 /*
 TradeLevel newTradeLevelMessage;
