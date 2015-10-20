@@ -13,6 +13,7 @@ namespace LSDS.CTM.CtmMessages
         private CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxesChargeAmount chargeAmountField;
 
         /// <remarks/>
+        [MaxLength(4)]
         public string ChargeTaxType
         {
             get

@@ -15,6 +15,7 @@ namespace LSDS.CTM.CtmMessages
         private CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesCommissionsCommission commissionField;
 
         /// <remarks/>
+        [MaxLength(4)]
         public string CommissionSharingBasisIndicator
         {
             get
@@ -28,6 +29,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
+        [MaxLength(4)]
         public string CommissionType
         {
             get

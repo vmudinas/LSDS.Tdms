@@ -2,34 +2,29 @@
 
 namespace LSDS.CTM.CtmMessages
 {
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesCommissionsCommission
+    public class CTM_TradeDetailBodyTradeDetailDataSettlementAmount
     {
         [Key]
         public int CtmId { get; set; }
-        private string signField;
-
         private string currencyCodeField;
 
         private float amountField;
+        private string sign;
 
-        /// <remarks/>
         [MaxLength(1)]
         public string Sign
         {
             get
             {
-                return this.signField;
+                return this.sign;
             }
             set
             {
-                this.signField = value;
+                this.sign = value;
             }
         }
-
         /// <remarks/>
-         [MaxLength(3)]
+        [MaxLength(3)]
         public string CurrencyCode
         {
             get
@@ -43,7 +38,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-         [MaxLength(17)]
+        [MaxLength(17)]
         public float Amount
         {
             get

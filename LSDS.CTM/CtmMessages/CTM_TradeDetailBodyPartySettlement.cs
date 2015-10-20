@@ -12,12 +12,39 @@ namespace LSDS.CTM.CtmMessages
         private string settlementInstructionsSourceIndicatorField;
 
         private string alertCountryCodeField;
-
         private string alertMethodTypeField;
-
         private string alertSecurityTypeField;
+        private string partyIdentifier;
+        private string partyFundName;
 
+
+        [MaxLength(4)]
+        public string PartyFundName
+        {
+            get
+            {
+                return this.partyFundName;
+            }
+            set
+            {
+                this.partyFundName = value;
+            }
+        }
+
+        [MaxLength(4)]
+        public string PartyIdentifier
+        {
+            get
+            {
+                return this.partyIdentifier;
+            }
+            set
+            {
+                this.partyIdentifier = value;
+            }
+        }
         /// <remarks/>
+        [MaxLength(4)]
         public string SettlementInstructionsSourceIndicator
         {
             get

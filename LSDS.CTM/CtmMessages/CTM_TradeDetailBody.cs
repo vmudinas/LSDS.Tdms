@@ -7,43 +7,89 @@ namespace LSDS.CTM.CtmMessages
     public partial class CTM_TradeDetailBody
     {
         [Key]
-        public int CtmId { get; set; }
-        [MaxLength(4)]
+        public int CtmId { get; set; }       
         private string functionOfTheMessageField;
-
         private byte versionOfTradeComponentField;
-
+        private string processingIndicator;
+        private string reportingIndicator;
+        private string detailLevelPartyCapacityIndicator;
         private CTM_TradeDetailBodyInstructingParty instructingPartyField;
-
         private CTM_TradeDetailBodyExecutingBroker executingBrokerField;
-
         private CTM_TradeDetailBodyTradeLevelReferences tradeLevelReferencesField;
-
         private CTM_TradeDetailBodyCPTYTradeLevelIdentifiers cPTYTradeLevelIdentifiers;
-
         private CTM_TradeDetailBodyTradeDetailReferences tradeDetailReferencesField;
-
         private string tradeLevelExpectedField;
-
         private CTM_TradeDetailBodyIdentificationOfASecurity identificationOfASecurityField;
-
         private CTM_AdditionalSecurityIdentifiers additionalSecurityIdentifiers;
-
         private CTM_TradeDetailBodyTradeLevelInformation tradeLevelInformationField;
-
         private CTM_TradeDetailBodyTradeDetailData tradeDetailDataField;
-
         private CTM_TradeDetailBodyIPSettlement iPSettlementField;
-
         private CTM_TradeDetailBodyPartySettlement partySettlementField;
+        private CTM_TradeDetailBodyAdditionalDisclosures additionalDisclosures;
+        private CTM_TradeDetailBodyAdditionalData additionalData;
+        private CTM_TradeDetailBodyAdditionalDataIPSettlement iPSettlement;
+        private CTM_TradeDetailBodyAdditionalDataEBSettlement eBSettlement;
+
+        public CTM_TradeDetailBodyAdditionalDataEBSettlement EBSettlement
+        {
+            get
+            {
+                return this.eBSettlement;
+            }
+            set
+            {
+                this.eBSettlement = value;
+            }
+        }
+
+        public CTM_TradeDetailBodyAdditionalDataIPSettlement IPSettlement
+        {
+            get
+            {
+                return this.iPSettlement;
+            }
+            set
+            {
+                this.iPSettlement = value;
+            }
+        }
+
+        public CTM_TradeDetailBodyAdditionalData AdditionalData
+        {
+            get
+            {
+                return this.additionalData;
+            }
+            set
+            {
+                this.additionalData = value;
+            }
+        }
+        public CTM_TradeDetailBodyAdditionalDisclosures AdditionalDisclosures
+        {
+            get
+            {
+                return this.additionalDisclosures;
+            }
+            set
+            {
+                this.additionalDisclosures = value;
+            }
+        }
+
         [MaxLength(35)]
         public string TDUpdateGuard { get; set; }
         [MaxLength(35)]
         public string L2MatchingProfileName { get; set; }
         [MaxLength(35)]
         public string ShowHiddenFieldsIndicator { get; set; }
-
-
+        [MaxLength(4)]
+        public string ProcessingIndicator { get; set; }
+        [MaxLength(4)]
+        public string ReportingIndicator { get; set; }
+        [MaxLength(4)]
+        public string DetailLevelPartyCapacityIndicator { get; set; }
+        
         /// <remarks/>
         [MaxLength(4)]
         public string FunctionOfTheMessage

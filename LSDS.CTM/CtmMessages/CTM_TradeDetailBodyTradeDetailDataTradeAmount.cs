@@ -9,11 +9,26 @@ namespace LSDS.CTM.CtmMessages
         [Key]
         public int CtmId { get; set; }
         private string currencyCodeField;
+        private string sign;
+        private float amountField;
 
-        private double amountField;
+
+        [MaxLength(1)]
+        public string Sign
+        {
+            get
+            {
+                return this.sign;
+            }
+            set
+            {
+                this.sign = value;
+            }
+        }
 
         /// <remarks/>
-         [MaxLength(3)] public string CurrencyCode
+        [MaxLength(3)]
+        public string CurrencyCode
         {
             get
             {
@@ -26,7 +41,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-         [MaxLength(17)] public double Amount
+         [MaxLength(17)]
+        public float Amount
         {
             get
             {

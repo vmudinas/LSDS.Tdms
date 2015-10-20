@@ -9,9 +9,21 @@ namespace LSDS.CTM.CtmMessages
         [Key]
         public int CtmId { get; set; }
         private string tradeTimeQualifierField;
-
+        private CTM_CountryTimeZone countryTimeZone;
         /// <remarks/>
-        [MaxLength(4)] public string TradeTimeQualifier
+        public CTM_CountryTimeZone CountryTimeZone
+        {
+            get
+            {
+                return this.countryTimeZone;
+            }
+            set
+            {
+                this.countryTimeZone = value;
+            }
+        }
+        [MaxLength(4)]
+        public string TradeTimeQualifier
         {
             get
             {
@@ -22,5 +34,40 @@ namespace LSDS.CTM.CtmMessages
                 this.tradeTimeQualifierField = value;
             }
         }
+    }
+
+    public class CTM_CountryTimeZone
+    {
+        [Key]
+        public int CtmId { get; set; }
+        private string tradeTimeQualifierField;
+        private string countryCode;
+        private string timeZoneIndicator;
+        [MaxLength(2)]
+        public string CountryCode
+        {
+            get
+            {
+                return this.countryCode;
+            }
+            set
+            {
+                this.countryCode = value;
+            }
+        }
+        [MaxLength(4)]
+        public string TradeTimeQualifier
+        {
+            get
+            {
+                return this.timeZoneIndicator;
+            }
+            set
+            {
+                this.timeZoneIndicator = value;
+            }
+        }
+
+
     }
 }
