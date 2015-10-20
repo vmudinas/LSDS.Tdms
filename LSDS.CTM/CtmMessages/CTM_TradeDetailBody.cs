@@ -27,7 +27,7 @@ namespace LSDS.CTM.CtmMessages
         private CTM_TradeDetailBodyPartySettlement partySettlementField;
         private CTM_TradeDetailBodyAdditionalDisclosures additionalDisclosures;
         private CTM_TradeDetailBodyAdditionalData additionalData;
-        private CTM_TradeDetailBodyAdditionalDataIPSettlement iPSettlement;
+        private CTM_TradeDetailBodyAdditionalDataIPSettlement additionalDataIPSettlement;
         private CTM_TradeDetailBodyAdditionalDataEBSettlement eBSettlement;
         private CTM_TradeDetailBodyConfirmDisclosureData confirmDisclosureData;
 
@@ -56,15 +56,15 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        public CTM_TradeDetailBodyAdditionalDataIPSettlement IPSettlement
+        public CTM_TradeDetailBodyAdditionalDataIPSettlement AdditionalDataIPSettlement
         {
             get
             {
-                return this.iPSettlement;
+                return this.additionalDataIPSettlement;
             }
             set
             {
-                this.iPSettlement = value;
+                this.additionalDataIPSettlement = value;
             }
         }
 
