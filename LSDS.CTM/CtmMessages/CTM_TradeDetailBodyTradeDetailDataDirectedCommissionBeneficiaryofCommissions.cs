@@ -4,7 +4,7 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeDetailDataDirectedCommissionBeneficiaryofCommissions
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string clearingSystemID;
         private string partyFundName;

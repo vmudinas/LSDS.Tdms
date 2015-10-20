@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_MultiTradeDetailResponseMultiTradeDetailResponseBody
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private byte recordsReturnedCountField;
 

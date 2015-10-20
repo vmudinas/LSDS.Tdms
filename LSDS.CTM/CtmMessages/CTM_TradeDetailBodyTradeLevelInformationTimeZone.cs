@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_TradeDetailBodyTradeLevelInformationTimeZone
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string tradeTimeQualifierField;
         private CTM_CountryTimeZone countryTimeZone;
@@ -38,7 +38,7 @@ namespace LSDS.CTM.CtmMessages
 
     public class CTM_CountryTimeZone
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string tradeTimeQualifierField;
         private string countryCode;

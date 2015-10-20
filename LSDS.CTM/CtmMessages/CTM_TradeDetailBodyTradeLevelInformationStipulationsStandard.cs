@@ -4,7 +4,7 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string stipulationCodeStandard;
         private CTM_TradeDetailBodyTradeLevelInformationStipulationsStandardStipulationValueStandard stipulationsValueStandard;

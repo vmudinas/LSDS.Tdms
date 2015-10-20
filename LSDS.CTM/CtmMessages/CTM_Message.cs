@@ -12,7 +12,7 @@ namespace LSDS.CTM.CtmMessages
     [Table("CTM_Trade")]
     public partial class CTM_Message
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private CTM_Invalid invalidField;
         private CTM_TradeLevel tradeLevelField;

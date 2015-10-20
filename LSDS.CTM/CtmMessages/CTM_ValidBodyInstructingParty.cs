@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace LSDS.CTM.CtmMessages
 {
@@ -6,7 +7,8 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_ValidBodyInstructingParty
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
+        
         public int CtmId { get; set; }
         [MaxLength(4)]
         private string partyRoleField;

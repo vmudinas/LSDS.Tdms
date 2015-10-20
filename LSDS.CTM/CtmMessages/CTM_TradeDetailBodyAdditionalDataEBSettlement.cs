@@ -4,7 +4,7 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyAdditionalDataEBSettlement
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string accountReference;
         private string accountID;

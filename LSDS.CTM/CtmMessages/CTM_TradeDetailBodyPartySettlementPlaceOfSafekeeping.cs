@@ -4,7 +4,7 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyPartySettlementPlaceOfSafekeeping
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
 
         private string _PlaceOfSafekeepingType;

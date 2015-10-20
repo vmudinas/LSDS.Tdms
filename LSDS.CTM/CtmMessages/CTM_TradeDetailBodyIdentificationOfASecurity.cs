@@ -7,7 +7,7 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_TradeDetailBodyIdentificationOfASecurity
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
 
         private CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType securityCodeTypeField;

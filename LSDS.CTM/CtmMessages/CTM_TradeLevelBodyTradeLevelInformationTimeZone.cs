@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_TradeLevelBodyTradeLevelInformationTimeZone
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
 
         private string tradeTimeQualifierField;

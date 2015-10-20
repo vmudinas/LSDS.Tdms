@@ -5,7 +5,7 @@ namespace LSDS.CTM.CtmMessages
     public class CTM_TradeDetailBodyTradeLevelInformationCallPrice
     {
 
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private double amount;
         private string currencyCodeField;

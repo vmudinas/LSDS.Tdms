@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     [Serializable]
     public partial class CTM_MultiTradeDetailResponse
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private CTM_ResponseHeader responseHeaderField;
 

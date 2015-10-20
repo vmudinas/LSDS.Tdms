@@ -5,7 +5,7 @@ namespace LSDS.CTM.CtmMessages
     public class CTM_ResponseHeaderAuditTrail
     {
 
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         [MaxLength(255)]
         private string _auditReason { get; set; }

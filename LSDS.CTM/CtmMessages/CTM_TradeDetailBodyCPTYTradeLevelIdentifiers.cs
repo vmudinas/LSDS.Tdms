@@ -4,7 +4,7 @@ namespace LSDS.CTM.CtmMessages
 {
     internal class CTM_TradeDetailBodyCPTYTradeLevelIdentifiers
     {
-        [Key]
+        [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         [MaxLength(16)]
         private string masterReferenceField;
