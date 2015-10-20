@@ -170,18 +170,19 @@
     <Compile Include="CtmMessages\CTM_ValidBodyInstructingParty.cs" />
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
-    <Compile Include="InfoRequest.cs" />
+    <Compile Include="SendInfoRequest.cs" />
     <Compile Include="Migrations\201510200706017_v1.cs" />
     <Compile Include="Migrations\201510200706017_v1.Designer.cs">
       <DependentUpon>201510200706017_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model1.cs" />
-    <Compile Include="MultiTradeDetail.cs" />
-    <Compile Include="MultiTradeLevel.cs" />
+    <Compile Include="CTMDBContext.cs" />
+    <Compile Include="SendMultiTradeDetail.cs" />
+    <Compile Include="SendMultiTradeLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendTradeDetail.cs" />
     <Compile Include="Seralizer.cs" />
-    <Compile Include="TradeLevel.cs" />
+    <Compile Include="SendTradeLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

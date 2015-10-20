@@ -3,7 +3,7 @@ using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
 {
-    public class InfoRequest : ICtmProcess
+    public class SendInfoRequest : ICtmProcess
     {
 
         private readonly string _protocolVersion;
@@ -24,7 +24,7 @@ namespace LSDS.CTM
         private readonly string _queryType;
         private readonly string _cTMTradeDetailID;
 
-        public InfoRequest(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole,
+        public SendInfoRequest(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole,
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
             string viewRequestedIndicator, string queryType,string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
             string accessPathIdOwner, string accessPathTradeLevelIdentifiersMasterReference, string cTMTradeDetailID = "")

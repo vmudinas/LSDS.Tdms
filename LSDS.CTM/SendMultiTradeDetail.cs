@@ -10,7 +10,7 @@ using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
 {
-    public class MultiTradeDetail : ICtmProcess
+    public class SendMultiTradeDetail : ICtmProcess
     {
         public CTM_Message SendMultiTradeDetailRequest(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole, string orgPartyType, string orgPartyValue,
             string receiptPartyRole, string receiptPartyType, string receiptPartyValue,

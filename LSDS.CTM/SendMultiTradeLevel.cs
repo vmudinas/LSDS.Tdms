@@ -3,7 +3,7 @@ using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
 {
-    public class MultiTradeLevel : ICtmProcess
+    public class SendMultiTradeLevel : ICtmProcess
     {
 
         private readonly string _protocolVersion;
@@ -20,7 +20,7 @@ namespace LSDS.CTM
         private readonly ulong _minLastUpdateDateTime;
        // private readonly string[] _matchStatus;
 
-        public MultiTradeLevel(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole, 
+        public SendMultiTradeLevel(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole, 
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue, 
             string multiTradeLevelResponseIndicator, string byOrAgainstFlag, ulong minLastUpdateDateTime)
         {

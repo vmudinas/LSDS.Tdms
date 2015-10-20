@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
@@ -54,6 +55,11 @@ namespace LSDS.CTM.CtmMessages
             {
                 this.descriptionOfTheSecurityField = value;
             }
+        }
+
+        public static implicit operator CTM_TradeDetailBodyIdentificationOfASecurity(CTM_TradeDetailBodyIdentificationOfASecurity v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

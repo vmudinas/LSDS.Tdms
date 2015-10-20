@@ -4,7 +4,7 @@ using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
 {
-    public class TradeLevel : ICtmProcess
+    public class SendTradeLevel : ICtmProcess
     {
 
         private readonly string _protocolVersion;
@@ -41,7 +41,7 @@ namespace LSDS.CTM
         private readonly uint _securityCode;
 
 
-        public TradeLevel(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole,
+        public SendTradeLevel(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole,
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
             string functionOfTheMessage, byte versionOfTradeComponent, string instructingPartyRole, string instructingPartyType, 
             string instructingPartyValue, string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
