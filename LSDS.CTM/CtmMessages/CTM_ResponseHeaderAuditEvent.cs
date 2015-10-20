@@ -16,10 +16,8 @@ namespace LSDS.CTM.CtmMessages
         private int _auditEventEnd;
         private int _auditEventExclIMs;
 
-
-
-        [MaxLength(2)]
-        public int AuditEventDepth
+        
+       public int AuditEventDepth
         {
             get
             {
@@ -66,7 +64,7 @@ namespace LSDS.CTM.CtmMessages
                 this._auditEventArg = value;
             }
         }
-        [MaxLength(14)]
+       
         public int AuditEventStart
         {
             get
@@ -78,7 +76,7 @@ namespace LSDS.CTM.CtmMessages
                 this._auditEventStart = value;
             }
         }                        
-             [MaxLength(14)]
+            
             public int AuditEventEnd
         {
             get
@@ -90,7 +88,7 @@ namespace LSDS.CTM.CtmMessages
                 this._auditEventEnd = value;
             }
         }
-        [MaxLength(8)]
+       
         public int AuditEventInclMs
         {
             get
@@ -102,7 +100,7 @@ namespace LSDS.CTM.CtmMessages
                 this._auditEventDepth = value;
             }
         }                       
-            [MaxLength(8)]
+         
             public int AuditEventExclIMs
         {
             get

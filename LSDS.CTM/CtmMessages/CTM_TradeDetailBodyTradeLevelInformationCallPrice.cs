@@ -11,7 +11,7 @@ namespace LSDS.CTM.CtmMessages
         private string currencyCodeField;
 
 
-        [MaxLength(17)]
+        
         public double Amount
         {
             get

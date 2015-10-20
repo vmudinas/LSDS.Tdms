@@ -12,7 +12,7 @@ namespace LSDS.CTM.CtmMessages
         private double exchangeRateAmount;
 
 
-        [MaxLength(17)]
+       
         public double ExchangeRateAmount
         {
             get

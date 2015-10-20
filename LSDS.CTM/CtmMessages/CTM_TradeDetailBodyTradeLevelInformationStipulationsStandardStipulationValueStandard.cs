@@ -4,6 +4,7 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeLevelInformationStipulationsStandardStipulationValueStandard
     {
+        [Key]
         public int CtmId { get; set; }
         private double stipulationNumeric;
         private string stipulationAlphaNumeric;
@@ -39,7 +40,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        [MaxLength(8)]
+        
         public int StipulationDate
         {
 
@@ -68,7 +69,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
 
-        [MaxLength(17)]
+        
         public double StipulationNumeric
         {
             

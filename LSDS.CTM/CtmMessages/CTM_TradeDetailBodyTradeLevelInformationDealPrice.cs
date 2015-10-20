@@ -27,7 +27,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-         [MaxLength(17)] public double Amount
+         public double Amount
         {
             get
             {

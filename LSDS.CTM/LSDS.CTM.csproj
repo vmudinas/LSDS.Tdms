@@ -171,17 +171,9 @@
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
     <Compile Include="InfoRequest.cs" />
-    <Compile Include="Migrations\201510142223320_CtmName.cs" />
-    <Compile Include="Migrations\201510142223320_CtmName.Designer.cs">
-      <DependentUpon>201510142223320_CtmName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510142251198_CTM_Trade.cs" />
-    <Compile Include="Migrations\201510142251198_CTM_Trade.Designer.cs">
-      <DependentUpon>201510142251198_CTM_Trade.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510160729546_iomessage.cs" />
-    <Compile Include="Migrations\201510160729546_iomessage.Designer.cs">
-      <DependentUpon>201510160729546_iomessage.cs</DependentUpon>
+    <Compile Include="Migrations\201510200706017_v1.cs" />
+    <Compile Include="Migrations\201510200706017_v1.Designer.cs">
+      <DependentUpon>201510200706017_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
@@ -198,18 +190,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510142223320_CtmName.resx">
-      <DependentUpon>201510142223320_CtmName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510142251198_CTM_Trade.resx">
-      <DependentUpon>201510142251198_CTM_Trade.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510160729546_iomessage.resx">
-      <DependentUpon>201510160729546_iomessage.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="ExtentalDll\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ExtentalDll\" />
+    <EmbeddedResource Include="Migrations\201510200706017_v1.resx">
+      <DependentUpon>201510200706017_v1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

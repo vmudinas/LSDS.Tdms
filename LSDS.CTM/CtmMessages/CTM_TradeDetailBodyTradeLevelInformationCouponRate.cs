@@ -21,7 +21,7 @@ namespace LSDS.CTM.CtmMessages
                 this.sign = value;
             }
         }
-        [MaxLength(17)]
+      
         public double Amount
         {
             get

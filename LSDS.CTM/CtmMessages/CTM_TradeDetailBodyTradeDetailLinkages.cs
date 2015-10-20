@@ -1,7 +1,11 @@
-﻿namespace LSDS.CTM.CtmMessages
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeDetailLinkages
     {
+        [Key]
+        public int CtmId { get; set; }
         private CTM_TradeDetailBodyTDReferences _tDReferences;
         public CTM_TradeDetailBodyTDReferences TDReferences
         {

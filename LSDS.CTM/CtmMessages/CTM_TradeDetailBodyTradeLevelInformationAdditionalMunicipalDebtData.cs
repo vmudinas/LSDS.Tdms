@@ -24,7 +24,7 @@ namespace LSDS.CTM.CtmMessages
         private string flatDefaultStatus;
         private string bondTaxStatus;
 
-        [MaxLength(17)]
+     
         public double DiscountRate
         {
             get
@@ -86,7 +86,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        [MaxLength(8)]
+       
         public int InterestAccrualDate
         {
             get
@@ -99,7 +99,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        [MaxLength(8)]
+       
         public int InterestPaymentDate
         {
             get
@@ -123,7 +123,7 @@ namespace LSDS.CTM.CtmMessages
                 this.optionCallIndicator = value;
             }
         }
-        [MaxLength(4)]
+        
         public string CallPutIndicator
         {
             get
@@ -149,7 +149,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        [MaxLength(8)]
+      
         public int PutBondDate
         {
             get

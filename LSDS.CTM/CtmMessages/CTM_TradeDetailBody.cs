@@ -130,7 +130,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        [MaxLength(10)]
+       
         public byte VersionOfTradeComponent
         {
             get

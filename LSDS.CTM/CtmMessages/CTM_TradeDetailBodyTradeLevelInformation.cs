@@ -120,7 +120,7 @@ namespace LSDS.CTM.CtmMessages
                 this.additionalMunicipalDebtData = value;
             }
         }
-        [MaxLength(8)]
+       
         public int FactorEffectiveDate
         {
             get
@@ -132,7 +132,7 @@ namespace LSDS.CTM.CtmMessages
                 this.factorEffectiveDate = value;
             }
         }
-        [MaxLength(8)]
+       
         public int RecordDate
         {
             get
@@ -182,7 +182,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        [MaxLength(8)]
+      
         public int IssueDate
         {
             get

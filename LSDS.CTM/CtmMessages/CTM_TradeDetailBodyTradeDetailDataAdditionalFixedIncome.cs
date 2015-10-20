@@ -23,7 +23,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        [MaxLength(17)]
+        
         public double CurrentFaceValue
         {
             get
@@ -36,7 +36,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        [MaxLength(17)]
+       
         public double OriginalFaceAmount
         {
             get
