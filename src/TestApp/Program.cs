@@ -17,8 +17,224 @@ namespace TestApp
             Console.WriteLine("Start");
             //  var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
             var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
-          
-            var msg = new CTM_Message
+          var gmsg = new SendTradeDetail(GenerateTradeDetails());
+
+           
+
+
+
+
+
+
+
+             var result = conn.SendMsg(msg);
+             //var newMsg = conn.SendMsg(tdInfoMsg);
+            //newMsg.CtmId = ReturnUniqInt();
+
+          //  var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+
+           // dbAccess.MyMessage.AddOrUpdate(msg);
+           // dbAccess.SaveChanges();
+
+            Console.WriteLine("End");
+        }
+
+
+        private CTM_Message GenerateTradeDetails()
+        {
+            var msg = new CTM_Message();
+            var newReuqestMsg = new CTM_TradeDetail();
+
+            var newSubmitHeaderMsg = new CTM_Header
+            {
+                ProtocolVersion = "CM01",
+                SendersMessageReference =  "ars455",
+                DateTimeOfSentMessage =  20150202112233 // (ulong) DateTime.Now.Ticks
+            };
+            var originatorOfMeessage = new CTM_OriginatorOfMessage
+            {
+                PartyRole = "MEOR",
+                PartyType =  "BIC",
+                PartyValue =  "LIGHTSPD"
+            };
+
+            var recipientOfMessage = new CTM_RecipientOfMessage
+            {
+                PartyRole = "MEOR",
+                PartyType = "BIC",
+                PartyValue =  "LIGHTSPD"
+            };
+
+            newSubmitHeaderMsg.OriginatorOfMessage = originatorOfMeessage;
+            newSubmitHeaderMsg.RecipientOfMessage = recipientOfMessage;
+
+
+
+            var newExecutingBroker = new CTM_TradeDetailBodyExecutingBroker
+            {
+                PartyRole = "EXEC",
+                PartyType = "BIC",
+                PartyValue = "TECHSOLBXXX"
+
+            };
+           
+            var newTradeDetailReferences = new CTM_TradeDetailBodyTradeLevelReferences
+            {
+                
+                 MasterReference = "-893838912000001" ,
+            };
+
+
+            var newIdentificationOfASecuritySecurityCodeType = new CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType
+            {
+                NumberingAgencyCode = "SEDO"//_numberingAgencyCode,
+                //"SEDO"
+
+            };
+            var newSecurityCodeType = new CTM_TradeDetailBodyIdentificationOfASecurity
+            {
+                SecurityCodeType = newIdentificationOfASecuritySecurityCodeType, //"v",
+                SecurityCode = "_securityCode",
+                DescriptionOfTheSecurity = "_descriptionOfTheSecurity"
+                //SecurityCode = _securityCode//5668287
+            };
+            var newDealPrice = new CTM_TradeDetailBodyTradeLevelInformationDealPrice
+            {
+                CurrencyCode = "USD", //USD
+                Amount = 33.33 // Ammount
+            };
+            var newQuantityOfTheBlockTrade = new CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade
+            {
+                QuantityTypeCode = "EU", //USD
+                Amount = 2.2 // Ammount
+            };
+            var newTotalTradeAmount = new CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount
+            {
+                CurrencyCode = "USD", //USD
+                Amount = 123 // Ammount
+            };
+            var newTimeZone = new CTM_TradeDetailBodyTradeLevelInformationTimeZone
+
+            {
+                TradeTimeQualifier = "LOCL" //LOCL
+
+            };
+
+            var newTradeDetailInformation = new CTM_TradeDetailBodyTradeLevelInformation
+            {
+                TypeOfTransactionIndicator = "TRAD", //  TRAD 
+                BuySellIndicator = "BUYI", // BUYI
+                TypeOfFinancialInstrument = "COMM", // COMM 
+                TradeDateTime = 20150504094438, // 20150504094438 
+                SettlementDate = 20150505//,  //> 20150505
+                                         //DealPrice = newDealPrice,
+                                         //QuantityOfTheBlockTrade = newQuantityOfTheBlockTrade,
+                                         //TotalTradeAmount = newTotalTradeAmount,
+                                         // TimeZone = newTimeZone
+
+            };
+
+            var newInstructingParty = new CTM_TradeDetailBodyInstructingParty
+            {
+                PartyRole = "INST", //"INST",
+                PartyType = "BIC", //"BIC",
+                PartyValue = "LIGHTSPD" // "LIGHTSPD"
+            };
+
+
+
+            var newRequestBodyMsg = new CTM_TradeDetailBody
+            {
+                FunctionOfTheMessage = "NEWM", //"NEWM"
+                VersionOfTradeComponent = 001, //"001",
+                IdentificationOfASecurity = newSecurityCodeType,
+                InstructingParty = newInstructingParty,
+                ExecutingBroker = newExecutingBroker,
+                TradeLevelReferences = newTradeDetailReferences
+                //  TradeDetailInformation = newTradeDetailInformation
+            };
+
+            newReuqestMsg.SubmitHeader = newSubmitHeaderMsg;
+            newReuqestMsg.TradeDetailBody = newRequestBodyMsg;
+            msg.TradeDetail = newReuqestMsg;
+            return msg;
+        }
+
+        private int ReturnUniqInt()
+        {
+            var random = new Random();
+            return random.Next();
+
+        }
+
+        void CreateTestMessage()
+        {
+            var msg = new CTM_Message();
+            msg.TradeDetail.SubmitHeader.OriginatorOfMessage.PartyRole = "";
+            //  msg.TradeDetail.SubmitHeader.ProtocolVersion
+
+        }
+    }
+
+}
+/*
+TradeLevel newTradeLevelMessage;
+IList<CTM_Message> resultList;
+var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
+var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
+//     var msg = conn.SendMsg(tdInfoMsg);
+var msgInforResult = conn.SendMsg(tdInfoMsg);
+//   var msg = conn.SendMsg(new TradeLevel("CM01", "vitas", 20150915083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "NEWM", 001, "INST",
+//         "BIC", "LIGHTSPD", "EXEC", "BIC", "Vitas", -783838912000008, 5668287, "SEDO", "TRAD", "BUYI", "COMM", 20150915094438, 20150915, "USD", "1000,00",
+//        "FAMT", "100,00", "USD", "1000000,00", "LOCL"));
+//var submitATrade = new TradeLevel("CM01", "ars4411", 20150915083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "NEWM",001, "INST",
+//    "BIC","LIGHTSPD", "EXEC", "BIC", "TECHSOLBXXX", -893838912000008, 5668287, "SEDO", "TRAD", "BUYI", "COMM", 20150915094438, 20150915, "USD", "1000,00",
+//    "FAMT","100,00","USD", "1000000,00", "LOCL");
+
+var xxx = new TradeLevel();
+//  var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
+//var msgResult = conn.SendMsg(submitATrade);
+    for (var i = 0; i < 10; i ++)
+   {
+       var msg = conn.SendMsg(new TradeLevel("CM01", "vitas", 20150915083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "NEWM", 001, "INST",
+       "BIC", "LIGHTSPD", "EXEC", "BIC", "AUTOBKMAXXX", getMasterRef(), 5668287, "SEDO", "TRAD", "BUYI", "COMM", 20150915094438, 20150915, "USD", "1000,00",
+       "FAMT", "100,00", "USD", "1000000,00", "LOCL"));
+       if (msg.Valid != null)
+       {
+           Console.WriteLine("Valid new sell message");
+       }
+       else
+       {
+           Console.WriteLine("Message not valid");
+       }
+       //  Console.WriteLine(ms);
+   }
+
+               var tdLevelMsg = new MultiTradeLevel("CM01", "ars441", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "ADDD","A", 20150901175240);
+               var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true, tdLevelMsg);
+               var msgResult = tdLevelMsg.SendMsg(conn.GetSession());
+               if (msgResult.Invalid != null)
+               {
+                   Console.WriteLine("Messege Invalid");
+               }
+               else if(msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount == 0)
+               {
+                   Console.WriteLine("No multitrade messages available" + msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount);
+               }
+               else 
+               {
+                   Console.WriteLine(msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount + " messages available.");
+                   Console.WriteLine("Getting information messages");
+                   // Get Information Message
+                   //  Console.WriteLine("No multitrade messages available" + msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount);
+                   var tdInfoMsg = new InfoRequest("CM01", "ars441", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE","A","TLEV","EXEC","BIC","OGMATCH1","EXEC", "BD813633972");
+                   var connInfor= new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true, tdInfoMsg);
+                   var msgInforResult = tdInfoMsg.SendMsg(connInfor.GetSession());
+
+                  // C
+               }
+
+     var msg = new CTM_Message
             {
                     TradeDetail =
                     {
@@ -249,96 +465,4 @@ namespace TestApp
                      }
                 }
             };
-
-
-
-
-
-
-
-             var result = conn.SendMsg(msg);
-             //var newMsg = conn.SendMsg(tdInfoMsg);
-            //newMsg.CtmId = ReturnUniqInt();
-
-          //  var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
-
-           // dbAccess.MyMessage.AddOrUpdate(msg);
-           // dbAccess.SaveChanges();
-
-            Console.WriteLine("End");
-        }
-
-        private int ReturnUniqInt()
-        {
-            var random = new Random();
-            return random.Next();
-
-        }
-
-        void CreateTestMessage()
-        {
-            var msg = new CTM_Message();
-            msg.TradeDetail.SubmitHeader.OriginatorOfMessage.PartyRole = "";
-            //  msg.TradeDetail.SubmitHeader.ProtocolVersion
-
-        }
-    }
-
-}
-/*
-TradeLevel newTradeLevelMessage;
-IList<CTM_Message> resultList;
-var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
-var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
-//     var msg = conn.SendMsg(tdInfoMsg);
-var msgInforResult = conn.SendMsg(tdInfoMsg);
-//   var msg = conn.SendMsg(new TradeLevel("CM01", "vitas", 20150915083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "NEWM", 001, "INST",
-//         "BIC", "LIGHTSPD", "EXEC", "BIC", "Vitas", -783838912000008, 5668287, "SEDO", "TRAD", "BUYI", "COMM", 20150915094438, 20150915, "USD", "1000,00",
-//        "FAMT", "100,00", "USD", "1000000,00", "LOCL"));
-//var submitATrade = new TradeLevel("CM01", "ars4411", 20150915083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "NEWM",001, "INST",
-//    "BIC","LIGHTSPD", "EXEC", "BIC", "TECHSOLBXXX", -893838912000008, 5668287, "SEDO", "TRAD", "BUYI", "COMM", 20150915094438, 20150915, "USD", "1000,00",
-//    "FAMT","100,00","USD", "1000000,00", "LOCL");
-
-var xxx = new TradeLevel();
-//  var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
-//var msgResult = conn.SendMsg(submitATrade);
-    for (var i = 0; i < 10; i ++)
-   {
-       var msg = conn.SendMsg(new TradeLevel("CM01", "vitas", 20150915083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "NEWM", 001, "INST",
-       "BIC", "LIGHTSPD", "EXEC", "BIC", "AUTOBKMAXXX", getMasterRef(), 5668287, "SEDO", "TRAD", "BUYI", "COMM", 20150915094438, 20150915, "USD", "1000,00",
-       "FAMT", "100,00", "USD", "1000000,00", "LOCL"));
-       if (msg.Valid != null)
-       {
-           Console.WriteLine("Valid new sell message");
-       }
-       else
-       {
-           Console.WriteLine("Message not valid");
-       }
-       //  Console.WriteLine(ms);
-   }
-
-               var tdLevelMsg = new MultiTradeLevel("CM01", "ars441", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "ADDD","A", 20150901175240);
-               var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true, tdLevelMsg);
-               var msgResult = tdLevelMsg.SendMsg(conn.GetSession());
-               if (msgResult.Invalid != null)
-               {
-                   Console.WriteLine("Messege Invalid");
-               }
-               else if(msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount == 0)
-               {
-                   Console.WriteLine("No multitrade messages available" + msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount);
-               }
-               else 
-               {
-                   Console.WriteLine(msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount + " messages available.");
-                   Console.WriteLine("Getting information messages");
-                   // Get Information Message
-                   //  Console.WriteLine("No multitrade messages available" + msgResult.MultiTradeLevelResponse.MultiTradeLevelResponseBody.RecordsReturnedCount);
-                   var tdInfoMsg = new InfoRequest("CM01", "ars441", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE","A","TLEV","EXEC","BIC","OGMATCH1","EXEC", "BD813633972");
-                   var connInfor= new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true, tdInfoMsg);
-                   var msgInforResult = tdInfoMsg.SendMsg(connInfor.GetSession());
-
-                  // C
-               }
                */

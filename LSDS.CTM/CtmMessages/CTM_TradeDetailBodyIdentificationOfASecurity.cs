@@ -57,9 +57,6 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        public static implicit operator CTM_TradeDetailBodyIdentificationOfASecurity(CTM_TradeDetailBodyIdentificationOfASecurity v)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

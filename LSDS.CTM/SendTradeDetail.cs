@@ -7,84 +7,78 @@ namespace LSDS.CTM
     public class SendTradeDetail : ICtmProcess
     {
 
-        private readonly string _protocolVersion;
-        private readonly string _sendersMessageReference;
-        private readonly ulong _dateTimeOfSentMessage;
-        private readonly string _orgPartyRole;
-        private readonly string _orgPartyType;
-        private readonly string _orgPartyValue;
-        private readonly string _receiptPartyRole;
-        private readonly string _receiptPartyType;
-        private readonly string _receiptPartyValue;
-        private readonly string _functionOfTheMessage;
-        private readonly byte _versionOfTradeComponent;
-        private readonly string _instructingPartyRole;
-        private readonly string _instructingPartyType;
-        private readonly string _instructingPartyValue;
-        private readonly string _executingBrokerPartyRole;
-        private readonly string _executingBrokerPartyType;
-        private readonly string _executingBrokerPartyValue;
-        private readonly string _masterReference;
-        private readonly string _numberingAgencyCode;
-        private readonly string _typeOfTransactionIndicator;
-        private readonly string _buySellIndicator;
-        private readonly string _typeOfFinancialInstrument;
-        private readonly ulong _tradeDateTime;
-        private readonly uint _settlementDate;
-        private readonly string _currencyCode;
-        private readonly double _amount;
-        private readonly string _quantityTypeCode;
-        private readonly double _qTypeCodeAmount;
-        private readonly string _currencyCodeTotalTradeAmount;
-        private readonly double _currencyAmountTotalTradeAmount;
-        private readonly string _timeZoneTradeTimeQualifier;
-        private readonly string _securityCode;
-        private readonly string _descriptionOfTheSecurity;
+        //private readonly string _protocolVersion;
+        //private readonly string _sendersMessageReference;
+        //private readonly ulong _dateTimeOfSentMessage;
+        //private readonly string _orgPartyRole;
+        //private readonly string _orgPartyType;
+        //private readonly string _orgPartyValue;
+        //private readonly string _receiptPartyRole;
+        //private readonly string _receiptPartyType;
+        //private readonly string _receiptPartyValue;
+        //private readonly string _functionOfTheMessage;
+        //private readonly byte _versionOfTradeComponent;
+        //private readonly string _instructingPartyRole;
+        //private readonly string _instructingPartyType;
+        //private readonly string _instructingPartyValue;
+        //private readonly string _executingBrokerPartyRole;
+        //private readonly string _executingBrokerPartyType;
+        //private readonly string _executingBrokerPartyValue;
+        //private readonly string _masterReference;
+        //private readonly string _numberingAgencyCode;
+        //private readonly string _typeOfTransactionIndicator;
+        //private readonly string _buySellIndicator;
+        //private readonly string _typeOfFinancialInstrument;
+        //private readonly ulong _tradeDateTime;
+        //private readonly uint _settlementDate;
+        //private readonly string _currencyCode;
+        //private readonly double _amount;
+        //private readonly string _quantityTypeCode;
+        //private readonly double _qTypeCodeAmount;
+        //private readonly string _currencyCodeTotalTradeAmount;
+        //private readonly double _currencyAmountTotalTradeAmount;
+        //private readonly string _timeZoneTradeTimeQualifier;
+        //private readonly string _securityCode;
+        //private readonly string _descriptionOfTheSecurity;
+        private readonly CTM_Message _message;
 
-
-        public SendTradeDetail(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole,
-            string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
-            string functionOfTheMessage, byte versionOfTradeComponent, string instructingPartyRole, string instructingPartyType, 
-            string instructingPartyValue, string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
-            string masterReference, string securityCode, string numberingAgencyCode, string typeOfTransactionIndicator, string buySellIndicator,
-            string typeOfFinancialInstrument, ulong tradeDateTime, uint settlementDate, string currencyCode, double amount, string quantityTypeCode,
-            double qTypeCodeAmount, string currencyCodeTotalTradeAmount, double currencyAmountTotalTradeAmount, 
-            string timeZoneTimeQualifier)
+        public SendTradeDetail(CTM_Message message)
         {
-            _protocolVersion = protocolVersion;
-            _sendersMessageReference = sendersMessageReference;
-            _dateTimeOfSentMessage = dateTimeOfSentMessage;
-            _orgPartyRole = orgPartyRole;
-            _orgPartyType = orgPartyType;
-            _orgPartyValue = orgPartyValue;
-            _receiptPartyRole = receiptPartyRole;
-            _receiptPartyType = receiptPartyType;
-            _receiptPartyValue = receiptPartyValue;
-            _functionOfTheMessage = functionOfTheMessage;
-            _versionOfTradeComponent = versionOfTradeComponent;
-            _instructingPartyRole = instructingPartyRole;
-            _instructingPartyType = instructingPartyType;
-            _instructingPartyValue = instructingPartyValue;
-            _executingBrokerPartyRole = executingBrokerPartyRole;
-            _executingBrokerPartyType = executingBrokerPartyType;
-            _executingBrokerPartyValue = executingBrokerPartyValue;
-            _masterReference = masterReference;
-            _numberingAgencyCode = numberingAgencyCode;
-            _typeOfTransactionIndicator = typeOfTransactionIndicator;
-            _buySellIndicator = buySellIndicator;
-            _typeOfFinancialInstrument = typeOfFinancialInstrument;
-            _tradeDateTime = tradeDateTime;
-            _settlementDate = settlementDate;
-            _currencyCode = currencyCode;
-            _amount = amount;
-            _quantityTypeCode = quantityTypeCode;
-            _qTypeCodeAmount = qTypeCodeAmount;
-            _currencyCodeTotalTradeAmount = currencyCodeTotalTradeAmount;
-            _currencyAmountTotalTradeAmount = currencyAmountTotalTradeAmount;
-            _timeZoneTradeTimeQualifier = timeZoneTimeQualifier;
-            _securityCode = securityCode;
+            _message = message;
+            //_protocolVersion = msg.TradeDetail.SubmitHeader.ProtocolVersion;
+            //_sendersMessageReference = msg.TradeDetail.SubmitHeader.SendersMessageReference;
+            //_dateTimeOfSentMessage = msg.TradeDetail.SubmitHeader.DateTimeOfSentMessage;
+            //_orgPartyRole = msg.TradeDetail.SubmitHeader.OriginatorOfMessage.PartyRole;
+            //_orgPartyType = msg.TradeDetail.SubmitHeader.OriginatorOfMessage.PartyType;
+            //_orgPartyValue = msg.TradeDetail.SubmitHeader.OriginatorOfMessage.PartyValue;
+            //_receiptPartyRole = msg.TradeDetail.SubmitHeader.RecipientOfMessage.PartyRole;
+            //_receiptPartyType = msg.TradeDetail.SubmitHeader.RecipientOfMessage.PartyType;
+            //_receiptPartyValue = msg.TradeDetail.SubmitHeader.RecipientOfMessage.PartyValue;
+            //_functionOfTheMessage = msg.TradeDetail.TradeDetailBody.FunctionOfTheMessage;
+            //_versionOfTradeComponent = msg.TradeDetail.TradeDetailBody.VersionOfTradeComponent;
+            //_instructingPartyRole = msg.TradeDetail.TradeDetailBody.InstructingParty.PartyRole;
+            //_instructingPartyType = msg.TradeDetail.TradeDetailBody.InstructingParty.PartyType;
+            //_instructingPartyValue = msg.TradeDetail.TradeDetailBody.InstructingParty.PartyValue;
+            //_executingBrokerPartyRole = msg.TradeDetail.TradeDetailBody.ExecutingBroker.PartyRole;
+            //_executingBrokerPartyType = msg.TradeDetail.TradeDetailBody.ExecutingBroker.PartyType;
+            //_executingBrokerPartyValue = msg.TradeDetail.TradeDetailBody.ExecutingBroker.PartyValue;
+            //_masterReference = msg.TradeDetail.TradeDetailBody.TradeLevelReferences.MasterReference;
+            //_numberingAgencyCode = msg.TradeDetail.TradeDetailBody.IdentificationOfASecurity.SecurityCodeType.NumberingAgencyCode;
+            //_typeOfTransactionIndicator = typeOfTransactionIndicator;
+            //_buySellIndicator = buySellIndicator;
+            //_typeOfFinancialInstrument = typeOfFinancialInstrument;
+            //_tradeDateTime = tradeDateTime;
+            //_settlementDate = settlementDate;
+            //_currencyCode = currencyCode;
+            //_amount = amount;
+            //_quantityTypeCode = quantityTypeCode;
+            //_qTypeCodeAmount = qTypeCodeAmount;
+            //_currencyCodeTotalTradeAmount = currencyCodeTotalTradeAmount;
+            //_currencyAmountTotalTradeAmount = currencyAmountTotalTradeAmount;
+            //_timeZoneTradeTimeQualifier = timeZoneTimeQualifier;
+            //_securityCode = securityCode;
         }
-
+/*
 
         public CTM_Message GenerateTradeDetailRequest()
         {
@@ -204,12 +198,13 @@ namespace LSDS.CTM
 
             return msg;
         }
+        */
 
 
         public CTM_Message SendMsg(DCIWebSession con)
         {
             var processor = new CtmProcessor();
-            return processor.ProcessMessage(processor.AddDocType("TradeDetail", GenerateTradeDetailRequest()), true, con, "TradeDetail");
+            return processor.ProcessMessage(processor.AddDocType("TradeDetail", _message), true, con, "TradeDetail");
 
         }
 
