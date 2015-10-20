@@ -39,7 +39,7 @@ namespace TestApp
         {
             var msg = new CTM_Message();
             msg.TradeDetail.SubmitHeader.OriginatorOfMessage.PartyRole = "";
-            msg.TradeDetail.SubmitHeader.ProtocolVersion
+          //  msg.TradeDetail.SubmitHeader.ProtocolVersion
 
         }
     }
