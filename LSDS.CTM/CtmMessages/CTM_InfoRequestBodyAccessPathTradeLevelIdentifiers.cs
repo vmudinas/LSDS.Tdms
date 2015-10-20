@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LSDS.CTM.CtmMessages
 {
     /// <remarks/>
+
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_InfoRequestBodyAccessPathTradeLevelIdentifiers
     {

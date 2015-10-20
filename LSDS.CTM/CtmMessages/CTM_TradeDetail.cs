@@ -10,8 +10,7 @@ namespace LSDS.CTM.CtmMessages
         [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
 
-        public DateTime LastUpdated { get; set; }
-       
+      
         private CTM_Header submitHeaderField;
 
         private CTM_TradeDetailBody tradeDetailBodyField;

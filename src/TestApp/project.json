@@ -8,7 +8,7 @@
 
     "dependencies": {
         "Microsoft.Framework.Configuration": "1.0.0-rc1-15666",
-        "CtmLibrary": "4.0.9"
+        "CtmLibrary": "4.1.2"
 
     },
 
