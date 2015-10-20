@@ -12,7 +12,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string currencyCodeField;
 
-        private float amountField;
+        private double amountField;
 
         /// <remarks/>
         [MaxLength(1)]
@@ -44,7 +44,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
          [MaxLength(17)]
-        public float Amount
+        public double Amount
         {
             get
             {

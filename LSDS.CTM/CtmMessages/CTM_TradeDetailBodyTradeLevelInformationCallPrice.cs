@@ -7,12 +7,12 @@ namespace LSDS.CTM.CtmMessages
 
         [Key]
         public int CtmId { get; set; }
-        private float amount;
+        private double amount;
         private string currencyCodeField;
 
 
         [MaxLength(17)]
-        public float Amount
+        public double Amount
         {
             get
             {

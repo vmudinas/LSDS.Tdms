@@ -7,7 +7,7 @@ namespace LSDS.CTM.CtmMessages
         [Key]
         public int CtmId { get; set; }
         private string sign;
-        private float amount;
+        private double amount;
              
         [MaxLength(1)]
         public string Sign
@@ -22,7 +22,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
         [MaxLength(17)]
-        public float Amount
+        public double Amount
         {
             get
             {

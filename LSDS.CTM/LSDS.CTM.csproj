@@ -87,7 +87,10 @@
     <Compile Include="CtmMessages\CTM_TradeDetailBodyAdditionalDisclosures.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyAdditionalDisclosuresMarkUpMarkDown.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyAdditionalDisclosuresReportedPrice.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailBodyConfirmDisclosureData.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyCPTYTradeLevelIdentifiers.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailBodyPartySettlementPlaceOfSafekeeping.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailBodyPartySettlementSettlementInstructions.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTDReferences.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncome.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncomeAccruedInterestAmount.cs" />

@@ -29,6 +29,20 @@ namespace LSDS.CTM.CtmMessages
         private CTM_TradeDetailBodyAdditionalData additionalData;
         private CTM_TradeDetailBodyAdditionalDataIPSettlement iPSettlement;
         private CTM_TradeDetailBodyAdditionalDataEBSettlement eBSettlement;
+        private CTM_TradeDetailBodyConfirmDisclosureData confirmDisclosureData;
+
+        public CTM_TradeDetailBodyConfirmDisclosureData ConfirmDisclosureData
+        {
+            get
+            {
+                return this.confirmDisclosureData;
+            }
+            set
+            {
+                this.confirmDisclosureData = value;
+            }
+        }
+
 
         public CTM_TradeDetailBodyAdditionalDataEBSettlement EBSettlement
         {
