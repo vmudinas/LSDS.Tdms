@@ -92,6 +92,7 @@
     <Compile Include="CtmMessages\CTM_TradeDetailBodyPartySettlementPlaceOfSafekeeping.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyPartySettlementSettlementInstructions.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTDReferences.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailBodyThirdPartyToTrade.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncome.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncomeAccruedInterestAmount.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeDetailDataDirectedCommission.cs" />

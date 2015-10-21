@@ -40,12 +40,12 @@ namespace LSDS.CTM
                 var values = Regex.Split(responseString, ".dtd'>");
                 if (1 < values.Length)
                 {
-                    responseString = values[1].Replace("\r", "").Replace("\n", "");
+                    responseString = values[1].Replace("\r", "").Replace("\n", "").Replace(@",", " ").Replace(@"-", " ").Replace(@"+", " "); 
                 }
                 else
                 {
                     values = Regex.Split(responseString, ".dtd\">");
-                    responseString = values[1].Replace("\r", "").Replace("\n", "");
+                    responseString = values[1].Replace("\r", "").Replace("\n", "").Replace(@",", " ").Replace(@"-", " ").Replace(@"+", " "); 
                 }
             }
             }
@@ -59,9 +59,10 @@ namespace LSDS.CTM
             {
                 return Seralizer.Deserialize<CTM_Message>(responseString);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               // newMessage.Invalid.Text[0] = "Serialization failed for : " + responseString;
+                var msg = ex.Message;
+                // newMessage.Invalid.Text[0] = "Serialization failed for : " + responseString;
             }
             return null;
         }

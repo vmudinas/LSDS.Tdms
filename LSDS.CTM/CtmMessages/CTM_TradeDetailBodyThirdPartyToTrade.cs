@@ -1,10 +1,8 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
 {
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CTM_TradeDetailBodyExecutingBroker
+    public class CTM_TradeDetailBodyThirdPartyToTrade
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]

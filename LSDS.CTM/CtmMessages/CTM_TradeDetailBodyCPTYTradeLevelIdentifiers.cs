@@ -2,7 +2,7 @@
 
 namespace LSDS.CTM.CtmMessages
 {
-    internal class CTM_TradeDetailBodyCPTYTradeLevelIdentifiers
+    public class CTM_TradeDetailBodyCPTYTradeLevelIdentifiers
     {
         [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }

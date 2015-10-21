@@ -6,7 +6,8 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_TradeDetailBody
     {
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }       
         private string functionOfTheMessageField;
         private byte versionOfTradeComponentField;
@@ -30,67 +31,7 @@ namespace LSDS.CTM.CtmMessages
         private CTM_TradeDetailBodyAdditionalDataIPSettlement additionalDataIPSettlement;
         private CTM_TradeDetailBodyAdditionalDataEBSettlement eBSettlement;
         private CTM_TradeDetailBodyConfirmDisclosureData confirmDisclosureData;
-
-        public CTM_TradeDetailBodyConfirmDisclosureData ConfirmDisclosureData
-        {
-            get
-            {
-                return this.confirmDisclosureData;
-            }
-            set
-            {
-                this.confirmDisclosureData = value;
-            }
-        }
-
-
-        public CTM_TradeDetailBodyAdditionalDataEBSettlement EBSettlement
-        {
-            get
-            {
-                return this.eBSettlement;
-            }
-            set
-            {
-                this.eBSettlement = value;
-            }
-        }
-
-        public CTM_TradeDetailBodyAdditionalDataIPSettlement AdditionalDataIPSettlement
-        {
-            get
-            {
-                return this.additionalDataIPSettlement;
-            }
-            set
-            {
-                this.additionalDataIPSettlement = value;
-            }
-        }
-
-        public CTM_TradeDetailBodyAdditionalData AdditionalData
-        {
-            get
-            {
-                return this.additionalData;
-            }
-            set
-            {
-                this.additionalData = value;
-            }
-        }
-        public CTM_TradeDetailBodyAdditionalDisclosures AdditionalDisclosures
-        {
-            get
-            {
-                return this.additionalDisclosures;
-            }
-            set
-            {
-                this.additionalDisclosures = value;
-            }
-        }
-
+        private CTM_TradeDetailBodyThirdPartyToTrade thirdPartyToTrade;
         [MaxLength(35)]
         public string TDUpdateGuard { get; set; }
         [MaxLength(35)]
@@ -103,7 +44,7 @@ namespace LSDS.CTM.CtmMessages
         public string ReportingIndicator { get; set; }
         [MaxLength(4)]
         public string DetailLevelPartyCapacityIndicator { get; set; }
-        
+
         /// <remarks/>
         [MaxLength(4)]
         public string FunctionOfTheMessage
@@ -117,20 +58,6 @@ namespace LSDS.CTM.CtmMessages
                 this.functionOfTheMessageField = value;
             }
         }
-        public CTM_AdditionalSecurityIdentifiers AdditionalSecurityIdentifiers
-        {
-            get
-            {
-                return this.additionalSecurityIdentifiers;
-            }
-            set
-            {
-                this.additionalSecurityIdentifiers = value;
-            }
-        }
-
-        /// <remarks/>
-       
         public byte VersionOfTradeComponent
         {
             get
@@ -142,60 +69,6 @@ namespace LSDS.CTM.CtmMessages
                 this.versionOfTradeComponentField = value;
             }
         }
-
-        /// <remarks/>
-        public CTM_TradeDetailBodyInstructingParty InstructingParty
-        {
-            get
-            {
-                return this.instructingPartyField;
-            }
-            set
-            {
-                this.instructingPartyField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CTM_TradeDetailBodyExecutingBroker ExecutingBroker
-        {
-            get
-            {
-                return this.executingBrokerField;
-            }
-            set
-            {
-                this.executingBrokerField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CTM_TradeDetailBodyTradeLevelReferences TradeLevelReferences
-        {
-            get
-            {
-                return this.tradeLevelReferencesField;
-            }
-            set
-            {
-                this.tradeLevelReferencesField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CTM_TradeDetailBodyTradeDetailReferences TradeDetailReferences
-        {
-            get
-            {
-                return this.tradeDetailReferencesField;
-            }
-            set
-            {
-                this.tradeDetailReferencesField = value;
-            }
-        }
-
-        /// <remarks/>
         [MaxLength(1)]
         public string TradeLevelExpected
         {
@@ -208,8 +81,72 @@ namespace LSDS.CTM.CtmMessages
                 this.tradeLevelExpectedField = value;
             }
         }
-
-        /// <remarks/>
+        public CTM_TradeDetailBodyInstructingParty InstructingParty
+        {
+            get
+            {
+                return this.instructingPartyField;
+            }
+            set
+            {
+                this.instructingPartyField = value;
+            }
+        }
+        public CTM_TradeDetailBodyExecutingBroker ExecutingBroker
+        {
+            get
+            {
+                return this.executingBrokerField;
+            }
+            set
+            {
+                this.executingBrokerField = value;
+            }
+        }
+        public CTM_TradeDetailBodyThirdPartyToTrade ThirdPartyToTrade
+        {
+            get
+            {
+                return this.thirdPartyToTrade;
+            }
+            set
+            {
+                this.thirdPartyToTrade = value;
+            }
+        }
+        public CTM_TradeDetailBodyTradeLevelReferences TradeLevelReferences
+        {
+            get
+            {
+                return this.tradeLevelReferencesField;
+            }
+            set
+            {
+                this.tradeLevelReferencesField = value;
+            }
+        }
+        public CTM_TradeDetailBodyCPTYTradeLevelIdentifiers CPTYTradeLevelIdentifiers
+        {
+            get
+            {
+                return this.cPTYTradeLevelIdentifiers;
+            }
+            set
+            {
+                this.cPTYTradeLevelIdentifiers = value;
+            }
+        }
+        public CTM_TradeDetailBodyTradeDetailReferences TradeDetailReferences
+        {
+            get
+            {
+                return this.tradeDetailReferencesField;
+            }
+            set
+            {
+                this.tradeDetailReferencesField = value;
+            }
+        }
         public CTM_TradeDetailBodyIdentificationOfASecurity IdentificationOfASecurity
         {
             get
@@ -222,7 +159,18 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        /// <remarks/>
+        public CTM_AdditionalSecurityIdentifiers AdditionalSecurityIdentifiers
+        {
+            get
+            {
+                return this.additionalSecurityIdentifiers;
+            }
+            set
+            {
+                this.additionalSecurityIdentifiers = value;
+            }
+        }
+
         public CTM_TradeDetailBodyTradeLevelInformation TradeLevelInformation
         {
             get
@@ -248,7 +196,29 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        /// <remarks/>
+        public CTM_TradeDetailBodyAdditionalDisclosures AdditionalDisclosures
+        {
+            get
+            {
+                return this.additionalDisclosures;
+            }
+            set
+            {
+                this.additionalDisclosures = value;
+            }
+        }
+
+        public CTM_TradeDetailBodyAdditionalData AdditionalData
+        {
+            get
+            {
+                return this.additionalData;
+            }
+            set
+            {
+                this.additionalData = value;
+            }
+        }
         public CTM_TradeDetailBodyIPSettlement IPSettlement
         {
             get
@@ -260,7 +230,17 @@ namespace LSDS.CTM.CtmMessages
                 this.iPSettlementField = value;
             }
         }
-
+        public CTM_TradeDetailBodyAdditionalDataEBSettlement EBSettlement
+        {
+            get
+            {
+                return this.eBSettlement;
+            }
+            set
+            {
+                this.eBSettlement = value;
+            }
+        }
         /// <remarks/>
         public CTM_TradeDetailBodyPartySettlement PartySettlement
         {
@@ -273,5 +253,37 @@ namespace LSDS.CTM.CtmMessages
                 this.partySettlementField = value;
             }
         }
+
+
+        public CTM_TradeDetailBodyConfirmDisclosureData ConfirmDisclosureData
+        {
+            get
+            {
+                return this.confirmDisclosureData;
+            }
+            set
+            {
+                this.confirmDisclosureData = value;
+            }
+        }
+
+
+      
+       
+
+        //public CTM_TradeDetailBodyAdditionalDataIPSettlement AdditionalDataIPSettlement
+        //{
+        //    get
+        //    {
+        //        return this.additionalDataIPSettlement;
+        //    }
+        //    set
+        //    {
+        //        this.additionalDataIPSettlement = value;
+        //    }
+        //}
+       
+    
+      
     }
 }
