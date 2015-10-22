@@ -138,10 +138,10 @@ namespace CApp
             // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
          //   var message = msg.SendMsg(conn.GetSession());
 
-             var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+             //var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
 
-             dbAccess.MyMessage.Add(tdMessage);
-             dbAccess.SaveChanges();
+             //dbAccess.MyMessage.Add(tdMessage);
+             //dbAccess.SaveChanges();
 
 
 

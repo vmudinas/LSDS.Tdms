@@ -16,14 +16,19 @@ namespace TestApp
         {
             Console.WriteLine("Start");
 
-     
+            var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+           // var msg = new SendTradeDetail(GetTradeDetail());
+
+            dbAccess.MyMessage.Add(GetTradeDetail());
+            dbAccess.SaveChanges();
+
 
             Console.WriteLine("End");
         }
 
 
       
-        private static CTM_Message SendTradeDetail()
+        private static CTM_Message GetTradeDetail()
         {
             var tdMessage = new CTM_Message
             {
