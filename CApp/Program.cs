@@ -128,6 +128,168 @@ namespace CApp
          
 
 
+         
+
+           
+            //[Key]
+            //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+           
+            var msg = new SendTradeDetail(tdMessage);
+            // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
+         //   var message = msg.SendMsg(conn.GetSession());
+
+             var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+
+             dbAccess.MyMessage.Add(tdMessage);
+             dbAccess.SaveChanges();
+
+
+
+
+
+
+            //var result = conn.SendMsg(msg);
+            //var newMsg = conn.SendMsg(tdInfoMsg);
+            //newMsg.CtmId = ReturnUniqInt();
+
+            //  var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+
+            // dbAccess.MyMessage.AddOrUpdate(msg);
+            // dbAccess.SaveChanges();
+
+            Console.WriteLine("End");
+        }
+        private static CTM_Message GenerateTradeDetails()
+        {
+            //var msg = new CTM_Message();
+            //var newReuqestMsg = new CTM_TradeDetail();
+
+            //var newSubmitHeaderMsg = new CTM_Header
+            //{
+            //    ProtocolVersion = "CM01",
+            //    SendersMessageReference = "ars425",
+            //    DateTimeOfSentMessage = 20150202112233 // (ulong) DateTime.Now.Ticks
+            //};
+            //var originatorOfMeessage = new CTM_OriginatorOfMessage
+            //{
+            //    PartyRole = "MEOR",
+            //    PartyType = "BIC",
+            //    PartyValue = "LIGHTSPD"
+            //};
+
+            //var recipientOfMessage = new CTM_RecipientOfMessage
+            //{
+            //    PartyRole = "MEOR",
+            //    PartyType = "BIC",
+            //    PartyValue = "LIGHTSPD"
+            //};
+
+            //newSubmitHeaderMsg.OriginatorOfMessage = originatorOfMeessage;
+            //newSubmitHeaderMsg.RecipientOfMessage = recipientOfMessage;
+
+
+
+            //var newExecutingBroker = new CTM_TradeDetailBodyExecutingBroker
+            //{
+            //    PartyRole = "EXEC",
+            //    PartyType = "BIC",
+            //    PartyValue = "TECHSOLBXXX"
+
+            //};
+
+            //var newTradeLevelReferences = new CTM_TradeDetailBodyTradeLevelReferences
+            //{
+
+            //    MasterReference = "-793838912000001"
+            //};
+
+            //var newTradeDetailReferences = new CTM_TradeDetailBodyTradeDetailReferences
+            //{
+            //    ClientAllocationReference = "-793838912000001"
+            //};
+
+            //var newIdentificationOfASecuritySecurityCodeType = new CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType
+            //{
+            //    NumberingAgencyCode = "SEDO"//_numberingAgencyCode,
+            //    //"SEDO"
+
+            //};
+            //var newSecurityCodeType = new CTM_TradeDetailBodyIdentificationOfASecurity
+            //{
+            //    SecurityCodeType = newIdentificationOfASecuritySecurityCodeType, //"v",
+            //    SecurityCode = "_securityCode",
+            //    DescriptionOfTheSecurity = "_descriptionOfTheSecurity"
+            //    //SecurityCode = _securityCode//5668287
+            //};
+            //var newDealPrice = new CTM_TradeDetailBodyTradeLevelInformationDealPrice
+            //{
+            //    CurrencyCode = "USD", //USD
+            //    Amount = "33,33" // Ammount
+            //};
+            //var newQuantityOfTheBlockTrade = new CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade
+            //{
+            //    QuantityTypeCode = "EU", //USD
+            //    Amount = "2,2" // Ammount
+            //};
+            //var newTotalTradeAmount = new CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount
+            //{
+            //    CurrencyCode = "USD", //USD
+            //    Amount = "123," // Ammount
+            //};
+            //var newTimeZone = new CTM_TradeDetailBodyTradeLevelInformationTimeZone
+
+            //{
+            //    TradeTimeQualifier = "LOCL" //LOCL
+
+            //};
+
+            //var newTradeDetailInformation = new CTM_TradeDetailBodyTradeLevelInformation
+            //{
+            //    TypeOfTransactionIndicator = "TRAD", //  TRAD 
+            //    BuySellIndicator = "BUYI", // BUYI
+            //    TypeOfFinancialInstrument = "COMM", // COMM 
+            //    TradeDateTime = 20150504094438, // 20150504094438 
+            //    SettlementDate = 20150505//,  //>20150505
+            //                             //DealPrice = newDealPrice,
+            //                             //QuantityOfTheBlockTrade = newQuantityOfTheBlockTrade,
+            //                             //TotalTradeAmount = newTotalTradeAmount,
+            //                             // TimeZone = newTimeZone
+
+            //};
+
+            //var newInstructingParty = new CTM_TradeDetailBodyInstructingParty
+            //{
+            //    PartyRole = "INST", //"INST",
+            //    PartyType = "BIC", //"BIC",
+            //    PartyValue = "LIGHTSPD" // "LIGHTSPD"
+            //};
+            //var newCpTyTIdent = new CTM_TradeDetailBodyCPTYTradeLevelIdentifiers
+            //{
+            //   CTMTradeSideId = "CtmTradeSideId",
+            //   MasterReference = "-793838912000001",
+            //};
+
+
+            //var newRequestBodyMsg = new CTM_TradeDetailBody
+            //{
+            //    TDUpdateGuard = "TDUpdateGuard",
+            //    FunctionOfTheMessage = "NEWM", //"NEWM"
+            //    VersionOfTradeComponent = 001, //"001",
+            //    TradeLevelReferences = newTradeLevelReferences,
+            //    TradeDetailReferences = newTradeDetailReferences,
+            //    L2MatchingProfileName = "PName",
+            //    InstructingParty = newInstructingParty,
+            //    TradeLevelExpected = "N",
+            //    CPTYTradeLevelIdentifiers = newCpTyTIdent,
+            //    IdentificationOfASecurity = newSecurityCodeType,
+            //    ExecutingBroker = newExecutingBroker
+
+            //    //  TradeDetailInformation = newTradeDetailInformation
+            //};
+
+            //newReuqestMsg.SubmitHeader = newSubmitHeaderMsg;
+            //newReuqestMsg.TradeDetailBody = newRequestBodyMsg;
+            //msg.TradeDetail = newReuqestMsg;
             var tdMessage = new CTM_Message
             {
                 TradeDetail = new CTM_TradeDetail
@@ -148,7 +310,7 @@ namespace CApp
                             PartyType = "TFID",
                             PartyValue = "CTMSERVICE"
                         },
-                        SendersMessageReference = "VitasRef441",
+                        SendersMessageReference = "VitasRef4417",
                         DateTimeOfSentMessage = 20151022143030
                     },
                     TradeDetailBody = new CTM_TradeDetailBody
@@ -169,11 +331,11 @@ namespace CApp
                         },
                         TradeLevelReferences = new CTM_TradeDetailBodyTradeLevelReferences
                         {
-                            MasterReference = "20150917224128"
+                            MasterReference = "20150917224155"
                         },
                         TradeDetailReferences = new CTM_TradeDetailBodyTradeDetailReferences
                         {
-                            ClientAllocationReference = "RLAMD0714144828"
+                            ClientAllocationReference = "Vitas0714144828"
                         },
                         TradeLevelExpected = "N",
                         IdentificationOfASecurity = new CTM_TradeDetailBodyIdentificationOfASecurity
@@ -187,7 +349,7 @@ namespace CApp
                         },
                         TradeLevelInformation = new CTM_TradeDetailBodyTradeLevelInformation
                         {
-                           TypeOfTransactionIndicator = "TRAD",
+                            TypeOfTransactionIndicator = "TRAD",
                             BuySellIndicator = "BUYI",
                             TypeOfFinancialInstrument = "COMM",
                             DealPrice = new CTM_TradeDetailBodyTradeLevelInformationDealPrice
@@ -197,7 +359,7 @@ namespace CApp
                             },
                             QuantityOfTheBlockTrade = new CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade
                             {
-                               QuantityTypeCode = "UNIT",
+                                QuantityTypeCode = "UNIT",
                                 Amount = "100,"
                             },
                             TotalTradeAmount = new CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount
@@ -244,7 +406,7 @@ namespace CApp
                                     }
                                 },
                                 ChargesOrTaxes = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes[]
-                                {
+                             {
                                       new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes
                                         {
                                             ChargeTaxType = "LOCL",
@@ -275,7 +437,7 @@ namespace CApp
                                                 Amount = "0,"
                                             }
                                         }
-                                }
+                             }
                             }
 
                         },
@@ -287,168 +449,7 @@ namespace CApp
                     }
                 }
             };
-
-           
-            //[Key]
-            //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-           
-            var msg = new SendTradeDetail(tdMessage);
-            // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
-            //  var message = msg.SendMsg(conn.GetSession());
-
-             //var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
-
-           //  dbAccess.MyMessage.AddOrUpdate(msg);
-            // dbAccess.SaveChanges();
-
-
-
-
-
-
-            //var result = conn.SendMsg(msg);
-            //var newMsg = conn.SendMsg(tdInfoMsg);
-            //newMsg.CtmId = ReturnUniqInt();
-
-            //  var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
-
-            // dbAccess.MyMessage.AddOrUpdate(msg);
-            // dbAccess.SaveChanges();
-
-            Console.WriteLine("End");
-        }
-        private static CTM_Message GenerateTradeDetails()
-        {
-            var msg = new CTM_Message();
-            var newReuqestMsg = new CTM_TradeDetail();
-
-            var newSubmitHeaderMsg = new CTM_Header
-            {
-                ProtocolVersion = "CM01",
-                SendersMessageReference = "ars425",
-                DateTimeOfSentMessage = 20150202112233 // (ulong) DateTime.Now.Ticks
-            };
-            var originatorOfMeessage = new CTM_OriginatorOfMessage
-            {
-                PartyRole = "MEOR",
-                PartyType = "BIC",
-                PartyValue = "LIGHTSPD"
-            };
-
-            var recipientOfMessage = new CTM_RecipientOfMessage
-            {
-                PartyRole = "MEOR",
-                PartyType = "BIC",
-                PartyValue = "LIGHTSPD"
-            };
-
-            newSubmitHeaderMsg.OriginatorOfMessage = originatorOfMeessage;
-            newSubmitHeaderMsg.RecipientOfMessage = recipientOfMessage;
-
-
-
-            var newExecutingBroker = new CTM_TradeDetailBodyExecutingBroker
-            {
-                PartyRole = "EXEC",
-                PartyType = "BIC",
-                PartyValue = "TECHSOLBXXX"
-
-            };
-
-            var newTradeLevelReferences = new CTM_TradeDetailBodyTradeLevelReferences
-            {
-
-                MasterReference = "-793838912000001"
-            };
-
-            var newTradeDetailReferences = new CTM_TradeDetailBodyTradeDetailReferences
-            {
-                ClientAllocationReference = "-793838912000001"
-            };
-
-            var newIdentificationOfASecuritySecurityCodeType = new CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType
-            {
-                NumberingAgencyCode = "SEDO"//_numberingAgencyCode,
-                //"SEDO"
-
-            };
-            var newSecurityCodeType = new CTM_TradeDetailBodyIdentificationOfASecurity
-            {
-                SecurityCodeType = newIdentificationOfASecuritySecurityCodeType, //"v",
-                SecurityCode = "_securityCode",
-                DescriptionOfTheSecurity = "_descriptionOfTheSecurity"
-                //SecurityCode = _securityCode//5668287
-            };
-            var newDealPrice = new CTM_TradeDetailBodyTradeLevelInformationDealPrice
-            {
-                CurrencyCode = "USD", //USD
-                Amount = "33,33" // Ammount
-            };
-            var newQuantityOfTheBlockTrade = new CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade
-            {
-                QuantityTypeCode = "EU", //USD
-                Amount = "2,2" // Ammount
-            };
-            var newTotalTradeAmount = new CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount
-            {
-                CurrencyCode = "USD", //USD
-                Amount = "123," // Ammount
-            };
-            var newTimeZone = new CTM_TradeDetailBodyTradeLevelInformationTimeZone
-
-            {
-                TradeTimeQualifier = "LOCL" //LOCL
-
-            };
-
-            var newTradeDetailInformation = new CTM_TradeDetailBodyTradeLevelInformation
-            {
-                TypeOfTransactionIndicator = "TRAD", //  TRAD 
-                BuySellIndicator = "BUYI", // BUYI
-                TypeOfFinancialInstrument = "COMM", // COMM 
-                TradeDateTime = 20150504094438, // 20150504094438 
-                SettlementDate = 20150505//,  //>20150505
-                                         //DealPrice = newDealPrice,
-                                         //QuantityOfTheBlockTrade = newQuantityOfTheBlockTrade,
-                                         //TotalTradeAmount = newTotalTradeAmount,
-                                         // TimeZone = newTimeZone
-
-            };
-
-            var newInstructingParty = new CTM_TradeDetailBodyInstructingParty
-            {
-                PartyRole = "INST", //"INST",
-                PartyType = "BIC", //"BIC",
-                PartyValue = "LIGHTSPD" // "LIGHTSPD"
-            };
-            var newCpTyTIdent = new CTM_TradeDetailBodyCPTYTradeLevelIdentifiers
-            {
-               CTMTradeSideId = "CtmTradeSideId",
-               MasterReference = "-793838912000001",
-            };
-
-
-            var newRequestBodyMsg = new CTM_TradeDetailBody
-            {
-                TDUpdateGuard = "TDUpdateGuard",
-                FunctionOfTheMessage = "NEWM", //"NEWM"
-                VersionOfTradeComponent = 001, //"001",
-                TradeLevelReferences = newTradeLevelReferences,
-                TradeDetailReferences = newTradeDetailReferences,
-                L2MatchingProfileName = "PName",
-                InstructingParty = newInstructingParty,
-                TradeLevelExpected = "N",
-                CPTYTradeLevelIdentifiers = newCpTyTIdent,
-                IdentificationOfASecurity = newSecurityCodeType,
-                ExecutingBroker = newExecutingBroker
-                
-                //  TradeDetailInformation = newTradeDetailInformation
-            };
-
-            newReuqestMsg.SubmitHeader = newSubmitHeaderMsg;
-            newReuqestMsg.TradeDetailBody = newRequestBodyMsg;
-            msg.TradeDetail = newReuqestMsg;
-            return msg;
+            return tdMessage;
         }
 
     }

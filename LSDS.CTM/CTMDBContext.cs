@@ -1,8 +1,9 @@
 using LSDS.CTM.CtmMessages;
+using System.Data.Entity;
 
 namespace LSDS.CTM
 {
-    using System.Data.Entity;
+  
 
     public class CTMDBContext : DbContext
     {

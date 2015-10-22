@@ -16,7 +16,182 @@ namespace TestApp
         {
             Console.WriteLine("Start");
 
-            var tdInfoMsg = new SendInfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
+     
+
+            Console.WriteLine("End");
+        }
+
+
+      
+        private static CTM_Message SendTradeDetail()
+        {
+            var tdMessage = new CTM_Message
+            {
+                TradeDetail = new CTM_TradeDetail
+                {
+
+                    SubmitHeader = new CTM_Header
+                    {
+                        ProtocolVersion = "CM01",
+                        OriginatorOfMessage = new CTM_OriginatorOfMessage
+                        {
+                            PartyRole = "MEOR",
+                            PartyType = "BIC",
+                            PartyValue = "LIGHTSPD"
+                        },
+                        RecipientOfMessage = new CTM_RecipientOfMessage
+                        {
+                            PartyRole = "MERE",
+                            PartyType = "TFID",
+                            PartyValue = "CTMSERVICE"
+                        },
+                        SendersMessageReference = "VitasRef4417",
+                        DateTimeOfSentMessage = 20151022143030
+                    },
+                    TradeDetailBody = new CTM_TradeDetailBody
+                    {
+                        FunctionOfTheMessage = "NEWM",
+                        VersionOfTradeComponent = 001,
+                        InstructingParty = new CTM_TradeDetailBodyInstructingParty
+                        {
+                            PartyRole = "INST",
+                            PartyType = "BIC",
+                            PartyValue = "LIGHTSPD"
+                        },
+                        ExecutingBroker = new CTM_TradeDetailBodyExecutingBroker
+                        {
+                            PartyRole = "EXEC",
+                            PartyType = "OG",
+                            PartyValue = "CTMTST01"
+                        },
+                        TradeLevelReferences = new CTM_TradeDetailBodyTradeLevelReferences
+                        {
+                            MasterReference = "20150917224155"
+                        },
+                        TradeDetailReferences = new CTM_TradeDetailBodyTradeDetailReferences
+                        {
+                            ClientAllocationReference = "Vitas0714144828"
+                        },
+                        TradeLevelExpected = "N",
+                        IdentificationOfASecurity = new CTM_TradeDetailBodyIdentificationOfASecurity
+                        {
+                            SecurityCodeType = new CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType
+                            {
+                                NumberingAgencyCode = "SEDO"
+                            },
+                            SecurityCode = "TWELLS",
+                            DescriptionOfTheSecurity = "TWELLS"
+                        },
+                        TradeLevelInformation = new CTM_TradeDetailBodyTradeLevelInformation
+                        {
+                            TypeOfTransactionIndicator = "TRAD",
+                            BuySellIndicator = "BUYI",
+                            TypeOfFinancialInstrument = "COMM",
+                            DealPrice = new CTM_TradeDetailBodyTradeLevelInformationDealPrice
+                            {
+                                CurrencyCode = "GBP",
+                                Amount = "12,"
+                            },
+                            QuantityOfTheBlockTrade = new CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade
+                            {
+                                QuantityTypeCode = "UNIT",
+                                Amount = "100,"
+                            },
+                            TotalTradeAmount = new CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount
+                            {
+
+                                CurrencyCode = "GBP",
+                                Amount = "1200,"
+                            },
+                            TradeDateTime = 20151021144825,
+                            TimeZone = new CTM_TradeDetailBodyTradeLevelInformationTimeZone
+                            {
+                                TradeTimeQualifier = "LOCL"
+                            },
+                            SettlementDate = 20151021
+                        },
+                        TradeDetailData = new CTM_TradeDetailBodyTradeDetailData
+                        {
+                            TradeAmount = new CTM_TradeDetailBodyTradeDetailDataTradeAmount
+                            {
+                                CurrencyCode = "GBP",
+                                Amount = "1200,"
+                            },
+                            QuantityAllocated = new CTM_TradeDetailBodyTradeDetailDataQuantityAllocated
+                            {
+                                QuantityTypeCode = "UNIT",
+                                Amount = "100,"
+                            },
+                            NetCashAmount = new CTM_TradeDetailBodyTradeDetailDataNetCashAmount
+                            {
+                                CurrencyCode = "GBP",
+                                Amount = "1200,"
+                            },
+                            CommFeesTaxes = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxes
+                            {
+                                Commissions = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesCommissions
+                                {
+                                    CommissionSharingBasisIndicator = "FLAT",
+                                    CommissionType = "TCOM",
+                                    Commission = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesCommissionsCommission
+                                    {
+                                        Sign = "+",
+                                        CurrencyCode = "GBP",
+                                        Amount = "0,"
+                                    }
+                                },
+                                ChargesOrTaxes = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes[]
+                             {
+                                      new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes
+                                        {
+                                            ChargeTaxType = "LOCL",
+                                            ChargeAmount = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxesChargeAmount
+                                            {
+                                                Sign = "+",
+                                                CurrencyCode = "GBP",
+                                                Amount = "0,"
+                                            }
+                                        },
+                                        new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes
+                                        {
+                                            ChargeTaxType = "CHAR",
+                                            ChargeAmount = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxesChargeAmount
+                                            {
+                                                Sign = "+",
+                                                CurrencyCode = "GBP",
+                                                Amount = "0,"
+                                            }
+                                        },
+                                        new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes
+                                        {
+                                            ChargeTaxType = "OTHR",
+                                            ChargeAmount = new CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxesChargeAmount
+                                            {
+                                                Sign = "+",
+                                                CurrencyCode = "GBP",
+                                                Amount = "0,"
+                                            }
+                                        }
+                             }
+                            }
+
+                        },
+                        IPSettlement = new CTM_TradeDetailBodyIPSettlement
+                        {
+                            AccountID = 0108
+                        }
+
+                    }
+                }
+            };
+            return tdMessage;
+        }
+    }
+
+}
+/*
+
+           var tdInfoMsg = new SendInfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
             var conn1 = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
             var msg3 = conn1.SendMsg(tdInfoMsg);
 
@@ -42,12 +217,7 @@ namespace TestApp
 
            // dbAccess.MyMessage.AddOrUpdate(msg);
            // dbAccess.SaveChanges();
-
-            Console.WriteLine("End");
-        }
-
-
-        private CTM_Message GenerateTradeDetails()
+  private CTM_Message GenerateTradeDetails()
         {
             var msg = new CTM_Message();
             var newReuqestMsg = new CTM_TradeDetail();
@@ -181,10 +351,6 @@ namespace TestApp
             //  msg.TradeDetail.SubmitHeader.ProtocolVersion
 
         }
-    }
-
-}
-/*
 TradeLevel newTradeLevelMessage;
 IList<CTM_Message> resultList;
 var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");

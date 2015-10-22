@@ -9,7 +9,7 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 
-    [Table("CTM_Trade")]
+   
     public partial class CTM_Message
     {
         [Key]
