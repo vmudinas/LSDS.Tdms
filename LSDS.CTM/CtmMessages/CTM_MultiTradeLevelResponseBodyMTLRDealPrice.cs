@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
@@ -6,11 +7,12 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_MultiTradeLevelResponseBodyMTLRDealPrice
     {
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string currencyCodeField;
 
-        private double amountField;
+        private string amountField;
 
         /// <remarks/>
          [MaxLength(3)] public string CurrencyCode
@@ -26,7 +28,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-         public double Amount
+         public string Amount
         {
             get
             {

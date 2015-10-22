@@ -7,7 +7,7 @@ namespace LSDS.CTM.CtmMessages
         [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string signField;
-        private double amountField;
+        private string amountField;
 
         /// <remarks/>
         [MaxLength(1)]
@@ -25,7 +25,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
        
-        public double Amount
+        public string Amount
         {
             get
             {

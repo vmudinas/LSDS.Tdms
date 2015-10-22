@@ -5,7 +5,7 @@ namespace LSDS.CTM.CtmMessages
     public class CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData
     {
         public int CtmId { get; set; }
-        private double discountRate;
+        private string discountRate;
         private string legalStatus;
         private string paymentIndicator;
         private string muniBondType;
@@ -25,7 +25,7 @@ namespace LSDS.CTM.CtmMessages
         private string bondTaxStatus;
 
      
-        public double DiscountRate
+        public string DiscountRate
         {
             get
             {

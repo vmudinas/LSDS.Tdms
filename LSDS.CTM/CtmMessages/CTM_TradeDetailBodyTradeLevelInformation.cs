@@ -121,29 +121,29 @@ namespace LSDS.CTM.CtmMessages
             }
         }
        
-        public int FactorEffectiveDate
-        {
-            get
-            {
-                return this.factorEffectiveDate;
-            }
-            set
-            {
-                this.factorEffectiveDate = value;
-            }
-        }
+        //public int FactorEffectiveDate
+        //{
+        //    get
+        //    {
+        //        return this.factorEffectiveDate;
+        //    }
+        //    set
+        //    {
+        //        this.factorEffectiveDate = value;
+        //    }
+        //}
        
-        public int RecordDate
-        {
-            get
-            {
-                return this.recordDate;
-            }
-            set
-            {
-                this.recordDate = value;
-            }
-        }
+        //public int RecordDate
+        //{
+        //    get
+        //    {
+        //        return this.recordDate;
+        //    }
+        //    set
+        //    {
+        //        this.recordDate = value;
+        //    }
+        //}
 
         public CTM_TradeDetailBodyTradeLevelInformationRating Rating
         {
@@ -183,17 +183,17 @@ namespace LSDS.CTM.CtmMessages
         }
 
       
-        public int IssueDate
-        {
-            get
-            {
-                return this.issueDate;
-            }
-            set
-            {
-                this.issueDate = value;
-            }
-        }
+        //public int IssueDate
+        //{
+        //    get
+        //    {
+        //        return this.issueDate;
+        //    }
+        //    set
+        //    {
+        //        this.issueDate = value;
+        //    }
+        //}
 
         [MaxLength(4)]
         public string WhenIssue
@@ -258,17 +258,17 @@ namespace LSDS.CTM.CtmMessages
                 this.callType = value;
             }
         }
-        public int DatedDate
-        {
-            get
-            {
-                return this.datedDate;
-            }
-            set
-            {
-                this.datedDate = value;
-            }
-        }
+        //public int DatedDate
+        //{
+        //    get
+        //    {
+        //        return this.datedDate;
+        //    }
+        //    set
+        //    {
+        //        this.datedDate = value;
+        //    }
+        //}
 
         public CTM_TradeDetailBodyTradeLevelInformationCallPrice CallPrice
         {
@@ -306,40 +306,40 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
-        public int MaturityDate
-        {
-            get
-            {
-                return this.maturityDate;
-            }
-            set
-            {
-                this.maturityDate = value;
-            }
-        }
-        public int CallDate
-        {
-            get
-            {
-                return this.callDate;
-            }
-            set
-            {
-                this.callDate = value;
-            }
-        }
+        //public int MaturityDate
+        //{
+        //    get
+        //    {
+        //        return this.maturityDate;
+        //    }
+        //    set
+        //    {
+        //        this.maturityDate = value;
+        //    }
+        //}
+        //public int CallDate
+        //{
+        //    get
+        //    {
+        //        return this.callDate;
+        //    }
+        //    set
+        //    {
+        //        this.callDate = value;
+        //    }
+        //}
 
-        public int NumberOfDaysAccrued
-        {
-            get
-            {
-                return this.numberOfDaysAccrued;
-            }
-            set
-            {
-                this.numberOfDaysAccrued = value;
-            }
-        } 
+        //public int NumberOfDaysAccrued
+        //{
+        //    get
+        //    {
+        //        return this.numberOfDaysAccrued;
+        //    }
+        //    set
+        //    {
+        //        this.numberOfDaysAccrued = value;
+        //    }
+        //} 
         [MaxLength(4)]
         public string IPOFlag
         {

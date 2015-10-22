@@ -69,18 +69,7 @@ namespace LSDS.CTM.CtmMessages
                 this.versionOfTradeComponentField = value;
             }
         }
-        [MaxLength(1)]
-        public string TradeLevelExpected
-        {
-            get
-            {
-                return this.tradeLevelExpectedField;
-            }
-            set
-            {
-                this.tradeLevelExpectedField = value;
-            }
-        }
+       
         public CTM_TradeDetailBodyInstructingParty InstructingParty
         {
             get
@@ -145,6 +134,18 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.tradeDetailReferencesField = value;
+            }
+        }
+        [MaxLength(1)]
+        public string TradeLevelExpected
+        {
+            get
+            {
+                return this.tradeLevelExpectedField;
+            }
+            set
+            {
+                this.tradeLevelExpectedField = value;
             }
         }
         public CTM_TradeDetailBodyIdentificationOfASecurity IdentificationOfASecurity

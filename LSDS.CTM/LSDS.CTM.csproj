@@ -172,10 +172,6 @@
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
     <Compile Include="SendInfoRequest.cs" />
-    <Compile Include="Migrations\201510200706017_v1.cs" />
-    <Compile Include="Migrations\201510200706017_v1.Designer.cs">
-      <DependentUpon>201510200706017_v1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CTMDBContext.cs" />
     <Compile Include="SendMultiTradeDetail.cs" />
@@ -193,11 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExtentalDll\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510200706017_v1.resx">
-      <DependentUpon>201510200706017_v1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

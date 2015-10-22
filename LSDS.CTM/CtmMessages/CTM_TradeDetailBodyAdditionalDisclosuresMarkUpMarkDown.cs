@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
 {
@@ -10,7 +11,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string currencyCodeField;
 
-        private double amountField;
+        private string amountField;
 
         /// <remarks/>
         [MaxLength(1)]
@@ -42,7 +43,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         
-        public double Amount
+        public string Amount
         {
             get
             {

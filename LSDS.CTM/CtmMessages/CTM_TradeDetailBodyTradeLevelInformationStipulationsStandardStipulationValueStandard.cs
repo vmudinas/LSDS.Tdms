@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]   [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
-        private double stipulationNumeric;
+        private string stipulationNumeric;
         private string stipulationAlphaNumeric;
         private int stipulationDate;
         private string stipulationY;
@@ -70,7 +70,7 @@ namespace LSDS.CTM.CtmMessages
 
 
         
-        public double StipulationNumeric
+        public string StipulationNumeric
         {
             
             get

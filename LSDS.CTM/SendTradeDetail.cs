@@ -32,15 +32,19 @@ namespace LSDS.CTM
         //private readonly ulong _tradeDateTime;
         //private readonly uint _settlementDate;
         //private readonly string _currencyCode;
-        //private readonly double _amount;
+        //private readonly string _amount;
         //private readonly string _quantityTypeCode;
-        //private readonly double _qTypeCodeAmount;
+        //private readonly string _qTypeCodeAmount;
         //private readonly string _currencyCodeTotalTradeAmount;
-        //private readonly double _currencyAmountTotalTradeAmount;
+        //private readonly string _currencyAmountTotalTradeAmount;
         //private readonly string _timeZoneTradeTimeQualifier;
         //private readonly string _securityCode;
         //private readonly string _descriptionOfTheSecurity;
         private readonly CTM_Message _message;
+
+        public SendTradeDetail()
+        {
+        }
 
         public SendTradeDetail(CTM_Message message)
         {
@@ -204,7 +208,14 @@ namespace LSDS.CTM
         public CTM_Message SendMsg(DCIWebSession con)
         {
             var processor = new CtmProcessor();
-            return processor.ProcessMessage(processor.AddDocType("TradeDetail", _message), true, con, "TradeDetail");
+            return processor.ProcessMessage(processor.AddDocType("TradeDetail", _message), false, con, "TradeDetail");
+
+        }
+
+        public CTM_Message SendMsgString(DCIWebSession con, string message)
+        {
+            var processor = new CtmProcessor();
+            return processor.ProcessMessage(processor.AddDocType("TradeDetail", message), false, con, "TradeDetail");
 
         }
 

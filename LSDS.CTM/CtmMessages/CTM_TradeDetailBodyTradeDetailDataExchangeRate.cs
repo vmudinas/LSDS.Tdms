@@ -9,11 +9,11 @@ namespace LSDS.CTM.CtmMessages
         public int CtmId { get; set; }
         private string fromCurrency;
         private string toCurrency;
-        private double exchangeRateAmount;
+        private string exchangeRateAmount;
 
 
        
-        public double ExchangeRateAmount
+        public string ExchangeRateAmount
         {
             get
             {

@@ -32,11 +32,11 @@ namespace LSDS.CTM
         private readonly ulong _tradeDateTime;
         private readonly uint _settlementDate;
         private readonly string _currencyCode;
-        private readonly double _amount;
+        private readonly string _amount;
         private readonly string _quantityTypeCode;
-        private readonly double _qTypeCodeAmount;
+        private readonly string _qTypeCodeAmount;
         private readonly string _currencyCodeTotalTradeAmount;
-        private readonly double _currencyAmountTotalTradeAmount;
+        private readonly string _currencyAmountTotalTradeAmount;
         private readonly string _timeZoneTradeTimeQualifier;
         private readonly uint _securityCode;
 
@@ -46,8 +46,8 @@ namespace LSDS.CTM
             string functionOfTheMessage, byte versionOfTradeComponent, string instructingPartyRole, string instructingPartyType, 
             string instructingPartyValue, string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
             string masterReference, uint securityCode, string numberingAgencyCode, string typeOfTransactionIndicator, string buySellIndicator,
-            string typeOfFinancialInstrument, ulong tradeDateTime, uint settlementDate, string currencyCode, double amount, string quantityTypeCode,
-            double qTypeCodeAmount, string currencyCodeTotalTradeAmount, double currencyAmountTotalTradeAmount, 
+            string typeOfFinancialInstrument, ulong tradeDateTime, uint settlementDate, string currencyCode, string amount, string quantityTypeCode,
+            string qTypeCodeAmount, string currencyCodeTotalTradeAmount, string currencyAmountTotalTradeAmount, 
             string timeZoneTimeQualifier)
         {
             _protocolVersion = protocolVersion;

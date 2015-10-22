@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         private string yieldType;
         private string sign;
-        private double amount;
+        private string amount;
 
         [MaxLength(4)]
         public string YieldType
@@ -33,7 +33,7 @@ namespace LSDS.CTM.CtmMessages
             }
         }
      
-        public double Amount
+        public string Amount
         {
             get
             {

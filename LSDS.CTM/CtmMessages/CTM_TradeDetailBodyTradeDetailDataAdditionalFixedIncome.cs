@@ -8,8 +8,8 @@ namespace LSDS.CTM.CtmMessages
         public int CtmId { get; set; }
         // AccruedInterestAmount
         private CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncomeAccruedInterestAmount accruedInterestAmount;
-        private double originalFaceAmount;
-        private double currentFaceValue;
+        private string originalFaceAmount;
+        private string currentFaceValue;
 
         public CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncomeAccruedInterestAmount AccruedInterestAmount
         {
@@ -24,7 +24,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         
-        public double CurrentFaceValue
+        public string CurrentFaceValue
         {
             get
             {
@@ -37,7 +37,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
        
-        public double OriginalFaceAmount
+        public string OriginalFaceAmount
         {
             get
             {

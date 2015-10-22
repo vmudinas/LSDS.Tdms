@@ -89,7 +89,12 @@ namespace LSDS.CTM
             var iso8859Encoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
             return iso8859Encoding?.GetBytes(strMsg);
         }
+        public byte[] AddDocType(string name, string message)
+        {
+            var strMsg = message?.Replace("<CTM_Message>", "<!DOCTYPE CTM_Message PUBLIC \"-//TFN//DTD " + name + " 1.3//EN\" \"" + name + ".dtd\"><CTM_Message>").Replace("\r\n", "");
+            var iso8859Encoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
+            return iso8859Encoding?.GetBytes(strMsg);
+        }
 
-     
     }
 }
