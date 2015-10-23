@@ -134,7 +134,7 @@ namespace CApp
             //[Key]
             //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
            
-            var msg = new SendTradeDetail(tdMessage);
+       //     var msg = new SendTradeDetail(tdMessage);
             // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
          //   var message = msg.SendMsg(conn.GetSession());
 

@@ -113,8 +113,13 @@ namespace TestApp
                             {
                                 TradeTimeQualifier = "LOCL"
                             },
-                            SettlementDate = 20151021
+                            SettlementDate = 20151021,
+                            StipulationsNonStandard = new CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard(),
+                            StipulationsStandard = new CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard(),
+                            AdditionalMunicipalDebtData= new CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData(),
+                            Yield = new CTM_TradeDetailBodyTradeLevelInformationYield()
                         },
+
                         TradeDetailData = new CTM_TradeDetailBodyTradeDetailData
                         {
                             TradeAmount = new CTM_TradeDetailBodyTradeDetailDataTradeAmount
@@ -179,6 +184,7 @@ namespace TestApp
                                         }
                              }
                             }
+                             
 
                         },
                         IPSettlement = new CTM_TradeDetailBodyIPSettlement
