@@ -16,7 +16,7 @@ namespace TestApp
         {
             Console.WriteLine("Start");
 
-            var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+            var dbAccess = new CTMDBContext("data source=.;initial catalog=tdmse_sei_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
            // var msg = new SendTradeDetail(GetTradeDetail());
 
             dbAccess.MyMessage.Add(GetTradeDetail());
