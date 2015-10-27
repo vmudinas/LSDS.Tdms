@@ -6,7 +6,8 @@ namespace LSDS.CTM.CtmMessages
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class CTM_InfoRequest
     {
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
 
         private CTM_Header submitHeaderField;

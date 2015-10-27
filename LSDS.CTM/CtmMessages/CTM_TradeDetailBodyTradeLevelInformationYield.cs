@@ -4,6 +4,9 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeLevelInformationYield
     {
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
+        public int CtmId { get; set; }
         private string yieldType;
         private string sign;
         private string amount;

@@ -8,7 +8,8 @@ namespace LSDS.CTM.CtmMessages
     [Serializable]
     public partial class CTM_InvalidBodySynchErrorErrorParameter
     {
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string errorParameterTypeField;
 

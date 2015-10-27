@@ -4,7 +4,8 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyAdditionalData
     {
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string additionalText;
         private string dataXML;

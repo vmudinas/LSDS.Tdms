@@ -4,7 +4,8 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeLevelInformationCurrentFactor
     {
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string signField;
         private string amountField;

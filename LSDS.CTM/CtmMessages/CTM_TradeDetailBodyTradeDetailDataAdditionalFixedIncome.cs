@@ -4,7 +4,8 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncome
     {
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         // AccruedInterestAmount
         private CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncomeAccruedInterestAmount accruedInterestAmount;

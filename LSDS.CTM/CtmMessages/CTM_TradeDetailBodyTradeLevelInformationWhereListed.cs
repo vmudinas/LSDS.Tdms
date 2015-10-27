@@ -4,7 +4,9 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeLevelInformationWhereListed
     {
-
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
+        public int CtmId { get; set; }
         private string countryCode;
         private string region;
 

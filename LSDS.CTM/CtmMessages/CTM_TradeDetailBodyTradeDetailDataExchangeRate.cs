@@ -5,7 +5,8 @@ namespace LSDS.CTM.CtmMessages
     public class CTM_TradeDetailBodyTradeDetailDataExchangeRate
     {
 
-        [Key]   [System.Xml.Serialization.XmlIgnore]
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         private string fromCurrency;
         private string toCurrency;

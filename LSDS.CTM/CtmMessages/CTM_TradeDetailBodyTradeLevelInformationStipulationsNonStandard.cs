@@ -4,6 +4,9 @@ namespace LSDS.CTM.CtmMessages
 {
     public class CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard
     {
+        [Key]
+        [System.Xml.Serialization.XmlIgnore]
+        public int CtmId { get; set; }
         private string stipulationCodeNonStandard;
         private string stipulationValueNonStandard;
 
