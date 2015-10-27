@@ -45,84 +45,84 @@ namespace CApp
 
             //CTM_TradeDetailBody b = new CTM_TradeDetailBody();
             
-            ////  var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
-            var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
+       //     ////  var tdInfoMsg = new InfoRequest("CM01", "813919292", 20150911083315, "MEOR", "BIC", "LIGHTSPD", "MERE", "TFID", "CTMSERVICE", "B", "TDET", "EXEC", "BIC", "AUTOBKMAXXX", "EXEC", "-893838900000098");
+       //     var conn = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
 
-            var stringMessage = "<CTM_Message><TradeDetail>" +
-                                "<SubmitHeader><ProtocolVersion>CM01</ProtocolVersion>" +
-                                "<OriginatorOfMessage><PartyRole>MEOR</PartyRole>" +
-                                "<PartyType>BIC</PartyType>" +
-                                "<PartyValue>LIGHTSPD</PartyValue></OriginatorOfMessage>" +
-                                "<RecipientOfMessage><PartyRole>MERE</PartyRole>" +
-                                "<PartyType>TFID</PartyType>" +
-                                "<PartyValue>CTMSERVICE</PartyValue></RecipientOfMessage>" +
-                                "<SendersMessageReference>RLAMD0714144852</SendersMessageReference></SubmitHeader>" +
-                                "<TradeDetailBody>" +
-                                "<FunctionOfTheMessage>NEWM</FunctionOfTheMessage>" +
-                                "<VersionOfTradeComponent>001</VersionOfTradeComponent>" +
-                                "<InstructingParty><PartyRole>INST</PartyRole><PartyType>BIC</PartyType>" +
-                                "<PartyValue>LIGHTSPD</PartyValue></InstructingParty>" +
-                                "<ExecutingBroker><PartyRole>EXEC</PartyRole>" +
-                                "<PartyType>OG</PartyType><PartyValue>CTMTST01</PartyValue>" +
-                                "</ExecutingBroker><TradeLevelReferences>" +
-                                "<MasterReference>20150917224111</MasterReference>" +
-                                "</TradeLevelReferences>" +
-                                "<TradeDetailReferences>" +
-                                "<ClientAllocationReference>RLAMD0714144811</ClientAllocationReference>" +
-                                "</TradeDetailReferences>" +
-                                "<TradeLevelExpected>N</TradeLevelExpected>" +
-                                "<IdentificationOfASecurity><SecurityCodeType>" +
-                                "<NumberingAgencyCode>SEDO</NumberingAgencyCode>" +
-                                "</SecurityCodeType><SecurityCode>TWELLS</SecurityCode>" +
-                                "<DescriptionOfTheSecurity>TWELLS" +
-                                "</DescriptionOfTheSecurity>" +
-                                "</IdentificationOfASecurity>" +
-                                "<TradeLevelInformation>" +
-                                "<TypeOfTransactionIndicator>TRAD</TypeOfTransactionIndicator>" +
-                                "<BuySellIndicator>BUYI</BuySellIndicator>" +
-                                "<TypeOfFinancialInstrument>COMM" +
-                                "</TypeOfFinancialInstrument><DealPrice>" +
-                                "<CurrencyCode>GBP</CurrencyCode><Amount>12,</Amount>" +
-                                "</DealPrice><QuantityOfTheBlockTrade>" +
-                                "<QuantityTypeCode>UNIT</QuantityTypeCode>" +
-                                "<Amount>100,</Amount></QuantityOfTheBlockTrade>" +
-                                "<TotalTradeAmount><CurrencyCode>GBP</CurrencyCode>" +
-                                "<Amount>1200,00</Amount></TotalTradeAmount>" +
-                                "<TradeDateTime>20151021144825</TradeDateTime>" +
-                                "<TimeZone><TradeTimeQualifier>LOCL</TradeTimeQualifier>" +
-                                "</TimeZone><SettlementDate>20151021</SettlementDate>" +
-                                "</TradeLevelInformation><TradeDetailData>" +
-                                "<TradeAmount><CurrencyCode>GBP</CurrencyCode>" +
-                                "<Amount>1200,00</Amount></TradeAmount>" +
-                                "<QuantityAllocated><QuantityTypeCode>UNIT</QuantityTypeCode>" +
-                                "<Amount>100,</Amount></QuantityAllocated>" +
-                                "<NetCashAmount><CurrencyCode>GBP</CurrencyCode>" +
-                                "<Amount>1200,00</Amount></NetCashAmount><CommFeesTaxes>" +
-                                "<Commissions><CommissionSharingBasisIndicator>FLAT</CommissionSharingBasisIndicator>" +
-                                "<CommissionType>TCOM</CommissionType><Commission>" +
-                                "<Sign>+</Sign><CurrencyCode>GBP</CurrencyCode>" +
-                                "<Amount>0,00</Amount></Commission></Commissions>" +
-                                "<ChargesOrTaxes><ChargeTaxType>LOCL</ChargeTaxType>" +
-                                "<ChargeAmount><Sign>+</Sign><CurrencyCode>GBP</CurrencyCode>" +
-                                "<Amount>0,00</Amount></ChargeAmount></ChargesOrTaxes>" +
-                                "<ChargesOrTaxes><ChargeTaxType>CHAR</ChargeTaxType>" +
-                                "<ChargeAmount><Sign>+</Sign><CurrencyCode>GBP</CurrencyCode><Amount>0,00</Amount>" +
-                                "</ChargeAmount></ChargesOrTaxes><ChargesOrTaxes>" +
-                                "<ChargeTaxType>OTHR</ChargeTaxType><ChargeAmount>" +
-                                "<Sign>+</Sign><CurrencyCode>GBP</CurrencyCode>" +
-                                "<Amount>0,00</Amount></ChargeAmount></ChargesOrTaxes>" +
-                                "</CommFeesTaxes></TradeDetailData>" +
-                                "<IPSettlement>" +
-                                "<AccountID>0108</AccountID>" +
-                                "</IPSettlement>" +
-                                //"<PartySettlement>" +
-                                //"<SettlementInstructionsSourceIndicator>ALRT</SettlementInstructionsSourceIndicator>" +
-                                //    "<AlertCountryCode>GBR</AlertCountryCode>" +
-                                //    "<AlertMethodType>CREST</AlertMethodType>" +
-                                //    "<AlertSecurityType>EQU</AlertSecurityType>" +
-                                //"</PartySettlement>" +
-                                "</TradeDetailBody></TradeDetail>" +
-                                "</CTM_Message>";
+       //     var stringMessage = "<CTM_Message><TradeDetail>" +
+       //                         "<SubmitHeader><ProtocolVersion>CM01</ProtocolVersion>" +
+       //                         "<OriginatorOfMessage><PartyRole>MEOR</PartyRole>" +
+       //                         "<PartyType>BIC</PartyType>" +
+       //                         "<PartyValue>LIGHTSPD</PartyValue></OriginatorOfMessage>" +
+       //                         "<RecipientOfMessage><PartyRole>MERE</PartyRole>" +
+       //                         "<PartyType>TFID</PartyType>" +
+       //                         "<PartyValue>CTMSERVICE</PartyValue></RecipientOfMessage>" +
+       //                         "<SendersMessageReference>RLAMD0714144852</SendersMessageReference></SubmitHeader>" +
+       //                         "<TradeDetailBody>" +
+       //                         "<FunctionOfTheMessage>NEWM</FunctionOfTheMessage>" +
+       //                         "<VersionOfTradeComponent>001</VersionOfTradeComponent>" +
+       //                         "<InstructingParty><PartyRole>INST</PartyRole><PartyType>BIC</PartyType>" +
+       //                         "<PartyValue>LIGHTSPD</PartyValue></InstructingParty>" +
+       //                         "<ExecutingBroker><PartyRole>EXEC</PartyRole>" +
+       //                         "<PartyType>OG</PartyType><PartyValue>CTMTST01</PartyValue>" +
+       //                         "</ExecutingBroker><TradeLevelReferences>" +
+       //                         "<MasterReference>20150917224111</MasterReference>" +
+       //                         "</TradeLevelReferences>" +
+       //                         "<TradeDetailReferences>" +
+       //                         "<ClientAllocationReference>RLAMD0714144811</ClientAllocationReference>" +
+       //                         "</TradeDetailReferences>" +
+       //                         "<TradeLevelExpected>N</TradeLevelExpected>" +
+       //                         "<IdentificationOfASecurity><SecurityCodeType>" +
+       //                         "<NumberingAgencyCode>SEDO</NumberingAgencyCode>" +
+       //                         "</SecurityCodeType><SecurityCode>TWELLS</SecurityCode>" +
+       //                         "<DescriptionOfTheSecurity>TWELLS" +
+       //                         "</DescriptionOfTheSecurity>" +
+       //                         "</IdentificationOfASecurity>" +
+       //                         "<TradeLevelInformation>" +
+       //                         "<TypeOfTransactionIndicator>TRAD</TypeOfTransactionIndicator>" +
+       //                         "<BuySellIndicator>BUYI</BuySellIndicator>" +
+       //                         "<TypeOfFinancialInstrument>COMM" +
+       //                         "</TypeOfFinancialInstrument><DealPrice>" +
+       //                         "<CurrencyCode>GBP</CurrencyCode><Amount>12,</Amount>" +
+       //                         "</DealPrice><QuantityOfTheBlockTrade>" +
+       //                         "<QuantityTypeCode>UNIT</QuantityTypeCode>" +
+       //                         "<Amount>100,</Amount></QuantityOfTheBlockTrade>" +
+       //                         "<TotalTradeAmount><CurrencyCode>GBP</CurrencyCode>" +
+       //                         "<Amount>1200,00</Amount></TotalTradeAmount>" +
+       //                         "<TradeDateTime>20151021144825</TradeDateTime>" +
+       //                         "<TimeZone><TradeTimeQualifier>LOCL</TradeTimeQualifier>" +
+       //                         "</TimeZone><SettlementDate>20151021</SettlementDate>" +
+       //                         "</TradeLevelInformation><TradeDetailData>" +
+       //                         "<TradeAmount><CurrencyCode>GBP</CurrencyCode>" +
+       //                         "<Amount>1200,00</Amount></TradeAmount>" +
+       //                         "<QuantityAllocated><QuantityTypeCode>UNIT</QuantityTypeCode>" +
+       //                         "<Amount>100,</Amount></QuantityAllocated>" +
+       //                         "<NetCashAmount><CurrencyCode>GBP</CurrencyCode>" +
+       //                         "<Amount>1200,00</Amount></NetCashAmount><CommFeesTaxes>" +
+       //                         "<Commissions><CommissionSharingBasisIndicator>FLAT</CommissionSharingBasisIndicator>" +
+       //                         "<CommissionType>TCOM</CommissionType><Commission>" +
+       //                         "<Sign>+</Sign><CurrencyCode>GBP</CurrencyCode>" +
+       //                         "<Amount>0,00</Amount></Commission></Commissions>" +
+       //                         "<ChargesOrTaxes><ChargeTaxType>LOCL</ChargeTaxType>" +
+       //                         "<ChargeAmount><Sign>+</Sign><CurrencyCode>GBP</CurrencyCode>" +
+       //                         "<Amount>0,00</Amount></ChargeAmount></ChargesOrTaxes>" +
+       //                         "<ChargesOrTaxes><ChargeTaxType>CHAR</ChargeTaxType>" +
+       //                         "<ChargeAmount><Sign>+</Sign><CurrencyCode>GBP</CurrencyCode><Amount>0,00</Amount>" +
+       //                         "</ChargeAmount></ChargesOrTaxes><ChargesOrTaxes>" +
+       //                         "<ChargeTaxType>OTHR</ChargeTaxType><ChargeAmount>" +
+       //                         "<Sign>+</Sign><CurrencyCode>GBP</CurrencyCode>" +
+       //                         "<Amount>0,00</Amount></ChargeAmount></ChargesOrTaxes>" +
+       //                         "</CommFeesTaxes></TradeDetailData>" +
+       //                         "<IPSettlement>" +
+       //                         "<AccountID>0108</AccountID>" +
+       //                         "</IPSettlement>" +
+       //                         //"<PartySettlement>" +
+       //                         //"<SettlementInstructionsSourceIndicator>ALRT</SettlementInstructionsSourceIndicator>" +
+       //                         //    "<AlertCountryCode>GBR</AlertCountryCode>" +
+       //                         //    "<AlertMethodType>CREST</AlertMethodType>" +
+       //                         //    "<AlertSecurityType>EQU</AlertSecurityType>" +
+       //                         //"</PartySettlement>" +
+       //                         "</TradeDetailBody></TradeDetail>" +
+       //                         "</CTM_Message>";
 
 
          
@@ -131,31 +131,31 @@ namespace CApp
          
 
            
-            //[Key]
-            //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       //     //[Key]
+       //     //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
            
-       //     var msg = new SendTradeDetail(tdMessage);
-            // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
-         //   var message = msg.SendMsg(conn.GetSession());
+       ////     var msg = new SendTradeDetail(tdMessage);
+       //     // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
+       //  //   var message = msg.SendMsg(conn.GetSession());
 
-             //var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+       //      //var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
 
-             //dbAccess.MyMessage.Add(tdMessage);
-             //dbAccess.SaveChanges();
-
-
+       //      //dbAccess.MyMessage.Add(tdMessage);
+       //      //dbAccess.SaveChanges();
 
 
 
 
-            //var result = conn.SendMsg(msg);
-            //var newMsg = conn.SendMsg(tdInfoMsg);
-            //newMsg.CtmId = ReturnUniqInt();
 
-            //  var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
 
-            // dbAccess.MyMessage.AddOrUpdate(msg);
-            // dbAccess.SaveChanges();
+       //     //var result = conn.SendMsg(msg);
+       //     //var newMsg = conn.SendMsg(tdInfoMsg);
+       //     //newMsg.CtmId = ReturnUniqInt();
+
+       //     //  var dbAccess = new CTMDBContext("data source=lds-devel4;initial catalog=tdmse_devel_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+
+       //     // dbAccess.MyMessage.AddOrUpdate(msg);
+       //     // dbAccess.SaveChanges();
 
             Console.WriteLine("End");
         }
