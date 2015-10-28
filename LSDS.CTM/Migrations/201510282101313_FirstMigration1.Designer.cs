@@ -7,13 +7,13 @@ namespace LSDS.CTM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class firstMigration : IMigrationMetadata
+    public sealed partial class FirstMigration1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(firstMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510222240220_firstMigration"; }
+            get { return "201510282101313_FirstMigration1"; }
         }
         
         string IMigrationMetadata.Source

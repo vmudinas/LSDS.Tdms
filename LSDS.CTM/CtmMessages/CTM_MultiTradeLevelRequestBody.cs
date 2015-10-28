@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
@@ -13,7 +14,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string byOrAgainstFlagField;
 
-        private ulong minLastUpdateDateTimeField;
+        private DateTime minLastUpdateDateTimeField;
 
         /// <remarks/>
         public string MultiTradeLevelResponseIndicator
@@ -42,7 +43,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public ulong MinLastUpdateDateTime
+        public DateTime MinLastUpdateDateTime
         {
             get
             {

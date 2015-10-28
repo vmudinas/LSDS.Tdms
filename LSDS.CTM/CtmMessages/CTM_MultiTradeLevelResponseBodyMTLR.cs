@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
@@ -32,7 +33,7 @@ namespace LSDS.CTM.CtmMessages
 
         private CTM_AdditionalSecurityIdentifiers additionalSecurityIdentifiersField;
 
-        private ulong tradeDateTimeField;
+        private DateTime tradeDateTimeField;
 
         private CTM_MultiTradeLevelResponseBodyMTLRTimeZone timeZoneField;
 
@@ -42,7 +43,7 @@ namespace LSDS.CTM.CtmMessages
 
         private CTM_MultiTradeLevelResponseBodyMTLRTotalTradeAmount totalTradeAmountField;
 
-        private uint settlementDateField;
+        private DateTime settlementDateField;
 
         /// <remarks/>
         public byte TLVersionOfTradeComponent
@@ -189,7 +190,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public ulong TradeDateTime
+        public DateTime TradeDateTime
         {
             get
             {
@@ -254,7 +255,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public uint SettlementDate
+        public DateTime SettlementDate
         {
             get
             {

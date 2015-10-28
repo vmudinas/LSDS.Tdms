@@ -11,7 +11,7 @@ namespace LSDS.CTM.CtmMessages
         public int CtmId { get; set; }
         private CTM_TradeLevelBodyIdentificationOfASecuritySecurityCodeType securityCodeTypeField;
 
-        private uint securityCodeField;
+        private string securityCodeField;
 
         /// <remarks/>
         public CTM_TradeLevelBodyIdentificationOfASecuritySecurityCodeType SecurityCodeType
@@ -28,7 +28,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         [MaxLength(30)]
-        public uint SecurityCode
+        public string SecurityCode
         {
             get
             {

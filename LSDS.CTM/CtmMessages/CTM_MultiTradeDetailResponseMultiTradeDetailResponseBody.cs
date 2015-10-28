@@ -15,7 +15,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string moreFlagField;
 
-        private ulong goodThroughDateTimeField;
+        private DateTime goodThroughDateTimeField;
 
         private string byOrAgainstFlagField;
 
@@ -46,7 +46,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public ulong GoodThroughDateTime
+        public DateTime GoodThroughDateTime
         {
             get
             {

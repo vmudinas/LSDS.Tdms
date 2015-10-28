@@ -1,4 +1,5 @@
-﻿using LSDS.CTM.CtmMessages;
+﻿using System;
+using LSDS.CTM.CtmMessages;
 using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
@@ -8,7 +9,7 @@ namespace LSDS.CTM
 
         private readonly string _protocolVersion;
         private readonly string _sendersMessageReference;
-        private readonly ulong _dateTimeOfSentMessage;
+        private readonly DateTime _dateTimeOfSentMessage;
         private readonly string _orgPartyRole;
         private readonly string _orgPartyType;
         private readonly string _orgPartyValue;
@@ -17,12 +18,12 @@ namespace LSDS.CTM
         private readonly string _receiptPartyValue;
         private readonly string _multiTradeLevelResponseIndicator;
         private readonly string _byOrAgainstFlag;
-        private readonly ulong _minLastUpdateDateTime;
+        private readonly DateTime _minLastUpdateDateTime;
        // private readonly string[] _matchStatus;
 
-        public SendMultiTradeLevel(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole, 
+        public SendMultiTradeLevel(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole, 
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue, 
-            string multiTradeLevelResponseIndicator, string byOrAgainstFlag, ulong minLastUpdateDateTime)
+            string multiTradeLevelResponseIndicator, string byOrAgainstFlag, DateTime minLastUpdateDateTime)
         {
             this._protocolVersion = protocolVersion;
             this._sendersMessageReference = sendersMessageReference;
@@ -49,7 +50,7 @@ namespace LSDS.CTM
             {
                 ProtocolVersion = _protocolVersion, //"CM01",
                 SendersMessageReference = _sendersMessageReference, // "ars455",
-                DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
+                DateTimeOfSentMessage = 20150202112233// _dateTimeOfSentMessage // 20150202112233 // (DateTime) DateTime.Now.Ticks
             };
             var originatorOfMeessage = new CTM_OriginatorOfMessage
             {
@@ -72,7 +73,7 @@ namespace LSDS.CTM
             {
                 MultiTradeLevelResponseIndicator = _multiTradeLevelResponseIndicator, //"ADDD",
                 ByOrAgainstFlag = _byOrAgainstFlag, //"A",
-                MinLastUpdateDateTime = _minLastUpdateDateTime //20150202112233 //(ulong) DateTime.Now.AddDays(-10).Ticks
+                MinLastUpdateDateTime = _minLastUpdateDateTime //20150202112233 //(DateTime) DateTime.Now.AddDays(-10).Ticks
             };
             
             

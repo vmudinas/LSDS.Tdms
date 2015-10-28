@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace LSDS.CTM.CtmMessages
 {
@@ -13,8 +16,8 @@ namespace LSDS.CTM.CtmMessages
         private string typeOfTransactionIndicatorField;
         private string buySellIndicatorField;
         private string typeOfFinancialInstrumentField;
-        private ulong tradeDateTimeField;
-        private uint settlementDateField;
+        private DateTime tradeDateTimeField;
+        private DateTime settlementDateField;
         private string typeOfPriceIndicator;
         private string placeOfClearing;
         private string bestExecution;
@@ -541,7 +544,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public ulong TradeDateTime
+        [System.Xml.Serialization.XmlIgnore]
+        public DateTime TradeDT
         {
             get
             {
@@ -550,6 +554,19 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.tradeDateTimeField = value;
+            }
+        }
+        [NotMapped]
+        public long TradeDateTime
+        {
+            get
+            {
+                return long.Parse(TradeDT.ToString("yyyyMMddHHmmss"));
+            }
+            set
+            {
+                this.tradeDateTimeField = DateTime.ParseExact(value.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
             }
         }
 
@@ -567,7 +584,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public uint SettlementDate
+        [System.Xml.Serialization.XmlIgnore]
+        public DateTime SettlementDt
         {
             get
             {
@@ -576,6 +594,19 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.settlementDateField = value;
+            }
+        }
+        [NotMapped]
+        public long SettlementDate
+        {
+            get
+            {
+                return long.Parse(SettlementDt.ToString("yyyyMMdd"));
+            }
+            set
+            {
+                this.settlementDateField = DateTime.ParseExact(value.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
+
             }
         }
     }

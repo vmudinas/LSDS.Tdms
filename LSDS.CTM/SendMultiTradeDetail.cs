@@ -12,9 +12,9 @@ namespace LSDS.CTM
 {
     public class SendMultiTradeDetail : ICtmProcess
     {
-        public CTM_Message SendMultiTradeDetailRequest(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole, string orgPartyType, string orgPartyValue,
+        public CTM_Message SendMultiTradeDetailRequest(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole, string orgPartyType, string orgPartyValue,
             string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
-            string multiTradeDetailResponseRequested, string byOrAgainstFlag, ulong minLastUpdateDateTime, string[] matchStatus)
+            string multiTradeDetailResponseRequested, string byOrAgainstFlag, DateTime minLastUpdateDateTime, string[] matchStatus)
         {
             var msg = new CTM_Message();
             var newReuqestMsg = new CTM_MultiTradeDetailRequest();
@@ -22,7 +22,7 @@ namespace LSDS.CTM
             {
                 ProtocolVersion = protocolVersion, //"CM01",
                 SendersMessageReference = sendersMessageReference, // "ars455",
-                DateTimeOfSentMessage = dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
+                DateTimeOfSentMessage = 20150202112233//dateTimeOfSentMessage // 20150202112233 // (DateTime) DateTime.Now.Ticks
             };
             var originatorOfMeessage = new CTM_OriginatorOfMessage
             {
@@ -44,7 +44,7 @@ namespace LSDS.CTM
             {
                 MultiTradeDetailResponseRequested = multiTradeDetailResponseRequested, //"ADDD",
                 ByOrAgainstFlag = byOrAgainstFlag, //"A",
-                MinLastUpdateDateTime = minLastUpdateDateTime //20150202112233 //(ulong) DateTime.Now.AddDays(-10).Ticks
+                MinLastUpdateDateTime = minLastUpdateDateTime //20150202112233 //(DateTime) DateTime.Now.AddDays(-10).Ticks
             };
 
             var newStatusQuery =

@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LSDS.CTM.CtmMessages
@@ -13,7 +14,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string moreFlagField;
 
-        private ulong goodThroughDateTimeField;
+        private DateTime goodThroughDateTimeField;
 
         private string multiTradeLevelResponseIndicatorField;
 
@@ -48,7 +49,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public ulong GoodThroughDateTime
+        public DateTime GoodThroughDateTime
         {
             get
             {

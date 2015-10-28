@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace LSDS.CTM.CtmMessages
 {
@@ -24,11 +26,11 @@ namespace LSDS.CTM.CtmMessages
 
         private CTM_TradeLevelBodyTradeLevelInformationTotalTradeAmount totalTradeAmountField;
 
-        private ulong tradeDateTimeField;
+        private DateTime tradeDateTimeField;
 
         private CTM_TradeLevelBodyTradeLevelInformationTimeZone timeZoneField;
 
-        private uint settlementDateField;
+        private DateTime settlementDateField;
 
         /// <remarks/>
          [MaxLength(4)]   public string TypeOfTransactionIndicator
@@ -44,7 +46,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-         [MaxLength(4)]  public string BuySellIndicator
+         [MaxLength(4)]
+        public string BuySellIndicator
         {
             get
             {
@@ -57,7 +60,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-         [MaxLength(4)] public string TypeOfFinancialInstrument
+         [MaxLength(4)]
+        public string TypeOfFinancialInstrument
         {
             get
             {
@@ -109,7 +113,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public ulong TradeDateTime
+        [System.Xml.Serialization.XmlIgnore]
+        public DateTime TradeDT
         {
             get
             {
@@ -118,6 +123,19 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.tradeDateTimeField = value;
+            }
+        }
+        [NotMapped]
+        public ulong TradeDateTime
+        {
+            get
+            {
+                return ulong.Parse(TradeDT.ToString("yyyyMMddHHmmss"));
+            }
+            set
+            {
+                this.tradeDateTimeField = DateTime.ParseExact(value.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
             }
         }
 
@@ -135,7 +153,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public uint SettlementDate
+        [System.Xml.Serialization.XmlIgnore]
+        public DateTime SettlementDt
         {
             get
             {
@@ -144,6 +163,19 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.settlementDateField = value;
+            }
+        }
+        [NotMapped]
+        public uint SettlementDate
+        {
+            get
+            {
+                return uint.Parse(SettlementDt.ToString("yyyyMMdd"));
+            }
+            set
+            {
+                this.settlementDateField = DateTime.ParseExact(value.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
+
             }
         }
     }

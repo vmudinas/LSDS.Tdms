@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace LSDS.CTM.CtmMessages
 {
@@ -25,7 +28,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string sendersMessageReferenceField;
 
-        private ulong dateTimeOfSentMessageField;
+        private DateTime dateTimeOfSentMessageField;
         [MaxLength(32)]
         private string userId;
         /// <remarks/>
@@ -95,7 +98,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public ulong DateTimeOfSentMessage
+        [System.Xml.Serialization.XmlIgnore]
+        public DateTime DateTimeOfSentMsg
         {
             get
             {
@@ -104,6 +108,19 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.dateTimeOfSentMessageField = value;
+            }
+        }
+        [NotMapped]
+        public ulong DateTimeOfSentMessage
+        {
+            get
+            {
+                return ulong.Parse(DateTimeOfSentMsg.ToString("yyyyMMddHHmmss")); 
+            }
+            set
+            {
+                this.dateTimeOfSentMessageField = DateTime.ParseExact(value.ToString(), "yyyyMMddHHmmss",CultureInfo.InvariantCulture);
+                
             }
         }
     }

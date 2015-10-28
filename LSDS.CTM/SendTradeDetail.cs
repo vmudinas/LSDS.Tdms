@@ -9,7 +9,7 @@ namespace LSDS.CTM
 
         //private readonly string _protocolVersion;
         //private readonly string _sendersMessageReference;
-        //private readonly ulong _dateTimeOfSentMessage;
+        //private readonly DateTime _dateTimeOfSentMessage;
         //private readonly string _orgPartyRole;
         //private readonly string _orgPartyType;
         //private readonly string _orgPartyValue;
@@ -29,7 +29,7 @@ namespace LSDS.CTM
         //private readonly string _typeOfTransactionIndicator;
         //private readonly string _buySellIndicator;
         //private readonly string _typeOfFinancialInstrument;
-        //private readonly ulong _tradeDateTime;
+        //private readonly DateTime _tradeDateTime;
         //private readonly uint _settlementDate;
         //private readonly string _currencyCode;
         //private readonly string _amount;
@@ -49,6 +49,7 @@ namespace LSDS.CTM
         public SendTradeDetail(CTM_Message message)
         {
             _message = message;
+            
             //_protocolVersion = msg.TradeDetail.SubmitHeader.ProtocolVersion;
             //_sendersMessageReference = msg.TradeDetail.SubmitHeader.SendersMessageReference;
             //_dateTimeOfSentMessage = msg.TradeDetail.SubmitHeader.DateTimeOfSentMessage;
@@ -93,7 +94,7 @@ namespace LSDS.CTM
             {
                 ProtocolVersion = _protocolVersion, //"CM01",
                 SendersMessageReference = _sendersMessageReference, // "ars455",
-                DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
+                DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (DateTime) DateTime.Now.Ticks
             };
             var originatorOfMeessage = new CTM_OriginatorOfMessage
             {

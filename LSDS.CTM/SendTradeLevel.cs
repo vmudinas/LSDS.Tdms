@@ -1,3 +1,4 @@
+using System;
 using LSDS.CTM;
 using LSDS.CTM.CtmMessages;
 using OmgeoDCIWeb_API;
@@ -9,7 +10,7 @@ namespace LSDS.CTM
 
         private readonly string _protocolVersion;
         private readonly string _sendersMessageReference;
-        private readonly ulong _dateTimeOfSentMessage;
+        private readonly DateTime _dateTimeOfSentMessage;
         private readonly string _orgPartyRole;
         private readonly string _orgPartyType;
         private readonly string _orgPartyValue;
@@ -38,14 +39,14 @@ namespace LSDS.CTM
         private readonly string _currencyCodeTotalTradeAmount;
         private readonly string _currencyAmountTotalTradeAmount;
         private readonly string _timeZoneTradeTimeQualifier;
-        private readonly uint _securityCode;
+        private readonly string _securityCode;
 
 
-        public SendTradeLevel(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole,
+        public SendTradeLevel(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole,
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
             string functionOfTheMessage, byte versionOfTradeComponent, string instructingPartyRole, string instructingPartyType, 
             string instructingPartyValue, string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
-            string masterReference, uint securityCode, string numberingAgencyCode, string typeOfTransactionIndicator, string buySellIndicator,
+            string masterReference, string securityCode, string numberingAgencyCode, string typeOfTransactionIndicator, string buySellIndicator,
             string typeOfFinancialInstrument, ulong tradeDateTime, uint settlementDate, string currencyCode, string amount, string quantityTypeCode,
             string qTypeCodeAmount, string currencyCodeTotalTradeAmount, string currencyAmountTotalTradeAmount, 
             string timeZoneTimeQualifier)
@@ -94,7 +95,7 @@ namespace LSDS.CTM
             {
                 ProtocolVersion = _protocolVersion, //"CM01",
                 SendersMessageReference = _sendersMessageReference, // "ars455",
-                DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
+                DateTimeOfSentMessage = 20150202112233//_dateTimeOfSentMessage // 20150202112233 // (DateTime) DateTime.Now.Ticks
             };
             var originatorOfMeessage = new CTM_OriginatorOfMessage
             {

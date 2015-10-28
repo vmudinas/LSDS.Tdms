@@ -1,4 +1,7 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace LSDS.CTM.CtmMessages
 {
@@ -21,7 +24,7 @@ namespace LSDS.CTM.CtmMessages
         private string echoSendersMessageReferenceField;
         [MaxLength(32)]
         private string echoUserId;
-        private ulong echoDateTimeOfSentMessageField;
+        private DateTime echoDateTimeOfSentMessageField;
 
         public CTM_ResponseHeaderAuditTrail AuditTrail
         {
@@ -99,7 +102,8 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        [MaxLength(16)]    public string EchoSendersMessageReference
+        [MaxLength(16)]
+        public string EchoSendersMessageReference
         {
             get
             {
@@ -110,9 +114,10 @@ namespace LSDS.CTM.CtmMessages
                 this.echoSendersMessageReferenceField = value;
             }
         }
-        
+
         /// <remarks/>
-        public ulong EchoDateTimeOfSentMessage
+        [System.Xml.Serialization.XmlIgnore]
+        public DateTime EchoDateTimeOfSentMsg
         {
             get
             {
@@ -121,6 +126,20 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.echoDateTimeOfSentMessageField = value;
+            }
+        }
+       
+        [NotMapped]
+        public ulong EchoDateTimeOfSentMessage
+        {
+            get
+            {
+                return ulong.Parse(EchoDateTimeOfSentMsg.ToString("yyyyMMddHHmmss"));
+            }
+            set
+            {
+                this.echoDateTimeOfSentMessageField = DateTime.ParseExact(value.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
             }
         }
     }

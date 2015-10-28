@@ -1,4 +1,5 @@
-﻿using LSDS.CTM.CtmMessages;
+﻿using System;
+using LSDS.CTM.CtmMessages;
 using OmgeoDCIWeb_API;
 
 namespace LSDS.CTM
@@ -8,7 +9,7 @@ namespace LSDS.CTM
 
         private readonly string _protocolVersion;
         private readonly string _sendersMessageReference;
-        private readonly ulong _dateTimeOfSentMessage;
+        private readonly DateTime _dateTimeOfSentMessage;
         private readonly string _orgPartyRole;
         private readonly string _orgPartyType;
         private readonly string _orgPartyValue;
@@ -24,7 +25,7 @@ namespace LSDS.CTM
         private readonly string _queryType;
         private readonly string _cTMTradeDetailID;
 
-        public SendInfoRequest(string protocolVersion, string sendersMessageReference, ulong dateTimeOfSentMessage, string orgPartyRole,
+        public SendInfoRequest(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole,
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
             string viewRequestedIndicator, string queryType,string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
             string accessPathIdOwner, string accessPathTradeLevelIdentifiersMasterReference, string cTMTradeDetailID = "")
@@ -58,7 +59,7 @@ namespace LSDS.CTM
             {
                 ProtocolVersion = _protocolVersion, //"CM01",
                 SendersMessageReference = _sendersMessageReference, // "ars455",
-                DateTimeOfSentMessage = _dateTimeOfSentMessage // 20150202112233 // (ulong) DateTime.Now.Ticks
+                DateTimeOfSentMessage = 20150202112233//_dateTimeOfSentMessage // 20150202112233 // (DateTime) DateTime.Now.Ticks
             };
             var originatorOfMeessage = new CTM_OriginatorOfMessage
             {

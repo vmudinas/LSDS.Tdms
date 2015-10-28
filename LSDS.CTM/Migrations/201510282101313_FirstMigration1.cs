@@ -3,7 +3,7 @@ namespace LSDS.CTM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstMigration : DbMigration
+    public partial class FirstMigration1 : DbMigration
     {
         public override void Up()
         {
@@ -113,6 +113,7 @@ namespace LSDS.CTM.Migrations
                         UserId = c.String(maxLength: 32),
                         ProtocolVersion = c.String(maxLength: 4),
                         SendersMessageReference = c.String(maxLength: 16),
+                        DateTimeOfSentMsg = c.DateTime(nullable: false),
                         OriginatorOfMessage_CtmId = c.Int(),
                         RecipientOfMessage_CtmId = c.Int(),
                     })
@@ -189,6 +190,7 @@ namespace LSDS.CTM.Migrations
                         EchoUserId = c.String(maxLength: 32),
                         ProtocolVersion = c.String(maxLength: 4),
                         EchoSendersMessageReference = c.String(maxLength: 16),
+                        EchoDateTimeOfSentMsg = c.DateTime(nullable: false),
                         AuditEvent_CtmId = c.Int(),
                         AuditTrail_CtmId = c.Int(),
                         OriginatorOfMessage_CtmId = c.Int(),
@@ -250,6 +252,7 @@ namespace LSDS.CTM.Migrations
                         CtmId = c.Int(nullable: false, identity: true),
                         MultiTradeDetailResponseRequested = c.String(),
                         ByOrAgainstFlag = c.String(),
+                        MinLastUpdateDateTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.CtmId);
             
@@ -274,6 +277,7 @@ namespace LSDS.CTM.Migrations
                         CtmId = c.Int(nullable: false, identity: true),
                         RecordsReturnedCount = c.Byte(nullable: false),
                         MoreFlag = c.String(),
+                        GoodThroughDateTime = c.DateTime(nullable: false),
                         ByOrAgainstFlag = c.String(),
                     })
                 .PrimaryKey(t => t.CtmId);
@@ -299,6 +303,7 @@ namespace LSDS.CTM.Migrations
                         CtmId = c.Int(nullable: false, identity: true),
                         MultiTradeLevelResponseIndicator = c.String(),
                         ByOrAgainstFlag = c.String(),
+                        MinLastUpdateDateTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.CtmId);
             
@@ -323,6 +328,7 @@ namespace LSDS.CTM.Migrations
                         CtmId = c.Int(nullable: false, identity: true),
                         RecordsReturnedCount = c.Byte(nullable: false),
                         MoreFlag = c.String(),
+                        GoodThroughDateTime = c.DateTime(nullable: false),
                         MultiTradeLevelResponseIndicator = c.String(),
                         ByOrAgainstFlag = c.String(),
                     })
@@ -921,8 +927,19 @@ namespace LSDS.CTM.Migrations
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
-                        TDReferences_TDReferenceType = c.String(maxLength: 4),
-                        TDReferences_TDReferenceValue = c.String(maxLength: 16),
+                        TDReferences_CtmId = c.Int(),
+                    })
+                .PrimaryKey(t => t.CtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyTDReferences", t => t.TDReferences_CtmId)
+                .Index(t => t.TDReferences_CtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeDetailBodyTDReferences",
+                c => new
+                    {
+                        CtmId = c.Int(nullable: false, identity: true),
+                        TDReferenceType = c.String(maxLength: 4),
+                        TDReferenceValue = c.String(maxLength: 16),
                     })
                 .PrimaryKey(t => t.CtmId);
             
@@ -933,35 +950,12 @@ namespace LSDS.CTM.Migrations
                         CtmId = c.Int(nullable: false, identity: true),
                         PartyCapacityIndicator = c.String(maxLength: 4),
                         OMNIExpected = c.String(maxLength: 1),
-                        StipulationsNonStandard_StipulationCodeNonStandard = c.String(maxLength: 15),
-                        StipulationsNonStandard_StipulationValueNonStandard = c.String(maxLength: 35),
-                        AdditionalMunicipalDebtData_CtmId = c.Int(nullable: false),
-                        AdditionalMunicipalDebtData_DiscountRate = c.String(),
-                        AdditionalMunicipalDebtData_LegalStatus = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_PaymentIndicator = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_BasisIndicator = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_BondValuationIndicator = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_InterestAccrualDate = c.Int(nullable: false),
-                        AdditionalMunicipalDebtData_InterestPaymentDate = c.Int(nullable: false),
-                        AdditionalMunicipalDebtData_OptionCallIndicator = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_CallPutIndicator = c.String(),
-                        AdditionalMunicipalDebtData_PutBondType = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_PutBondDate = c.Int(nullable: false),
-                        AdditionalMunicipalDebtData_PutBondPrice = c.String(maxLength: 17),
-                        AdditionalMunicipalDebtData_BondOwnershipIndicator = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_InterestPaymentFrequency = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_CouponType = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_FlatDefaultStatus = c.String(maxLength: 4),
-                        AdditionalMunicipalDebtData_BondTaxStatus = c.String(maxLength: 4),
                         AlternativeMinimumTax = c.String(maxLength: 4),
                         FederalTax = c.String(maxLength: 4),
                         WhenIssue = c.String(maxLength: 4),
                         PoolNumber = c.String(maxLength: 30),
                         CurrentFaceValue = c.String(maxLength: 17),
                         CallType = c.String(maxLength: 35),
-                        Yield_YieldType = c.String(maxLength: 4),
-                        Yield_Sign = c.String(maxLength: 1),
-                        Yield_Amount = c.String(),
                         IPOFlag = c.String(maxLength: 4),
                         BookEntry = c.String(maxLength: 4),
                         TradeTransactionConditionIndicator = c.String(maxLength: 4),
@@ -974,6 +968,9 @@ namespace LSDS.CTM.Migrations
                         TypeOfPriceIndicator = c.String(maxLength: 4),
                         BuySellIndicator = c.String(maxLength: 4),
                         TypeOfFinancialInstrument = c.String(maxLength: 4),
+                        TradeDT = c.DateTime(nullable: false),
+                        SettlementDt = c.DateTime(nullable: false),
+                        AdditionalMunicipalDebtData_CtmId = c.Int(),
                         CallPrice_CtmId = c.Int(),
                         CouponRate_CtmId = c.Int(),
                         CurrentFactor_CtmId = c.Int(),
@@ -981,11 +978,14 @@ namespace LSDS.CTM.Migrations
                         PlaceOfTrade_CtmId = c.Int(),
                         QuantityOfTheBlockTrade_CtmId = c.Int(),
                         Rating_CtmId = c.Int(),
+                        StipulationsNonStandard_CtmId = c.Int(),
                         StipulationsStandard_CtmId = c.Int(),
                         TimeZone_CtmId = c.Int(),
                         TotalTradeAmount_CtmId = c.Int(),
+                        Yield_CtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData", t => t.AdditionalMunicipalDebtData_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationCallPrice", t => t.CallPrice_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationCouponRate", t => t.CouponRate_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationCurrentFactor", t => t.CurrentFactor_CtmId)
@@ -993,9 +993,12 @@ namespace LSDS.CTM.Migrations
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationPlaceOfTrade", t => t.PlaceOfTrade_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade", t => t.QuantityOfTheBlockTrade_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationRating", t => t.Rating_CtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard", t => t.StipulationsNonStandard_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard", t => t.StipulationsStandard_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationTimeZone", t => t.TimeZone_CtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount", t => t.TotalTradeAmount_CtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationYield", t => t.Yield_CtmId)
+                .Index(t => t.AdditionalMunicipalDebtData_CtmId)
                 .Index(t => t.CallPrice_CtmId)
                 .Index(t => t.CouponRate_CtmId)
                 .Index(t => t.CurrentFactor_CtmId)
@@ -1003,9 +1006,36 @@ namespace LSDS.CTM.Migrations
                 .Index(t => t.PlaceOfTrade_CtmId)
                 .Index(t => t.QuantityOfTheBlockTrade_CtmId)
                 .Index(t => t.Rating_CtmId)
+                .Index(t => t.StipulationsNonStandard_CtmId)
                 .Index(t => t.StipulationsStandard_CtmId)
                 .Index(t => t.TimeZone_CtmId)
-                .Index(t => t.TotalTradeAmount_CtmId);
+                .Index(t => t.TotalTradeAmount_CtmId)
+                .Index(t => t.Yield_CtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData",
+                c => new
+                    {
+                        CtmId = c.Int(nullable: false, identity: true),
+                        DiscountRate = c.String(),
+                        LegalStatus = c.String(maxLength: 4),
+                        PaymentIndicator = c.String(maxLength: 4),
+                        BasisIndicator = c.String(maxLength: 4),
+                        BondValuationIndicator = c.String(maxLength: 4),
+                        InterestAccrualDate = c.Int(nullable: false),
+                        InterestPaymentDate = c.Int(nullable: false),
+                        OptionCallIndicator = c.String(maxLength: 4),
+                        CallPutIndicator = c.String(),
+                        PutBondType = c.String(maxLength: 4),
+                        PutBondDate = c.Int(nullable: false),
+                        PutBondPrice = c.String(maxLength: 17),
+                        BondOwnershipIndicator = c.String(maxLength: 4),
+                        InterestPaymentFrequency = c.String(maxLength: 4),
+                        CouponType = c.String(maxLength: 4),
+                        FlatDefaultStatus = c.String(maxLength: 4),
+                        BondTaxStatus = c.String(maxLength: 4),
+                    })
+                .PrimaryKey(t => t.CtmId);
             
             CreateTable(
                 "dbo.CTM_TradeDetailBodyTradeLevelInformationCallPrice",
@@ -1080,6 +1110,16 @@ namespace LSDS.CTM.Migrations
                 .PrimaryKey(t => t.CtmId);
             
             CreateTable(
+                "dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard",
+                c => new
+                    {
+                        CtmId = c.Int(nullable: false, identity: true),
+                        StipulationCodeNonStandard = c.String(maxLength: 15),
+                        StipulationValueNonStandard = c.String(maxLength: 35),
+                    })
+                .PrimaryKey(t => t.CtmId);
+            
+            CreateTable(
                 "dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard",
                 c => new
                     {
@@ -1133,6 +1173,17 @@ namespace LSDS.CTM.Migrations
                         CtmId = c.Int(nullable: false, identity: true),
                         Sign = c.String(maxLength: 1),
                         CurrencyCode = c.String(maxLength: 3),
+                        Amount = c.String(),
+                    })
+                .PrimaryKey(t => t.CtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeDetailBodyTradeLevelInformationYield",
+                c => new
+                    {
+                        CtmId = c.Int(nullable: false, identity: true),
+                        YieldType = c.String(maxLength: 4),
+                        Sign = c.String(maxLength: 1),
                         Amount = c.String(),
                     })
                 .PrimaryKey(t => t.CtmId);
@@ -1215,6 +1266,7 @@ namespace LSDS.CTM.Migrations
                 c => new
                     {
                         CtmId = c.Int(nullable: false, identity: true),
+                        SecurityCode = c.String(maxLength: 30),
                         SecurityCodeType_CtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
@@ -1249,6 +1301,8 @@ namespace LSDS.CTM.Migrations
                         TypeOfTransactionIndicator = c.String(maxLength: 4),
                         BuySellIndicator = c.String(maxLength: 4),
                         TypeOfFinancialInstrument = c.String(maxLength: 4),
+                        TradeDT = c.DateTime(nullable: false),
+                        SettlementDt = c.DateTime(nullable: false),
                         DealPrice_CtmId = c.Int(),
                         QuantityOfTheBlockTrade_CtmId = c.Int(),
                         TimeZone_CtmId = c.Int(),
@@ -1391,11 +1445,13 @@ namespace LSDS.CTM.Migrations
             DropForeignKey("dbo.CTM_TradeDetailBody", "TradeLevelReferences_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelReferences");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelReferences", "TLReferences_CtmId", "dbo.CTM_TLReferences");
             DropForeignKey("dbo.CTM_TradeDetailBody", "TradeLevelInformation_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformation");
+            DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "Yield_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationYield");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "TotalTradeAmount_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "TimeZone_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationTimeZone");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationTimeZone", "CountryTimeZone_CtmId", "dbo.CTM_CountryTimeZone");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "StipulationsStandard_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard", "StipulationValueStandard_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandardStipulationValueStandard");
+            DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "StipulationsNonStandard_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "Rating_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationRating");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "QuantityOfTheBlockTrade_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "PlaceOfTrade_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationPlaceOfTrade");
@@ -1403,8 +1459,10 @@ namespace LSDS.CTM.Migrations
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "CurrentFactor_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationCurrentFactor");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "CouponRate_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationCouponRate");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "CallPrice_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationCallPrice");
+            DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "AdditionalMunicipalDebtData_CtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData");
             DropForeignKey("dbo.CTM_TradeDetailBody", "TradeDetailReferences_CtmId", "dbo.CTM_TradeDetailBodyTradeDetailReferences");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailReferences", "TradeDetailLinkages_CtmId", "dbo.CTM_TradeDetailBodyTradeDetailLinkages");
+            DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailLinkages", "TDReferences_CtmId", "dbo.CTM_TradeDetailBodyTDReferences");
             DropForeignKey("dbo.CTM_TradeDetailBody", "TradeDetailData_CtmId", "dbo.CTM_TradeDetailBodyTradeDetailData");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailData", "TradeAmount_CtmId", "dbo.CTM_TradeDetailBodyTradeDetailDataTradeAmount");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailData", "SettlementAmount_CtmId", "dbo.CTM_TradeDetailBodyTradeDetailDataSettlementAmount");
@@ -1485,9 +1543,11 @@ namespace LSDS.CTM.Migrations
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelReferences", new[] { "TLReferences_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformationTimeZone", new[] { "CountryTimeZone_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard", new[] { "StipulationValueStandard_CtmId" });
+            DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "Yield_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "TotalTradeAmount_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "TimeZone_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "StipulationsStandard_CtmId" });
+            DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "StipulationsNonStandard_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "Rating_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "QuantityOfTheBlockTrade_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "PlaceOfTrade_CtmId" });
@@ -1495,6 +1555,8 @@ namespace LSDS.CTM.Migrations
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "CurrentFactor_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "CouponRate_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "CallPrice_CtmId" });
+            DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "AdditionalMunicipalDebtData_CtmId" });
+            DropIndex("dbo.CTM_TradeDetailBodyTradeDetailLinkages", new[] { "TDReferences_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeDetailReferences", new[] { "TradeDetailLinkages_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeDetailDataDirectedCommissionBeneficiaryofCommissions", new[] { "BrokerOfCredit_CtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeDetailDataDirectedCommission", new[] { "BeneficiaryofCommissions_CtmId" });
@@ -1582,11 +1644,13 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_TradeLevel");
             DropTable("dbo.CTM_TLReferences");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelReferences");
+            DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationYield");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount");
             DropTable("dbo.CTM_CountryTimeZone");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationTimeZone");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandardStipulationValueStandard");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard");
+            DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationRating");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationQuantityOfTheBlockTrade");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationPlaceOfTrade");
@@ -1594,7 +1658,9 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationCurrentFactor");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationCouponRate");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationCallPrice");
+            DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformation");
+            DropTable("dbo.CTM_TradeDetailBodyTDReferences");
             DropTable("dbo.CTM_TradeDetailBodyTradeDetailLinkages");
             DropTable("dbo.CTM_TradeDetailBodyTradeDetailReferences");
             DropTable("dbo.CTM_TradeDetailBodyTradeDetailDataTradeAmount");

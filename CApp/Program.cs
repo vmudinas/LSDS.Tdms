@@ -19,10 +19,67 @@ namespace CApp
                 var dbAccess =
                     new CTMDBContext(
                         "data source=lds-devel4;initial catalog=tdmse_sei_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
-                // var msg = new SendTradeDetail(GetTradeDetail());
 
-                dbAccess.MyMessage.Add(GetTradeDetail());
-                dbAccess.SaveChanges();
+                var msg = dbAccess.MyMessage.Add(GetTradeDetail());
+
+                var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
+
+                var msgr = new SendTradeDetail(msg);
+                var result = msgr.SendMsg(conection.GetSession());
+
+
+
+                // var msg = new SendTradeDetail(GetTradeDetail());
+                //var ptx = (from r in dbAccess.MyMessage select r);
+                //  var msg = new List<CTM_Message>();
+                /*
+                  var trades = dbAccess.MyMessage.Include("TradeDetail.SubmitHeader")
+                      .Include("TradeDetail.TradeDetailBody").Include("TradeDetail.TradeDetailBody.TradeLevelReferences")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.Yield")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.TotalTradeAmount")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.TimeZone")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.StipulationsStandard")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.StipulationsNonStandard")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.QuantityOfTheBlockTrade")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.DealPrice")
+  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.AdditionalMunicipalDebtData")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailReferences")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailData")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailData.TradeAmount")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailData.QuantityAllocated")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailData.NetCashAmount")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes.Commissions")
+  .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes.Commissions.Commission")
+  .Include("TradeDetail.TradeDetailBody.InstructingParty")
+  .Include("TradeDetail.TradeDetailBody.IdentificationOfASecurity")
+  .Include("TradeDetail.TradeDetailBody.IdentificationOfASecurity.SecurityCodeType")
+  .Include("TradeDetail.TradeDetailBody.IPSettlement")
+  .Include("TradeDetail.TradeDetailBody.ExecutingBroker")
+  .Include("TradeDetail.SubmitHeader.RecipientOfMessage")
+  .Include("TradeDetail.SubmitHeader.OriginatorOfMessage").OrderBy(t => t.CtmId).ToList();
+
+                  var msgList = new List<CTM_Message>();
+                  var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
+
+                  foreach (var message in trades)
+                  {
+                      var msg = new SendTradeDetail(message);
+                      msgList.Add(msg.SendMsg(conection.GetSession()));
+
+                  }
+                  var newL = msgList;
+                  //     // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
+                  //  //   var message = msg.SendMsg(conn.GetSession());
+
+                  //foreach (var value in dbAccess.MyMessage)
+                  //{
+                  //    msg.Add(value);
+                  //}
+                  // var msg =  dbAccess.MyMessage;//.Add(GetTradeDetail());
+                  //   dbAccess.SaveChanges();
+                  */
 
 
                 Console.WriteLine("End");
@@ -113,19 +170,21 @@ namespace CApp
                                     CurrencyCode = "GBP",
                                     Amount = "1200,"
                                 },
-                                TradeDateTime = 20151021144825,
+                               // TradeDateTime = 20151021144825,
                                 TimeZone = new CTM_TradeDetailBodyTradeLevelInformationTimeZone
                                 {
                                     TradeTimeQualifier = "LOCL"
                                 },
-                                SettlementDate = 20151021,
-                                StipulationsNonStandard =
-                                    new CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard(),
-                                StipulationsStandard =
-                                    new CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard(),
-                                AdditionalMunicipalDebtData =
-                                    new CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData(),
-                                Yield = new CTM_TradeDetailBodyTradeLevelInformationYield()
+                                SettlementDate = 20151021, //DateTime.Now,
+                                TradeDateTime = 20151021111111,
+                               // SettlementDate = 20151021,
+                            //    StipulationsNonStandard =
+                            //        new CTM_TradeDetailBodyTradeLevelInformationStipulationsNonStandard(),
+                            //    StipulationsStandard =
+                            //        new CTM_TradeDetailBodyTradeLevelInformationStipulationsStandard(),
+                            //    AdditionalMunicipalDebtData =
+                            //        new CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData(),
+                            //    Yield = new CTM_TradeDetailBodyTradeLevelInformationYield()
                             },
 
                             TradeDetailData = new CTM_TradeDetailBodyTradeDetailData

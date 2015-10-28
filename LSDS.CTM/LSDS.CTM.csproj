@@ -171,13 +171,9 @@
     <Compile Include="CtmMessages\CTM_ValidBodyInstructingParty.cs" />
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
-    <Compile Include="Migrations\201510222240220_firstMigration.cs" />
-    <Compile Include="Migrations\201510222240220_firstMigration.Designer.cs">
-      <DependentUpon>201510222240220_firstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510271846492_CTM_Message Update.cs" />
-    <Compile Include="Migrations\201510271846492_CTM_Message Update.Designer.cs">
-      <DependentUpon>201510271846492_CTM_Message Update.cs</DependentUpon>
+    <Compile Include="Migrations\201510282101313_FirstMigration1.cs" />
+    <Compile Include="Migrations\201510282101313_FirstMigration1.Designer.cs">
+      <DependentUpon>201510282101313_FirstMigration1.cs</DependentUpon>
     </Compile>
     <Compile Include="SendInfoRequest.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -199,11 +195,8 @@
     <Folder Include="ExtentalDll\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510222240220_firstMigration.resx">
-      <DependentUpon>201510222240220_firstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510271846492_CTM_Message Update.resx">
-      <DependentUpon>201510271846492_CTM_Message Update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510282101313_FirstMigration1.resx">
+      <DependentUpon>201510282101313_FirstMigration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
