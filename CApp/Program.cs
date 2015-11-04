@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace CApp
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Start");
+           
             {
                 Console.WriteLine("Start");
 
@@ -20,56 +21,63 @@ namespace CApp
                     new CTMDBContext(
                         "data source=lds-devel4;initial catalog=tdmse_sei_5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
 
-                var msg = dbAccess.MyMessage.Add(GetTradeDetail());
+              //  var msg = dbAccess.MyMessage;//.Add(GetTradeDetail());
+              ////  dbAccess.SaveChanges();
+              //  var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
 
-                var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
-
-                var msgr = new SendTradeDetail(msg);
-                var result = msgr.SendMsg(conection.GetSession());
+              //  var msgr = new SendTradeDetail(msg);
+              //  var result = msgr.SendMsg(conection.GetSession());
 
 
 
                 // var msg = new SendTradeDetail(GetTradeDetail());
                 //var ptx = (from r in dbAccess.MyMessage select r);
                 //  var msg = new List<CTM_Message>();
-                /*
-                  var trades = dbAccess.MyMessage.Include("TradeDetail.SubmitHeader")
-                      .Include("TradeDetail.TradeDetailBody").Include("TradeDetail.TradeDetailBody.TradeLevelReferences")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.Yield")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.TotalTradeAmount")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.TimeZone")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.StipulationsStandard")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.StipulationsNonStandard")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.QuantityOfTheBlockTrade")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.DealPrice")
-  .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.AdditionalMunicipalDebtData")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailReferences")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailData")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailData.TradeAmount")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailData.QuantityAllocated")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailData.NetCashAmount")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes.Commissions")
-  .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes.Commissions.Commission")
-  .Include("TradeDetail.TradeDetailBody.InstructingParty")
-  .Include("TradeDetail.TradeDetailBody.IdentificationOfASecurity")
-  .Include("TradeDetail.TradeDetailBody.IdentificationOfASecurity.SecurityCodeType")
-  .Include("TradeDetail.TradeDetailBody.IPSettlement")
-  .Include("TradeDetail.TradeDetailBody.ExecutingBroker")
-  .Include("TradeDetail.SubmitHeader.RecipientOfMessage")
-  .Include("TradeDetail.SubmitHeader.OriginatorOfMessage").OrderBy(t => t.CtmId).ToList();
-
-                  var msgList = new List<CTM_Message>();
-                  var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "mudiv01", "Kla1peda17!", "", "", "", "", 30, 10, true);
+               
+                  var trades = dbAccess.MyMessage
+                                .Include("TradeDetail.SubmitHeader")
+                                .Include("TradeDetail.TradeDetailBody")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelReferences")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.Yield")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.TotalTradeAmount")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.TimeZone")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.StipulationsStandard")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.StipulationsNonStandard")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.QuantityOfTheBlockTrade")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.DealPrice")
+                                .Include("TradeDetail.TradeDetailBody.TradeLevelInformation.AdditionalMunicipalDebtData")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailReferences")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailData")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailData.TradeAmount")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailData.QuantityAllocated")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailData.NetCashAmount")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes.Commissions")
+                                .Include("TradeDetail.TradeDetailBody.TradeDetailData.CommFeesTaxes.Commissions.Commission")
+                                .Include("TradeDetail.TradeDetailBody.InstructingParty")
+                                .Include("TradeDetail.TradeDetailBody.IdentificationOfASecurity")
+                                .Include("TradeDetail.TradeDetailBody.IdentificationOfASecurity.SecurityCodeType")
+                                .Include("TradeDetail.TradeDetailBody.IPSettlement")
+                                .Include("TradeDetail.TradeDetailBody.ExecutingBroker")
+                                .Include("TradeDetail.SubmitHeader.RecipientOfMessage")
+                                .Include("TradeDetail.SubmitHeader.OriginatorOfMessage").Where(t=>t.Valid == null && t.TradeDetail != null).OrderBy(t => t.CtmId).ToList();
+                //mudiv01 Kla1peda17!
+                var msgList = new List<CTM_Message>();
+                  var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "cmacl33", "speed$deeps323", "", "", "", "", 30, 10, true);
 
                   foreach (var message in trades)
                   {
-                      var msg = new SendTradeDetail(message);
-                      msgList.Add(msg.SendMsg(conection.GetSession()));
-
-                  }
-                  var newL = msgList;
+                    var msg = new SendTradeDetail(message);
+                    message.TradeDetail.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
+                    message.TradeDetail.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    var tempMessage = msg.SendMsg(conection.GetSession());
+                      message.Invalid = tempMessage.Invalid;
+                      message.Valid = tempMessage.Valid;
+                    var intSave = dbAccess.SaveChanges();
+                }
+                
+                var newL = msgList;
                   //     // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
                   //  //   var message = msg.SendMsg(conn.GetSession());
 
@@ -79,7 +87,7 @@ namespace CApp
                   //}
                   // var msg =  dbAccess.MyMessage;//.Add(GetTradeDetail());
                   //   dbAccess.SaveChanges();
-                  */
+                  
 
 
                 Console.WriteLine("End");
@@ -90,11 +98,13 @@ namespace CApp
         private static CTM_Message GetTradeDetail 
             ()
             {
+            
                 var tdMessage = new CTM_Message
                 {
                     LastUpdated = DateTime.Now,
                     TradeDetail = new CTM_TradeDetail
                     {
+                        
 
                         SubmitHeader = new CTM_Header
                         {
@@ -132,11 +142,11 @@ namespace CApp
                             },
                             TradeLevelReferences = new CTM_TradeDetailBodyTradeLevelReferences
                             {
-                                MasterReference = "20150917224155"
+                                MasterReference = "20150917224155" //Trade_Block
                             },
                             TradeDetailReferences = new CTM_TradeDetailBodyTradeDetailReferences
                             {
-                                ClientAllocationReference = "Vitas0714144828"
+                                ClientAllocationReference = "Vitas0714144828"// TradeRefNo
                             },
                             TradeLevelExpected = "N",
                             IdentificationOfASecurity = new CTM_TradeDetailBodyIdentificationOfASecurity
@@ -260,7 +270,7 @@ namespace CApp
                             },
                             IPSettlement = new CTM_TradeDetailBodyIPSettlement
                             {
-                                AccountID = 0108
+                                AccountID = ""
                             }
 
                         }
