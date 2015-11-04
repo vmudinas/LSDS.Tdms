@@ -12,7 +12,7 @@ namespace LSDS.CTM.CtmMessages
         [Key]
         [System.Xml.Serialization.XmlIgnore]
        
-        public int CtmId { get; set; }
+        public int InformationCtmId { get; set; }
 
         private string typeOfTransactionIndicatorField;
 

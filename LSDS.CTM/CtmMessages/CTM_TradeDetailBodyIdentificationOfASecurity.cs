@@ -9,7 +9,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int IdentificationOfASecurityCtmId { get; set; }
 
         private CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType securityCodeTypeField;
 

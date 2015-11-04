@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int PlaceOfSafekeepingCtmId { get; set; }
 
         private string _PlaceOfSafekeepingType;
         private string _PlaceOfSafekeepingValue;

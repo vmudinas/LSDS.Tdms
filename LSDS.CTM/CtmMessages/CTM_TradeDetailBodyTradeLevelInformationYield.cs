@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int YieldCtmId { get; set; }
         private string yieldType;
         private string sign;
         private string amount;

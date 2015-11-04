@@ -8,11 +8,12 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
-        private byte accountIDField;
+        public int IPSettlementCtmId { get; set; }
+        private string accountIDField;
 
         /// <remarks/>
-        public byte AccountID
+        [MaxLength(35)]
+        public string AccountID
         {
             get
             {

@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int PlaceOfTradeCtmId { get; set; }
 
         private string placeCode;
         private string placeNarrative;

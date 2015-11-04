@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TradeLevelInformationTimeZoneCtmId { get; set; }
         private string tradeTimeQualifierField;
         private CTM_CountryTimeZone countryTimeZone;
         /// <remarks/>
@@ -35,41 +35,5 @@ namespace LSDS.CTM.CtmMessages
                 this.tradeTimeQualifierField = value;
             }
         }
-    }
-
-    public class CTM_CountryTimeZone
-    {
-        [Key]
-        [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
-        private string tradeTimeQualifierField;
-        private string countryCode;
-        private string timeZoneIndicator;
-        [MaxLength(2)]
-        public string CountryCode
-        {
-            get
-            {
-                return this.countryCode;
-            }
-            set
-            {
-                this.countryCode = value;
-            }
-        }
-        [MaxLength(4)]
-        public string TradeTimeQualifier
-        {
-            get
-            {
-                return this.timeZoneIndicator;
-            }
-            set
-            {
-                this.timeZoneIndicator = value;
-            }
-        }
-
-
     }
 }

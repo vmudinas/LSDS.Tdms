@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TradeDetailReferencesCtmId { get; set; }
         private string clientAllocationReferenceField;
         private string _CTMTradeDetailID;
         private CTM_TradeDetailBodyTradeDetailLinkages _tradeDetailLinkages;

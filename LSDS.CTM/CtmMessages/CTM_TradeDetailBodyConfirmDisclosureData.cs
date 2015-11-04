@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int DisclosureDataCtmId { get; set; }
 
         private string _UserDefinedDisclosureCode;
         private string _ConfirmDisclosureBypassIndicator;

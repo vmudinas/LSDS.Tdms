@@ -7,7 +7,7 @@ namespace LSDS.CTM.CtmMessages
         [Key]
         [System.Xml.Serialization.XmlIgnore]
 
-        public int CtmId { get; set; }
+        public int AdditionalMunicipalDebtDataCtmId { get; set; }
         private string discountRate;
         private string legalStatus;
         private string paymentIndicator;

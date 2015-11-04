@@ -7,7 +7,7 @@ namespace LSDS.CTM.CtmMessages
 
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int ExchangeRateCtmId { get; set; }
         private string fromCurrency;
         private string toCurrency;
         private string exchangeRateAmount;

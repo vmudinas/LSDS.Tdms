@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int InfoRequestBodyAccessPathCtmId { get; set; }
         private string iDOwnerField;
 
         private CTM_InfoRequestBodyAccessPathTradeLevelIdentifiers tradeLevelIdentifiersField;

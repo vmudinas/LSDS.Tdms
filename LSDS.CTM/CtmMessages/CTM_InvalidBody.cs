@@ -10,7 +10,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int InvalidBodyCtmId { get; set; }
         private CTM_InvalidBodySynchError synchErrorField;
 
         private string originalMessageField;

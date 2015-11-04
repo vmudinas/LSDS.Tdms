@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int IdentifiersCtmId { get; set; }
         [MaxLength(16)]
         private string masterReferenceField;
 

@@ -10,7 +10,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TradeDetailResponseBodyCtmId { get; set; }
         private byte recordsReturnedCountField;
 
         private string moreFlagField;

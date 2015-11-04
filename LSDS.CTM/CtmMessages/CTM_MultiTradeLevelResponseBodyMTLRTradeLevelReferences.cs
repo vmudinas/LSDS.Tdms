@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int MTLRTradeLevelReferencesCtmId { get; set; }
          [MaxLength(16)]  private string masterReferenceField;
 
         private string cTMTradeSideIdField;

@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TDReferencesCtmId { get; set; }
         private string _tDReferenceValue;
         private string _tDReferenceType;
         [MaxLength(4)]

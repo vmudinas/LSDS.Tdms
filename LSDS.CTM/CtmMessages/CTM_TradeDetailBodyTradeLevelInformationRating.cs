@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int InformationRatingCtmId { get; set; }
         private string ratingType;
         private string ratingVendor;
         private string ratingValue;

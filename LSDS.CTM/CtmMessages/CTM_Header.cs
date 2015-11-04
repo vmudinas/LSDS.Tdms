@@ -18,7 +18,7 @@ namespace LSDS.CTM.CtmMessages
 
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int HeaderCtmId { get; set; }
         [MaxLength(4)]
         private string protocolVersionField;
 
@@ -33,18 +33,7 @@ namespace LSDS.CTM.CtmMessages
         private string userId;
         /// <remarks/>
         /// 
-        [MaxLength(32)]
-        public string UserId
-        {
-            get
-            {
-                return this.userId;
-            }
-            set
-            {
-                this.userId = value;
-            }
-        }
+        
         [MaxLength(4)]   public string ProtocolVersion
         {
             get
@@ -82,7 +71,18 @@ namespace LSDS.CTM.CtmMessages
                 this.recipientOfMessageField = value;
             }
         }
-
+        [MaxLength(32)]
+        public string UserId
+        {
+            get
+            {
+                return this.userId;
+            }
+            set
+            {
+                this.userId = value;
+            }
+        }
         /// <remarks/>
         [MaxLength(16)]
         public string SendersMessageReference

@@ -59,9 +59,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionManager.cs" />
+    <Compile Include="CtmMessages\CTM_CountryTimeZone.cs" />
     <Compile Include="CtmMessages\CTM_Message.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequest.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequestBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidResponseHeader.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidResponseHeaderOriginatorOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidResponseHeaderRecipientOfMessage.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidValidBody.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidValidBodyExecutingBroker.cs" />
+    <Compile Include="CtmMessages\CTM_MessageValidValidBodyInstructingParty.cs" />
     <Compile Include="CtmMessages\CTM_RequestInfoRequestBodyAccessPath.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequestBodyAccessPathTradeLevelIdentifiers.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequestBodyExecutingBroker.cs" />
@@ -171,9 +178,17 @@
     <Compile Include="CtmMessages\CTM_ValidBodyInstructingParty.cs" />
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
-    <Compile Include="Migrations\201510282101313_FirstMigration1.cs" />
-    <Compile Include="Migrations\201510282101313_FirstMigration1.Designer.cs">
-      <DependentUpon>201510282101313_FirstMigration1.cs</DependentUpon>
+    <Compile Include="Migrations\201511032331071_FirstMigration.cs" />
+    <Compile Include="Migrations\201511032331071_FirstMigration.Designer.cs">
+      <DependentUpon>201511032331071_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511042005318_IpSettlementFix.cs" />
+    <Compile Include="Migrations\201511042005318_IpSettlementFix.Designer.cs">
+      <DependentUpon>201511042005318_IpSettlementFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511042016383_MovedUserId.cs" />
+    <Compile Include="Migrations\201511042016383_MovedUserId.Designer.cs">
+      <DependentUpon>201511042016383_MovedUserId.cs</DependentUpon>
     </Compile>
     <Compile Include="SendInfoRequest.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -195,8 +210,14 @@
     <Folder Include="ExtentalDll\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510282101313_FirstMigration1.resx">
-      <DependentUpon>201510282101313_FirstMigration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511032331071_FirstMigration.resx">
+      <DependentUpon>201511032331071_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511042005318_IpSettlementFix.resx">
+      <DependentUpon>201511042005318_IpSettlementFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511042016383_MovedUserId.resx">
+      <DependentUpon>201511042016383_MovedUserId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

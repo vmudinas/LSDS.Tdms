@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int SecurityIdentifiersCtmId { get; set; }
         private CTM_AdditionalSecurityIdentifiersSecurityCodeType securityCodeTypeField;
 
         private string securityCodeField;

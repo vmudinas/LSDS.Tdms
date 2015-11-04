@@ -7,7 +7,7 @@ namespace LSDS.CTM.CtmMessages
 
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int InformationCallPriceCtmId { get; set; }
         private string amount;
         private string currencyCodeField;
 

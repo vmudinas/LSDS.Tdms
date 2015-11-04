@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int SettlementInstructionsCtmId { get; set; }
 
         private string _ID1;
         private string _ID2;

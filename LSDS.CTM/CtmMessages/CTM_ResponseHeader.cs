@@ -11,7 +11,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int ResponseHeaderCtmId { get; set; }
         [MaxLength(4)]
         private string protocolVersionField;
 

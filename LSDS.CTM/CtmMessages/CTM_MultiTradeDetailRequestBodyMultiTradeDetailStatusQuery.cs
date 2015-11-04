@@ -10,7 +10,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TradeDetailStatusQueryCtmId { get; set; }
         private string[] tDMatchStatusValuesField;
 
         private string[] textField;

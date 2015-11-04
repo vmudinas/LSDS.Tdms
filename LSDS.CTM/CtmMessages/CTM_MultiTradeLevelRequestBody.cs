@@ -9,7 +9,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TradeLevelRequestBodyCtmId { get; set; }
         private string multiTradeLevelResponseIndicatorField;
 
         private string byOrAgainstFlagField;

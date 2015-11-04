@@ -10,7 +10,7 @@ namespace LSDS.CTM.CtmMessages
         [Key]
         [System.Xml.Serialization.XmlIgnore]
         
-        public int CtmId { get; set; }
+        public int ValidBodyInstructingPartyCtmId { get; set; }
         [MaxLength(4)]
         private string partyRoleField;
         [MaxLength(35)]

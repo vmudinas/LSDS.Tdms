@@ -6,7 +6,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int LinkagesCtmId { get; set; }
         private CTM_TradeDetailBodyTDReferences _tDReferences;
         public CTM_TradeDetailBodyTDReferences TDReferences
         {

@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TradeDetailDataCtmId { get; set; }
         private string settlementTransactionConditionIndicator;
         private string tradeRegulator;
         private CTM_TradeDetailBodyTradeDetailDataTradeAmount tradeAmountField;

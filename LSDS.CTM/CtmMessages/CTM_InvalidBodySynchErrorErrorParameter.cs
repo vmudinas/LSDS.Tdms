@@ -10,7 +10,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int ErrorParameterCtmId { get; set; }
         private string errorParameterTypeField;
 
         private string errorParameterValueField;

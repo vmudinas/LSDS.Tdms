@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int CommFeesTaxesCtmId { get; set; }
         private CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesCommissions commissionsField;
 
         private CTM_TradeDetailBodyTradeDetailDataCommFeesTaxesChargesOrTaxes[] chargesOrTaxesField;

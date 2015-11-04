@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int TradeLevelCtmId { get; set; }
         private CTM_Header submitHeaderField;
 
         private CTM_TradeLevelBody tradeLevelBodyField;

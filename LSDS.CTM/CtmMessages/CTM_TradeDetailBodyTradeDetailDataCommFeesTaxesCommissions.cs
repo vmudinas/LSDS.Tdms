@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int CommissionsCtmId { get; set; }
         private string commissionSharingBasisIndicatorField;
 
         private string commissionTypeField;

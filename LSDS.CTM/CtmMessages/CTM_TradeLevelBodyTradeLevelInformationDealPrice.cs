@@ -8,7 +8,7 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int DealPriceCtmId { get; set; }
         private string currencyCodeField;
 
         private string amountField;
@@ -35,7 +35,19 @@ namespace LSDS.CTM.CtmMessages
             }
             set
             {
-                this.amountField = value;
+                if (value.Contains("."))
+                {
+                    this.amountField = value.TrimEnd().Replace(".", ",");
+                }
+                else if (value.Contains(","))
+                {
+                    this.amountField = value;
+                }
+                else
+                {
+                    this.amountField = value + ",";
+                }
+
             }
         }
     }

@@ -7,7 +7,7 @@ namespace LSDS.CTM.CtmMessages
 
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int CtmId { get; set; }
+        public int AuditTrailCtmId { get; set; }
         [MaxLength(255)]
         private string _auditReason { get; set; }
         [MaxLength(255)]
