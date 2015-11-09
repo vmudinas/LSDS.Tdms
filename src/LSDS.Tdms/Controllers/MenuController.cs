@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using LSDS.Tdms;
 using Microsoft.AspNet.Identity;
 
+
 namespace LSDS.Tdms.Controllers
 {
     public class MenuController : Controller
@@ -25,15 +26,17 @@ namespace LSDS.Tdms.Controllers
         }
 
         [AcceptVerbs]
-        public async Task<JsonResult> GetMenu()
+        public JsonResult GetMenu()
         {
-            var xxx = _identity.UserName;
+            var menuX = _context.GetMenu;
+          // var xxx = _identity.UserName;
             var repo = new Repository.Repository(_context);
-            var menu = await repo.GetMenu(_identity.UserName);
+            var menu =  repo.GetMenu("testuser");
 
             var menuList = new List <TdmsMenu>();
-            var returnTdmsMenuResults = menu as usp_returnTDMSMenu_Result[] ?? menu.ToArray();
-            var menuTemp = returnTdmsMenuResults;
+            var returnTdmsMenuResults = menu;// menu as usp_returnTDMSMenu_Result[] ?? menu.ToArray();
+            var tdmsMenuResults = returnTdmsMenuResults as usp_returnTDMSMenu_Result[] ?? returnTdmsMenuResults.ToArray();
+            var menuTemp = tdmsMenuResults;
 
 
             var menuHome = new TdmsMenu {text = "Home"};
@@ -46,7 +49,7 @@ namespace LSDS.Tdms.Controllers
 
 
 
-            foreach (var item in returnTdmsMenuResults)
+            foreach (var item in tdmsMenuResults)
             {
                 if (item.item_parent != null) continue;
                 var menuR = new TdmsMenu {text = item.item_desc};

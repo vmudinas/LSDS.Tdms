@@ -19,7 +19,9 @@ namespace LSDS.Tdms.Models
         public DbSet<QuickFind_Query> QuickFind_Query { get; set; }
         public DbSet<QuickSort> QuickSort { get; set; }
         public DbSet<QuickSortItem> QuickSortItem { get; set; }
-      //  public DbSet<T> Generic { get; set; }
+
+        public DbSet<usp_returnTDMSMenu_Result> GetMenu { get; set; }
+        //  public DbSet<T> Generic { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -49,14 +49,14 @@ namespace LSDS.Tdms.Repository
         }
 
 
-        public async Task<IEnumerable<usp_returnTDMSMenu_Result>> GetMenu(string userName)
+        public IEnumerable<usp_returnTDMSMenu_Result> GetMenu(string userName)
         {
                 var parameters = new[]
                 {
                 new SqlParameter("@user_name", userName)
                 };
             var repo = new GenericRepository<usp_returnTDMSMenu_Result>(_context);
-            return await repo.ExecuteStoredProcedureAsync("usp_returnTDMSMenu", parameters);
+            return  repo.ExecuteStoredProcedure("usp_returnTDMSMenu", parameters);
         }
 
 

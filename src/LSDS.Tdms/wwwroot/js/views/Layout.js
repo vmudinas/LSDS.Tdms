@@ -7,7 +7,7 @@
     //    orientation: "top"
     //});
    
-    CheckSecurity(GetCheckSecurityUrl(), GetTdmsPortalUrl());
+   // CheckSecurity(GetCheckSecurityUrl(), GetTdmsPortalUrl());
     GetUserLocation(GetLocationListUrl());
 
 });
@@ -22,8 +22,7 @@ function isDefined(variable) {
 }
 
 function CheckSecurity(userLocationPath, home) {
-  
-    
+   
     $.getJSON(
         userLocationPath, {  },
         function(myData) {
