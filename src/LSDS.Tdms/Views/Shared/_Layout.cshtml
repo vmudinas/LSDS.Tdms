@@ -47,15 +47,15 @@
 
             </div>
             <div id="loginNameStyle">
-           
-                        <div id="idLogOutB">
-                           @Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "logOutLink" })&nbsp;
-                           <a class="logOutLink" href="@Url.Content("~/Content/Support/TDMS Enterprise User Manual v5.0.pdf")" download>Help</a>
-                       
-                        </div>
+
+                <div id="idLogOutB">
+                    <a id="logoutBtn" asp-controller="Login" asp-action="Logout" class="logOutLink">Logout</a>
+                    <a class="logOutLink" href="@Url.Content("~/Content/Support/TDMS Enterprise User Manual v5.0.pdf")" download>Help</a>
+
+                </div>
                         <div id="iduserNameDetails">
-                            <label id="userNameFull">Add FullName</label>
-                            <label id="userLastLogin">Add Las Login</label>
+                            <label id="userNameFull">@User.Identity.Name</label>
+                            <label id="userLastLogin">Last Login</label>
                             <input id="userNameLable" name="userNameLable" type="hidden" value="@User.Identity.Name" />
                         </div>
                
@@ -68,6 +68,19 @@
     </div>
 </header>
 <div id="body">
+
+
+    <section class="content-wrapper main-content clear-fix">
+        @RenderBody()
+    </section>
+    <script type="text/javascript" language="javascript">
+        var loged = '@string.IsNullOrWhiteSpace(User.Identity.Name).ToString().ToLower();';
+        alert(loged);
+        if (loged === "true")
+        {
+            $("#logoutBtn").click();
+        };
+    </script>
     <script src="/lib/jquery/dist/jquery.js"></script>
     @Html.Partial("~/Views/Shared/Configuration.cshtml")
     <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -79,9 +92,7 @@
     <script src="/js/menu/Menu.js"></script>
     <script src="/js/MasterPage.js"></script>
     @RenderSection("featured", required: false)
-    <section class="content-wrapper main-content clear-fix">
-        @RenderBody()
-    </section>
+
 </div>
  
  

@@ -12,6 +12,6 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         public string User_Group_Description { get; set; }
         public DateTime Last_Update { get; set; }
         public string Update_By { get; set; }
-        public bool Selected { get; set; }
+        public bool? Selected { get; set; }
     }
 }

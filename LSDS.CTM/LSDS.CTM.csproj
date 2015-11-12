@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201511042016383_MovedUserId.Designer.cs">
       <DependentUpon>201511042016383_MovedUserId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511112341268_Moved SettlementTransactionConditionIndicator.cs" />
+    <Compile Include="Migrations\201511112341268_Moved SettlementTransactionConditionIndicator.Designer.cs">
+      <DependentUpon>201511112341268_Moved SettlementTransactionConditionIndicator.cs</DependentUpon>
+    </Compile>
     <Compile Include="SendInfoRequest.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CTMDBContext.cs" />
@@ -218,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511042016383_MovedUserId.resx">
       <DependentUpon>201511042016383_MovedUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511112341268_Moved SettlementTransactionConditionIndicator.resx">
+      <DependentUpon>201511112341268_Moved SettlementTransactionConditionIndicator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

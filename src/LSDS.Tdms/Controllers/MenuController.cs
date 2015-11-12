@@ -1,12 +1,11 @@
-﻿using LSDS.Tdms.Models;
+﻿using System;
+using LSDS.Tdms.Models;
 using LSDS.Tdms.Models.TdmsDataModel;
-using LSDS.Tdms.Repository;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using LSDS.Tdms;
-using Microsoft.AspNet.Identity;
+using Microsoft.Data.Entity;
+using Microsoft.Framework.DependencyInjection;
 
 
 namespace LSDS.Tdms.Controllers
@@ -18,53 +17,41 @@ namespace LSDS.Tdms.Controllers
         private TdmsDbContext _context;
         private readonly ApplicationUser _identity;
 
-        public MenuController(TdmsDbContext context, ApplicationUser identity)
+        public MenuController(IServiceProvider services)
         {
-            _context = context;
-            _identity = identity;
-         
+            _context = services.GetService<TdmsDbContext>();
+
         }
 
         [AcceptVerbs]
         public JsonResult GetMenu()
-        {
-            var menuX = _context.GetMenu;
-          // var xxx = _identity.UserName;
-            var repo = new Repository.Repository(_context);
-            var menu =  repo.GetMenu("testuser");
+        { 
+            //var schema = this.Context.Request.Scheme;
 
+            var menu = _context.Set<usp_returnTDMSMenu_Result>().FromSql("EXEC usp_returnTDMSMenu @p0", User.Identity.Name);
+            var menuTemp = menu;
             var menuList = new List <TdmsMenu>();
-            var returnTdmsMenuResults = menu;// menu as usp_returnTDMSMenu_Result[] ?? menu.ToArray();
-            var tdmsMenuResults = returnTdmsMenuResults as usp_returnTDMSMenu_Result[] ?? returnTdmsMenuResults.ToArray();
-            var menuTemp = tdmsMenuResults;
-
-
-            var menuHome = new TdmsMenu {text = "Home"};
-
-          //  if (Request.Url != null)
-          //          menuHome.url = Request.Url.ToString().Replace("Menu/GetMenu", "") + "Home" + "/" + "TdmsPortal";
            
-
+            var menuHome = new TdmsMenu {text = "Home", url = Url.Action("TdmsPortal", "Home") };
             menuList.Add(menuHome);
 
 
-
-            foreach (var item in tdmsMenuResults)
+            foreach (var item in menu.ToList())
             {
                 if (item.item_parent != null) continue;
                 var menuR = new TdmsMenu {text = item.item_desc};
                 if (item.item_type_desc.ToLower().Contains("view"))
                 {
-            //        if (Request.Url != null)
-           //             menuR.url = Request.Url.ToString().Replace("Menu/GetMenu", "") + item.item_name + "/" + item.item_name;
+                    if (item.item_name != null)
+                        menuR.url = Url.Action(item.item_name, item.item_name);
                 }
-             //   if (Request.Url != null)
-              //      menuR.ImageUrl = Request.Url.ToString().Replace("Menu/GetMenu", "")  + "Images/" + item.item_bitmap;
-                    
-                    
+                if (item.item_bitmap != null)
+                    menuR.ImageUrl = Url.Content("~/Images/" + item.item_bitmap);
+
+
                 menuR.ItemSortCode = item.item_sortcode;
                 menuR.ItemParent = item.item_window;
-                IEnumerable<usp_returnTDMSMenu_Result> uspReturnTdmsMenuResults = menuTemp as usp_returnTDMSMenu_Result[] ?? menuTemp.ToArray();
+                IEnumerable<usp_returnTDMSMenu_Result> uspReturnTdmsMenuResults = menuTemp.ToArray();
                 var menuListTemp = AddChild(uspReturnTdmsMenuResults.ToList(), item.item_sortcode);
                 if (menuListTemp.ToList().Count > 0)
                 {
@@ -92,12 +79,11 @@ namespace LSDS.Tdms.Controllers
 
                 if (item.item_type_desc.ToLower().Contains("view"))
                 {
-                  //  if (Request.Url != null)
-                  //      newChild.url = Request.Url.ToString().Replace("Menu/GetMenu", "") + item.item_name + "/" +item.item_name;
+                    if (item.item_name != null)
+                        newChild.url = Url.Action(item.item_name,item.item_name);
                 }
-               // if (Request.Url != null)
-                //    newChild.ImageUrl = Request.Url.ToString().Replace("Menu/GetMenu", "") + "Images/" +
-                   //                     item.item_bitmap;
+                if (item.item_bitmap != null)
+                    newChild.ImageUrl = Url.Content("~/Images/" +  item.item_bitmap);
 
 
                 List<TdmsMenu> menuListTemp = AddChild(tempMenuList, item.item_sortcode);

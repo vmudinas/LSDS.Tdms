@@ -21,8 +21,9 @@ namespace LSDS.Tdms.Models
         public DbSet<QuickSortItem> QuickSortItem { get; set; }
 
         public DbSet<usp_returnTDMSMenu_Result> GetMenu { get; set; }
-        //  public DbSet<T> Generic { get; set; }
-
+        public DbSet<usp_returnUserData> UserData { get; set; }
+        public DbSet<LocationUserData> LocationUserData { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

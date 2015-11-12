@@ -7,20 +7,22 @@ using LSDS.Tdms.Models.KendoModel;
 using Microsoft.Dnx.Runtime;
 using LSDS.TradeManagement;
 using LSDS.Tdms.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LSDS.Tdms.Controllers
 {
-    [Authorize]
+  
     public class TradeListController : Controller
     {
         private readonly IApplicationEnvironment _appEnvironment;
         private readonly TdmsDbContext _context;
-        public TradeListController(IApplicationEnvironment appEnvironment, TdmsDbContext context)
-        {
-            _context = context;
-            _appEnvironment = appEnvironment;
-        }
+        private readonly ApplicationUser _appUser;
+        private UserManager<ApplicationUser> _userManager;
 
+        public TradeListController()
+        {
+            
+        }
 
         public IActionResult TradeList()
         {

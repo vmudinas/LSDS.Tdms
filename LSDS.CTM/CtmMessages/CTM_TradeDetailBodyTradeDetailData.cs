@@ -20,79 +20,9 @@ namespace LSDS.CTM.CtmMessages
         private CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncome additionalFixedIncome;
         private CTM_TradeDetailBodyTradeDetailDataDirectedCommission directedCommission;
 
-        [MaxLength(34)]
-        public string TradeRegulator
-        {
-            get
-            {
-                return this.tradeRegulator;
-            }
-            set
-            {
-                this.tradeRegulator = value;
-            }
-        }
-        public CTM_TradeDetailBodyTradeDetailDataDirectedCommission DirectedCommission
-        {
-            get
-            {
-                return this.directedCommission;
-            }
-            set
-            {
-                this.directedCommission = value;
-            }
-        }
+       
 
-
-        public CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncome AdditionalFixedIncome
-        {
-            get
-            {
-                return this.additionalFixedIncome;
-            }
-            set
-            {
-                this.additionalFixedIncome = value;
-            }
-        }
-
-        public string SettlementTransactionConditionIndicator
-        {
-            get
-            {
-                return this.settlementTransactionConditionIndicator;
-            }
-            set
-            {
-                this.settlementTransactionConditionIndicator = value;
-            }
-        }
-
-        public CTM_TradeDetailBodyTradeDetailDataExchangeRate ExchangeRate
-        {
-            get
-            {
-                return this.exchangeRate;
-            }
-            set
-            {
-                this.exchangeRate = value;
-            }
-        }
-
-        public CTM_TradeDetailBodyTradeDetailDataSettlementAmount SettlementAmount
-        {
-            get
-            {
-                return this.settlementAmount;
-            }
-            set
-            {
-                this.settlementAmount = value;
-            }
-        }
-        /// <remarks/>
+       
         public CTM_TradeDetailBodyTradeDetailDataTradeAmount TradeAmount
         {
             get
@@ -131,6 +61,62 @@ namespace LSDS.CTM.CtmMessages
             }
         }
 
+        public CTM_TradeDetailBodyTradeDetailDataSettlementAmount SettlementAmount
+        {
+            get
+            {
+                return this.settlementAmount;
+            }
+            set
+            {
+                this.settlementAmount = value;
+            }
+        }
+        /// <remarks/>
+        public CTM_TradeDetailBodyTradeDetailDataExchangeRate ExchangeRate
+        {
+            get
+            {
+                return this.exchangeRate;
+            }
+            set
+            {
+                this.exchangeRate = value;
+            }
+        }
+        public string SettlementTransactionConditionIndicator
+        {
+            get
+            {
+                return this.settlementTransactionConditionIndicator;
+            }
+            set
+            {
+                this.settlementTransactionConditionIndicator = value;
+            }
+        }
+        public CTM_TradeDetailBodyTradeDetailDataAdditionalFixedIncome AdditionalFixedIncome
+        {
+            get
+            {
+                return this.additionalFixedIncome;
+            }
+            set
+            {
+                this.additionalFixedIncome = value;
+            }
+        }
+        public CTM_TradeDetailBodyTradeDetailDataDirectedCommission DirectedCommission
+        {
+            get
+            {
+                return this.directedCommission;
+            }
+            set
+            {
+                this.directedCommission = value;
+            }
+        }
         /// <remarks/>
         public CTM_TradeDetailBodyTradeDetailDataCommFeesTaxes CommFeesTaxes
         {
@@ -141,6 +127,18 @@ namespace LSDS.CTM.CtmMessages
             set
             {
                 this.commFeesTaxesField = value;
+            }
+        }
+        [MaxLength(34)]
+        public string TradeRegulator
+        {
+            get
+            {
+                return this.tradeRegulator;
+            }
+            set
+            {
+                this.tradeRegulator = value;
             }
         }
     }

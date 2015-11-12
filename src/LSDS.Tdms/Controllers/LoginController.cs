@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Authorization;
@@ -14,6 +15,7 @@ using Microsoft.Framework.DependencyInjection;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
+using LSDS.Webcomponents;
 
 namespace LSDS.Tdms.Controllers
 {
@@ -22,15 +24,16 @@ namespace LSDS.Tdms.Controllers
     {
         private TdmsDbContext _context;
         private readonly ApplicationUser _identity;
-      
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signIn;
+    
 
-        public LoginController(TdmsDbContext context, ApplicationUser identity )
+        public LoginController(IServiceProvider services)
         {
-            _context = context;
-            _identity = identity;
-          
+            _userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            _context = services.GetService<TdmsDbContext>();
         }
-      
+       
 
         public  IActionResult  Login()
         {
@@ -44,15 +47,19 @@ namespace LSDS.Tdms.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(UserLogin user)
+        public async Task<IActionResult> Login(UserLogin user)
         {
           
             if (user.IsValid(user.UserName, user.Password, _context))
-            {                
+            {
                 RemoveFindSortState(user.UserName, _context);
+                
+                var ident = (ClaimsIdentity)User.Identity;
+                ident.AddClaim(new Claim(ClaimTypes.Name, user.UserName,"LoginPage"));
+            
+                User.AddIdentity(ident);
+
               
-                _identity.UserName = user.UserName;
-                       
 
                 return user.PasswordChange
                             ? View("~/Views/Login/PasswordChange.cshtml", user)

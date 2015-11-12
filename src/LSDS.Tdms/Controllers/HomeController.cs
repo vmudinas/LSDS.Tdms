@@ -13,21 +13,30 @@ using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Framework.DependencyInjection;
 using System.Threading.Tasks;
 using System.Data;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LSDS.Tdms.Controllers
 {
     
-    [Authorize]
+  
     public class HomeController : Controller
     {
         // private static readonly Repository.Repository _tdmsDataAccess = new Repository();
         private TdmsDbContext _context;
-        public HomeController(TdmsDbContext context)
+        protected ApplicationDbContext ApplicationDbContext { get; set; }
+        protected UserManager<ApplicationUser> UserManager { get; set; }
+
+
+        public HomeController()
         {
-            _context = context;
         }
         public IActionResult TdmsPortal()
         {
+            var xx = User.GetUserName();
+            var xx3 = User.Identity.Name;
+            
             ViewBag.Message = "Welcome to TDMS";
             return View();
         }
@@ -137,19 +146,19 @@ namespace LSDS.Tdms.Controllers
         #region Gridster
         // GET: /Gridster/
         [HttpPost]
-        public async Task<IActionResult> UpdateGridster(List<tdGridsterModel> list)
+        public IActionResult UpdateGridster(List<tdGridsterModel> list)
         {
             var repo = new Repository.LocationRepository(_context);
-            await repo.Gridster.UpdateGridster(list,User.Identity.Name );
+            repo.Gridster.UpdateGridster(list,User.Identity.Name );
 
             return Json(new { result = "success" });
         }
 
         [AcceptVerbs]
-        public async Task<IActionResult> GetGridster()
+        public IActionResult GetGridster()
         {
             var repo = new Repository.LocationRepository(_context);
-            var newGridster = await repo.Gridster.GetGridster(User.Identity.Name);
+            var newGridster =  repo.Gridster.GetGridster(User.Identity.Name);
             return Json(newGridster);
         }
 

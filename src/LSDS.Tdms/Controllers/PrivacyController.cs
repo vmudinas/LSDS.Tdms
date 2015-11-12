@@ -28,7 +28,7 @@ namespace LSDS.Tdms.Controllers
             var DataAccessLibrary = new GenericRepository<usp_ReturnSecurityAccess_Result>();
          
             var sqlParams = new[] {
-            new SqlParameter("@user_name", "testuser") 
+            new SqlParameter("@user_name", User.Identity.Name) 
             };
             
             return Json(new {result = DataAccessLibrary.ExecuteStoredProcedure("usp_ReturnSecurityAccess @user_name", sqlParams).Where(c => c.item_name == controller)});

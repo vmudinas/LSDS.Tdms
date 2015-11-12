@@ -74,9 +74,9 @@ namespace CApp
                     var tempMessage = msg.SendMsg(conection.GetSession());
                       message.Invalid = tempMessage.Invalid;
                       message.Valid = tempMessage.Valid;
-                    var intSave = dbAccess.SaveChanges();
+                   
                 }
-                
+                var intSave = dbAccess.SaveChanges();
                 var newL = msgList;
                   //     // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
                   //  //   var message = msg.SendMsg(conn.GetSession());

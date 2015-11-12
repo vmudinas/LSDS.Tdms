@@ -48,10 +48,8 @@ namespace LSDS.Tdms.Models.TdmsDataModel
         /// <returns>True if user exist and password is correct</returns>
         public bool IsValid(string username, string password, TdmsDbContext _context)
         {
-
             var userLogin = _context.Set<usp_returnUserbyUserName_Result>().FromSql("EXEC usp_returnUserbyUserName @p0", username).FirstOrDefault(a => a.psw == GetSwcMd5(password) && a.user_status == 0);
-
-
+            
             if (userLogin != null)
             {
                 LogLoginAttempt(username, true, _context);
