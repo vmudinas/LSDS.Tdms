@@ -3,7 +3,7 @@
     "userSecretsId": "aspnet5-LSDS.Tdms-604cf022-704f-44e3-aaa2-90186850e8de",
     "version": "1.0.0-*",
 
-  "dependencies": { 
+  "dependencies": {
     "EntityFramework.Commands": "7.0.0-beta8",
     "EntityFramework.SqlServer": "7.0.0-beta8",
     "Microsoft.AspNet.Mvc": "6.0.0-beta8",
@@ -34,16 +34,22 @@
     "NEST": "1.7.0",
     "Microsoft.Net.Http": "2.2.29",
     "Microsoft.AspNet.SignalR.Server": "3.0.0-beta8-15656",
-    "NEST.Watcher": "1.0.0-beta2"
+    "NEST.Watcher": "1.0.0-beta2",
+    "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta5"
   },
 
     "commands": {
       "web": "Microsoft.AspNet.Server.Kestrel",
-        "ef": "EntityFramework.Commands"
+      "ef": "EntityFramework.Commands",
+      "gen": "Microsoft.Framework.CodeGeneration"
     },
 
     "frameworks": {
-        "dnx451": { }
+      "dnx46": {
+        "dependencies": {
+          "LSDS.CTM": "1.0.0-*"
+        }
+      }
     },
 
     "exclude": [

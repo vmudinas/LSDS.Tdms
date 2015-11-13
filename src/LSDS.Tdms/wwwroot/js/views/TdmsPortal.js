@@ -3,7 +3,6 @@ $("#idShowWidgets").val("Add Modules");
 
 
 $(document).ready(function () {
-    alert("poop");
     GetWidgetLocation(GetWigetsUrl());
 
 });
@@ -32,7 +31,7 @@ function GetWidgetLocation(widgetLocationUrl) {
 }
 
 function SetControlFromDB(widgetLocation) {
-    alert(JSON.stringify(widgetLocation) + "SetControlFromDB");
+  
     try {
         var errorMsg = "";
         var gridster = $(".gridster ul").gridster({

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using LSDS.Tdms.Models;
 using LSDS.Tdms.Models.TdmsDataModel;
+using LSDS.CTM.CtmMessages;
+
 
 namespace LSDS.Tdms.Models
 {
@@ -34,7 +36,7 @@ namespace LSDS.Tdms.Models
         public DbSet<usp_ReturnUserSavedReports_Result> UserSavedReports { get; set; }
         public DbSet<usp_ReturnRepairStatusData_Result> RepairStatusData { get; set; }
         public DbSet<usp_ReturnSystemStatus> SystemStatus { get; set; }
-      
+     // public DbSet<LSDS.Tdms.> CtmMessage { get; set;  }
        
         
 
@@ -47,5 +49,26 @@ namespace LSDS.Tdms.Models
         // Add your customizations after calling base.OnModelCreating(builder);
     }
        
+    }
+    public class CTMDbContext : DbContext
+    {
+        public virtual  DbSet<CTM_Message> CTMMessage { get; set; }
+        public virtual  DbSet<CTM_Invalid> Invalid { get; set; }
+        public virtual  DbSet<CTM_Valid> Valid { get; set; }
+        public virtual DbSet<CTM_TradeDetail> TradeDetail { get; set; }
+        public virtual DbSet<CTM_TradeLevel> TradeLevel { get; set; }
+        public virtual DbSet<CTM_MultiTradeDetailRequest> MultiTradeDetailRequest { get; set; }
+        public virtual DbSet<CTM_MultiTradeDetailResponse> MultiTradeDetaillResponse { get; set; }
+        public virtual DbSet<CTM_MultiTradeLevelRequest> MultiTradeLevelRequest { get; set; }
+        public virtual DbSet<CTM_MultiTradeLevelResponse> MultiTradeLevelResponse { get; set; }
+        public virtual DbSet<CTM_InfoRequest> InfoRequest { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+         
+        }
+
     }
 }

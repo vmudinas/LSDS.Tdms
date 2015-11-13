@@ -17,5 +17,8 @@
     <IISExpressAnonymousAuthentication>Enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>Disabled</IISExpressWindowsAuthentication>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LSDS.CTM\LSDS.CTM.csproj" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

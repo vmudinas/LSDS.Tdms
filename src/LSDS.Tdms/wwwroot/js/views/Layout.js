@@ -110,9 +110,9 @@ function intHomeScreen() {
 function updateUserLocation() {
     var selectedValue = $("#headerLocationSelect option:selected").val();
 
-    var userLocationPath = window.UpdateLocationList;
+   // var userLocationPath = window.UpdateLocationList;
     $.getJSON(
-        userLocationPath, { tdUserGroupId: selectedValue },
+        UpdateWigetsUrl(), { tdUserGroupId: selectedValue },
         function(myData) {
 
             if (window.location.pathname.indexOf("TradeList") > -1) {
