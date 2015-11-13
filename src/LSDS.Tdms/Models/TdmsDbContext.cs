@@ -13,18 +13,33 @@ namespace LSDS.Tdms.Models
         public DbSet<UspReturnVersion> Version { get; set; }
         public DbSet<usp_returnUserbyUserName_Result> UserByUserName { get; set; }
         public DbSet<usp_LoginReport_Result> LoginReport { get; set; }
-        public DbSet<object> LoginAttemt { get; set; }
+      //  public DbSet<object> LoginAttemt { get; set; }
         public DbSet<QuickfindMC> QuickfindMC { get; set; }
         public DbSet<Quickfind_Default> Quickfind_Default { get; set; }
         public DbSet<QuickFind_Query> QuickFind_Query { get; set; }
+        public DbSet<usp_returnquickfindquery_Result> QuickfindqueryResult { get; set; }
+        public DbSet<usp_returnquickfind> Returnquickfind { get; set; }
+        
         public DbSet<QuickSort> QuickSort { get; set; }
         public DbSet<QuickSortItem> QuickSortItem { get; set; }
 
         public DbSet<usp_returnTDMSMenu_Result> GetMenu { get; set; }
         public DbSet<usp_returnUserData> UserData { get; set; }
         public DbSet<LocationUserData> LocationUserData { get; set; }
+        public DbSet<tdGridsterModel> Gridster { get; set; }
+        public DbSet<usp_ReturnBrokerPerformance_Result> BrokerPreformance  { get; set; }
+        public DbSet<usp_ReturnImportSummary_Result> ImportSummary { get; set; }
+        public DbSet<usp_ReturnWidgetLocation_Result> WidgetLocation { get; set; }
+        public DbSet<usp_ReturnPackageMaintenanceListHome> PackageMaintenanceListHome { get; set; }
+        public DbSet<usp_ReturnUserSavedReports_Result> UserSavedReports { get; set; }
+        public DbSet<usp_ReturnRepairStatusData_Result> RepairStatusData { get; set; }
+        public DbSet<usp_ReturnSystemStatus> SystemStatus { get; set; }
+      
        
-        protected override void OnModelCreating(ModelBuilder builder)
+        
+
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
         // Customize the ASP.NET Identity model and override the defaults if needed.

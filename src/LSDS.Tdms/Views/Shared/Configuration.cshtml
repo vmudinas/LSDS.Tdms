@@ -55,7 +55,7 @@
         return '@Url.Action("ReturnUserTableDetail", "TableDetail")';
     }
 
- 
+
       function UnArchiveTrade() {
           return '@Url.Action("UnArchiveTrade", "TradeList")';
       }
@@ -74,7 +74,7 @@
 
 
     function GetImagePath() {
-        return "@Url.Content("~/Content/Images/")";
+        return "@Url.Content("~/images/")";
     }
 
     function TradeRepairLogUrl() {
@@ -114,4 +114,27 @@
     function GetTdmsPortalUrl() {
         return '@(Url.Action("TdmsPortal", "Home"))';
     }
+    function GetBrokerPerformanceUrl() {
+        return '@(Url.Action("BrokerPerformance", "Home"))';
+    }
+    function GetImportSummaryUrl() {
+        return '@(Url.Action("ImportSummary", "Home"))';
+    }
+    function GetNotificationJobStatusUrl() {
+        return '@(Url.Action("NotificationJobStatus", "Home"))';
+    }
+    function GetSavedReportsUrl() {
+        return '@(Url.Action("SavedReports", "Home"))';
+    }
+    function GetRepairStatusDataUrl() {
+        return '@(Url.Action("RepairStatusData", "Home"))';
+    }
+    function GetSystemStatusUrl() {
+        return '@(Url.Action("SystemStatus", "Home"))';
+    }
+    function GetRepairStatusDataUrl() {
+        return '@(Url.Action("RepairStatusData", "Home"))';
+    }
+
+
 </script>

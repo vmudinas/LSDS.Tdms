@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using LSDS.Webcomponents;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LSDS.Tdms.Controllers
 {
@@ -37,7 +38,7 @@ namespace LSDS.Tdms.Controllers
 
         public  IActionResult  Login()
         {
-            ViewBag.Version = _context.Set<UspReturnVersion>().FromSql("Usp_ReturnVersion")?.FirstOrDefault()?.project_name ?? "No Version!";
+            ViewBag.Version = _context.Set<UspReturnVersion>().FromSql(@"EXEC Usp_ReturnVersion")?.FirstOrDefault()?.project_name ?? "No Version!";
             return View();
         }
         [Authorize]
@@ -49,18 +50,20 @@ namespace LSDS.Tdms.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLogin user)
         {
-          
+            
             if (user.IsValid(user.UserName, user.Password, _context))
             {
+                var claims = new List<Claim>
+                {
+                    new Claim("name", user.UserName)
+                };
+
+                var id = new ClaimsIdentity(claims, "local", "name", "role");
+                await HttpContext.Authentication.SignInAsync("Cookies", new ClaimsPrincipal(id));
+
+
                 RemoveFindSortState(user.UserName, _context);
-                
-                var ident = (ClaimsIdentity)User.Identity;
-                ident.AddClaim(new Claim(ClaimTypes.Name, user.UserName,"LoginPage"));
-            
-                User.AddIdentity(ident);
-
-              
-
+               
                 return user.PasswordChange
                             ? View("~/Views/Login/PasswordChange.cshtml", user)
                             : View("~/Views/Home/TdmsPortal.cshtml");

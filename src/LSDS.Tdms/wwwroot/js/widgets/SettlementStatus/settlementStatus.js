@@ -4,7 +4,7 @@ function initSettlementStatus() {
     
     var userId = $("#userNameLable").val();
     $.getJSON(
-        "RepairStatusData", { source: "TradeSettlementStatusModule", userId: userId, totals: $(".settlementTotal").is(':checked'), txnSide: $(".settlemenetTxtSide").is(':checked'), notifyType: $(".settlementNotifyType").is(':checked') },
+        GetRepairStatusDataUrl(), { source: "TradeSettlementStatusModule",  totals: $(".settlementTotal").is(':checked'), txnSide: $(".settlemenetTxtSide").is(':checked'), notifyType: $(".settlementNotifyType").is(':checked') },
         function(myData) {
             //var data = { "d": myData[0].TableData };
             var data = { "d": myData };

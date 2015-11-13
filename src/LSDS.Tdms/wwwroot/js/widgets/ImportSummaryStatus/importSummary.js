@@ -5,7 +5,7 @@ function initImportSummaryGrid() {
     var userId = $("#userNameLable").val();
    // var daysTime = 100;
     $.getJSON(
-        "ImportSummary", { userId: userId, days: $('#idImportDays option:selected').val() },
+        GetImportSummaryUrl(), {  days: $('#idImportDays option:selected').val() },
         function(myData) {
             var data = { "d": myData };
 

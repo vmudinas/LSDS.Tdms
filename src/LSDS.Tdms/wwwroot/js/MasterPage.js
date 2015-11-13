@@ -490,7 +490,7 @@ function UpdateList() {
 }
 
 function UpdateControls() {
-    //    //console.log('Enter update function');
+    //    //console.log('Enter update function');docu
     //    //  alert($("#chkTradeMatchStatus").is(':checked'));
     //    var tradeMatchStatusID = $('#idTradeMatchStatus').attr('data-id');
     //    var tradeMatchStatusR = $('#idTradeMatchStatus').attr('data-row');

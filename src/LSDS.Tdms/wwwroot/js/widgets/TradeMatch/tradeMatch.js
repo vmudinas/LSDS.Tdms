@@ -80,7 +80,7 @@ function initMatchedStatusGrid() {
    // $("chartMatchedStatus").css("visibility", "hidden");
     var userId = $("#userNameLable").val();
     $.getJSON(
-        "RepairStatusData", { source: "TradeMatchStatusModule", userId: userId,totals : $("#idTotals").is(':checked'),  txnSide : $("#idTxnSide").is(':checked'), notifyType:$("#idNotifyType").is(':checked') },
+       GetRepairStatusDataUrl(), { source: "TradeMatchStatusModule",  totals: $("#idTotals").is(':checked'), txnSide: $("#idTxnSide").is(':checked'), notifyType: $("#idNotifyType").is(':checked') },
         function(myData) {
            // var data = { "d": myData[0].TableData };
             var data = { "d": myData };
@@ -189,7 +189,7 @@ function initMatchedStatusChart() {
     $("gridMatchedStatus").css("visibility", "hidden");
     var userId = $("#userNameLable").val();
     $.getJSON(
-        "RepairStatusData", { source: "TradeMatchStatusModule", userId: userId, totals: $("#idTotals").is(':checked'), txnSide: $("#idTxnSide").is(':checked'), notifyType: $("#idNotifyType").is(':checked') },
+        GetRepairStatusDataUrl(), { source: "TradeMatchStatusModule",  totals: $("#idTotals").is(':checked'), txnSide: $("#idTxnSide").is(':checked'), notifyType: $("#idNotifyType").is(':checked') },
         function (myData) {
             //var data = { "d": myData[0].TableData };
             var data = { "d": myData };

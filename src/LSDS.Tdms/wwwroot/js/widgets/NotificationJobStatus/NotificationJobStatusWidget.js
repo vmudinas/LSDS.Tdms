@@ -471,7 +471,7 @@ function BindKendo() {
             transport: {
                 type: "json",
                 read: {
-                    read: "Home/BrokerPerformance"
+                    read: GetBrokerPerformanceUrl()// "Home/BrokerPerformance"
                 }
 
             }
@@ -586,7 +586,7 @@ function initNotificationJobStatusGrid() {
 
 
     $.getJSON(
-        "NotificationJobStatus", { userId: userId },
+        GetNotificationJobStatusUrl(), { userId: userId },
 
         function (myData) {
             var data = { "d": myData };

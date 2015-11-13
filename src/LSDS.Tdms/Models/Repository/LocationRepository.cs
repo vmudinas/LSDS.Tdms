@@ -5,6 +5,7 @@ using System.Linq;
 using LSDS.Tdms.Models.TdmsDataModel;
 using System.Threading.Tasks;
 using LSDS.Tdms.Models;
+using Microsoft.Data.Entity;
 
 namespace LSDS.Tdms.Repository
 {
@@ -21,10 +22,10 @@ namespace LSDS.Tdms.Repository
             get { return _gridster; }
         }
 
-        public async Task<IEnumerable<LocationUserData>>  GetLocationList(string userName)
+        public IEnumerable<LocationUserData>  GetLocationList(string userName)
         {
             IEnumerable<LocationUserData> locationList = null;
-            var locationUserDatas = locationList.ToArray();
+           
 
                 object[] usrName = {
                     new SqlParameter("@user_name", userName)
@@ -33,11 +34,12 @@ namespace LSDS.Tdms.Repository
                     new SqlParameter("@app_usr_id", userName)
                 };
          
-                var rep = new GenericRepository<usp_returnUserData>(_context);
-                var groupId = rep.ExecuteStoredProcedure("usp_returnUserData", usrName).Select(a => a.tdUserGroupId).FirstOrDefault();
-                var repLoc = new GenericRepository<LocationUserData>();
-                await repLoc.ExecuteStoredProcedureAsync("sp_SetAppUser", appUsrId);
-                locationList = repLoc.ExecuteStoredProcedure("usp_ReturnUserGroups");
+            var groupId = _context.UserData.FromSql("EXEC usp_returnUserData @p0", userName).Select(a => a.tdUserGroupId).FirstOrDefault();
+           
+            _context.LocationUserData.FromSql("EXEC sp_SetAppUser @p0", appUsrId);
+            locationList = _context.LocationUserData.FromSql("EXEC usp_ReturnUserGroups");
+           
+                var locationUserDatas = locationList.ToArray();
                 foreach (var item in locationUserDatas)
                 {
                     item.Selected = false || item.tdUserGroupID == groupId;

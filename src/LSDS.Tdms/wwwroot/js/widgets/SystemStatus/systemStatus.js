@@ -36,7 +36,7 @@ function SystemStatusLink(value, idLog) {
 function initSystemStatusGrid() {
 
     $.getJSON(
-        "SystemStatus", { },
+       GetSystemStatusUrl(), {},
         function (myData) {
             var data = { "d": myData };
 

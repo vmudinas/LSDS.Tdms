@@ -17,7 +17,7 @@ function initTradeRepairChart(typeC) {
             transport: {
                 type: "json",
                 read: {
-                    read: "Home/BrokerPerformance"
+                    read: GetBrokerPerformanceUrl() //"Home/BrokerPerformance"
                 }
             }
         },
@@ -86,7 +86,7 @@ function initTradeRepairGrid() {
     var userId = $("#userNameLable").val();
     //alert(userId);
     $.getJSON(
-        "RepairStatusData", { source: "TradeRepairStatusModule", userId: userId },
+        GetRepairStatusDataUrl(), { source: "TradeRepairStatusModule" },
         function (myData) {
             var data = { "d": myData };
            // var data = { "d": myData[0].TableData };

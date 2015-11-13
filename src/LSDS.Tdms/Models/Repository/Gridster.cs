@@ -3,44 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using LSDS.Tdms.Models.TdmsDataModel;
 using System.Threading.Tasks;
+using LSDS.Tdms.Models;
 
 namespace LSDS.Tdms.Repository
 {
     public class Gridster : GenericRepository<tdGridsterModel>
     {
         GenericRepository<tdGridsterModel> rep = new GenericRepository<tdGridsterModel>();
-        public List<tdGridsterModel> GetGridster(string userName)
+        private TdmsDbContext _context;
+
+        public List<tdGridsterModel> GetGridster(string userName, TdmsDbContext context)
         {
+            _context = context;
             var newGridster = new List<tdGridsterModel>();
-          
-                var query = rep.GetAll().Where(c => c.user_name == userName);
+
+            var query = _context.Gridster.ToList<tdGridsterModel>().Where(c => c.user_name == userName);
                
                 foreach (var value in query)
                 {
                     var retriedGridItem = value;
-                    rep.Edit(retriedGridItem);
+                    _context.Gridster.Update(retriedGridItem);
                     newGridster.Add(retriedGridItem);
                 }
             
             return newGridster;
         }
 
-        public async void UpdateGridster(List<tdGridsterModel> list, string userName)
+        public void UpdateGridster(List<tdGridsterModel> list, string userName, TdmsDbContext context)
         {
-           
-                var query = rep.GetAll().Where(c => c.user_name == userName);  //Perform a bulk delete operation
-                foreach(var item in query)
-                {
-                     await rep.DeleteAsync(item);
-                }         
-         
+                _context = context;
+                _context.Gridster.RemoveRange(_context.Gridster);
 
                 foreach (var gridModel in list)
                 {
                     gridModel.user_name = userName;
-                    gridModel.id = Guid.NewGuid().ToString();
-                    await rep.InsertAsync(gridModel);
-                }
+                    gridModel.id = Guid.NewGuid().ToString();               
+                    _context.Gridster.Add(gridModel);
+            }
              
         }
     }

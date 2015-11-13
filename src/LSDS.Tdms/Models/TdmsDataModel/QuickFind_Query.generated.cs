@@ -46,8 +46,9 @@ namespace LSDS.Tdms.Models.TdmsDataModel
 				}
 			}
 		}
-		
-		private string _queryString;
+     
+
+        private string _queryString;
 	
 		[System.ComponentModel.DataAnnotations.StringLength(8000)]
 		public virtual string QueryString

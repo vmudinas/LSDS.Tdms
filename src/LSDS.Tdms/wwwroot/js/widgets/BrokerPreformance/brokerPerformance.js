@@ -16,7 +16,7 @@ function initBrokerPerformance() {
     //var timePeriod = "12";
    // alert($('#brokerPerformanceTimePeriodSelect :selected').val());
                 $.getJSON(
-                "BrokerPerformance", { time: $('#brokerPerformanceTimePeriodSelect option:selected').val() },
+                GetBrokerPerformanceUrl(), { time: $('#brokerPerformanceTimePeriodSelect option:selected').val() },
                 function (myData) {
             var data = { "d": myData };
 

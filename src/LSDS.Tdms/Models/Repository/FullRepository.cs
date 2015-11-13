@@ -13,6 +13,7 @@ using LSDS.Tdms.Models.TdmsDataModel;
 using LSDS.Tdms.Models.KendoModel;
 using LSDS.Tdms.Models;
 using LSDS.Tdms.Models.Code;
+using Microsoft.Data.Entity;
 
 namespace LSDS.Tdms.Repository
 {
@@ -135,7 +136,7 @@ namespace LSDS.Tdms.Repository
 
             return count;
         }
-        public async Task<IEnumerable<usp_ReturnBrokerPerformance_Result>> BrokerPerformance(string time, string userName)
+        public IEnumerable<usp_ReturnBrokerPerformance_Result> BrokerPerformance(string time, string userName)
         {
             var intTimePeriod = 0;
             int.TryParse(time, out intTimePeriod);
@@ -146,7 +147,7 @@ namespace LSDS.Tdms.Repository
                 new SqlParameter("@TimePeriod", intTimePeriod)
             };
             var repo = new GenericRepository<usp_ReturnBrokerPerformance_Result>(_context);
-            return  await repo.ExecuteStoredProcedureAsync("usp_ReturnBrokerPerformance", parameters);
+            return  repo.ExecuteStoredProcedure("usp_ReturnBrokerPerformance", parameters);
         }
 
 
@@ -336,27 +337,23 @@ namespace LSDS.Tdms.Repository
         }
 
 
-        public async Task<IEnumerable<string>> GetQuickFindColumnList(string userId, string sourceName, int system)
-        {
-            var parameters = new[]
-            {
-                new SqlParameter("@user_name", userId) ,
-                new SqlParameter("@SourceName", sourceName),
-                new SqlParameter("@system", system)
+        //public IEnumerable<string> GetQuickFindColumnList(string userId, string sourceName, int system)
+        //{
 
-            };
+        //    //// var tdmsDataAccess = new GenericRepository<usp_returnquickfindquery_Result>();
+        //    //var quickFindColumnName = _context.Set<usp_returnquickfind>().FromSql(@"EXEC usp_returnquickfind @user_name={0}, @SourceName={1}, @system={2}", User.Identity.Name, sourceName, system).ToList();// ("usp_returnquickfind", parameters);
 
-            var tdmsDataAccess = new GenericRepository<usp_returnquickfindquery_Result>(_context);
-            var quickFindColumnName = await tdmsDataAccess.ExecuteStoredProcedureAsync("usp_returnquickfind", parameters);
-
-            var list = new List<string>();
-
-            list.AddRange(quickFindColumnName.Select(item => item.Description.ToString()));
+        //    //var list = new List<string>();
+        //    //foreach (var item in quickFindColumnName)
+        //    //{
+        //    //    list.Add(item.Description.ToString());
+        //    //}                     
 
 
-              return list;
+        //    //  return list;
+        //    return null;
 
-        }     
+        //}     
        
     }
     

@@ -4,7 +4,7 @@ function initSavedReports() {
 
     var userId = $("#userNameLable").val();
     $.getJSON(
-        "SavedReports", { userId: userId },
+        GetSavedReportsUrl(), { userId: userId },
         function(myData) {
             var data = { "d": myData };
 

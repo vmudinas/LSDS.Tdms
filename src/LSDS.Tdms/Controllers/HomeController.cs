@@ -16,26 +16,27 @@ using System.Data;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace LSDS.Tdms.Controllers
 {
-    
-  
+
+    [Authorize]
     public class HomeController : Controller
     {
-        // private static readonly Repository.Repository _tdmsDataAccess = new Repository();
         private TdmsDbContext _context;
         protected ApplicationDbContext ApplicationDbContext { get; set; }
         protected UserManager<ApplicationUser> UserManager { get; set; }
 
 
-        public HomeController()
+       
+        public HomeController(IServiceProvider services)
         {
+            UserManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            _context = services.GetService<TdmsDbContext>();
         }
         public IActionResult TdmsPortal()
         {
-            var xx = User.GetUserName();
-            var xx3 = User.Identity.Name;
             
             ViewBag.Message = "Welcome to TDMS";
             return View();
@@ -45,73 +46,76 @@ namespace LSDS.Tdms.Controllers
 
         #region Widgets
         [AcceptVerbs]
-        public async Task<JsonResult> BrokerPerformance(string time)
+        public  JsonResult BrokerPerformance(string time)
         {
-            var rep  = new Repository.Repository(_context);
-            var brokers =await rep.BrokerPerformance(time, User.Identity.Name);
-            return Json(brokers.ToList());
+            var intTimePeriod = 0;
+            int.TryParse(time, out intTimePeriod);
+
+            return Json(_context.Set<usp_ReturnBrokerPerformance_Result>().FromSql(@"EXEC usp_ReturnBrokerPerformance @user_name={0}, @TimePeriod={1}", User.Identity.Name, intTimePeriod)?.ToList());        
+
         }
         
         [AcceptVerbs]
-        public async Task<JsonResult> ReturnWidgetLocation(string userName)
+        public JsonResult ReturnWidgetLocation(string userName)
         {
-            var rep = new Repository.Repository(_context);
-            var widgetLocation = await rep.ReturnWidgetLocation(User.Identity.Name);
-            return Json(widgetLocation.ToList());
-
+            return Json(_context.Set<usp_ReturnWidgetLocation_Result>().FromSql(@"EXEC usp_ReturnWidgetLocation @user_name={0}", User.Identity.Name)?.ToList());
         }
-
 
         
         [AcceptVerbs]
-        public async Task<JsonResult> NotificationJobStatus(string userId)
+        public JsonResult NotificationJobStatus(string userId)
         {
-            var rep = new Repository.Repository(_context);
-            var notificationJobStatus = await rep.NotificationJobStatus(User.Identity.Name);
-            return Json(notificationJobStatus.ToList());
-      
+            return Json(_context.Set<usp_ReturnPackageMaintenanceListHome>().FromSql(@"EXEC usp_ReturnPackageMaintenanceListHome @NotificationOnly={0}, @UserId={1} ",  true, User.Identity.Name)?.ToList());      
         }
         [AcceptVerbs]
-        public async Task<JsonResult> SavedReports(string userId)
+        public JsonResult SavedReports(string userId)
         {
-            var rep = new Repository.Repository(_context);
-            var savedReports = await rep.SavedReports(User.Identity.Name);
-            return Json(savedReports.ToList());
-
-    
+            return Json(_context.Set<usp_ReturnUserSavedReports_Result>().FromSql(@"EXEC usp_ReturnUserSavedReports @user_name={0}", User.Identity.Name)?.ToList());
         }
 
         [AcceptVerbs]
-        public async Task<JsonResult> ImportSummary(string userId, string days)
+        public JsonResult ImportSummary(string days)
         {
-            var rep = new Repository.Repository(_context);
-            var importSummary = await rep.ImportSummary(User.Identity.Name, days);
-            return Json(importSummary.ToList());
+            var intTimePeriod = 0;
+            int.TryParse(days, out intTimePeriod);
+            return Json(_context.Set<usp_ReturnImportSummary_Result>().FromSql(@"EXEC usp_ReturnImportSummary @User_name={0}, @Days={1}", User.Identity.Name, intTimePeriod)?.ToList());
         }
 
         [AcceptVerbs]
-        public async Task<JsonResult> SystemStatus()
+        public JsonResult SystemStatus()
         {
-            var rep = new Repository.Repository(_context);
-            var systemStatus = await rep.SystemStatus();
-            return Json(systemStatus.ToList());
+            return Json(_context.Set<usp_ReturnSystemStatus>().FromSql(@"EXEC usp_ReturnSystemStatus @AllGroups={0} ", false)?.ToList());
         }
 
         [AcceptVerbs]
-        public async Task<JsonResult> RepairStatusData(string source, string userId, bool totals = true, bool txnSide = true, bool notifyType = true)
+        public  JsonResult RepairStatusData(string source, bool totals = true, bool txnSide = true, bool notifyType = true)
         {
-            var rep = new Repository.Repository(_context);
-
+            var columnName = GetQuickFindColumnList(source, 1);         
 
             switch (source)
                 {
                     case "TradeRepairStatusModule":
-                        var dRepariStatus = await _context.Set<usp_ReturnRepairStatusData_Result>().FromSql("usp_ReturnRepairStatusData", User.Identity.Name, source, 1).ToListAsync();
-                            return Json(dRepariStatus.ToList());
-                    default:
-                        var columnName =await GetQuickFindColumnList(userId, source, 1);
+                    var RepairStatus =_context.Set<usp_ReturnRepairStatusData_Result>().FromSql(@"EXEC usp_ReturnRepairStatusData  @p0, @p1 ", string.Join("$", GetQuickFindColumnIDList(source, 1)), User.Identity.Name).ToList();
+                    var newColumnListRepairStatus = columnName.Select(value => new usp_ReturnRepairStatusData_Result
+                    {
+                        Description = value,
+                        Total = 0
+                    }).ToList();
+                    var uspReturnRepairStatusDataResultsR = RepairStatus as IList<usp_ReturnRepairStatusData_Result> ?? RepairStatus.ToList();
+                    foreach (var item in newColumnListRepairStatus)
+                    {
+                        var item1 = item;
+                        foreach (var itemTotals in uspReturnRepairStatusDataResultsR.Where(itemTotals => item1.Description == itemTotals.Description))
+                        {
+                            item.Total = itemTotals.Total;
+                        }
+                    }
+
+                    return Json(newColumnListRepairStatus.ToList());
+                default:
+                      
                                         
-                    var dMatchStatus = await _context.Set<usp_ReturnRepairStatusData_Result>().FromSql("usp_ReturnTradeStatusData", User.Identity.Name, source, 1, totals, txnSide, notifyType).ToListAsync();
+                    var dMatchStatus =  _context.Set<usp_ReturnRepairStatusData_Result>().FromSql(@"EXEC usp_ReturnTradeStatusData @p0, @p1, @p2, @p3, @p4 ", string.Join("$", GetQuickFindColumnIDList(source, 1)), User.Identity.Name, totals, txnSide, notifyType).ToList();
 
                     var newColumnList = columnName.Select(value => new usp_ReturnRepairStatusData_Result
                         {
@@ -133,23 +137,28 @@ namespace LSDS.Tdms.Controllers
       
      
 
-        private async Task<IEnumerable<string>> GetQuickFindColumnList(string userId, string sourceName, int system)
+        private List<int> GetQuickFindColumnIDList(string sourceName, int system)
         {
-            var repo = new Repository.Repository(_context);
-            return await repo.GetQuickFindColumnList(User.Identity.Name,sourceName,system);
+            return  _context.Set<usp_returnquickfind>().FromSql(@"EXEC usp_returnquickfind @p0, @p1, @p2", User.Identity.Name, sourceName, system)?.Select(a=>a.QuickfindID)?.ToList();
+         
+        }
+        private List<string> GetQuickFindColumnList(string sourceName, int system)
+        {
+            return _context.Set<usp_returnquickfind>().FromSql(@"EXEC usp_returnquickfind @p0, @p1, @p2", User.Identity.Name, sourceName, system)?.Select(a => a.Description)?.ToList();
+
         }
 
 
         #endregion
 
-       
+
         #region Gridster
         // GET: /Gridster/
         [HttpPost]
         public IActionResult UpdateGridster(List<tdGridsterModel> list)
         {
             var repo = new Repository.LocationRepository(_context);
-            repo.Gridster.UpdateGridster(list,User.Identity.Name );
+            repo.Gridster.UpdateGridster(list,User.Identity.Name, _context);
 
             return Json(new { result = "success" });
         }
@@ -157,9 +166,8 @@ namespace LSDS.Tdms.Controllers
         [AcceptVerbs]
         public IActionResult GetGridster()
         {
-            var repo = new Repository.LocationRepository(_context);
-            var newGridster =  repo.Gridster.GetGridster(User.Identity.Name);
-            return Json(newGridster);
+
+            return Json( _context.Gridster.Where(x => x.user_name == User.Identity.Name));
         }
 
         #endregion

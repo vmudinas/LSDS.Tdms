@@ -1,9 +1,9 @@
 ﻿$("#WidgetsConfiguration").hide();
-$("idShowWidgets").val("Add Modules");
+$("#idShowWidgets").val("Add Modules");
 
 
 $(document).ready(function () {
-   
+    alert("poop");
     GetWidgetLocation(GetWigetsUrl());
 
 });
@@ -32,7 +32,7 @@ function GetWidgetLocation(widgetLocationUrl) {
 }
 
 function SetControlFromDB(widgetLocation) {
-   // alert(widgetLocation + "SetControlFromDB");
+    alert(JSON.stringify(widgetLocation) + "SetControlFromDB");
     try {
         var errorMsg = "";
         var gridster = $(".gridster ul").gridster({
@@ -82,8 +82,15 @@ function SetControlFromDB(widgetLocation) {
             if (widgetLocation.length > 0) {
                 gridster.remove_all_widgets();
 
-                $.each(widgetLocation, function(i, item) {
-                    gridster.add_widget("<li>" + item.HtmlContent + "</li>", item.Size_x, item.Size_y, item.Col, item.Row);
+                $.each(widgetLocation, function (i, item) {
+                    if (item != 'undefined') {
+                        gridster.add_widget("<li>" + item.HtmlContent + "</li>", item.Size_x, item.Size_y, item.Col, item.Row);
+                    }
+                    else {
+
+                        IntWidgets();
+                        return false;
+                    }
                 });
             }
             else

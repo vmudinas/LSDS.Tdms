@@ -55,7 +55,7 @@
                 </div>
                         <div id="iduserNameDetails">
                             <label id="userNameFull">@User.Identity.Name</label>
-                            <label id="userLastLogin">Last Login</label>
+                            <label id="userLastLogin"></label>
                             <input id="userNameLable" name="userNameLable" type="hidden" value="@User.Identity.Name" />
                         </div>
                
@@ -75,7 +75,7 @@
     </section>
     <script type="text/javascript" language="javascript">
         var loged = '@string.IsNullOrWhiteSpace(User.Identity.Name).ToString().ToLower();';
-        alert(loged);
+      //  alert(loged);
         if (loged === "true")
         {
             $("#logoutBtn").click();

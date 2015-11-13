@@ -9,7 +9,8 @@
    
    // CheckSecurity(GetCheckSecurityUrl(), GetTdmsPortalUrl());
     GetUserLocation(GetLocationListUrl());
-
+    getLastLogin();
+    //intHomeScreen();
 });
 
 
@@ -70,19 +71,21 @@ function getFullUserName() {
 }
 
 function getLastLogin() {
-    //var userLastLoginPath = window.GetUserLastLogin;
-    //$.getJSON(
-    //    userLastLoginPath, {},
-    //    function(myData) {
-    //        $("#userLastLogin").text("Last Login: " + myData);
-    //    });
+    var userLastLoginPath = window.GetUserLastLogin;
+    $.getJSON(
+        userLastLoginPath, {},
+        function(myData) {
+            $("#userLastLogin").text("Last Login: " + myData);
+        });
 }
 
 function GetUserLocation(userLocationPath) {
     
+
     $.getJSON(
         userLocationPath, {},
-        function(myData) {
+        function (myData) {
+           // alert(JSON.stringify(myData));
             $.each(myData, function(i, value) {
                 if (value.Selected) {
                     $("#headerLocationSelect").append($("<option selected >").text(value.User_Group_Description).attr("value", value.tdUserGroupID));

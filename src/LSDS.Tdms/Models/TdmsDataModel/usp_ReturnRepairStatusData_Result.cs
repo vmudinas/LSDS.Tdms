@@ -8,16 +8,28 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LSDS.Tdms.Models.TdmsDataModel
 {
     public partial class usp_ReturnRepairStatusData_Result
     {
+      
+       
         [Key]
-        public int RepairTypeDataId { get; set; }
         public int QuickfindId { get; set; }
+        [NotMapped]
+        public int? RepairTypeDataId { get; set; }
+        [NotMapped]
+        public int? TradeStatusDataId { get; set; }
+        [NotMapped]
         public string Description { get; set; }
+        [NotMapped]
         public string RepairType { get; set; }
-        public int Total { get; set; }
+        public int? Total { get; set; }
+        [NotMapped]
+        public string TradeType { get; set; }
+        [NotMapped]
+        public string ChartDescription { get; set; }
     }
 }
