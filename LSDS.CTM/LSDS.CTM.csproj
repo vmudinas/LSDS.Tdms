@@ -59,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionManager.cs" />
+    <Compile Include="CtmMessages\CTM_Cancel.cs" />
+    <Compile Include="CtmMessages\CTM_CancelBody.cs" />
+    <Compile Include="CtmMessages\CTM_ClearingBroker.cs" />
     <Compile Include="CtmMessages\CTM_CountryTimeZone.cs" />
     <Compile Include="CtmMessages\CTM_Message.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequest.cs" />
@@ -119,6 +122,8 @@
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeLevelInformationStipulationsStandardStipulationValueStandard.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeLevelInformationWhereListed.cs" />
     <Compile Include="CtmMessages\CTM_TradeDetailBodyTradeLevelInformationYield.cs" />
+    <Compile Include="CtmMessages\CTM_TradeDetailReferences.cs" />
+    <Compile Include="CtmMessages\CTM_TradeLevelIdentifiers.cs" />
     <Compile Include="CtmMessages\CTM_TradeLevelResponse.cs" />
     <Compile Include="CtmMessages\CTM_MultiTradeLevelResponseMultiTradeLevelResponseBody.cs" />
     <Compile Include="CtmMessages\CTM_MultiTradeLevelResponseBodyMTLR.cs" />
@@ -178,21 +183,9 @@
     <Compile Include="CtmMessages\CTM_ValidBodyInstructingParty.cs" />
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
-    <Compile Include="Migrations\201511032331071_FirstMigration.cs" />
-    <Compile Include="Migrations\201511032331071_FirstMigration.Designer.cs">
-      <DependentUpon>201511032331071_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511042005318_IpSettlementFix.cs" />
-    <Compile Include="Migrations\201511042005318_IpSettlementFix.Designer.cs">
-      <DependentUpon>201511042005318_IpSettlementFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511042016383_MovedUserId.cs" />
-    <Compile Include="Migrations\201511042016383_MovedUserId.Designer.cs">
-      <DependentUpon>201511042016383_MovedUserId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511112341268_Moved SettlementTransactionConditionIndicator.cs" />
-    <Compile Include="Migrations\201511112341268_Moved SettlementTransactionConditionIndicator.Designer.cs">
-      <DependentUpon>201511112341268_Moved SettlementTransactionConditionIndicator.cs</DependentUpon>
+    <Compile Include="Migrations\201511140154410_First.cs" />
+    <Compile Include="Migrations\201511140154410_First.Designer.cs">
+      <DependentUpon>201511140154410_First.cs</DependentUpon>
     </Compile>
     <Compile Include="SendInfoRequest.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -200,6 +193,7 @@
     <Compile Include="SendMultiTradeDetail.cs" />
     <Compile Include="SendMultiTradeLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendTradeCancel.cs" />
     <Compile Include="SendTradeDetail.cs" />
     <Compile Include="Seralizer.cs" />
     <Compile Include="SendTradeLevel.cs" />
@@ -214,17 +208,8 @@
     <Folder Include="ExtentalDll\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511032331071_FirstMigration.resx">
-      <DependentUpon>201511032331071_FirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511042005318_IpSettlementFix.resx">
-      <DependentUpon>201511042005318_IpSettlementFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511042016383_MovedUserId.resx">
-      <DependentUpon>201511042016383_MovedUserId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511112341268_Moved SettlementTransactionConditionIndicator.resx">
-      <DependentUpon>201511112341268_Moved SettlementTransactionConditionIndicator.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511140154410_First.resx">
+      <DependentUpon>201511140154410_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

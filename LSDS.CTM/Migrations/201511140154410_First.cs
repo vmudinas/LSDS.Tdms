@@ -3,7 +3,7 @@ namespace LSDS.CTM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration : DbMigration
+    public partial class First : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,7 @@ namespace LSDS.CTM.Migrations
                     {
                         CtmId = c.Int(nullable: false, identity: true),
                         LastUpdated = c.DateTime(nullable: false),
+                        Cancel_CancelCtmId = c.Int(),
                         InfoRequest_InfoRequestCtmId = c.Int(),
                         Invalid_InvalidCtmId = c.Int(),
                         MultiTradeDetailRequest_MultiTradeDetailRequestCtmId = c.Int(),
@@ -24,6 +25,7 @@ namespace LSDS.CTM.Migrations
                         Valid_ValidCtmId = c.Int(),
                     })
                 .PrimaryKey(t => t.CtmId)
+                .ForeignKey("dbo.CTM_Cancel", t => t.Cancel_CancelCtmId)
                 .ForeignKey("dbo.CTM_InfoRequest", t => t.InfoRequest_InfoRequestCtmId)
                 .ForeignKey("dbo.CTM_Invalid", t => t.Invalid_InvalidCtmId)
                 .ForeignKey("dbo.CTM_MultiTradeDetailRequest", t => t.MultiTradeDetailRequest_MultiTradeDetailRequestCtmId)
@@ -33,6 +35,7 @@ namespace LSDS.CTM.Migrations
                 .ForeignKey("dbo.CTM_TradeDetail", t => t.TradeDetail_TradeDetailCtmId)
                 .ForeignKey("dbo.CTM_TradeLevel", t => t.TradeLevel_TradeLevelCtmId)
                 .ForeignKey("dbo.CTM_Valid", t => t.Valid_ValidCtmId)
+                .Index(t => t.Cancel_CancelCtmId)
                 .Index(t => t.InfoRequest_InfoRequestCtmId)
                 .Index(t => t.Invalid_InvalidCtmId)
                 .Index(t => t.MultiTradeDetailRequest_MultiTradeDetailRequestCtmId)
@@ -42,6 +45,177 @@ namespace LSDS.CTM.Migrations
                 .Index(t => t.TradeDetail_TradeDetailCtmId)
                 .Index(t => t.TradeLevel_TradeLevelCtmId)
                 .Index(t => t.Valid_ValidCtmId);
+            
+            CreateTable(
+                "dbo.CTM_Cancel",
+                c => new
+                    {
+                        CancelCtmId = c.Int(nullable: false, identity: true),
+                        CancelBody_CancelBodyCtmId = c.Int(),
+                        SubmitHeader_HeaderCtmId = c.Int(),
+                    })
+                .PrimaryKey(t => t.CancelCtmId)
+                .ForeignKey("dbo.CTM_CancelBody", t => t.CancelBody_CancelBodyCtmId)
+                .ForeignKey("dbo.CTM_Header", t => t.SubmitHeader_HeaderCtmId)
+                .Index(t => t.CancelBody_CancelBodyCtmId)
+                .Index(t => t.SubmitHeader_HeaderCtmId);
+            
+            CreateTable(
+                "dbo.CTM_CancelBody",
+                c => new
+                    {
+                        CancelBodyCtmId = c.Int(nullable: false, identity: true),
+                        TDUpdateGuard = c.String(maxLength: 35),
+                        TLUpdateGuard = c.String(maxLength: 35),
+                        CancelText = c.String(),
+                        ClearingBroker_ClearingBrokerCtmId = c.Int(),
+                        ExecutingBroker_ExecutingBrokerCtmId = c.Int(),
+                        InstructingParty_InstructingPartyCtmId = c.Int(),
+                        TradeDetailIdentifiers_TradeDetailIdentifiersCtmId = c.Int(),
+                        TradeLevelIdentifiers_TradeLevelIdentifiersCtmId = c.Int(),
+                    })
+                .PrimaryKey(t => t.CancelBodyCtmId)
+                .ForeignKey("dbo.CTM_ClearingBroker", t => t.ClearingBroker_ClearingBrokerCtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyExecutingBroker", t => t.ExecutingBroker_ExecutingBrokerCtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyInstructingParty", t => t.InstructingParty_InstructingPartyCtmId)
+                .ForeignKey("dbo.CtmTradeDetailIdentifiers", t => t.TradeDetailIdentifiers_TradeDetailIdentifiersCtmId)
+                .ForeignKey("dbo.CTM_TradeLevelIdentifiers", t => t.TradeLevelIdentifiers_TradeLevelIdentifiersCtmId)
+                .Index(t => t.ClearingBroker_ClearingBrokerCtmId)
+                .Index(t => t.ExecutingBroker_ExecutingBrokerCtmId)
+                .Index(t => t.InstructingParty_InstructingPartyCtmId)
+                .Index(t => t.TradeDetailIdentifiers_TradeDetailIdentifiersCtmId)
+                .Index(t => t.TradeLevelIdentifiers_TradeLevelIdentifiersCtmId);
+            
+            CreateTable(
+                "dbo.CTM_ClearingBroker",
+                c => new
+                    {
+                        ClearingBrokerCtmId = c.Int(nullable: false, identity: true),
+                        PartyRole = c.String(maxLength: 4),
+                        PartyType = c.String(maxLength: 35),
+                        PartyValue = c.String(maxLength: 11),
+                    })
+                .PrimaryKey(t => t.ClearingBrokerCtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeDetailBodyExecutingBroker",
+                c => new
+                    {
+                        ExecutingBrokerCtmId = c.Int(nullable: false, identity: true),
+                        PartyRole = c.String(maxLength: 4),
+                        PartyType = c.String(maxLength: 35),
+                        PartyValue = c.String(maxLength: 11),
+                    })
+                .PrimaryKey(t => t.ExecutingBrokerCtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeDetailBodyInstructingParty",
+                c => new
+                    {
+                        InstructingPartyCtmId = c.Int(nullable: false, identity: true),
+                        PartyRole = c.String(maxLength: 4),
+                        PartyType = c.String(maxLength: 35),
+                        PartyValue = c.String(maxLength: 11),
+                    })
+                .PrimaryKey(t => t.InstructingPartyCtmId);
+            
+            CreateTable(
+                "dbo.CtmTradeDetailIdentifiers",
+                c => new
+                    {
+                        TradeDetailIdentifiersCtmId = c.Int(nullable: false, identity: true),
+                        TradeDetailProcessingReference = c.String(maxLength: 16),
+                        CTMTradeDetailID = c.String(maxLength: 16),
+                        ClientAllocationReference = c.String(maxLength: 16),
+                        TradeDetailLinkages_LinkagesCtmId = c.Int(),
+                    })
+                .PrimaryKey(t => t.TradeDetailIdentifiersCtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyTradeDetailLinkages", t => t.TradeDetailLinkages_LinkagesCtmId)
+                .Index(t => t.TradeDetailLinkages_LinkagesCtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeDetailBodyTradeDetailLinkages",
+                c => new
+                    {
+                        LinkagesCtmId = c.Int(nullable: false, identity: true),
+                        TDReferences_TDReferencesCtmId = c.Int(),
+                    })
+                .PrimaryKey(t => t.LinkagesCtmId)
+                .ForeignKey("dbo.CTM_TradeDetailBodyTDReferences", t => t.TDReferences_TDReferencesCtmId)
+                .Index(t => t.TDReferences_TDReferencesCtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeDetailBodyTDReferences",
+                c => new
+                    {
+                        TDReferencesCtmId = c.Int(nullable: false, identity: true),
+                        TDReferenceType = c.String(maxLength: 4),
+                        TDReferenceValue = c.String(maxLength: 16),
+                    })
+                .PrimaryKey(t => t.TDReferencesCtmId);
+            
+            CreateTable(
+                "dbo.CTM_TradeLevelIdentifiers",
+                c => new
+                    {
+                        TradeLevelIdentifiersCtmId = c.Int(nullable: false, identity: true),
+                        CTMTradeSideId = c.String(maxLength: 16),
+                        MasterReference = c.String(maxLength: 16),
+                        TLReferences_TLReferencesCtmId = c.Int(),
+                    })
+                .PrimaryKey(t => t.TradeLevelIdentifiersCtmId)
+                .ForeignKey("dbo.CTM_TLReferences", t => t.TLReferences_TLReferencesCtmId)
+                .Index(t => t.TLReferences_TLReferencesCtmId);
+            
+            CreateTable(
+                "dbo.CTM_TLReferences",
+                c => new
+                    {
+                        TLReferencesCtmId = c.Int(nullable: false, identity: true),
+                        TLReferenceType = c.String(maxLength: 4),
+                        TLReferenceValue = c.String(maxLength: 16),
+                    })
+                .PrimaryKey(t => t.TLReferencesCtmId);
+            
+            CreateTable(
+                "dbo.CTM_Header",
+                c => new
+                    {
+                        HeaderCtmId = c.Int(nullable: false, identity: true),
+                        ProtocolVersion = c.String(maxLength: 4),
+                        UserId = c.String(maxLength: 32),
+                        SendersMessageReference = c.String(maxLength: 16),
+                        DateTimeOfSentMsg = c.DateTime(nullable: false),
+                        OriginatorOfMessage_OriginatorOfMessageCtmId = c.Int(),
+                        RecipientOfMessage_RecipientOfMessageCtmId = c.Int(),
+                    })
+                .PrimaryKey(t => t.HeaderCtmId)
+                .ForeignKey("dbo.CTM_OriginatorOfMessage", t => t.OriginatorOfMessage_OriginatorOfMessageCtmId)
+                .ForeignKey("dbo.CTM_RecipientOfMessage", t => t.RecipientOfMessage_RecipientOfMessageCtmId)
+                .Index(t => t.OriginatorOfMessage_OriginatorOfMessageCtmId)
+                .Index(t => t.RecipientOfMessage_RecipientOfMessageCtmId);
+            
+            CreateTable(
+                "dbo.CTM_OriginatorOfMessage",
+                c => new
+                    {
+                        OriginatorOfMessageCtmId = c.Int(nullable: false, identity: true),
+                        PartyRole = c.String(maxLength: 4),
+                        PartyType = c.String(maxLength: 35),
+                        PartyValue = c.String(maxLength: 11),
+                    })
+                .PrimaryKey(t => t.OriginatorOfMessageCtmId);
+            
+            CreateTable(
+                "dbo.CTM_RecipientOfMessage",
+                c => new
+                    {
+                        RecipientOfMessageCtmId = c.Int(nullable: false, identity: true),
+                        PartyRole = c.String(maxLength: 4),
+                        PartyType = c.String(maxLength: 35),
+                        PartyValue = c.String(maxLength: 11),
+                    })
+                .PrimaryKey(t => t.RecipientOfMessageCtmId);
             
             CreateTable(
                 "dbo.CTM_InfoRequest",
@@ -104,46 +278,6 @@ namespace LSDS.CTM.Migrations
                         PartyValue = c.String(maxLength: 11),
                     })
                 .PrimaryKey(t => t.ExecutingBrokerCtmId);
-            
-            CreateTable(
-                "dbo.CTM_Header",
-                c => new
-                    {
-                        HeaderCtmId = c.Int(nullable: false, identity: true),
-                        UserId = c.String(maxLength: 32),
-                        ProtocolVersion = c.String(maxLength: 4),
-                        SendersMessageReference = c.String(maxLength: 16),
-                        DateTimeOfSentMsg = c.DateTime(nullable: false),
-                        OriginatorOfMessage_OriginatorOfMessageCtmId = c.Int(),
-                        RecipientOfMessage_RecipientOfMessageCtmId = c.Int(),
-                    })
-                .PrimaryKey(t => t.HeaderCtmId)
-                .ForeignKey("dbo.CTM_OriginatorOfMessage", t => t.OriginatorOfMessage_OriginatorOfMessageCtmId)
-                .ForeignKey("dbo.CTM_RecipientOfMessage", t => t.RecipientOfMessage_RecipientOfMessageCtmId)
-                .Index(t => t.OriginatorOfMessage_OriginatorOfMessageCtmId)
-                .Index(t => t.RecipientOfMessage_RecipientOfMessageCtmId);
-            
-            CreateTable(
-                "dbo.CTM_OriginatorOfMessage",
-                c => new
-                    {
-                        OriginatorOfMessageCtmId = c.Int(nullable: false, identity: true),
-                        PartyRole = c.String(maxLength: 4),
-                        PartyType = c.String(maxLength: 35),
-                        PartyValue = c.String(maxLength: 11),
-                    })
-                .PrimaryKey(t => t.OriginatorOfMessageCtmId);
-            
-            CreateTable(
-                "dbo.CTM_RecipientOfMessage",
-                c => new
-                    {
-                        RecipientOfMessageCtmId = c.Int(nullable: false, identity: true),
-                        PartyRole = c.String(maxLength: 4),
-                        PartyType = c.String(maxLength: 35),
-                        PartyValue = c.String(maxLength: 11),
-                    })
-                .PrimaryKey(t => t.RecipientOfMessageCtmId);
             
             CreateTable(
                 "dbo.CTM_Invalid",
@@ -522,17 +656,6 @@ namespace LSDS.CTM.Migrations
                 .PrimaryKey(t => t.EBSettlementCtmId);
             
             CreateTable(
-                "dbo.CTM_TradeDetailBodyExecutingBroker",
-                c => new
-                    {
-                        ExecutingBrokerCtmId = c.Int(nullable: false, identity: true),
-                        PartyRole = c.String(maxLength: 4),
-                        PartyType = c.String(maxLength: 35),
-                        PartyValue = c.String(maxLength: 11),
-                    })
-                .PrimaryKey(t => t.ExecutingBrokerCtmId);
-            
-            CreateTable(
                 "dbo.CTM_TradeDetailBodyIdentificationOfASecurity",
                 c => new
                     {
@@ -556,22 +679,11 @@ namespace LSDS.CTM.Migrations
                 .PrimaryKey(t => t.SecurityCodeTypeCtmId);
             
             CreateTable(
-                "dbo.CTM_TradeDetailBodyInstructingParty",
-                c => new
-                    {
-                        InstructingPartyCtmId = c.Int(nullable: false, identity: true),
-                        PartyRole = c.String(maxLength: 4),
-                        PartyType = c.String(maxLength: 35),
-                        PartyValue = c.String(maxLength: 11),
-                    })
-                .PrimaryKey(t => t.InstructingPartyCtmId);
-            
-            CreateTable(
                 "dbo.CTM_TradeDetailBodyIPSettlement",
                 c => new
                     {
                         IPSettlementCtmId = c.Int(nullable: false, identity: true),
-                        AccountID = c.Byte(nullable: false),
+                        AccountID = c.String(maxLength: 35),
                     })
                 .PrimaryKey(t => t.IPSettlementCtmId);
             
@@ -730,8 +842,8 @@ namespace LSDS.CTM.Migrations
                 c => new
                     {
                         TradeDetailDataCtmId = c.Int(nullable: false, identity: true),
-                        TradeRegulator = c.String(maxLength: 34),
                         SettlementTransactionConditionIndicator = c.String(),
+                        TradeRegulator = c.String(maxLength: 34),
                         AdditionalFixedIncome_FixedIncomeCtmId = c.Int(),
                         CommFeesTaxes_CommFeesTaxesCtmId = c.Int(),
                         DirectedCommission_CommissionCtmId = c.Int(),
@@ -921,27 +1033,6 @@ namespace LSDS.CTM.Migrations
                 .PrimaryKey(t => t.TradeDetailReferencesCtmId)
                 .ForeignKey("dbo.CTM_TradeDetailBodyTradeDetailLinkages", t => t.TradeDetailLinkages_LinkagesCtmId)
                 .Index(t => t.TradeDetailLinkages_LinkagesCtmId);
-            
-            CreateTable(
-                "dbo.CTM_TradeDetailBodyTradeDetailLinkages",
-                c => new
-                    {
-                        LinkagesCtmId = c.Int(nullable: false, identity: true),
-                        TDReferences_TDReferencesCtmId = c.Int(),
-                    })
-                .PrimaryKey(t => t.LinkagesCtmId)
-                .ForeignKey("dbo.CTM_TradeDetailBodyTDReferences", t => t.TDReferences_TDReferencesCtmId)
-                .Index(t => t.TDReferences_TDReferencesCtmId);
-            
-            CreateTable(
-                "dbo.CTM_TradeDetailBodyTDReferences",
-                c => new
-                    {
-                        TDReferencesCtmId = c.Int(nullable: false, identity: true),
-                        TDReferenceType = c.String(maxLength: 4),
-                        TDReferenceValue = c.String(maxLength: 16),
-                    })
-                .PrimaryKey(t => t.TDReferencesCtmId);
             
             CreateTable(
                 "dbo.CTM_TradeDetailBodyTradeLevelInformation",
@@ -1200,16 +1291,6 @@ namespace LSDS.CTM.Migrations
                 .PrimaryKey(t => t.ReferencesCtmId)
                 .ForeignKey("dbo.CTM_TLReferences", t => t.TLReferences_TLReferencesCtmId)
                 .Index(t => t.TLReferences_TLReferencesCtmId);
-            
-            CreateTable(
-                "dbo.CTM_TLReferences",
-                c => new
-                    {
-                        TLReferencesCtmId = c.Int(nullable: false, identity: true),
-                        TLReferenceType = c.String(maxLength: 4),
-                        TLReferenceValue = c.String(maxLength: 16),
-                    })
-                .PrimaryKey(t => t.TLReferencesCtmId);
             
             CreateTable(
                 "dbo.CTM_TradeLevel",
@@ -1502,7 +1583,6 @@ namespace LSDS.CTM.Migrations
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeLevelInformation", "AdditionalMunicipalDebtData_AdditionalMunicipalDebtDataCtmId", "dbo.CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData");
             DropForeignKey("dbo.CTM_TradeDetailBody", "TradeDetailReferences_TradeDetailReferencesCtmId", "dbo.CTM_TradeDetailBodyTradeDetailReferences");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailReferences", "TradeDetailLinkages_LinkagesCtmId", "dbo.CTM_TradeDetailBodyTradeDetailLinkages");
-            DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailLinkages", "TDReferences_TDReferencesCtmId", "dbo.CTM_TradeDetailBodyTDReferences");
             DropForeignKey("dbo.CTM_TradeDetailBody", "TradeDetailData_TradeDetailDataCtmId", "dbo.CTM_TradeDetailBodyTradeDetailData");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailData", "TradeAmount_TradeAmountCtmId", "dbo.CTM_TradeDetailBodyTradeDetailDataTradeAmount");
             DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailData", "SettlementAmount_SettlementAmountCtmId", "dbo.CTM_TradeDetailBodyTradeDetailDataSettlementAmount");
@@ -1558,12 +1638,23 @@ namespace LSDS.CTM.Migrations
             DropForeignKey("dbo.CTM_InvalidBody", "SynchError_InvalidBodySynchErrorCtmId", "dbo.CTM_InvalidBodySynchError");
             DropForeignKey("dbo.CTM_Message", "InfoRequest_InfoRequestCtmId", "dbo.CTM_InfoRequest");
             DropForeignKey("dbo.CTM_InfoRequest", "SubmitHeader_HeaderCtmId", "dbo.CTM_Header");
-            DropForeignKey("dbo.CTM_Header", "RecipientOfMessage_RecipientOfMessageCtmId", "dbo.CTM_RecipientOfMessage");
-            DropForeignKey("dbo.CTM_Header", "OriginatorOfMessage_OriginatorOfMessageCtmId", "dbo.CTM_OriginatorOfMessage");
             DropForeignKey("dbo.CTM_InfoRequest", "InfoRequestBody_InfoRequestBodyCtmId", "dbo.CTM_InfoRequestBody");
             DropForeignKey("dbo.CTM_InfoRequestBody", "ExecutingBroker_ExecutingBrokerCtmId", "dbo.CTM_InfoRequestBodyExecutingBroker");
             DropForeignKey("dbo.CTM_InfoRequestBody", "AccessPath_InfoRequestBodyAccessPathCtmId", "dbo.CTM_InfoRequestBodyAccessPath");
             DropForeignKey("dbo.CTM_InfoRequestBodyAccessPath", "TradeLevelIdentifiers_AccessPathTradeLevelIdentifiersCtmId", "dbo.CTM_InfoRequestBodyAccessPathTradeLevelIdentifiers");
+            DropForeignKey("dbo.CTM_Message", "Cancel_CancelCtmId", "dbo.CTM_Cancel");
+            DropForeignKey("dbo.CTM_Cancel", "SubmitHeader_HeaderCtmId", "dbo.CTM_Header");
+            DropForeignKey("dbo.CTM_Header", "RecipientOfMessage_RecipientOfMessageCtmId", "dbo.CTM_RecipientOfMessage");
+            DropForeignKey("dbo.CTM_Header", "OriginatorOfMessage_OriginatorOfMessageCtmId", "dbo.CTM_OriginatorOfMessage");
+            DropForeignKey("dbo.CTM_Cancel", "CancelBody_CancelBodyCtmId", "dbo.CTM_CancelBody");
+            DropForeignKey("dbo.CTM_CancelBody", "TradeLevelIdentifiers_TradeLevelIdentifiersCtmId", "dbo.CTM_TradeLevelIdentifiers");
+            DropForeignKey("dbo.CTM_TradeLevelIdentifiers", "TLReferences_TLReferencesCtmId", "dbo.CTM_TLReferences");
+            DropForeignKey("dbo.CTM_CancelBody", "TradeDetailIdentifiers_TradeDetailIdentifiersCtmId", "dbo.CtmTradeDetailIdentifiers");
+            DropForeignKey("dbo.CtmTradeDetailIdentifiers", "TradeDetailLinkages_LinkagesCtmId", "dbo.CTM_TradeDetailBodyTradeDetailLinkages");
+            DropForeignKey("dbo.CTM_TradeDetailBodyTradeDetailLinkages", "TDReferences_TDReferencesCtmId", "dbo.CTM_TradeDetailBodyTDReferences");
+            DropForeignKey("dbo.CTM_CancelBody", "InstructingParty_InstructingPartyCtmId", "dbo.CTM_TradeDetailBodyInstructingParty");
+            DropForeignKey("dbo.CTM_CancelBody", "ExecutingBroker_ExecutingBrokerCtmId", "dbo.CTM_TradeDetailBodyExecutingBroker");
+            DropForeignKey("dbo.CTM_CancelBody", "ClearingBroker_ClearingBrokerCtmId", "dbo.CTM_ClearingBroker");
             DropIndex("dbo.CTM_MessageValidValidBody", new[] { "InstructingParty_InstructingPartyId" });
             DropIndex("dbo.CTM_MessageValidValidBody", new[] { "ExecutingBroker_ExecutingBrokerId" });
             DropIndex("dbo.CTM_MessageValidResponseHeader", new[] { "RecipientOfMessage_RecipientOfMessageId" });
@@ -1598,7 +1689,6 @@ namespace LSDS.CTM.Migrations
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "CouponRate_InformationCouponRateCtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "CallPrice_InformationCallPriceCtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeLevelInformation", new[] { "AdditionalMunicipalDebtData_AdditionalMunicipalDebtDataCtmId" });
-            DropIndex("dbo.CTM_TradeDetailBodyTradeDetailLinkages", new[] { "TDReferences_TDReferencesCtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeDetailReferences", new[] { "TradeDetailLinkages_LinkagesCtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeDetailDataDirectedCommissionBeneficiaryofCommissions", new[] { "BrokerOfCredit_BrokerOfCreditCtmId" });
             DropIndex("dbo.CTM_TradeDetailBodyTradeDetailDataDirectedCommission", new[] { "BeneficiaryofCommissions_BeneficiaryofCommissionsCtmId" });
@@ -1652,13 +1742,23 @@ namespace LSDS.CTM.Migrations
             DropIndex("dbo.CTM_InvalidBody", new[] { "SynchError_InvalidBodySynchErrorCtmId" });
             DropIndex("dbo.CTM_Invalid", new[] { "InvalidHeader_ResponseHeaderCtmId" });
             DropIndex("dbo.CTM_Invalid", new[] { "InvalidBody_InvalidBodyCtmId" });
-            DropIndex("dbo.CTM_Header", new[] { "RecipientOfMessage_RecipientOfMessageCtmId" });
-            DropIndex("dbo.CTM_Header", new[] { "OriginatorOfMessage_OriginatorOfMessageCtmId" });
             DropIndex("dbo.CTM_InfoRequestBodyAccessPath", new[] { "TradeLevelIdentifiers_AccessPathTradeLevelIdentifiersCtmId" });
             DropIndex("dbo.CTM_InfoRequestBody", new[] { "ExecutingBroker_ExecutingBrokerCtmId" });
             DropIndex("dbo.CTM_InfoRequestBody", new[] { "AccessPath_InfoRequestBodyAccessPathCtmId" });
             DropIndex("dbo.CTM_InfoRequest", new[] { "SubmitHeader_HeaderCtmId" });
             DropIndex("dbo.CTM_InfoRequest", new[] { "InfoRequestBody_InfoRequestBodyCtmId" });
+            DropIndex("dbo.CTM_Header", new[] { "RecipientOfMessage_RecipientOfMessageCtmId" });
+            DropIndex("dbo.CTM_Header", new[] { "OriginatorOfMessage_OriginatorOfMessageCtmId" });
+            DropIndex("dbo.CTM_TradeLevelIdentifiers", new[] { "TLReferences_TLReferencesCtmId" });
+            DropIndex("dbo.CTM_TradeDetailBodyTradeDetailLinkages", new[] { "TDReferences_TDReferencesCtmId" });
+            DropIndex("dbo.CtmTradeDetailIdentifiers", new[] { "TradeDetailLinkages_LinkagesCtmId" });
+            DropIndex("dbo.CTM_CancelBody", new[] { "TradeLevelIdentifiers_TradeLevelIdentifiersCtmId" });
+            DropIndex("dbo.CTM_CancelBody", new[] { "TradeDetailIdentifiers_TradeDetailIdentifiersCtmId" });
+            DropIndex("dbo.CTM_CancelBody", new[] { "InstructingParty_InstructingPartyCtmId" });
+            DropIndex("dbo.CTM_CancelBody", new[] { "ExecutingBroker_ExecutingBrokerCtmId" });
+            DropIndex("dbo.CTM_CancelBody", new[] { "ClearingBroker_ClearingBrokerCtmId" });
+            DropIndex("dbo.CTM_Cancel", new[] { "SubmitHeader_HeaderCtmId" });
+            DropIndex("dbo.CTM_Cancel", new[] { "CancelBody_CancelBodyCtmId" });
             DropIndex("dbo.CTM_Message", new[] { "Valid_ValidCtmId" });
             DropIndex("dbo.CTM_Message", new[] { "TradeLevel_TradeLevelCtmId" });
             DropIndex("dbo.CTM_Message", new[] { "TradeDetail_TradeDetailCtmId" });
@@ -1668,6 +1768,7 @@ namespace LSDS.CTM.Migrations
             DropIndex("dbo.CTM_Message", new[] { "MultiTradeDetailRequest_MultiTradeDetailRequestCtmId" });
             DropIndex("dbo.CTM_Message", new[] { "Invalid_InvalidCtmId" });
             DropIndex("dbo.CTM_Message", new[] { "InfoRequest_InfoRequestCtmId" });
+            DropIndex("dbo.CTM_Message", new[] { "Cancel_CancelCtmId" });
             DropTable("dbo.CTM_MessageValidValidBodyInstructingParty");
             DropTable("dbo.CTM_MessageValidValidBodyExecutingBroker");
             DropTable("dbo.CTM_MessageValidValidBody");
@@ -1687,7 +1788,6 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_TradeLevelBodyExecutingBroker");
             DropTable("dbo.CTM_TradeLevelBody");
             DropTable("dbo.CTM_TradeLevel");
-            DropTable("dbo.CTM_TLReferences");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelReferences");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationYield");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationTotalTradeAmount");
@@ -1705,8 +1805,6 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationCallPrice");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformationAdditionalMunicipalDebtData");
             DropTable("dbo.CTM_TradeDetailBodyTradeLevelInformation");
-            DropTable("dbo.CTM_TradeDetailBodyTDReferences");
-            DropTable("dbo.CTM_TradeDetailBodyTradeDetailLinkages");
             DropTable("dbo.CTM_TradeDetailBodyTradeDetailReferences");
             DropTable("dbo.CTM_TradeDetailBodyTradeDetailDataTradeAmount");
             DropTable("dbo.CTM_TradeDetailBodyTradeDetailDataSettlementAmount");
@@ -1727,10 +1825,8 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_TradeDetailBodyPartySettlementPlaceOfSafekeeping");
             DropTable("dbo.CTM_TradeDetailBodyPartySettlement");
             DropTable("dbo.CTM_TradeDetailBodyIPSettlement");
-            DropTable("dbo.CTM_TradeDetailBodyInstructingParty");
             DropTable("dbo.CTM_TradeDetailBodyIdentificationOfASecuritySecurityCodeType");
             DropTable("dbo.CTM_TradeDetailBodyIdentificationOfASecurity");
-            DropTable("dbo.CTM_TradeDetailBodyExecutingBroker");
             DropTable("dbo.CTM_TradeDetailBodyAdditionalDataEBSettlement");
             DropTable("dbo.CTM_TradeDetailBodyCPTYTradeLevelIdentifiers");
             DropTable("dbo.CTM_TradeDetailBodyConfirmDisclosureData");
@@ -1756,14 +1852,24 @@ namespace LSDS.CTM.Migrations
             DropTable("dbo.CTM_InvalidBodySynchError");
             DropTable("dbo.CTM_InvalidBody");
             DropTable("dbo.CTM_Invalid");
-            DropTable("dbo.CTM_RecipientOfMessage");
-            DropTable("dbo.CTM_OriginatorOfMessage");
-            DropTable("dbo.CTM_Header");
             DropTable("dbo.CTM_InfoRequestBodyExecutingBroker");
             DropTable("dbo.CTM_InfoRequestBodyAccessPathTradeLevelIdentifiers");
             DropTable("dbo.CTM_InfoRequestBodyAccessPath");
             DropTable("dbo.CTM_InfoRequestBody");
             DropTable("dbo.CTM_InfoRequest");
+            DropTable("dbo.CTM_RecipientOfMessage");
+            DropTable("dbo.CTM_OriginatorOfMessage");
+            DropTable("dbo.CTM_Header");
+            DropTable("dbo.CTM_TLReferences");
+            DropTable("dbo.CTM_TradeLevelIdentifiers");
+            DropTable("dbo.CTM_TradeDetailBodyTDReferences");
+            DropTable("dbo.CTM_TradeDetailBodyTradeDetailLinkages");
+            DropTable("dbo.CtmTradeDetailIdentifiers");
+            DropTable("dbo.CTM_TradeDetailBodyInstructingParty");
+            DropTable("dbo.CTM_TradeDetailBodyExecutingBroker");
+            DropTable("dbo.CTM_ClearingBroker");
+            DropTable("dbo.CTM_CancelBody");
+            DropTable("dbo.CTM_Cancel");
             DropTable("dbo.CTM_Message");
         }
     }

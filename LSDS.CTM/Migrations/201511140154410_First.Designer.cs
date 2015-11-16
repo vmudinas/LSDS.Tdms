@@ -7,13 +7,13 @@ namespace LSDS.CTM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class IpSettlementFix : IMigrationMetadata
+    public sealed partial class First : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IpSettlementFix));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(First));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511042005318_IpSettlementFix"; }
+            get { return "201511140154410_First"; }
         }
         
         string IMigrationMetadata.Source

@@ -61,19 +61,40 @@ namespace CApp
                                 .Include("TradeDetail.TradeDetailBody.IPSettlement")
                                 .Include("TradeDetail.TradeDetailBody.ExecutingBroker")
                                 .Include("TradeDetail.SubmitHeader.RecipientOfMessage")
-                                .Include("TradeDetail.SubmitHeader.OriginatorOfMessage").Where(t=>t.Valid == null && t.TradeDetail != null).OrderBy(t => t.CtmId).ToList();
+                                .Include("TradeDetail.SubmitHeader.OriginatorOfMessage")
+                                .Include("Cancel.SubmitHeader")
+                                .Include("Cancel.CancelBody")
+                                .Include("Cancel.CancelBody.InstructingParty")
+                                .Include("Cancel.CancelBody.ExecutingBroker")
+                                .Include("Cancel.CancelBody.ClearingBroker")
+                                .Include("Cancel.CancelBody.TradeLevelIdentifiers")
+                                .Include("Cancel.CancelBody.TradeDetailIdentifiers")
+                                .Include("Cancel.SubmitHeader.RecipientOfMessage")
+                                .Include("Cancel.SubmitHeader.OriginatorOfMessage")
+                                .Where(t=>t.Valid == null && t.Invalid == null).OrderBy(t => t.CtmId).ToList();
                 //mudiv01 Kla1peda17!
                 var msgList = new List<CTM_Message>();
                   var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "cmacl33", "speed$deeps323", "", "", "", "", 30, 10, true);
-
+                ICtmProcess msg = null;
                   foreach (var message in trades)
                   {
-                    var msg = new SendTradeDetail(message);
-                    message.TradeDetail.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
-                    message.TradeDetail.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
-                    var tempMessage = msg.SendMsg(conection.GetSession());
-                      message.Invalid = tempMessage.Invalid;
-                      message.Valid = tempMessage.Valid;
+                      if (message.TradeDetail != null)
+                      {
+                        msg = new SendTradeDetail(message);
+                        message.TradeDetail.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
+                        message.TradeDetail.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    }
+                    else if (message.Cancel != null)
+                    {
+                        msg = new SendTradeCancel(message);
+                        message.Cancel.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
+                        message.Cancel.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    }
+                  
+                
+                    var tempMessage = msg?.SendMsg(conection.GetSession());
+                      message.Invalid = tempMessage?.Invalid;
+                      message.Valid = tempMessage?.Valid;
                    
                 }
                 var intSave = dbAccess.SaveChanges();

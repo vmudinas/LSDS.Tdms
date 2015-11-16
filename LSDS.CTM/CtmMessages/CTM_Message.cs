@@ -26,6 +26,7 @@ namespace LSDS.CTM.CtmMessages
         private CTM_InfoRequest infoRequestField;
         private CTM_MultiTradeLevelRequest multiTradeLevelRequestField;
         private CTM_MultiTradeLevelResponse multiTradeLevelResponseField;
+        private CTM_Cancel CancelField;
         private string[] textField;
         
         
@@ -173,5 +174,17 @@ namespace LSDS.CTM.CtmMessages
                 this.tradeDetailField = value;
             }
         }
+        public CTM_Cancel Cancel
+        {
+            get
+            {
+                return this.CancelField;
+            }
+            set
+            {
+                this.CancelField = value;
+            }
+        }
+         
     }
 }
