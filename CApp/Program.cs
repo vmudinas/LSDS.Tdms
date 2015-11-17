@@ -71,8 +71,11 @@ namespace CApp
                                 .Include("Cancel.CancelBody.TradeDetailIdentifiers")
                                 .Include("Cancel.SubmitHeader.RecipientOfMessage")
                                 .Include("Cancel.SubmitHeader.OriginatorOfMessage")
-                                .Where(t=>t.Valid == null && t.Invalid == null).OrderBy(t => t.CtmId).ToList();
+                                   .Include("Valid")
+                                      .Include("Valid.ValidBody")
+                                .Where(t=>t.Valid == null && t.Invalid == null ).OrderBy(t => t.CtmId).ToList();
                 //mudiv01 Kla1peda17!
+                //&&  t.Cancel == null
                 var msgList = new List<CTM_Message>();
                   var conection = new ConnectionManager("https", "ctmct.omgeo.net", "443", "/home/WS/DCILogin", "cmacl33", "speed$deeps323", "", "", "", "", 30, 10, true);
                 ICtmProcess msg = null;
@@ -84,12 +87,18 @@ namespace CApp
                         message.TradeDetail.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
                         message.TradeDetail.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
                     }
-                    else if (message.Cancel != null)
-                    {
-                        msg = new SendTradeCancel(message);
-                        message.Cancel.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
-                        message.Cancel.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
-                    }
+                    //else if (message.Cancel != null)
+                    //{
+                    //    msg = new SendTradeCancel(message);
+                    //    message.Cancel.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
+                    //    message.Cancel.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    //    message.Cancel.CancelBody.TradeDetailIdentifiers.CTMTradeDetailID =
+                    //        dbAccess.MyMessage
+                    //            .Include("Valid")
+                    //            .Include("Valid.ValidBody")
+                    //            .Where(t => t.Valid.ValidBody != null && t.Invalid == null && t.Valid.ValidBody.EchoClientAllocationReference == message.Cancel.CancelBody.TradeDetailIdentifiers.ClientAllocationReference)
+                    //            .FirstOrDefault().ToString();
+                    //}
                   
                 
                     var tempMessage = msg?.SendMsg(conection.GetSession());
@@ -98,6 +107,37 @@ namespace CApp
                    
                 }
                 var intSave = dbAccess.SaveChanges();
+                ////
+                ////
+                ////
+                 foreach (var message in trades)
+                {
+                    if (message.TradeDetail != null)
+                    {
+                        msg = new SendTradeDetail(message);
+                        message.TradeDetail.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
+                        message.TradeDetail.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    }
+                    else if (message.Cancel != null)
+                    {
+                        //msg = new SendTradeCancel(message);
+                        //message.Cancel.SubmitHeader.DateTimeOfSentMsg = DateTime.Now;
+                        //message.Cancel.SubmitHeader.DateTimeOfSentMessage = ulong.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                        //message.Cancel.CancelBody.TradeDetailIdentifiers.CTMTradeDetailID =
+                        //    dbAccess.MyMessage
+                        //        .Include("Valid")
+                        //        .Include("Valid.ValidBody")
+                        //        .Where(t => t.Valid.ValidBody != null && t.Invalid == null && t.Valid.ValidBody.EchoClientAllocationReference == message.Cancel.CancelBody.TradeDetailIdentifiers.ClientAllocationReference)
+                        //        .FirstOrDefault().ToString();
+                    }
+
+
+                    var tempMessage = msg?.SendMsg(conection.GetSession());
+                    message.Invalid = tempMessage?.Invalid;
+                    message.Valid = tempMessage?.Valid;
+
+                }
+                var intSavex = dbAccess.SaveChanges();
                 var newL = msgList;
                   //     // var msgx = msg.SendMsgString(conn.GetSession(), stringMessage);
                   //  //   var message = msg.SendMsg(conn.GetSession());

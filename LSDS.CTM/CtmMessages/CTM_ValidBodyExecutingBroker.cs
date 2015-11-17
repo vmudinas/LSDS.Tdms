@@ -1,10 +1,12 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
 namespace LSDS.CTM.CtmMessages
 {
-    /// <remarks/>
+    [Serializable]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
     public partial class CTM_ValidBodyExecutingBroker
     {
         [Key]

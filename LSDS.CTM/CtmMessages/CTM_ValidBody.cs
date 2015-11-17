@@ -8,66 +8,64 @@ namespace LSDS.CTM.CtmMessages
     {
         [Key]
         [System.Xml.Serialization.XmlIgnore]
-        public int ValidBodyCtmId { get; set; }
 
+        public int ValidBodyId { get; set; }
         private CTM_ValidBodyInstructingParty instructingPartyField;
 
         private CTM_ValidBodyExecutingBroker executingBrokerField;
 
-        private long echoMasterReferenceField;
+        private string echoMasterReferenceField;
 
         private string cTMTradeSideIdField;
+
+        private string echoClientAllocationReferenceField;
+
+        private string cTMTradeDetailIDField;
 
         /// <remarks/>
         public CTM_ValidBodyInstructingParty InstructingParty
         {
-            get
-            {
-                return this.instructingPartyField;
-            }
-            set
-            {
-                this.instructingPartyField = value;
-            }
+            get { return this.instructingPartyField; }
+            set { this.instructingPartyField = value; }
         }
 
         /// <remarks/>
         public CTM_ValidBodyExecutingBroker ExecutingBroker
         {
-            get
-            {
-                return this.executingBrokerField;
-            }
-            set
-            {
-                this.executingBrokerField = value;
-            }
+            get { return this.executingBrokerField; }
+            set { this.executingBrokerField = value; }
         }
 
         /// <remarks/>
-        public long EchoMasterReference
+        [MaxLength(16)]
+        public string EchoMasterReference
         {
-            get
-            {
-                return this.echoMasterReferenceField;
-            }
-            set
-            {
-                this.echoMasterReferenceField = value;
-            }
+            get { return this.echoMasterReferenceField; }
+            set { this.echoMasterReferenceField = value; }
         }
 
         /// <remarks/>
-        [MaxLength(16)]  public string CTMTradeSideId
+        [MaxLength(16)]
+        public string CTMTradeSideId
         {
-            get
-            {
-                return this.cTMTradeSideIdField;
-            }
-            set
-            {
-                this.cTMTradeSideIdField = value;
-            }
+            get { return this.cTMTradeSideIdField; }
+            set { this.cTMTradeSideIdField = value; }
+        }
+
+        /// <remarks/>
+        [MaxLength(16)]
+        public string EchoClientAllocationReference
+        {
+            get { return this.echoClientAllocationReferenceField; }
+            set { this.echoClientAllocationReferenceField = value; }
+        }
+
+        /// <remarks/>
+        [MaxLength(16)]
+        public string CTMTradeDetailID
+        {
+            get { return this.cTMTradeDetailIDField; }
+            set { this.cTMTradeDetailIDField = value; }
         }
     }
 }

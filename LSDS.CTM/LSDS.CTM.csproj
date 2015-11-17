@@ -66,10 +66,6 @@
     <Compile Include="CtmMessages\CTM_Message.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequest.cs" />
     <Compile Include="CtmMessages\CTM_InfoRequestBody.cs" />
-    <Compile Include="CtmMessages\CTM_MessageValidResponseHeader.cs" />
-    <Compile Include="CtmMessages\CTM_MessageValidResponseHeaderOriginatorOfMessage.cs" />
-    <Compile Include="CtmMessages\CTM_MessageValidResponseHeaderRecipientOfMessage.cs" />
-    <Compile Include="CtmMessages\CTM_MessageValidValidBody.cs" />
     <Compile Include="CtmMessages\CTM_MessageValidValidBodyExecutingBroker.cs" />
     <Compile Include="CtmMessages\CTM_MessageValidValidBodyInstructingParty.cs" />
     <Compile Include="CtmMessages\CTM_RequestInfoRequestBodyAccessPath.cs" />
@@ -183,9 +179,9 @@
     <Compile Include="CtmMessages\CTM_ValidBodyInstructingParty.cs" />
     <Compile Include="CtmProcessor.cs" />
     <Compile Include="ICtmProcess.cs" />
-    <Compile Include="Migrations\201511140154410_First.cs" />
-    <Compile Include="Migrations\201511140154410_First.Designer.cs">
-      <DependentUpon>201511140154410_First.cs</DependentUpon>
+    <Compile Include="Migrations\201511170144490_FirstMigration.cs" />
+    <Compile Include="Migrations\201511170144490_FirstMigration.Designer.cs">
+      <DependentUpon>201511170144490_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="SendInfoRequest.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -208,8 +204,8 @@
     <Folder Include="ExtentalDll\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511140154410_First.resx">
-      <DependentUpon>201511140154410_First.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511170144490_FirstMigration.resx">
+      <DependentUpon>201511170144490_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
