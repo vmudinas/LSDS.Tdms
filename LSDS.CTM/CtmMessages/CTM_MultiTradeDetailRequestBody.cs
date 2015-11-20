@@ -17,7 +17,7 @@ namespace LSDS.CTM.CtmMessages
 
      //   private CTM_MultiTradeDetailRequestBodyMultiTradeDetailStatusQuery multiTradeDetailStatusQueryField;
 
-        private DateTime minLastUpdateDateTimeField;
+        private DateTime? minLastUpdateDateTimeField;
 
         private string[] textField;
 
@@ -61,7 +61,7 @@ namespace LSDS.CTM.CtmMessages
         //}
 
         /// <remarks/>
-        public DateTime MinLastUpdateDateTime
+        public DateTime? MinLastUpdateDateTime
         {
             get
             {

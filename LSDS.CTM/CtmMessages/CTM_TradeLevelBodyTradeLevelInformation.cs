@@ -26,11 +26,11 @@ namespace LSDS.CTM.CtmMessages
 
         private CTM_TradeLevelBodyTradeLevelInformationTotalTradeAmount totalTradeAmountField;
 
-        private DateTime tradeDateTimeField;
+        private DateTime? tradeDateTimeField;
 
         private CTM_TradeLevelBodyTradeLevelInformationTimeZone timeZoneField;
 
-        private DateTime settlementDateField;
+        private DateTime? settlementDateField;
 
         /// <remarks/>
          [MaxLength(4)]   public string TypeOfTransactionIndicator
@@ -114,7 +114,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnore]
-        public DateTime TradeDT
+        public DateTime? TradeDT
         {
             get
             {
@@ -130,7 +130,7 @@ namespace LSDS.CTM.CtmMessages
         {
             get
             {
-                return ulong.Parse(TradeDT.ToString("yyyyMMddHHmmss"));
+                return ulong.Parse(TradeDT?.ToString("yyyyMMddHHmmss"));
             }
             set
             {
@@ -154,7 +154,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnore]
-        public DateTime SettlementDt
+        public DateTime? SettlementDt
         {
             get
             {
@@ -170,7 +170,7 @@ namespace LSDS.CTM.CtmMessages
         {
             get
             {
-                return uint.Parse(SettlementDt.ToString("yyyyMMdd"));
+                return uint.Parse(SettlementDt?.ToString("yyyyMMdd"));
             }
             set
             {

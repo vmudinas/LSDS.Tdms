@@ -26,7 +26,8 @@ namespace LSDS.CTM
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<CTM_Message> MyMessage { get; set; }
-    
+        public virtual DbSet<CTM_CancelBody> CancelBodyMsg { get; set; }
+
     }
 
     //public class MyEntity

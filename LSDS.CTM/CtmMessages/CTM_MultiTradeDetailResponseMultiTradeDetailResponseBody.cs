@@ -15,7 +15,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string moreFlagField;
 
-        private DateTime goodThroughDateTimeField;
+        private DateTime? goodThroughDateTimeField;
 
         private string byOrAgainstFlagField;
 
@@ -46,7 +46,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public DateTime GoodThroughDateTime
+        public DateTime? GoodThroughDateTime
         {
             get
             {

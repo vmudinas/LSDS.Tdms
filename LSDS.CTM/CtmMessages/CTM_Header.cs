@@ -28,7 +28,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string sendersMessageReferenceField;
 
-        private DateTime dateTimeOfSentMessageField;
+        private DateTime? dateTimeOfSentMessageField;
         [MaxLength(32)]
         private string userId;
         /// <remarks/>
@@ -99,7 +99,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnore]
-        public DateTime DateTimeOfSentMsg
+        public DateTime? DateTimeOfSentMsg
         {
             get
             {
@@ -115,7 +115,7 @@ namespace LSDS.CTM.CtmMessages
         {
             get
             {
-                return ulong.Parse(DateTimeOfSentMsg.ToString("yyyyMMddHHmmss")); 
+                return ulong.Parse(DateTimeOfSentMsg?.ToString("yyyyMMddHHmmss")); 
             }
             set
             {

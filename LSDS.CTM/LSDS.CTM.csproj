@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -178,10 +179,27 @@
     <Compile Include="CtmMessages\CTM_ValidBodyExecutingBroker.cs" />
     <Compile Include="CtmMessages\CTM_ValidBodyInstructingParty.cs" />
     <Compile Include="CtmProcessor.cs" />
+    <Compile Include="CtmService.cs" />
     <Compile Include="ICtmProcess.cs" />
     <Compile Include="Migrations\201511170144490_FirstMigration.cs" />
     <Compile Include="Migrations\201511170144490_FirstMigration.Designer.cs">
       <DependentUpon>201511170144490_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511171923198_DateFix.cs" />
+    <Compile Include="Migrations\201511171923198_DateFix.Designer.cs">
+      <DependentUpon>201511171923198_DateFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511180218378_AddedNewmyKeyField.cs" />
+    <Compile Include="Migrations\201511180218378_AddedNewmyKeyField.Designer.cs">
+      <DependentUpon>201511180218378_AddedNewmyKeyField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511191946400_RemoveKey.cs" />
+    <Compile Include="Migrations\201511191946400_RemoveKey.Designer.cs">
+      <DependentUpon>201511191946400_RemoveKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511200116313_CreatedDate.cs" />
+    <Compile Include="Migrations\201511200116313_CreatedDate.Designer.cs">
+      <DependentUpon>201511200116313_CreatedDate.cs</DependentUpon>
     </Compile>
     <Compile Include="SendInfoRequest.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -206,6 +224,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511170144490_FirstMigration.resx">
       <DependentUpon>201511170144490_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511171923198_DateFix.resx">
+      <DependentUpon>201511171923198_DateFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511180218378_AddedNewmyKeyField.resx">
+      <DependentUpon>201511180218378_AddedNewmyKeyField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511191946400_RemoveKey.resx">
+      <DependentUpon>201511191946400_RemoveKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511200116313_CreatedDate.resx">
+      <DependentUpon>201511200116313_CreatedDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ namespace LSDS.CTM
 
         private readonly string _protocolVersion;
         private readonly string _sendersMessageReference;
-        private readonly DateTime _dateTimeOfSentMessage;
+        private readonly DateTime? _dateTimeOfSentMessage;
         private readonly string _orgPartyRole;
         private readonly string _orgPartyType;
         private readonly string _orgPartyValue;
@@ -18,25 +18,25 @@ namespace LSDS.CTM
         private readonly string _receiptPartyValue;
         private readonly string _multiTradeLevelResponseIndicator;
         private readonly string _byOrAgainstFlag;
-        private readonly DateTime _minLastUpdateDateTime;
+        private readonly DateTime? _minLastUpdateDateTime;
        // private readonly string[] _matchStatus;
 
-        public SendMultiTradeLevel(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole, 
+        public SendMultiTradeLevel(string protocolVersion, string sendersMessageReference, DateTime? dateTimeOfSentMessage, string orgPartyRole, 
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue, 
-            string multiTradeLevelResponseIndicator, string byOrAgainstFlag, DateTime minLastUpdateDateTime)
+            string multiTradeLevelResponseIndicator, string byOrAgainstFlag, DateTime? minLastUpdateDateTime)
         {
-            this._protocolVersion = protocolVersion;
-            this._sendersMessageReference = sendersMessageReference;
-            this._dateTimeOfSentMessage = dateTimeOfSentMessage;
-            this._orgPartyRole = orgPartyRole;
-            this._orgPartyType = orgPartyType;
-            this._orgPartyValue = orgPartyValue;
-            this._receiptPartyRole = receiptPartyRole;
-            this._receiptPartyType = receiptPartyType;
-            this._receiptPartyValue = receiptPartyValue;
-            this._multiTradeLevelResponseIndicator = multiTradeLevelResponseIndicator;
-            this._byOrAgainstFlag = byOrAgainstFlag;
-            this._minLastUpdateDateTime = minLastUpdateDateTime;
+            _protocolVersion = protocolVersion;
+            _sendersMessageReference = sendersMessageReference;
+            _dateTimeOfSentMessage = dateTimeOfSentMessage;
+            _orgPartyRole = orgPartyRole;
+            _orgPartyType = orgPartyType;
+            _orgPartyValue = orgPartyValue;
+            _receiptPartyRole = receiptPartyRole;
+            _receiptPartyType = receiptPartyType;
+            _receiptPartyValue = receiptPartyValue;
+            _multiTradeLevelResponseIndicator = multiTradeLevelResponseIndicator;
+            _byOrAgainstFlag = byOrAgainstFlag;
+            _minLastUpdateDateTime = minLastUpdateDateTime;
            
         }
 

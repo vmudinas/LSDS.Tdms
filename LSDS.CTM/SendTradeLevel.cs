@@ -10,7 +10,7 @@ namespace LSDS.CTM
 
         private readonly string _protocolVersion;
         private readonly string _sendersMessageReference;
-        private readonly DateTime _dateTimeOfSentMessage;
+        private readonly DateTime? _dateTimeOfSentMessage;
         private readonly string _orgPartyRole;
         private readonly string _orgPartyType;
         private readonly string _orgPartyValue;
@@ -42,7 +42,7 @@ namespace LSDS.CTM
         private readonly string _securityCode;
 
 
-        public SendTradeLevel(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole,
+        public SendTradeLevel(string protocolVersion, string sendersMessageReference, DateTime? dateTimeOfSentMessage, string orgPartyRole,
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
             string functionOfTheMessage, byte versionOfTradeComponent, string instructingPartyRole, string instructingPartyType, 
             string instructingPartyValue, string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 

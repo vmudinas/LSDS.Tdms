@@ -9,7 +9,7 @@ namespace LSDS.CTM
 
         private readonly string _protocolVersion;
         private readonly string _sendersMessageReference;
-        private readonly DateTime _dateTimeOfSentMessage;
+        private readonly DateTime? _dateTimeOfSentMessage;
         private readonly string _orgPartyRole;
         private readonly string _orgPartyType;
         private readonly string _orgPartyValue;
@@ -25,7 +25,7 @@ namespace LSDS.CTM
         private readonly string _queryType;
         private readonly string _cTMTradeDetailID;
 
-        public SendInfoRequest(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole,
+        public SendInfoRequest(string protocolVersion, string sendersMessageReference, DateTime? dateTimeOfSentMessage, string orgPartyRole,
             string orgPartyType, string orgPartyValue, string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
             string viewRequestedIndicator, string queryType,string executingBrokerPartyRole, string executingBrokerPartyType, string executingBrokerPartyValue, 
             string accessPathIdOwner, string accessPathTradeLevelIdentifiersMasterReference, string cTMTradeDetailID = "")

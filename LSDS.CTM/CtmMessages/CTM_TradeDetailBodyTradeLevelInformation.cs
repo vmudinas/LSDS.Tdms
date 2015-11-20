@@ -16,8 +16,8 @@ namespace LSDS.CTM.CtmMessages
         private string typeOfTransactionIndicatorField;
         private string buySellIndicatorField;
         private string typeOfFinancialInstrumentField;
-        private DateTime tradeDateTimeField;
-        private DateTime settlementDateField;
+        private DateTime? tradeDateTimeField;
+        private DateTime? settlementDateField;
         private string typeOfPriceIndicator;
         private string placeOfClearing;
         private string bestExecution;
@@ -545,7 +545,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnore]
-        public DateTime TradeDT
+        public DateTime? TradeDT
         {
             get
             {
@@ -561,7 +561,7 @@ namespace LSDS.CTM.CtmMessages
         {
             get
             {
-                return long.Parse(TradeDT.ToString("yyyyMMddHHmmss"));
+                return long.Parse(TradeDT?.ToString("yyyyMMddHHmmss"));
             }
             set
             {
@@ -585,7 +585,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnore]
-        public DateTime SettlementDt
+        public DateTime? SettlementDt
         {
             get
             {
@@ -601,7 +601,7 @@ namespace LSDS.CTM.CtmMessages
         {
             get
             {
-                return long.Parse(SettlementDt.ToString("yyyyMMdd"));
+                return long.Parse(SettlementDt?.ToString("yyyyMMdd"));
             }
             set
             {

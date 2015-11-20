@@ -16,7 +16,9 @@ namespace LSDS.CTM.CtmMessages
         [System.Xml.Serialization.XmlIgnore]
         public int CtmId { get; set; }
         [System.Xml.Serialization.XmlIgnore]
-        public DateTime LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
+        [Index("IX_CTM_Message_CreatedDate", IsClustered = false)]
+        public DateTime CreatedDate { get; set; }
         private CTM_Invalid invalidField;
         private CTM_TradeLevel tradeLevelField;
         private CTM_Valid validField;
@@ -28,8 +30,7 @@ namespace LSDS.CTM.CtmMessages
         private CTM_MultiTradeLevelResponse multiTradeLevelResponseField;
         private CTM_Cancel CancelField;
         private string[] textField;
-        
-        
+      
         /// <remarks/>
         public CTM_TradeLevel TradeLevel
         {

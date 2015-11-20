@@ -24,7 +24,7 @@ namespace LSDS.CTM.CtmMessages
         private string echoSendersMessageReferenceField;
         [MaxLength(32)]
         private string echoUserId;
-        private DateTime echoDateTimeOfSentMessageField;
+        private DateTime? echoDateTimeOfSentMessageField;
 
         public CTM_ResponseHeaderAuditTrail AuditTrail
         {
@@ -117,7 +117,7 @@ namespace LSDS.CTM.CtmMessages
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnore]
-        public DateTime EchoDateTimeOfSentMsg
+        public DateTime? EchoDateTimeOfSentMsg
         {
             get
             {
@@ -134,7 +134,7 @@ namespace LSDS.CTM.CtmMessages
         {
             get
             {
-                return ulong.Parse(EchoDateTimeOfSentMsg.ToString("yyyyMMddHHmmss"));
+                return ulong.Parse(EchoDateTimeOfSentMsg?.ToString("yyyyMMddHHmmss"));
             }
             set
             {

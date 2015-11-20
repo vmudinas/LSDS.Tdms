@@ -14,7 +14,7 @@ namespace LSDS.CTM.CtmMessages
 
         private string byOrAgainstFlagField;
 
-        private DateTime minLastUpdateDateTimeField;
+        private DateTime? minLastUpdateDateTimeField;
 
         /// <remarks/>
         public string MultiTradeLevelResponseIndicator
@@ -43,7 +43,7 @@ namespace LSDS.CTM.CtmMessages
         }
 
         /// <remarks/>
-        public DateTime MinLastUpdateDateTime
+        public DateTime? MinLastUpdateDateTime
         {
             get
             {

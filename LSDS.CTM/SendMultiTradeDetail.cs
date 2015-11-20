@@ -12,9 +12,9 @@ namespace LSDS.CTM
 {
     public class SendMultiTradeDetail : ICtmProcess
     {
-        public CTM_Message SendMultiTradeDetailRequest(string protocolVersion, string sendersMessageReference, DateTime dateTimeOfSentMessage, string orgPartyRole, string orgPartyType, string orgPartyValue,
+        public CTM_Message SendMultiTradeDetailRequest(string protocolVersion, string sendersMessageReference, DateTime? dateTimeOfSentMessage, string orgPartyRole, string orgPartyType, string orgPartyValue,
             string receiptPartyRole, string receiptPartyType, string receiptPartyValue,
-            string multiTradeDetailResponseRequested, string byOrAgainstFlag, DateTime minLastUpdateDateTime, string[] matchStatus)
+            string multiTradeDetailResponseRequested, string byOrAgainstFlag, DateTime? minLastUpdateDateTime, string[] matchStatus)
         {
             var msg = new CTM_Message();
             var newReuqestMsg = new CTM_MultiTradeDetailRequest();
